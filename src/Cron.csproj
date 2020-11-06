@@ -21,6 +21,10 @@ Useful for applications that need to generate Cron expressions either on demand 
     <PackageLicenseFile>license.txt</PackageLicenseFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\chris\source\repos\Cron\src\Cron.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="TestResults\**" />
     <EmbeddedResource Remove="TestResults\**" />
@@ -31,6 +35,10 @@ Useful for applications that need to generate Cron expressions either on demand 
     <PackageReference Include="CronExpressionDescriptor" Version="2.15.0" />
     <PackageReference Include="StrongNamer" Version="0.2.5" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+    <PackageReference Include="Vsxmd" Version="1.4.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>

@@ -120,6 +120,7 @@ namespace Cron
             GetProperty(time)
                 .Remove(value);
 
+        /// <inheritdoc cref="ICron" />
         public void Remove(CronTimeSections time, int minValue, int maxValue) =>
             GetProperty(time)
                 .Remove(minValue, maxValue);
