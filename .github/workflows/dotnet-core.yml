@@ -18,6 +18,13 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Install dependencies
-      run: dotnet restore src/Cron.csproj
+      run: dotnet restore
+      working-directory: ./src
     - name: Build
-      run: dotnet build src/Cron.csproj --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore
+      working-directory: ./src
+    - name: Publish
+      uses: brandedoutcast/publish-nuget@v2.5.2
+      with:
+       PROJECT_FILE_PATH: src/Cron.csproj
+       NUGET_KEY: ${{secrets.NUGET_API_KEY}}
