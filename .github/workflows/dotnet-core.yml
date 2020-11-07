@@ -20,7 +20,7 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build src/Cron.csproj --configuration Release --no-restore
     - name: Publish Cron
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
