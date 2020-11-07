@@ -84,26 +84,26 @@ namespace Cron
         public bool Any { get; set; }
 
         /// <inheritdoc cref="ISection" />
-        public List<string> Values
+        public IEnumerable<string> Values
         {
             get
             {
-                var vals = new List<string>();
+                var valueString = new List<string>();
                 if (values.Count == 0)
                 {
-                    vals.Add(DEFAULT_CHAR);
-                    return vals;
+                    valueString.Add(DEFAULT_CHAR);
+                    return valueString;
                 }
                 else
                 {
                     if (Every)
                     {
-                        vals.Add($"{DEFAULT_CHAR}/");
+                        valueString.Add($"{DEFAULT_CHAR}/");
                     }
 
-                    vals.AddRange(values.Select(s => s.ToString()));
+                    valueString.AddRange(values.Select(s => s.ToString()));
 
-                    return vals;
+                    return valueString;
                 }
             }
         }

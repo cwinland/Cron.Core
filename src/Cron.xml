@@ -189,6 +189,43 @@
               Sections of the Cron indicating the type of time.
             </summary>
         </member>
+        <member name="F:Cron.Enums.CronTimeSections.Seconds">
+            <summary>
+              Seconds.
+            </summary>
+        </member>
+        <member name="F:Cron.Enums.CronTimeSections.Minutes">
+            <summary>
+              Minutes.
+            </summary>
+        </member>
+        <member name="F:Cron.Enums.CronTimeSections.Hours">
+            <summary>
+              Hours.
+            </summary>
+        </member>
+        <member name="F:Cron.Enums.CronTimeSections.DayMonth">
+            <summary>
+              Day of the Month.
+            </summary>
+        </member>
+        <member name="F:Cron.Enums.CronTimeSections.DayWeek">
+            <summary>
+              Day of the Week.
+            </summary>
+        </member>
+        <member name="F:Cron.Enums.CronTimeSections.Months">
+            <summary>
+              Month.
+            </summary>
+        </member>
+        <member name="F:Cron.Enums.CronTimeSections.Years">
+            <summary>
+              Year or interval of years.
+            </summary>
+            <example>2020, 2021.</example>
+            <example>*/2 (Every two years).</example>
+        </member>
         <member name="T:Cron.Interfaces.ICron">
             <summary>
               Cron Interface Object.
@@ -337,6 +374,11 @@
             </summary>
             <returns><see cref="T:Cron.Interfaces.ISection" /></returns>
         </member>
+        <member name="T:Cron.Interfaces.ISection">
+            <summary>
+              Section of time - represents the object for a specific given time element of the Cron expression.
+            </summary>
+        </member>
         <member name="P:Cron.Interfaces.ISection.Values">
             <summary>
               List of Cron value expression specific to the <see cref="T:Cron.Interfaces.ISection" />.
@@ -408,6 +450,21 @@
             <param name="maxVal">Ending value for this <see cref="T:Cron.Interfaces.ISection" />.</param>
             <returns></returns>
         </member>
+        <member name="T:Cron.Interfaces.ISectionValues">
+            <summary>
+              Stores the values for a section list.
+            </summary>
+        </member>
+        <member name="P:Cron.Interfaces.ISectionValues.MaxValue">
+            <summary>
+              Maximum value in a value range.
+            </summary>
+        </member>
+        <member name="P:Cron.Interfaces.ISectionValues.MinValue">
+            <summary>
+              Minimum value in a value range. Also represents the only value, if the section is not a range.
+            </summary>
+        </member>
         <member name="T:Cron.Section">
             <inheritdoc cref="T:Cron.Interfaces.ISection" />
         </member>
@@ -472,6 +529,21 @@
         </member>
         <member name="M:Cron.Section.IsValidRange(System.Int32)">
             <inheritdoc cref="T:Cron.Interfaces.ISection" />
+        </member>
+        <member name="T:Cron.SectionValues">
+            <inheritdoc cref="T:Cron.Interfaces.ISectionValues" />
+        </member>
+        <member name="P:Cron.SectionValues.MaxValue">
+            <inheritdoc cref="T:Cron.Interfaces.ISectionValues" />
+        </member>
+        <member name="P:Cron.SectionValues.MinValue">
+            <inheritdoc cref="T:Cron.Interfaces.ISectionValues" />
+        </member>
+        <member name="M:Cron.SectionValues.ToString">
+            <inheritdoc cref="T:Cron.Interfaces.ISectionValues" />
+        </member>
+        <member name="M:Cron.SectionValues.op_Explicit(System.Collections.Generic.List{Cron.Interfaces.ISectionValues})~Cron.SectionValues">
+            <inheritdoc cref="T:Cron.Interfaces.ISectionValues" />
         </member>
     </members>
 </doc>

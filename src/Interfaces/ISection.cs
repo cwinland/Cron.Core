@@ -4,12 +4,15 @@ using Cron.Enums;
 
 namespace Cron.Interfaces
 {
+    /// <summary>
+    ///   Section of time - represents the object for a specific given time element of the Cron expression.
+    /// </summary>
     public interface ISection : IReadOnlyList<ISectionValues>
     {
         /// <summary>
         ///   List of Cron value expression specific to the <see cref="ISection" />.
         /// </summary>
-        List<string> Values { get; }
+        IEnumerable<string> Values { get; }
 
         /// <summary>
         ///   Indicates that the value should be translated using the */ every indicator.

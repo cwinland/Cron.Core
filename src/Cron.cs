@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Cron.Enums;
+using Cron.Interfaces;
 using CronExpressionDescriptor;
+using System;
+using System.Collections;
 using System.Linq;
 using System.Reflection;
-using Cron.Enums;
-using Cron.Interfaces;
-using System.Collections;
 
 namespace Cron
 {
@@ -20,7 +19,7 @@ namespace Cron
         }
 
         /// <inheritdoc cref="ICron" />
-        public Cron(string expression)
+        public Cron(string expression) : this()
         {
             var cronArray = expression.Split(' ');
 

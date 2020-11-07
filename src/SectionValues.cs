@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace Cron
 {
+    /// <inheritdoc cref="ISectionValues" />
     public class SectionValues : ISectionValues
     {
         private readonly int? maxValue;
@@ -12,10 +13,13 @@ namespace Cron
 
         internal SectionValues(int minVal, int maxVal) : this(minVal) => maxValue = maxVal;
 
+        /// <inheritdoc cref="ISectionValues" />
         public int MaxValue => maxValue ?? MinValue;
 
+        /// <inheritdoc cref="ISectionValues" />
         public int MinValue { get; }
 
+        /// <inheritdoc cref="ISectionValues" />
         public override string ToString()
         {
             return MaxValue == MinValue
@@ -23,6 +27,7 @@ namespace Cron
                 : $"{MinValue}-{MaxValue}";
         }
 
+        /// <inheritdoc cref="ISectionValues" />
         public static explicit operator SectionValues(List<ISectionValues> v)
         {
             throw new NotImplementedException();

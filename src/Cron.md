@@ -50,6 +50,13 @@
   - [October](#F-Cron-Enums-CronMonths-October 'Cron.Enums.CronMonths.October')
   - [September](#F-Cron-Enums-CronMonths-September 'Cron.Enums.CronMonths.September')
 - [CronTimeSections](#T-Cron-Enums-CronTimeSections 'Cron.Enums.CronTimeSections')
+  - [DayMonth](#F-Cron-Enums-CronTimeSections-DayMonth 'Cron.Enums.CronTimeSections.DayMonth')
+  - [DayWeek](#F-Cron-Enums-CronTimeSections-DayWeek 'Cron.Enums.CronTimeSections.DayWeek')
+  - [Hours](#F-Cron-Enums-CronTimeSections-Hours 'Cron.Enums.CronTimeSections.Hours')
+  - [Minutes](#F-Cron-Enums-CronTimeSections-Minutes 'Cron.Enums.CronTimeSections.Minutes')
+  - [Months](#F-Cron-Enums-CronTimeSections-Months 'Cron.Enums.CronTimeSections.Months')
+  - [Seconds](#F-Cron-Enums-CronTimeSections-Seconds 'Cron.Enums.CronTimeSections.Seconds')
+  - [Years](#F-Cron-Enums-CronTimeSections-Years 'Cron.Enums.CronTimeSections.Years')
 - [ICron](#T-Cron-Interfaces-ICron 'Cron.Interfaces.ICron')
   - [DayMonth](#P-Cron-Interfaces-ICron-DayMonth 'Cron.Interfaces.ICron.DayMonth')
   - [DayWeek](#P-Cron-Interfaces-ICron-DayWeek 'Cron.Interfaces.ICron.DayWeek')
@@ -83,6 +90,9 @@
   - [IsValidRange(value)](#M-Cron-Interfaces-ISection-IsValidRange-System-Int32- 'Cron.Interfaces.ISection.IsValidRange(System.Int32)')
   - [Remove(value)](#M-Cron-Interfaces-ISection-Remove-System-Int32- 'Cron.Interfaces.ISection.Remove(System.Int32)')
   - [Remove(minVal,maxVal)](#M-Cron-Interfaces-ISection-Remove-System-Int32,System-Int32- 'Cron.Interfaces.ISection.Remove(System.Int32,System.Int32)')
+- [ISectionValues](#T-Cron-Interfaces-ISectionValues 'Cron.Interfaces.ISectionValues')
+  - [MaxValue](#P-Cron-Interfaces-ISectionValues-MaxValue 'Cron.Interfaces.ISectionValues.MaxValue')
+  - [MinValue](#P-Cron-Interfaces-ISectionValues-MinValue 'Cron.Interfaces.ISectionValues.MinValue')
 - [Section](#T-Cron-Section 'Cron.Section')
   - [#ctor(time,expression)](#M-Cron-Section-#ctor-Cron-Enums-CronTimeSections,System-String- 'Cron.Section.#ctor(Cron.Enums.CronTimeSections,System.String)')
   - [#ctor(time)](#M-Cron-Section-#ctor-Cron-Enums-CronTimeSections- 'Cron.Section.#ctor(Cron.Enums.CronTimeSections)')
@@ -102,6 +112,11 @@
   - [Remove()](#M-Cron-Section-Remove-System-Int32,System-Int32- 'Cron.Section.Remove(System.Int32,System.Int32)')
   - [System#Collections#IEnumerable#GetEnumerator()](#M-Cron-Section-System#Collections#IEnumerable#GetEnumerator 'Cron.Section.System#Collections#IEnumerable#GetEnumerator')
   - [ToString()](#M-Cron-Section-ToString 'Cron.Section.ToString')
+- [SectionValues](#T-Cron-SectionValues 'Cron.SectionValues')
+  - [MaxValue](#P-Cron-SectionValues-MaxValue 'Cron.SectionValues.MaxValue')
+  - [MinValue](#P-Cron-SectionValues-MinValue 'Cron.SectionValues.MinValue')
+  - [ToString()](#M-Cron-SectionValues-ToString 'Cron.SectionValues.ToString')
+  - [op_Explicit()](#M-Cron-SectionValues-op_Explicit-System-Collections-Generic-List{Cron-Interfaces-ISectionValues}-~Cron-SectionValues 'Cron.SectionValues.op_Explicit(System.Collections.Generic.List{Cron.Interfaces.ISectionValues})~Cron.SectionValues')
 
 <a name='T-Cron-Cron'></a>
 ## Cron `type`
@@ -508,6 +523,59 @@ Cron.Enums
 
 Sections of the Cron indicating the type of time.
 
+<a name='F-Cron-Enums-CronTimeSections-DayMonth'></a>
+### DayMonth `constants`
+
+##### Summary
+
+Day of the Month.
+
+<a name='F-Cron-Enums-CronTimeSections-DayWeek'></a>
+### DayWeek `constants`
+
+##### Summary
+
+Day of the Week.
+
+<a name='F-Cron-Enums-CronTimeSections-Hours'></a>
+### Hours `constants`
+
+##### Summary
+
+Hours.
+
+<a name='F-Cron-Enums-CronTimeSections-Minutes'></a>
+### Minutes `constants`
+
+##### Summary
+
+Minutes.
+
+<a name='F-Cron-Enums-CronTimeSections-Months'></a>
+### Months `constants`
+
+##### Summary
+
+Month.
+
+<a name='F-Cron-Enums-CronTimeSections-Seconds'></a>
+### Seconds `constants`
+
+##### Summary
+
+Seconds.
+
+<a name='F-Cron-Enums-CronTimeSections-Years'></a>
+### Years `constants`
+
+##### Summary
+
+Year or interval of years.
+
+##### Example
+
+2020, 2021.
+
 <a name='T-Cron-Interfaces-ICron'></a>
 ## ICron `type`
 
@@ -815,6 +883,10 @@ Set time with [ISection](#T-Cron-Interfaces-ISection 'Cron.Interfaces.ISection')
 
 Cron.Interfaces
 
+##### Summary
+
+Section of time - represents the object for a specific given time element of the Cron expression.
+
 <a name='P-Cron-Interfaces-ISection-Any'></a>
 ### Any `property`
 
@@ -965,6 +1037,31 @@ Remove the specified range of values from the [ISection](#T-Cron-Interfaces-ISec
 | ---- | ---- | ----------- |
 | minVal | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | Starting value for this [ISection](#T-Cron-Interfaces-ISection 'Cron.Interfaces.ISection'). |
 | maxVal | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | Ending value for this [ISection](#T-Cron-Interfaces-ISection 'Cron.Interfaces.ISection'). |
+
+<a name='T-Cron-Interfaces-ISectionValues'></a>
+## ISectionValues `type`
+
+##### Namespace
+
+Cron.Interfaces
+
+##### Summary
+
+Stores the values for a section list.
+
+<a name='P-Cron-Interfaces-ISectionValues-MaxValue'></a>
+### MaxValue `property`
+
+##### Summary
+
+Maximum value in a value range.
+
+<a name='P-Cron-Interfaces-ISectionValues-MinValue'></a>
+### MinValue `property`
+
+##### Summary
+
+Minimum value in a value range. Also represents the only value, if the section is not a range.
 
 <a name='T-Cron-Section'></a>
 ## Section `type`
@@ -1151,6 +1248,53 @@ This method has no parameters.
 
 <a name='M-Cron-Section-ToString'></a>
 ### ToString() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='T-Cron-SectionValues'></a>
+## SectionValues `type`
+
+##### Namespace
+
+Cron
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='P-Cron-SectionValues-MaxValue'></a>
+### MaxValue `property`
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='P-Cron-SectionValues-MinValue'></a>
+### MinValue `property`
+
+##### Summary
+
+*Inherit from parent.*
+
+<a name='M-Cron-SectionValues-ToString'></a>
+### ToString() `method`
+
+##### Summary
+
+*Inherit from parent.*
+
+##### Parameters
+
+This method has no parameters.
+
+<a name='M-Cron-SectionValues-op_Explicit-System-Collections-Generic-List{Cron-Interfaces-ISectionValues}-~Cron-SectionValues'></a>
+### op_Explicit() `method`
 
 ##### Summary
 
