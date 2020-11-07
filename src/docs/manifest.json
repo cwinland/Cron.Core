@@ -1,0 +1,287 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/Users/chris/source/repos/Cron/src",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Cron.md",
+      "output": {
+        ".html": {
+          "relative_path": "Cron.html",
+          "hash": "LIf5hbjcHwA01C+wGtztig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Cron.Cron.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Cron.Cron.html",
+          "hash": "MmN+HjKqlX77BqLX+qJjdA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Cron.Enums.CronDays.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Cron.Enums.CronDays.html",
+          "hash": "TaV17b8pDsxESHBZpq/e8A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Cron.Enums.CronMonths.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Cron.Enums.CronMonths.html",
+          "hash": "Lv9HzElLBYGnRGoXiRug7Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Cron.Enums.CronTimeSections.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Cron.Enums.CronTimeSections.html",
+          "hash": "J5gPYDbfLRt23lJG8jvkng=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Cron.Enums.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Cron.Enums.html",
+          "hash": "MQ3fvs7CiYgxElANwmYghA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Cron.Interfaces.ICron.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Cron.Interfaces.ICron.html",
+          "hash": "glImQg49e/RRZ/Onp6wZww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Cron.Interfaces.ISection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Cron.Interfaces.ISection.html",
+          "hash": "u6iCz9MGldj8HtmPYKvK9w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Cron.Interfaces.ISectionValues.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Cron.Interfaces.ISectionValues.html",
+          "hash": "II2Gg6h1qjteMhMQRvFeig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Cron.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Cron.Interfaces.html",
+          "hash": "mjALBqUpYRsrwJQbIxb+FA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Cron.Section.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Cron.Section.html",
+          "hash": "MQmtpGRF2rM2roubxGkUJw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Cron.SectionValues.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Cron.SectionValues.html",
+          "hash": "8XswzUriv5FX14e5+xX1jw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Cron.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Cron.html",
+          "hash": "I1zqab/+Zglbd3TUONKe1g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "oJG4HBCkwQmoJqI3KUQE+g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "0A8WDWhz0rqIDEIwYOzMSg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html",
+          "hash": "MPnzndtH4tG2qLIhHLf2Dg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "gB8AESyvNru97tzIZofEEg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "TWpO0ma5TQgg46n3oOAyDA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "+rHUkRZHZRi5gd1aTU6lJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Disable incremental build by force rebuild option.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "ForceRebuild"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 4,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 12,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: it's disabled.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
