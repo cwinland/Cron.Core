@@ -2,9 +2,9 @@ name: Publish Packages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -21,8 +21,3 @@ jobs:
       run: dotnet restore src/Cron.csproj
     - name: Build
       run: dotnet build src/Cron.csproj --configuration Release --no-restore
-    - name: Publish Cron
-      uses: brandedoutcast/publish-nuget@v2.5.2
-      with:
-          PROJECT_FILE_PATH: src/Cron.csproj
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
