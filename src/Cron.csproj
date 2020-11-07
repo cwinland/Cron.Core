@@ -19,7 +19,7 @@
 		<PackageProjectUrl>https://github.com/cwinland/Cron.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/cwinland/Cron.Core</RepositoryUrl>
 		<RepositoryType>github</RepositoryType>
-		<PackageTags>Cron Expression builder</PackageTags>
+		<PackageTags>Cron Expression builder Parser Object Description</PackageTags>
 		<PackageLicenseFile>license.txt</PackageLicenseFile>
 	</PropertyGroup>
 	<PropertyGroup>
