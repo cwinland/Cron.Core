@@ -2,7 +2,7 @@ name: Publish Packages
 
 on:
   push:
-    branches: [ master ]
+    branches: [ ]
   pull_request:
     branches: [ master ]
 
@@ -18,15 +18,6 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Install dependencies
-      run: dotnet restore
-      working-directory: ./src
+      run: dotnet restore src/Cron.csproj
     - name: Build
-      run: dotnet build --configuration Release --no-restore
-      working-directory: ./src
-    - name: Publish
-      uses: brandedoutcast/publish-nuget@v2.5.2
-      with:
-       PROJECT_FILE_PATH: src/Cron.Core.csproj
-       NUGET_KEY: ${{secrets.NUGET_API_KEY}}
-       VERSION_REGEX: ((?:\!?[0-9]+)(?:\.?[0-9]){3,}(?:[a-z]+)?)
-       
+      run: dotnet build src/Cron.csproj --configuration Release --no-restore
