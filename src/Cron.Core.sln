@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cron", "Cron.csproj", "{3B73A3FA-2479-40A8-81E3-8AEA45D13D2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cron.Core", "Cron.Core.csproj", "{3B73A3FA-2479-40A8-81E3-8AEA45D13D2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cron.Tests", "..\Cron.Tests\Cron.Tests.csproj", "{7A52DA95-B377-4591-97CB-7436374957D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cron.Tests", "..\Cron.Tests\Cron.Tests.csproj", "{7A52DA95-B377-4591-97CB-7436374957D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

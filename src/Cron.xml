@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Cron</name>
+        <name>Cron.Core</name>
     </assembly>
     <members>
         <member name="T:Cron.Cron">
