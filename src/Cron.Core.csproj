@@ -5,7 +5,7 @@
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>cron.snk</AssemblyOriginatorKeyFile>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<PackageId>Cron.Core.StrongNamed</PackageId>
 		<Authors>Christopher Winland</Authors>
 		<Company>Microsoft Corporation</Company>
@@ -76,10 +76,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="CronExpressionDescriptor" Version="2.15.0" />
-		<PackageReference Include="docfx.console" Version="2.56.4">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
 		<PackageReference Include="StrongNamer" Version="0.2.5" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
 	</ItemGroup>
