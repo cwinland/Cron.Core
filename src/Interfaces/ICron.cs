@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.ComponentModel.DataAnnotations;
-using Cron.Enums;
+using Cron.Core.Enums;
 
-namespace Cron.Interfaces
+namespace Cron.Core.Interfaces
 {
     /// <summary>
     ///   Cron Interface Object.

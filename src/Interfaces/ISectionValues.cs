@@ -1,4 +1,4 @@
-﻿namespace Cron.Interfaces
+﻿namespace Cron.Core.Interfaces
 {
     /// <summary>
     ///   Stores the values for a section list.

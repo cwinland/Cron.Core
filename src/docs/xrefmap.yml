@@ -1,1101 +1,1135 @@
 ### YamlMime:XRefMap
 sorted: true
 references:
-- uid: Cron
+- uid: Cron.Core
+  name: Cron.Core
+  href: api/Cron.Core.html
+  commentId: N:Cron.Core
+  fullName: Cron.Core
+  nameWithType: Cron.Core
+- uid: Cron.Core.Cron
   name: Cron
-  href: api/Cron.html
-  commentId: N:Cron
-  fullName: Cron
+  href: api/Cron.Core.Cron.html
+  commentId: T:Cron.Core.Cron
+  fullName: Cron.Core.Cron
   nameWithType: Cron
-- uid: Cron.Cron
-  name: Cron
-  href: api/Cron.Cron.html
-  commentId: T:Cron.Cron
-  fullName: Cron.Cron
-  nameWithType: Cron
-- uid: Cron.Cron.#ctor
+- uid: Cron.Core.Cron.#ctor
   name: Cron()
-  href: api/Cron.Cron.html#Cron_Cron__ctor
-  commentId: M:Cron.Cron.#ctor
-  fullName: Cron.Cron.Cron()
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron__ctor
+  commentId: M:Cron.Core.Cron.#ctor
+  fullName: Cron.Core.Cron.Cron()
   nameWithType: Cron.Cron()
-- uid: Cron.Cron.#ctor(System.String)
+- uid: Cron.Core.Cron.#ctor(System.String)
   name: Cron(String)
-  href: api/Cron.Cron.html#Cron_Cron__ctor_System_String_
-  commentId: M:Cron.Cron.#ctor(System.String)
-  fullName: Cron.Cron.Cron(System.String)
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron__ctor_System_String_
+  commentId: M:Cron.Core.Cron.#ctor(System.String)
+  fullName: Cron.Core.Cron.Cron(System.String)
   nameWithType: Cron.Cron(String)
-- uid: Cron.Cron.#ctor*
+- uid: Cron.Core.Cron.#ctor*
   name: Cron
-  href: api/Cron.Cron.html#Cron_Cron__ctor_
-  commentId: Overload:Cron.Cron.#ctor
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron__ctor_
+  commentId: Overload:Cron.Core.Cron.#ctor
   isSpec: "True"
-  fullName: Cron.Cron.Cron
+  fullName: Cron.Core.Cron.Cron
   nameWithType: Cron.Cron
-- uid: Cron.Cron.Add(Cron.Enums.CronDays,Cron.Enums.CronDays)
+- uid: Cron.Core.Cron.Add(Cron.Core.Enums.CronDays,Cron.Core.Enums.CronDays)
   name: Add(CronDays, CronDays)
-  href: api/Cron.Cron.html#Cron_Cron_Add_Cron_Enums_CronDays_Cron_Enums_CronDays_
-  commentId: M:Cron.Cron.Add(Cron.Enums.CronDays,Cron.Enums.CronDays)
-  fullName: Cron.Cron.Add(Cron.Enums.CronDays, Cron.Enums.CronDays)
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Add_Cron_Core_Enums_CronDays_Cron_Core_Enums_CronDays_
+  commentId: M:Cron.Core.Cron.Add(Cron.Core.Enums.CronDays,Cron.Core.Enums.CronDays)
+  fullName: Cron.Core.Cron.Add(Cron.Core.Enums.CronDays, Cron.Core.Enums.CronDays)
   nameWithType: Cron.Add(CronDays, CronDays)
-- uid: Cron.Cron.Add(Cron.Enums.CronDays,System.Boolean)
+- uid: Cron.Core.Cron.Add(Cron.Core.Enums.CronDays,System.Boolean)
   name: Add(CronDays, Boolean)
-  href: api/Cron.Cron.html#Cron_Cron_Add_Cron_Enums_CronDays_System_Boolean_
-  commentId: M:Cron.Cron.Add(Cron.Enums.CronDays,System.Boolean)
-  fullName: Cron.Cron.Add(Cron.Enums.CronDays, System.Boolean)
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Add_Cron_Core_Enums_CronDays_System_Boolean_
+  commentId: M:Cron.Core.Cron.Add(Cron.Core.Enums.CronDays,System.Boolean)
+  fullName: Cron.Core.Cron.Add(Cron.Core.Enums.CronDays, System.Boolean)
   nameWithType: Cron.Add(CronDays, Boolean)
-- uid: Cron.Cron.Add(Cron.Enums.CronMonths,Cron.Enums.CronMonths)
+- uid: Cron.Core.Cron.Add(Cron.Core.Enums.CronMonths,Cron.Core.Enums.CronMonths)
   name: Add(CronMonths, CronMonths)
-  href: api/Cron.Cron.html#Cron_Cron_Add_Cron_Enums_CronMonths_Cron_Enums_CronMonths_
-  commentId: M:Cron.Cron.Add(Cron.Enums.CronMonths,Cron.Enums.CronMonths)
-  fullName: Cron.Cron.Add(Cron.Enums.CronMonths, Cron.Enums.CronMonths)
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Add_Cron_Core_Enums_CronMonths_Cron_Core_Enums_CronMonths_
+  commentId: M:Cron.Core.Cron.Add(Cron.Core.Enums.CronMonths,Cron.Core.Enums.CronMonths)
+  fullName: Cron.Core.Cron.Add(Cron.Core.Enums.CronMonths, Cron.Core.Enums.CronMonths)
   nameWithType: Cron.Add(CronMonths, CronMonths)
-- uid: Cron.Cron.Add(Cron.Enums.CronMonths,System.Boolean)
+- uid: Cron.Core.Cron.Add(Cron.Core.Enums.CronMonths,System.Boolean)
   name: Add(CronMonths, Boolean)
-  href: api/Cron.Cron.html#Cron_Cron_Add_Cron_Enums_CronMonths_System_Boolean_
-  commentId: M:Cron.Cron.Add(Cron.Enums.CronMonths,System.Boolean)
-  fullName: Cron.Cron.Add(Cron.Enums.CronMonths, System.Boolean)
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Add_Cron_Core_Enums_CronMonths_System_Boolean_
+  commentId: M:Cron.Core.Cron.Add(Cron.Core.Enums.CronMonths,System.Boolean)
+  fullName: Cron.Core.Cron.Add(Cron.Core.Enums.CronMonths, System.Boolean)
   nameWithType: Cron.Add(CronMonths, Boolean)
-- uid: Cron.Cron.Add(Cron.Enums.CronTimeSections,System.Int32,System.Boolean)
+- uid: Cron.Core.Cron.Add(Cron.Core.Enums.CronTimeSections,System.Int32,System.Boolean)
   name: Add(CronTimeSections, Int32, Boolean)
-  href: api/Cron.Cron.html#Cron_Cron_Add_Cron_Enums_CronTimeSections_System_Int32_System_Boolean_
-  commentId: M:Cron.Cron.Add(Cron.Enums.CronTimeSections,System.Int32,System.Boolean)
-  fullName: Cron.Cron.Add(Cron.Enums.CronTimeSections, System.Int32, System.Boolean)
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Add_Cron_Core_Enums_CronTimeSections_System_Int32_System_Boolean_
+  commentId: M:Cron.Core.Cron.Add(Cron.Core.Enums.CronTimeSections,System.Int32,System.Boolean)
+  fullName: Cron.Core.Cron.Add(Cron.Core.Enums.CronTimeSections, System.Int32, System.Boolean)
   nameWithType: Cron.Add(CronTimeSections, Int32, Boolean)
-- uid: Cron.Cron.Add(Cron.Enums.CronTimeSections,System.Int32,System.Int32)
+- uid: Cron.Core.Cron.Add(Cron.Core.Enums.CronTimeSections,System.Int32,System.Int32)
   name: Add(CronTimeSections, Int32, Int32)
-  href: api/Cron.Cron.html#Cron_Cron_Add_Cron_Enums_CronTimeSections_System_Int32_System_Int32_
-  commentId: M:Cron.Cron.Add(Cron.Enums.CronTimeSections,System.Int32,System.Int32)
-  fullName: Cron.Cron.Add(Cron.Enums.CronTimeSections, System.Int32, System.Int32)
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Add_Cron_Core_Enums_CronTimeSections_System_Int32_System_Int32_
+  commentId: M:Cron.Core.Cron.Add(Cron.Core.Enums.CronTimeSections,System.Int32,System.Int32)
+  fullName: Cron.Core.Cron.Add(Cron.Core.Enums.CronTimeSections, System.Int32, System.Int32)
   nameWithType: Cron.Add(CronTimeSections, Int32, Int32)
-- uid: Cron.Cron.Add*
+- uid: Cron.Core.Cron.Add*
   name: Add
-  href: api/Cron.Cron.html#Cron_Cron_Add_
-  commentId: Overload:Cron.Cron.Add
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Add_
+  commentId: Overload:Cron.Core.Cron.Add
   isSpec: "True"
-  fullName: Cron.Cron.Add
+  fullName: Cron.Core.Cron.Add
   nameWithType: Cron.Add
-- uid: Cron.Cron.DayMonth
+- uid: Cron.Core.Cron.DayMonth
   name: DayMonth
-  href: api/Cron.Cron.html#Cron_Cron_DayMonth
-  commentId: P:Cron.Cron.DayMonth
-  fullName: Cron.Cron.DayMonth
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_DayMonth
+  commentId: P:Cron.Core.Cron.DayMonth
+  fullName: Cron.Core.Cron.DayMonth
   nameWithType: Cron.DayMonth
-- uid: Cron.Cron.DayMonth*
+- uid: Cron.Core.Cron.DayMonth*
   name: DayMonth
-  href: api/Cron.Cron.html#Cron_Cron_DayMonth_
-  commentId: Overload:Cron.Cron.DayMonth
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_DayMonth_
+  commentId: Overload:Cron.Core.Cron.DayMonth
   isSpec: "True"
-  fullName: Cron.Cron.DayMonth
+  fullName: Cron.Core.Cron.DayMonth
   nameWithType: Cron.DayMonth
-- uid: Cron.Cron.DayWeek
+- uid: Cron.Core.Cron.DayWeek
   name: DayWeek
-  href: api/Cron.Cron.html#Cron_Cron_DayWeek
-  commentId: P:Cron.Cron.DayWeek
-  fullName: Cron.Cron.DayWeek
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_DayWeek
+  commentId: P:Cron.Core.Cron.DayWeek
+  fullName: Cron.Core.Cron.DayWeek
   nameWithType: Cron.DayWeek
-- uid: Cron.Cron.DayWeek*
+- uid: Cron.Core.Cron.DayWeek*
   name: DayWeek
-  href: api/Cron.Cron.html#Cron_Cron_DayWeek_
-  commentId: Overload:Cron.Cron.DayWeek
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_DayWeek_
+  commentId: Overload:Cron.Core.Cron.DayWeek
   isSpec: "True"
-  fullName: Cron.Cron.DayWeek
+  fullName: Cron.Core.Cron.DayWeek
   nameWithType: Cron.DayWeek
-- uid: Cron.Cron.Description
+- uid: Cron.Core.Cron.Description
   name: Description
-  href: api/Cron.Cron.html#Cron_Cron_Description
-  commentId: P:Cron.Cron.Description
-  fullName: Cron.Cron.Description
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Description
+  commentId: P:Cron.Core.Cron.Description
+  fullName: Cron.Core.Cron.Description
   nameWithType: Cron.Description
-- uid: Cron.Cron.Description*
+- uid: Cron.Core.Cron.Description*
   name: Description
-  href: api/Cron.Cron.html#Cron_Cron_Description_
-  commentId: Overload:Cron.Cron.Description
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Description_
+  commentId: Overload:Cron.Core.Cron.Description
   isSpec: "True"
-  fullName: Cron.Cron.Description
+  fullName: Cron.Core.Cron.Description
   nameWithType: Cron.Description
-- uid: Cron.Cron.Hours
+- uid: Cron.Core.Cron.Hours
   name: Hours
-  href: api/Cron.Cron.html#Cron_Cron_Hours
-  commentId: P:Cron.Cron.Hours
-  fullName: Cron.Cron.Hours
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Hours
+  commentId: P:Cron.Core.Cron.Hours
+  fullName: Cron.Core.Cron.Hours
   nameWithType: Cron.Hours
-- uid: Cron.Cron.Hours*
+- uid: Cron.Core.Cron.Hours*
   name: Hours
-  href: api/Cron.Cron.html#Cron_Cron_Hours_
-  commentId: Overload:Cron.Cron.Hours
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Hours_
+  commentId: Overload:Cron.Core.Cron.Hours
   isSpec: "True"
-  fullName: Cron.Cron.Hours
+  fullName: Cron.Core.Cron.Hours
   nameWithType: Cron.Hours
-- uid: Cron.Cron.Minutes
+- uid: Cron.Core.Cron.Minutes
   name: Minutes
-  href: api/Cron.Cron.html#Cron_Cron_Minutes
-  commentId: P:Cron.Cron.Minutes
-  fullName: Cron.Cron.Minutes
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Minutes
+  commentId: P:Cron.Core.Cron.Minutes
+  fullName: Cron.Core.Cron.Minutes
   nameWithType: Cron.Minutes
-- uid: Cron.Cron.Minutes*
+- uid: Cron.Core.Cron.Minutes*
   name: Minutes
-  href: api/Cron.Cron.html#Cron_Cron_Minutes_
-  commentId: Overload:Cron.Cron.Minutes
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Minutes_
+  commentId: Overload:Cron.Core.Cron.Minutes
   isSpec: "True"
-  fullName: Cron.Cron.Minutes
+  fullName: Cron.Core.Cron.Minutes
   nameWithType: Cron.Minutes
-- uid: Cron.Cron.Months
+- uid: Cron.Core.Cron.Months
   name: Months
-  href: api/Cron.Cron.html#Cron_Cron_Months
-  commentId: P:Cron.Cron.Months
-  fullName: Cron.Cron.Months
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Months
+  commentId: P:Cron.Core.Cron.Months
+  fullName: Cron.Core.Cron.Months
   nameWithType: Cron.Months
-- uid: Cron.Cron.Months*
+- uid: Cron.Core.Cron.Months*
   name: Months
-  href: api/Cron.Cron.html#Cron_Cron_Months_
-  commentId: Overload:Cron.Cron.Months
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Months_
+  commentId: Overload:Cron.Core.Cron.Months
   isSpec: "True"
-  fullName: Cron.Cron.Months
+  fullName: Cron.Core.Cron.Months
   nameWithType: Cron.Months
-- uid: Cron.Cron.Remove(Cron.Enums.CronTimeSections,System.Int32)
+- uid: Cron.Core.Cron.Remove(Cron.Core.Enums.CronTimeSections,System.Int32)
   name: Remove(CronTimeSections, Int32)
-  href: api/Cron.Cron.html#Cron_Cron_Remove_Cron_Enums_CronTimeSections_System_Int32_
-  commentId: M:Cron.Cron.Remove(Cron.Enums.CronTimeSections,System.Int32)
-  fullName: Cron.Cron.Remove(Cron.Enums.CronTimeSections, System.Int32)
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Remove_Cron_Core_Enums_CronTimeSections_System_Int32_
+  commentId: M:Cron.Core.Cron.Remove(Cron.Core.Enums.CronTimeSections,System.Int32)
+  fullName: Cron.Core.Cron.Remove(Cron.Core.Enums.CronTimeSections, System.Int32)
   nameWithType: Cron.Remove(CronTimeSections, Int32)
-- uid: Cron.Cron.Remove(Cron.Enums.CronTimeSections,System.Int32,System.Int32)
+- uid: Cron.Core.Cron.Remove(Cron.Core.Enums.CronTimeSections,System.Int32,System.Int32)
   name: Remove(CronTimeSections, Int32, Int32)
-  href: api/Cron.Cron.html#Cron_Cron_Remove_Cron_Enums_CronTimeSections_System_Int32_System_Int32_
-  commentId: M:Cron.Cron.Remove(Cron.Enums.CronTimeSections,System.Int32,System.Int32)
-  fullName: Cron.Cron.Remove(Cron.Enums.CronTimeSections, System.Int32, System.Int32)
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Remove_Cron_Core_Enums_CronTimeSections_System_Int32_System_Int32_
+  commentId: M:Cron.Core.Cron.Remove(Cron.Core.Enums.CronTimeSections,System.Int32,System.Int32)
+  fullName: Cron.Core.Cron.Remove(Cron.Core.Enums.CronTimeSections, System.Int32, System.Int32)
   nameWithType: Cron.Remove(CronTimeSections, Int32, Int32)
-- uid: Cron.Cron.Remove*
+- uid: Cron.Core.Cron.Remove*
   name: Remove
-  href: api/Cron.Cron.html#Cron_Cron_Remove_
-  commentId: Overload:Cron.Cron.Remove
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Remove_
+  commentId: Overload:Cron.Core.Cron.Remove
   isSpec: "True"
-  fullName: Cron.Cron.Remove
+  fullName: Cron.Core.Cron.Remove
   nameWithType: Cron.Remove
-- uid: Cron.Cron.Reset(Cron.Enums.CronTimeSections)
+- uid: Cron.Core.Cron.Reset(Cron.Core.Enums.CronTimeSections)
   name: Reset(CronTimeSections)
-  href: api/Cron.Cron.html#Cron_Cron_Reset_Cron_Enums_CronTimeSections_
-  commentId: M:Cron.Cron.Reset(Cron.Enums.CronTimeSections)
-  fullName: Cron.Cron.Reset(Cron.Enums.CronTimeSections)
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Reset_Cron_Core_Enums_CronTimeSections_
+  commentId: M:Cron.Core.Cron.Reset(Cron.Core.Enums.CronTimeSections)
+  fullName: Cron.Core.Cron.Reset(Cron.Core.Enums.CronTimeSections)
   nameWithType: Cron.Reset(CronTimeSections)
-- uid: Cron.Cron.Reset*
+- uid: Cron.Core.Cron.Reset*
   name: Reset
-  href: api/Cron.Cron.html#Cron_Cron_Reset_
-  commentId: Overload:Cron.Cron.Reset
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Reset_
+  commentId: Overload:Cron.Core.Cron.Reset
   isSpec: "True"
-  fullName: Cron.Cron.Reset
+  fullName: Cron.Core.Cron.Reset
   nameWithType: Cron.Reset
-- uid: Cron.Cron.ResetAll
+- uid: Cron.Core.Cron.ResetAll
   name: ResetAll()
-  href: api/Cron.Cron.html#Cron_Cron_ResetAll
-  commentId: M:Cron.Cron.ResetAll
-  fullName: Cron.Cron.ResetAll()
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_ResetAll
+  commentId: M:Cron.Core.Cron.ResetAll
+  fullName: Cron.Core.Cron.ResetAll()
   nameWithType: Cron.ResetAll()
-- uid: Cron.Cron.ResetAll*
+- uid: Cron.Core.Cron.ResetAll*
   name: ResetAll
-  href: api/Cron.Cron.html#Cron_Cron_ResetAll_
-  commentId: Overload:Cron.Cron.ResetAll
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_ResetAll_
+  commentId: Overload:Cron.Core.Cron.ResetAll
   isSpec: "True"
-  fullName: Cron.Cron.ResetAll
+  fullName: Cron.Core.Cron.ResetAll
   nameWithType: Cron.ResetAll
-- uid: Cron.Cron.Seconds
+- uid: Cron.Core.Cron.Seconds
   name: Seconds
-  href: api/Cron.Cron.html#Cron_Cron_Seconds
-  commentId: P:Cron.Cron.Seconds
-  fullName: Cron.Cron.Seconds
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Seconds
+  commentId: P:Cron.Core.Cron.Seconds
+  fullName: Cron.Core.Cron.Seconds
   nameWithType: Cron.Seconds
-- uid: Cron.Cron.Seconds*
+- uid: Cron.Core.Cron.Seconds*
   name: Seconds
-  href: api/Cron.Cron.html#Cron_Cron_Seconds_
-  commentId: Overload:Cron.Cron.Seconds
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Seconds_
+  commentId: Overload:Cron.Core.Cron.Seconds
   isSpec: "True"
-  fullName: Cron.Cron.Seconds
+  fullName: Cron.Core.Cron.Seconds
   nameWithType: Cron.Seconds
-- uid: Cron.Cron.Set(Cron.Enums.CronTimeSections,Cron.Interfaces.ISection)
+- uid: Cron.Core.Cron.Set(Cron.Core.Enums.CronTimeSections,Cron.Core.Interfaces.ISection)
   name: Set(CronTimeSections, ISection)
-  href: api/Cron.Cron.html#Cron_Cron_Set_Cron_Enums_CronTimeSections_Cron_Interfaces_ISection_
-  commentId: M:Cron.Cron.Set(Cron.Enums.CronTimeSections,Cron.Interfaces.ISection)
-  fullName: Cron.Cron.Set(Cron.Enums.CronTimeSections, Cron.Interfaces.ISection)
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Set_Cron_Core_Enums_CronTimeSections_Cron_Core_Interfaces_ISection_
+  commentId: M:Cron.Core.Cron.Set(Cron.Core.Enums.CronTimeSections,Cron.Core.Interfaces.ISection)
+  fullName: Cron.Core.Cron.Set(Cron.Core.Enums.CronTimeSections, Cron.Core.Interfaces.ISection)
   nameWithType: Cron.Set(CronTimeSections, ISection)
-- uid: Cron.Cron.Set*
+- uid: Cron.Core.Cron.Set*
   name: Set
-  href: api/Cron.Cron.html#Cron_Cron_Set_
-  commentId: Overload:Cron.Cron.Set
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Set_
+  commentId: Overload:Cron.Core.Cron.Set
   isSpec: "True"
-  fullName: Cron.Cron.Set
+  fullName: Cron.Core.Cron.Set
   nameWithType: Cron.Set
-- uid: Cron.Cron.ToString
+- uid: Cron.Core.Cron.System#Collections#IEnumerable#GetEnumerator
+  name: IEnumerable.GetEnumerator()
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_System_Collections_IEnumerable_GetEnumerator
+  commentId: M:Cron.Core.Cron.System#Collections#IEnumerable#GetEnumerator
+  name.vb: System.Collections.IEnumerable.GetEnumerator()
+  fullName: Cron.Core.Cron.System.Collections.IEnumerable.GetEnumerator()
+  nameWithType: Cron.IEnumerable.GetEnumerator()
+  nameWithType.vb: Cron.System.Collections.IEnumerable.GetEnumerator()
+- uid: Cron.Core.Cron.System#Collections#IEnumerable#GetEnumerator*
+  name: IEnumerable.GetEnumerator
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_System_Collections_IEnumerable_GetEnumerator_
+  commentId: Overload:Cron.Core.Cron.System#Collections#IEnumerable#GetEnumerator
+  isSpec: "True"
+  name.vb: System.Collections.IEnumerable.GetEnumerator
+  fullName: Cron.Core.Cron.System.Collections.IEnumerable.GetEnumerator
+  nameWithType: Cron.IEnumerable.GetEnumerator
+  nameWithType.vb: Cron.System.Collections.IEnumerable.GetEnumerator
+- uid: Cron.Core.Cron.ToString
   name: ToString()
-  href: api/Cron.Cron.html#Cron_Cron_ToString
-  commentId: M:Cron.Cron.ToString
-  fullName: Cron.Cron.ToString()
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_ToString
+  commentId: M:Cron.Core.Cron.ToString
+  fullName: Cron.Core.Cron.ToString()
   nameWithType: Cron.ToString()
-- uid: Cron.Cron.ToString*
+- uid: Cron.Core.Cron.ToString*
   name: ToString
-  href: api/Cron.Cron.html#Cron_Cron_ToString_
-  commentId: Overload:Cron.Cron.ToString
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_ToString_
+  commentId: Overload:Cron.Core.Cron.ToString
   isSpec: "True"
-  fullName: Cron.Cron.ToString
+  fullName: Cron.Core.Cron.ToString
   nameWithType: Cron.ToString
-- uid: Cron.Cron.Value
+- uid: Cron.Core.Cron.Value
   name: Value
-  href: api/Cron.Cron.html#Cron_Cron_Value
-  commentId: P:Cron.Cron.Value
-  fullName: Cron.Cron.Value
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Value
+  commentId: P:Cron.Core.Cron.Value
+  fullName: Cron.Core.Cron.Value
   nameWithType: Cron.Value
-- uid: Cron.Cron.Value*
+- uid: Cron.Core.Cron.Value*
   name: Value
-  href: api/Cron.Cron.html#Cron_Cron_Value_
-  commentId: Overload:Cron.Cron.Value
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Value_
+  commentId: Overload:Cron.Core.Cron.Value
   isSpec: "True"
-  fullName: Cron.Cron.Value
+  fullName: Cron.Core.Cron.Value
   nameWithType: Cron.Value
-- uid: Cron.Cron.Years
+- uid: Cron.Core.Cron.Years
   name: Years
-  href: api/Cron.Cron.html#Cron_Cron_Years
-  commentId: P:Cron.Cron.Years
-  fullName: Cron.Cron.Years
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Years
+  commentId: P:Cron.Core.Cron.Years
+  fullName: Cron.Core.Cron.Years
   nameWithType: Cron.Years
-- uid: Cron.Cron.Years*
+- uid: Cron.Core.Cron.Years*
   name: Years
-  href: api/Cron.Cron.html#Cron_Cron_Years_
-  commentId: Overload:Cron.Cron.Years
+  href: api/Cron.Core.Cron.html#Cron_Core_Cron_Years_
+  commentId: Overload:Cron.Core.Cron.Years
   isSpec: "True"
-  fullName: Cron.Cron.Years
+  fullName: Cron.Core.Cron.Years
   nameWithType: Cron.Years
-- uid: Cron.Enums
-  name: Cron.Enums
-  href: api/Cron.Enums.html
-  commentId: N:Cron.Enums
-  fullName: Cron.Enums
-  nameWithType: Cron.Enums
-- uid: Cron.Enums.CronDays
+- uid: Cron.Core.Enums
+  name: Cron.Core.Enums
+  href: api/Cron.Core.Enums.html
+  commentId: N:Cron.Core.Enums
+  fullName: Cron.Core.Enums
+  nameWithType: Cron.Core.Enums
+- uid: Cron.Core.Enums.CronDays
   name: CronDays
-  href: api/Cron.Enums.CronDays.html
-  commentId: T:Cron.Enums.CronDays
-  fullName: Cron.Enums.CronDays
+  href: api/Cron.Core.Enums.CronDays.html
+  commentId: T:Cron.Core.Enums.CronDays
+  fullName: Cron.Core.Enums.CronDays
   nameWithType: CronDays
-- uid: Cron.Enums.CronDays.Friday
+- uid: Cron.Core.Enums.CronDays.Friday
   name: Friday
-  href: api/Cron.Enums.CronDays.html#Cron_Enums_CronDays_Friday
-  commentId: F:Cron.Enums.CronDays.Friday
-  fullName: Cron.Enums.CronDays.Friday
+  href: api/Cron.Core.Enums.CronDays.html#Cron_Core_Enums_CronDays_Friday
+  commentId: F:Cron.Core.Enums.CronDays.Friday
+  fullName: Cron.Core.Enums.CronDays.Friday
   nameWithType: CronDays.Friday
-- uid: Cron.Enums.CronDays.Monday
+- uid: Cron.Core.Enums.CronDays.Monday
   name: Monday
-  href: api/Cron.Enums.CronDays.html#Cron_Enums_CronDays_Monday
-  commentId: F:Cron.Enums.CronDays.Monday
-  fullName: Cron.Enums.CronDays.Monday
+  href: api/Cron.Core.Enums.CronDays.html#Cron_Core_Enums_CronDays_Monday
+  commentId: F:Cron.Core.Enums.CronDays.Monday
+  fullName: Cron.Core.Enums.CronDays.Monday
   nameWithType: CronDays.Monday
-- uid: Cron.Enums.CronDays.Saturday
+- uid: Cron.Core.Enums.CronDays.Saturday
   name: Saturday
-  href: api/Cron.Enums.CronDays.html#Cron_Enums_CronDays_Saturday
-  commentId: F:Cron.Enums.CronDays.Saturday
-  fullName: Cron.Enums.CronDays.Saturday
+  href: api/Cron.Core.Enums.CronDays.html#Cron_Core_Enums_CronDays_Saturday
+  commentId: F:Cron.Core.Enums.CronDays.Saturday
+  fullName: Cron.Core.Enums.CronDays.Saturday
   nameWithType: CronDays.Saturday
-- uid: Cron.Enums.CronDays.Sunday
+- uid: Cron.Core.Enums.CronDays.Sunday
   name: Sunday
-  href: api/Cron.Enums.CronDays.html#Cron_Enums_CronDays_Sunday
-  commentId: F:Cron.Enums.CronDays.Sunday
-  fullName: Cron.Enums.CronDays.Sunday
+  href: api/Cron.Core.Enums.CronDays.html#Cron_Core_Enums_CronDays_Sunday
+  commentId: F:Cron.Core.Enums.CronDays.Sunday
+  fullName: Cron.Core.Enums.CronDays.Sunday
   nameWithType: CronDays.Sunday
-- uid: Cron.Enums.CronDays.Thursday
+- uid: Cron.Core.Enums.CronDays.Thursday
   name: Thursday
-  href: api/Cron.Enums.CronDays.html#Cron_Enums_CronDays_Thursday
-  commentId: F:Cron.Enums.CronDays.Thursday
-  fullName: Cron.Enums.CronDays.Thursday
+  href: api/Cron.Core.Enums.CronDays.html#Cron_Core_Enums_CronDays_Thursday
+  commentId: F:Cron.Core.Enums.CronDays.Thursday
+  fullName: Cron.Core.Enums.CronDays.Thursday
   nameWithType: CronDays.Thursday
-- uid: Cron.Enums.CronDays.Tuesday
+- uid: Cron.Core.Enums.CronDays.Tuesday
   name: Tuesday
-  href: api/Cron.Enums.CronDays.html#Cron_Enums_CronDays_Tuesday
-  commentId: F:Cron.Enums.CronDays.Tuesday
-  fullName: Cron.Enums.CronDays.Tuesday
+  href: api/Cron.Core.Enums.CronDays.html#Cron_Core_Enums_CronDays_Tuesday
+  commentId: F:Cron.Core.Enums.CronDays.Tuesday
+  fullName: Cron.Core.Enums.CronDays.Tuesday
   nameWithType: CronDays.Tuesday
-- uid: Cron.Enums.CronDays.Wednesday
+- uid: Cron.Core.Enums.CronDays.Wednesday
   name: Wednesday
-  href: api/Cron.Enums.CronDays.html#Cron_Enums_CronDays_Wednesday
-  commentId: F:Cron.Enums.CronDays.Wednesday
-  fullName: Cron.Enums.CronDays.Wednesday
+  href: api/Cron.Core.Enums.CronDays.html#Cron_Core_Enums_CronDays_Wednesday
+  commentId: F:Cron.Core.Enums.CronDays.Wednesday
+  fullName: Cron.Core.Enums.CronDays.Wednesday
   nameWithType: CronDays.Wednesday
-- uid: Cron.Enums.CronMonths
+- uid: Cron.Core.Enums.CronMonths
   name: CronMonths
-  href: api/Cron.Enums.CronMonths.html
-  commentId: T:Cron.Enums.CronMonths
-  fullName: Cron.Enums.CronMonths
+  href: api/Cron.Core.Enums.CronMonths.html
+  commentId: T:Cron.Core.Enums.CronMonths
+  fullName: Cron.Core.Enums.CronMonths
   nameWithType: CronMonths
-- uid: Cron.Enums.CronMonths.April
+- uid: Cron.Core.Enums.CronMonths.April
   name: April
-  href: api/Cron.Enums.CronMonths.html#Cron_Enums_CronMonths_April
-  commentId: F:Cron.Enums.CronMonths.April
-  fullName: Cron.Enums.CronMonths.April
+  href: api/Cron.Core.Enums.CronMonths.html#Cron_Core_Enums_CronMonths_April
+  commentId: F:Cron.Core.Enums.CronMonths.April
+  fullName: Cron.Core.Enums.CronMonths.April
   nameWithType: CronMonths.April
-- uid: Cron.Enums.CronMonths.August
+- uid: Cron.Core.Enums.CronMonths.August
   name: August
-  href: api/Cron.Enums.CronMonths.html#Cron_Enums_CronMonths_August
-  commentId: F:Cron.Enums.CronMonths.August
-  fullName: Cron.Enums.CronMonths.August
+  href: api/Cron.Core.Enums.CronMonths.html#Cron_Core_Enums_CronMonths_August
+  commentId: F:Cron.Core.Enums.CronMonths.August
+  fullName: Cron.Core.Enums.CronMonths.August
   nameWithType: CronMonths.August
-- uid: Cron.Enums.CronMonths.December
+- uid: Cron.Core.Enums.CronMonths.December
   name: December
-  href: api/Cron.Enums.CronMonths.html#Cron_Enums_CronMonths_December
-  commentId: F:Cron.Enums.CronMonths.December
-  fullName: Cron.Enums.CronMonths.December
+  href: api/Cron.Core.Enums.CronMonths.html#Cron_Core_Enums_CronMonths_December
+  commentId: F:Cron.Core.Enums.CronMonths.December
+  fullName: Cron.Core.Enums.CronMonths.December
   nameWithType: CronMonths.December
-- uid: Cron.Enums.CronMonths.February
+- uid: Cron.Core.Enums.CronMonths.February
   name: February
-  href: api/Cron.Enums.CronMonths.html#Cron_Enums_CronMonths_February
-  commentId: F:Cron.Enums.CronMonths.February
-  fullName: Cron.Enums.CronMonths.February
+  href: api/Cron.Core.Enums.CronMonths.html#Cron_Core_Enums_CronMonths_February
+  commentId: F:Cron.Core.Enums.CronMonths.February
+  fullName: Cron.Core.Enums.CronMonths.February
   nameWithType: CronMonths.February
-- uid: Cron.Enums.CronMonths.January
+- uid: Cron.Core.Enums.CronMonths.January
   name: January
-  href: api/Cron.Enums.CronMonths.html#Cron_Enums_CronMonths_January
-  commentId: F:Cron.Enums.CronMonths.January
-  fullName: Cron.Enums.CronMonths.January
+  href: api/Cron.Core.Enums.CronMonths.html#Cron_Core_Enums_CronMonths_January
+  commentId: F:Cron.Core.Enums.CronMonths.January
+  fullName: Cron.Core.Enums.CronMonths.January
   nameWithType: CronMonths.January
-- uid: Cron.Enums.CronMonths.July
+- uid: Cron.Core.Enums.CronMonths.July
   name: July
-  href: api/Cron.Enums.CronMonths.html#Cron_Enums_CronMonths_July
-  commentId: F:Cron.Enums.CronMonths.July
-  fullName: Cron.Enums.CronMonths.July
+  href: api/Cron.Core.Enums.CronMonths.html#Cron_Core_Enums_CronMonths_July
+  commentId: F:Cron.Core.Enums.CronMonths.July
+  fullName: Cron.Core.Enums.CronMonths.July
   nameWithType: CronMonths.July
-- uid: Cron.Enums.CronMonths.June
+- uid: Cron.Core.Enums.CronMonths.June
   name: June
-  href: api/Cron.Enums.CronMonths.html#Cron_Enums_CronMonths_June
-  commentId: F:Cron.Enums.CronMonths.June
-  fullName: Cron.Enums.CronMonths.June
+  href: api/Cron.Core.Enums.CronMonths.html#Cron_Core_Enums_CronMonths_June
+  commentId: F:Cron.Core.Enums.CronMonths.June
+  fullName: Cron.Core.Enums.CronMonths.June
   nameWithType: CronMonths.June
-- uid: Cron.Enums.CronMonths.March
+- uid: Cron.Core.Enums.CronMonths.March
   name: March
-  href: api/Cron.Enums.CronMonths.html#Cron_Enums_CronMonths_March
-  commentId: F:Cron.Enums.CronMonths.March
-  fullName: Cron.Enums.CronMonths.March
+  href: api/Cron.Core.Enums.CronMonths.html#Cron_Core_Enums_CronMonths_March
+  commentId: F:Cron.Core.Enums.CronMonths.March
+  fullName: Cron.Core.Enums.CronMonths.March
   nameWithType: CronMonths.March
-- uid: Cron.Enums.CronMonths.May
+- uid: Cron.Core.Enums.CronMonths.May
   name: May
-  href: api/Cron.Enums.CronMonths.html#Cron_Enums_CronMonths_May
-  commentId: F:Cron.Enums.CronMonths.May
-  fullName: Cron.Enums.CronMonths.May
+  href: api/Cron.Core.Enums.CronMonths.html#Cron_Core_Enums_CronMonths_May
+  commentId: F:Cron.Core.Enums.CronMonths.May
+  fullName: Cron.Core.Enums.CronMonths.May
   nameWithType: CronMonths.May
-- uid: Cron.Enums.CronMonths.November
+- uid: Cron.Core.Enums.CronMonths.November
   name: November
-  href: api/Cron.Enums.CronMonths.html#Cron_Enums_CronMonths_November
-  commentId: F:Cron.Enums.CronMonths.November
-  fullName: Cron.Enums.CronMonths.November
+  href: api/Cron.Core.Enums.CronMonths.html#Cron_Core_Enums_CronMonths_November
+  commentId: F:Cron.Core.Enums.CronMonths.November
+  fullName: Cron.Core.Enums.CronMonths.November
   nameWithType: CronMonths.November
-- uid: Cron.Enums.CronMonths.October
+- uid: Cron.Core.Enums.CronMonths.October
   name: October
-  href: api/Cron.Enums.CronMonths.html#Cron_Enums_CronMonths_October
-  commentId: F:Cron.Enums.CronMonths.October
-  fullName: Cron.Enums.CronMonths.October
+  href: api/Cron.Core.Enums.CronMonths.html#Cron_Core_Enums_CronMonths_October
+  commentId: F:Cron.Core.Enums.CronMonths.October
+  fullName: Cron.Core.Enums.CronMonths.October
   nameWithType: CronMonths.October
-- uid: Cron.Enums.CronMonths.September
+- uid: Cron.Core.Enums.CronMonths.September
   name: September
-  href: api/Cron.Enums.CronMonths.html#Cron_Enums_CronMonths_September
-  commentId: F:Cron.Enums.CronMonths.September
-  fullName: Cron.Enums.CronMonths.September
+  href: api/Cron.Core.Enums.CronMonths.html#Cron_Core_Enums_CronMonths_September
+  commentId: F:Cron.Core.Enums.CronMonths.September
+  fullName: Cron.Core.Enums.CronMonths.September
   nameWithType: CronMonths.September
-- uid: Cron.Enums.CronTimeSections
+- uid: Cron.Core.Enums.CronTimeSections
   name: CronTimeSections
-  href: api/Cron.Enums.CronTimeSections.html
-  commentId: T:Cron.Enums.CronTimeSections
-  fullName: Cron.Enums.CronTimeSections
+  href: api/Cron.Core.Enums.CronTimeSections.html
+  commentId: T:Cron.Core.Enums.CronTimeSections
+  fullName: Cron.Core.Enums.CronTimeSections
   nameWithType: CronTimeSections
-- uid: Cron.Enums.CronTimeSections.DayMonth
+- uid: Cron.Core.Enums.CronTimeSections.DayMonth
   name: DayMonth
-  href: api/Cron.Enums.CronTimeSections.html#Cron_Enums_CronTimeSections_DayMonth
-  commentId: F:Cron.Enums.CronTimeSections.DayMonth
-  fullName: Cron.Enums.CronTimeSections.DayMonth
+  href: api/Cron.Core.Enums.CronTimeSections.html#Cron_Core_Enums_CronTimeSections_DayMonth
+  commentId: F:Cron.Core.Enums.CronTimeSections.DayMonth
+  fullName: Cron.Core.Enums.CronTimeSections.DayMonth
   nameWithType: CronTimeSections.DayMonth
-- uid: Cron.Enums.CronTimeSections.DayWeek
+- uid: Cron.Core.Enums.CronTimeSections.DayWeek
   name: DayWeek
-  href: api/Cron.Enums.CronTimeSections.html#Cron_Enums_CronTimeSections_DayWeek
-  commentId: F:Cron.Enums.CronTimeSections.DayWeek
-  fullName: Cron.Enums.CronTimeSections.DayWeek
+  href: api/Cron.Core.Enums.CronTimeSections.html#Cron_Core_Enums_CronTimeSections_DayWeek
+  commentId: F:Cron.Core.Enums.CronTimeSections.DayWeek
+  fullName: Cron.Core.Enums.CronTimeSections.DayWeek
   nameWithType: CronTimeSections.DayWeek
-- uid: Cron.Enums.CronTimeSections.Hours
+- uid: Cron.Core.Enums.CronTimeSections.Hours
   name: Hours
-  href: api/Cron.Enums.CronTimeSections.html#Cron_Enums_CronTimeSections_Hours
-  commentId: F:Cron.Enums.CronTimeSections.Hours
-  fullName: Cron.Enums.CronTimeSections.Hours
+  href: api/Cron.Core.Enums.CronTimeSections.html#Cron_Core_Enums_CronTimeSections_Hours
+  commentId: F:Cron.Core.Enums.CronTimeSections.Hours
+  fullName: Cron.Core.Enums.CronTimeSections.Hours
   nameWithType: CronTimeSections.Hours
-- uid: Cron.Enums.CronTimeSections.Minutes
+- uid: Cron.Core.Enums.CronTimeSections.Minutes
   name: Minutes
-  href: api/Cron.Enums.CronTimeSections.html#Cron_Enums_CronTimeSections_Minutes
-  commentId: F:Cron.Enums.CronTimeSections.Minutes
-  fullName: Cron.Enums.CronTimeSections.Minutes
+  href: api/Cron.Core.Enums.CronTimeSections.html#Cron_Core_Enums_CronTimeSections_Minutes
+  commentId: F:Cron.Core.Enums.CronTimeSections.Minutes
+  fullName: Cron.Core.Enums.CronTimeSections.Minutes
   nameWithType: CronTimeSections.Minutes
-- uid: Cron.Enums.CronTimeSections.Months
+- uid: Cron.Core.Enums.CronTimeSections.Months
   name: Months
-  href: api/Cron.Enums.CronTimeSections.html#Cron_Enums_CronTimeSections_Months
-  commentId: F:Cron.Enums.CronTimeSections.Months
-  fullName: Cron.Enums.CronTimeSections.Months
+  href: api/Cron.Core.Enums.CronTimeSections.html#Cron_Core_Enums_CronTimeSections_Months
+  commentId: F:Cron.Core.Enums.CronTimeSections.Months
+  fullName: Cron.Core.Enums.CronTimeSections.Months
   nameWithType: CronTimeSections.Months
-- uid: Cron.Enums.CronTimeSections.Seconds
+- uid: Cron.Core.Enums.CronTimeSections.Seconds
   name: Seconds
-  href: api/Cron.Enums.CronTimeSections.html#Cron_Enums_CronTimeSections_Seconds
-  commentId: F:Cron.Enums.CronTimeSections.Seconds
-  fullName: Cron.Enums.CronTimeSections.Seconds
+  href: api/Cron.Core.Enums.CronTimeSections.html#Cron_Core_Enums_CronTimeSections_Seconds
+  commentId: F:Cron.Core.Enums.CronTimeSections.Seconds
+  fullName: Cron.Core.Enums.CronTimeSections.Seconds
   nameWithType: CronTimeSections.Seconds
-- uid: Cron.Enums.CronTimeSections.Years
+- uid: Cron.Core.Enums.CronTimeSections.Years
   name: Years
-  href: api/Cron.Enums.CronTimeSections.html#Cron_Enums_CronTimeSections_Years
-  commentId: F:Cron.Enums.CronTimeSections.Years
-  fullName: Cron.Enums.CronTimeSections.Years
+  href: api/Cron.Core.Enums.CronTimeSections.html#Cron_Core_Enums_CronTimeSections_Years
+  commentId: F:Cron.Core.Enums.CronTimeSections.Years
+  fullName: Cron.Core.Enums.CronTimeSections.Years
   nameWithType: CronTimeSections.Years
-- uid: Cron.Interfaces
-  name: Cron.Interfaces
-  href: api/Cron.Interfaces.html
-  commentId: N:Cron.Interfaces
-  fullName: Cron.Interfaces
-  nameWithType: Cron.Interfaces
-- uid: Cron.Interfaces.ICron
+- uid: Cron.Core.Interfaces
+  name: Cron.Core.Interfaces
+  href: api/Cron.Core.Interfaces.html
+  commentId: N:Cron.Core.Interfaces
+  fullName: Cron.Core.Interfaces
+  nameWithType: Cron.Core.Interfaces
+- uid: Cron.Core.Interfaces.ICron
   name: ICron
-  href: api/Cron.Interfaces.ICron.html
-  commentId: T:Cron.Interfaces.ICron
-  fullName: Cron.Interfaces.ICron
+  href: api/Cron.Core.Interfaces.ICron.html
+  commentId: T:Cron.Core.Interfaces.ICron
+  fullName: Cron.Core.Interfaces.ICron
   nameWithType: ICron
-- uid: Cron.Interfaces.ICron.Add(Cron.Enums.CronDays,Cron.Enums.CronDays)
+- uid: Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronDays,Cron.Core.Enums.CronDays)
   name: Add(CronDays, CronDays)
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Add_Cron_Enums_CronDays_Cron_Enums_CronDays_
-  commentId: M:Cron.Interfaces.ICron.Add(Cron.Enums.CronDays,Cron.Enums.CronDays)
-  fullName: Cron.Interfaces.ICron.Add(Cron.Enums.CronDays, Cron.Enums.CronDays)
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Add_Cron_Core_Enums_CronDays_Cron_Core_Enums_CronDays_
+  commentId: M:Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronDays,Cron.Core.Enums.CronDays)
+  fullName: Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronDays, Cron.Core.Enums.CronDays)
   nameWithType: ICron.Add(CronDays, CronDays)
-- uid: Cron.Interfaces.ICron.Add(Cron.Enums.CronDays,System.Boolean)
+- uid: Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronDays,System.Boolean)
   name: Add(CronDays, Boolean)
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Add_Cron_Enums_CronDays_System_Boolean_
-  commentId: M:Cron.Interfaces.ICron.Add(Cron.Enums.CronDays,System.Boolean)
-  fullName: Cron.Interfaces.ICron.Add(Cron.Enums.CronDays, System.Boolean)
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Add_Cron_Core_Enums_CronDays_System_Boolean_
+  commentId: M:Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronDays,System.Boolean)
+  fullName: Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronDays, System.Boolean)
   nameWithType: ICron.Add(CronDays, Boolean)
-- uid: Cron.Interfaces.ICron.Add(Cron.Enums.CronMonths,Cron.Enums.CronMonths)
+- uid: Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronMonths,Cron.Core.Enums.CronMonths)
   name: Add(CronMonths, CronMonths)
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Add_Cron_Enums_CronMonths_Cron_Enums_CronMonths_
-  commentId: M:Cron.Interfaces.ICron.Add(Cron.Enums.CronMonths,Cron.Enums.CronMonths)
-  fullName: Cron.Interfaces.ICron.Add(Cron.Enums.CronMonths, Cron.Enums.CronMonths)
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Add_Cron_Core_Enums_CronMonths_Cron_Core_Enums_CronMonths_
+  commentId: M:Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronMonths,Cron.Core.Enums.CronMonths)
+  fullName: Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronMonths, Cron.Core.Enums.CronMonths)
   nameWithType: ICron.Add(CronMonths, CronMonths)
-- uid: Cron.Interfaces.ICron.Add(Cron.Enums.CronMonths,System.Boolean)
+- uid: Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronMonths,System.Boolean)
   name: Add(CronMonths, Boolean)
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Add_Cron_Enums_CronMonths_System_Boolean_
-  commentId: M:Cron.Interfaces.ICron.Add(Cron.Enums.CronMonths,System.Boolean)
-  fullName: Cron.Interfaces.ICron.Add(Cron.Enums.CronMonths, System.Boolean)
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Add_Cron_Core_Enums_CronMonths_System_Boolean_
+  commentId: M:Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronMonths,System.Boolean)
+  fullName: Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronMonths, System.Boolean)
   nameWithType: ICron.Add(CronMonths, Boolean)
-- uid: Cron.Interfaces.ICron.Add(Cron.Enums.CronTimeSections,System.Int32,System.Boolean)
+- uid: Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronTimeSections,System.Int32,System.Boolean)
   name: Add(CronTimeSections, Int32, Boolean)
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Add_Cron_Enums_CronTimeSections_System_Int32_System_Boolean_
-  commentId: M:Cron.Interfaces.ICron.Add(Cron.Enums.CronTimeSections,System.Int32,System.Boolean)
-  fullName: Cron.Interfaces.ICron.Add(Cron.Enums.CronTimeSections, System.Int32, System.Boolean)
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Add_Cron_Core_Enums_CronTimeSections_System_Int32_System_Boolean_
+  commentId: M:Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronTimeSections,System.Int32,System.Boolean)
+  fullName: Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronTimeSections, System.Int32, System.Boolean)
   nameWithType: ICron.Add(CronTimeSections, Int32, Boolean)
-- uid: Cron.Interfaces.ICron.Add(Cron.Enums.CronTimeSections,System.Int32,System.Int32)
+- uid: Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronTimeSections,System.Int32,System.Int32)
   name: Add(CronTimeSections, Int32, Int32)
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Add_Cron_Enums_CronTimeSections_System_Int32_System_Int32_
-  commentId: M:Cron.Interfaces.ICron.Add(Cron.Enums.CronTimeSections,System.Int32,System.Int32)
-  fullName: Cron.Interfaces.ICron.Add(Cron.Enums.CronTimeSections, System.Int32, System.Int32)
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Add_Cron_Core_Enums_CronTimeSections_System_Int32_System_Int32_
+  commentId: M:Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronTimeSections,System.Int32,System.Int32)
+  fullName: Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronTimeSections, System.Int32, System.Int32)
   nameWithType: ICron.Add(CronTimeSections, Int32, Int32)
-- uid: Cron.Interfaces.ICron.Add*
+- uid: Cron.Core.Interfaces.ICron.Add*
   name: Add
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Add_
-  commentId: Overload:Cron.Interfaces.ICron.Add
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Add_
+  commentId: Overload:Cron.Core.Interfaces.ICron.Add
   isSpec: "True"
-  fullName: Cron.Interfaces.ICron.Add
+  fullName: Cron.Core.Interfaces.ICron.Add
   nameWithType: ICron.Add
-- uid: Cron.Interfaces.ICron.DayMonth
+- uid: Cron.Core.Interfaces.ICron.DayMonth
   name: DayMonth
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_DayMonth
-  commentId: P:Cron.Interfaces.ICron.DayMonth
-  fullName: Cron.Interfaces.ICron.DayMonth
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_DayMonth
+  commentId: P:Cron.Core.Interfaces.ICron.DayMonth
+  fullName: Cron.Core.Interfaces.ICron.DayMonth
   nameWithType: ICron.DayMonth
-- uid: Cron.Interfaces.ICron.DayMonth*
+- uid: Cron.Core.Interfaces.ICron.DayMonth*
   name: DayMonth
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_DayMonth_
-  commentId: Overload:Cron.Interfaces.ICron.DayMonth
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_DayMonth_
+  commentId: Overload:Cron.Core.Interfaces.ICron.DayMonth
   isSpec: "True"
-  fullName: Cron.Interfaces.ICron.DayMonth
+  fullName: Cron.Core.Interfaces.ICron.DayMonth
   nameWithType: ICron.DayMonth
-- uid: Cron.Interfaces.ICron.DayWeek
+- uid: Cron.Core.Interfaces.ICron.DayWeek
   name: DayWeek
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_DayWeek
-  commentId: P:Cron.Interfaces.ICron.DayWeek
-  fullName: Cron.Interfaces.ICron.DayWeek
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_DayWeek
+  commentId: P:Cron.Core.Interfaces.ICron.DayWeek
+  fullName: Cron.Core.Interfaces.ICron.DayWeek
   nameWithType: ICron.DayWeek
-- uid: Cron.Interfaces.ICron.DayWeek*
+- uid: Cron.Core.Interfaces.ICron.DayWeek*
   name: DayWeek
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_DayWeek_
-  commentId: Overload:Cron.Interfaces.ICron.DayWeek
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_DayWeek_
+  commentId: Overload:Cron.Core.Interfaces.ICron.DayWeek
   isSpec: "True"
-  fullName: Cron.Interfaces.ICron.DayWeek
+  fullName: Cron.Core.Interfaces.ICron.DayWeek
   nameWithType: ICron.DayWeek
-- uid: Cron.Interfaces.ICron.Description
+- uid: Cron.Core.Interfaces.ICron.Description
   name: Description
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Description
-  commentId: P:Cron.Interfaces.ICron.Description
-  fullName: Cron.Interfaces.ICron.Description
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Description
+  commentId: P:Cron.Core.Interfaces.ICron.Description
+  fullName: Cron.Core.Interfaces.ICron.Description
   nameWithType: ICron.Description
-- uid: Cron.Interfaces.ICron.Description*
+- uid: Cron.Core.Interfaces.ICron.Description*
   name: Description
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Description_
-  commentId: Overload:Cron.Interfaces.ICron.Description
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Description_
+  commentId: Overload:Cron.Core.Interfaces.ICron.Description
   isSpec: "True"
-  fullName: Cron.Interfaces.ICron.Description
+  fullName: Cron.Core.Interfaces.ICron.Description
   nameWithType: ICron.Description
-- uid: Cron.Interfaces.ICron.Hours
+- uid: Cron.Core.Interfaces.ICron.Hours
   name: Hours
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Hours
-  commentId: P:Cron.Interfaces.ICron.Hours
-  fullName: Cron.Interfaces.ICron.Hours
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Hours
+  commentId: P:Cron.Core.Interfaces.ICron.Hours
+  fullName: Cron.Core.Interfaces.ICron.Hours
   nameWithType: ICron.Hours
-- uid: Cron.Interfaces.ICron.Hours*
+- uid: Cron.Core.Interfaces.ICron.Hours*
   name: Hours
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Hours_
-  commentId: Overload:Cron.Interfaces.ICron.Hours
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Hours_
+  commentId: Overload:Cron.Core.Interfaces.ICron.Hours
   isSpec: "True"
-  fullName: Cron.Interfaces.ICron.Hours
+  fullName: Cron.Core.Interfaces.ICron.Hours
   nameWithType: ICron.Hours
-- uid: Cron.Interfaces.ICron.Minutes
+- uid: Cron.Core.Interfaces.ICron.Minutes
   name: Minutes
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Minutes
-  commentId: P:Cron.Interfaces.ICron.Minutes
-  fullName: Cron.Interfaces.ICron.Minutes
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Minutes
+  commentId: P:Cron.Core.Interfaces.ICron.Minutes
+  fullName: Cron.Core.Interfaces.ICron.Minutes
   nameWithType: ICron.Minutes
-- uid: Cron.Interfaces.ICron.Minutes*
+- uid: Cron.Core.Interfaces.ICron.Minutes*
   name: Minutes
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Minutes_
-  commentId: Overload:Cron.Interfaces.ICron.Minutes
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Minutes_
+  commentId: Overload:Cron.Core.Interfaces.ICron.Minutes
   isSpec: "True"
-  fullName: Cron.Interfaces.ICron.Minutes
+  fullName: Cron.Core.Interfaces.ICron.Minutes
   nameWithType: ICron.Minutes
-- uid: Cron.Interfaces.ICron.Months
+- uid: Cron.Core.Interfaces.ICron.Months
   name: Months
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Months
-  commentId: P:Cron.Interfaces.ICron.Months
-  fullName: Cron.Interfaces.ICron.Months
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Months
+  commentId: P:Cron.Core.Interfaces.ICron.Months
+  fullName: Cron.Core.Interfaces.ICron.Months
   nameWithType: ICron.Months
-- uid: Cron.Interfaces.ICron.Months*
+- uid: Cron.Core.Interfaces.ICron.Months*
   name: Months
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Months_
-  commentId: Overload:Cron.Interfaces.ICron.Months
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Months_
+  commentId: Overload:Cron.Core.Interfaces.ICron.Months
   isSpec: "True"
-  fullName: Cron.Interfaces.ICron.Months
+  fullName: Cron.Core.Interfaces.ICron.Months
   nameWithType: ICron.Months
-- uid: Cron.Interfaces.ICron.Remove(Cron.Enums.CronTimeSections,System.Int32)
+- uid: Cron.Core.Interfaces.ICron.Remove(Cron.Core.Enums.CronTimeSections,System.Int32)
   name: Remove(CronTimeSections, Int32)
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Remove_Cron_Enums_CronTimeSections_System_Int32_
-  commentId: M:Cron.Interfaces.ICron.Remove(Cron.Enums.CronTimeSections,System.Int32)
-  fullName: Cron.Interfaces.ICron.Remove(Cron.Enums.CronTimeSections, System.Int32)
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Remove_Cron_Core_Enums_CronTimeSections_System_Int32_
+  commentId: M:Cron.Core.Interfaces.ICron.Remove(Cron.Core.Enums.CronTimeSections,System.Int32)
+  fullName: Cron.Core.Interfaces.ICron.Remove(Cron.Core.Enums.CronTimeSections, System.Int32)
   nameWithType: ICron.Remove(CronTimeSections, Int32)
-- uid: Cron.Interfaces.ICron.Remove(Cron.Enums.CronTimeSections,System.Int32,System.Int32)
+- uid: Cron.Core.Interfaces.ICron.Remove(Cron.Core.Enums.CronTimeSections,System.Int32,System.Int32)
   name: Remove(CronTimeSections, Int32, Int32)
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Remove_Cron_Enums_CronTimeSections_System_Int32_System_Int32_
-  commentId: M:Cron.Interfaces.ICron.Remove(Cron.Enums.CronTimeSections,System.Int32,System.Int32)
-  fullName: Cron.Interfaces.ICron.Remove(Cron.Enums.CronTimeSections, System.Int32, System.Int32)
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Remove_Cron_Core_Enums_CronTimeSections_System_Int32_System_Int32_
+  commentId: M:Cron.Core.Interfaces.ICron.Remove(Cron.Core.Enums.CronTimeSections,System.Int32,System.Int32)
+  fullName: Cron.Core.Interfaces.ICron.Remove(Cron.Core.Enums.CronTimeSections, System.Int32, System.Int32)
   nameWithType: ICron.Remove(CronTimeSections, Int32, Int32)
-- uid: Cron.Interfaces.ICron.Remove*
+- uid: Cron.Core.Interfaces.ICron.Remove*
   name: Remove
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Remove_
-  commentId: Overload:Cron.Interfaces.ICron.Remove
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Remove_
+  commentId: Overload:Cron.Core.Interfaces.ICron.Remove
   isSpec: "True"
-  fullName: Cron.Interfaces.ICron.Remove
+  fullName: Cron.Core.Interfaces.ICron.Remove
   nameWithType: ICron.Remove
-- uid: Cron.Interfaces.ICron.Reset(Cron.Enums.CronTimeSections)
+- uid: Cron.Core.Interfaces.ICron.Reset(Cron.Core.Enums.CronTimeSections)
   name: Reset(CronTimeSections)
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Reset_Cron_Enums_CronTimeSections_
-  commentId: M:Cron.Interfaces.ICron.Reset(Cron.Enums.CronTimeSections)
-  fullName: Cron.Interfaces.ICron.Reset(Cron.Enums.CronTimeSections)
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Reset_Cron_Core_Enums_CronTimeSections_
+  commentId: M:Cron.Core.Interfaces.ICron.Reset(Cron.Core.Enums.CronTimeSections)
+  fullName: Cron.Core.Interfaces.ICron.Reset(Cron.Core.Enums.CronTimeSections)
   nameWithType: ICron.Reset(CronTimeSections)
-- uid: Cron.Interfaces.ICron.Reset*
+- uid: Cron.Core.Interfaces.ICron.Reset*
   name: Reset
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Reset_
-  commentId: Overload:Cron.Interfaces.ICron.Reset
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Reset_
+  commentId: Overload:Cron.Core.Interfaces.ICron.Reset
   isSpec: "True"
-  fullName: Cron.Interfaces.ICron.Reset
+  fullName: Cron.Core.Interfaces.ICron.Reset
   nameWithType: ICron.Reset
-- uid: Cron.Interfaces.ICron.ResetAll
+- uid: Cron.Core.Interfaces.ICron.ResetAll
   name: ResetAll()
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_ResetAll
-  commentId: M:Cron.Interfaces.ICron.ResetAll
-  fullName: Cron.Interfaces.ICron.ResetAll()
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_ResetAll
+  commentId: M:Cron.Core.Interfaces.ICron.ResetAll
+  fullName: Cron.Core.Interfaces.ICron.ResetAll()
   nameWithType: ICron.ResetAll()
-- uid: Cron.Interfaces.ICron.ResetAll*
+- uid: Cron.Core.Interfaces.ICron.ResetAll*
   name: ResetAll
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_ResetAll_
-  commentId: Overload:Cron.Interfaces.ICron.ResetAll
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_ResetAll_
+  commentId: Overload:Cron.Core.Interfaces.ICron.ResetAll
   isSpec: "True"
-  fullName: Cron.Interfaces.ICron.ResetAll
+  fullName: Cron.Core.Interfaces.ICron.ResetAll
   nameWithType: ICron.ResetAll
-- uid: Cron.Interfaces.ICron.Seconds
+- uid: Cron.Core.Interfaces.ICron.Seconds
   name: Seconds
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Seconds
-  commentId: P:Cron.Interfaces.ICron.Seconds
-  fullName: Cron.Interfaces.ICron.Seconds
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Seconds
+  commentId: P:Cron.Core.Interfaces.ICron.Seconds
+  fullName: Cron.Core.Interfaces.ICron.Seconds
   nameWithType: ICron.Seconds
-- uid: Cron.Interfaces.ICron.Seconds*
+- uid: Cron.Core.Interfaces.ICron.Seconds*
   name: Seconds
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Seconds_
-  commentId: Overload:Cron.Interfaces.ICron.Seconds
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Seconds_
+  commentId: Overload:Cron.Core.Interfaces.ICron.Seconds
   isSpec: "True"
-  fullName: Cron.Interfaces.ICron.Seconds
+  fullName: Cron.Core.Interfaces.ICron.Seconds
   nameWithType: ICron.Seconds
-- uid: Cron.Interfaces.ICron.Set(Cron.Enums.CronTimeSections,Cron.Interfaces.ISection)
+- uid: Cron.Core.Interfaces.ICron.Set(Cron.Core.Enums.CronTimeSections,Cron.Core.Interfaces.ISection)
   name: Set(CronTimeSections, ISection)
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Set_Cron_Enums_CronTimeSections_Cron_Interfaces_ISection_
-  commentId: M:Cron.Interfaces.ICron.Set(Cron.Enums.CronTimeSections,Cron.Interfaces.ISection)
-  fullName: Cron.Interfaces.ICron.Set(Cron.Enums.CronTimeSections, Cron.Interfaces.ISection)
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Set_Cron_Core_Enums_CronTimeSections_Cron_Core_Interfaces_ISection_
+  commentId: M:Cron.Core.Interfaces.ICron.Set(Cron.Core.Enums.CronTimeSections,Cron.Core.Interfaces.ISection)
+  fullName: Cron.Core.Interfaces.ICron.Set(Cron.Core.Enums.CronTimeSections, Cron.Core.Interfaces.ISection)
   nameWithType: ICron.Set(CronTimeSections, ISection)
-- uid: Cron.Interfaces.ICron.Set*
+- uid: Cron.Core.Interfaces.ICron.Set*
   name: Set
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Set_
-  commentId: Overload:Cron.Interfaces.ICron.Set
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Set_
+  commentId: Overload:Cron.Core.Interfaces.ICron.Set
   isSpec: "True"
-  fullName: Cron.Interfaces.ICron.Set
+  fullName: Cron.Core.Interfaces.ICron.Set
   nameWithType: ICron.Set
-- uid: Cron.Interfaces.ICron.Value
+- uid: Cron.Core.Interfaces.ICron.Value
   name: Value
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Value
-  commentId: P:Cron.Interfaces.ICron.Value
-  fullName: Cron.Interfaces.ICron.Value
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Value
+  commentId: P:Cron.Core.Interfaces.ICron.Value
+  fullName: Cron.Core.Interfaces.ICron.Value
   nameWithType: ICron.Value
-- uid: Cron.Interfaces.ICron.Value*
+- uid: Cron.Core.Interfaces.ICron.Value*
   name: Value
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Value_
-  commentId: Overload:Cron.Interfaces.ICron.Value
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Value_
+  commentId: Overload:Cron.Core.Interfaces.ICron.Value
   isSpec: "True"
-  fullName: Cron.Interfaces.ICron.Value
+  fullName: Cron.Core.Interfaces.ICron.Value
   nameWithType: ICron.Value
-- uid: Cron.Interfaces.ICron.Years
+- uid: Cron.Core.Interfaces.ICron.Years
   name: Years
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Years
-  commentId: P:Cron.Interfaces.ICron.Years
-  fullName: Cron.Interfaces.ICron.Years
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Years
+  commentId: P:Cron.Core.Interfaces.ICron.Years
+  fullName: Cron.Core.Interfaces.ICron.Years
   nameWithType: ICron.Years
-- uid: Cron.Interfaces.ICron.Years*
+- uid: Cron.Core.Interfaces.ICron.Years*
   name: Years
-  href: api/Cron.Interfaces.ICron.html#Cron_Interfaces_ICron_Years_
-  commentId: Overload:Cron.Interfaces.ICron.Years
+  href: api/Cron.Core.Interfaces.ICron.html#Cron_Core_Interfaces_ICron_Years_
+  commentId: Overload:Cron.Core.Interfaces.ICron.Years
   isSpec: "True"
-  fullName: Cron.Interfaces.ICron.Years
+  fullName: Cron.Core.Interfaces.ICron.Years
   nameWithType: ICron.Years
-- uid: Cron.Interfaces.ISection
+- uid: Cron.Core.Interfaces.ISection
   name: ISection
-  href: api/Cron.Interfaces.ISection.html
-  commentId: T:Cron.Interfaces.ISection
-  fullName: Cron.Interfaces.ISection
+  href: api/Cron.Core.Interfaces.ISection.html
+  commentId: T:Cron.Core.Interfaces.ISection
+  fullName: Cron.Core.Interfaces.ISection
   nameWithType: ISection
-- uid: Cron.Interfaces.ISection.Add(System.Int32)
+- uid: Cron.Core.Interfaces.ISection.Add(System.Int32)
   name: Add(Int32)
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_Add_System_Int32_
-  commentId: M:Cron.Interfaces.ISection.Add(System.Int32)
-  fullName: Cron.Interfaces.ISection.Add(System.Int32)
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_Add_System_Int32_
+  commentId: M:Cron.Core.Interfaces.ISection.Add(System.Int32)
+  fullName: Cron.Core.Interfaces.ISection.Add(System.Int32)
   nameWithType: ISection.Add(Int32)
-- uid: Cron.Interfaces.ISection.Add(System.Int32,System.Int32)
+- uid: Cron.Core.Interfaces.ISection.Add(System.Int32,System.Int32)
   name: Add(Int32, Int32)
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_Add_System_Int32_System_Int32_
-  commentId: M:Cron.Interfaces.ISection.Add(System.Int32,System.Int32)
-  fullName: Cron.Interfaces.ISection.Add(System.Int32, System.Int32)
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_Add_System_Int32_System_Int32_
+  commentId: M:Cron.Core.Interfaces.ISection.Add(System.Int32,System.Int32)
+  fullName: Cron.Core.Interfaces.ISection.Add(System.Int32, System.Int32)
   nameWithType: ISection.Add(Int32, Int32)
-- uid: Cron.Interfaces.ISection.Add*
+- uid: Cron.Core.Interfaces.ISection.Add*
   name: Add
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_Add_
-  commentId: Overload:Cron.Interfaces.ISection.Add
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_Add_
+  commentId: Overload:Cron.Core.Interfaces.ISection.Add
   isSpec: "True"
-  fullName: Cron.Interfaces.ISection.Add
+  fullName: Cron.Core.Interfaces.ISection.Add
   nameWithType: ISection.Add
-- uid: Cron.Interfaces.ISection.Any
+- uid: Cron.Core.Interfaces.ISection.Any
   name: Any
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_Any
-  commentId: P:Cron.Interfaces.ISection.Any
-  fullName: Cron.Interfaces.ISection.Any
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_Any
+  commentId: P:Cron.Core.Interfaces.ISection.Any
+  fullName: Cron.Core.Interfaces.ISection.Any
   nameWithType: ISection.Any
-- uid: Cron.Interfaces.ISection.Any*
+- uid: Cron.Core.Interfaces.ISection.Any*
   name: Any
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_Any_
-  commentId: Overload:Cron.Interfaces.ISection.Any
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_Any_
+  commentId: Overload:Cron.Core.Interfaces.ISection.Any
   isSpec: "True"
-  fullName: Cron.Interfaces.ISection.Any
+  fullName: Cron.Core.Interfaces.ISection.Any
   nameWithType: ISection.Any
-- uid: Cron.Interfaces.ISection.Clear
+- uid: Cron.Core.Interfaces.ISection.Clear
   name: Clear()
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_Clear
-  commentId: M:Cron.Interfaces.ISection.Clear
-  fullName: Cron.Interfaces.ISection.Clear()
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_Clear
+  commentId: M:Cron.Core.Interfaces.ISection.Clear
+  fullName: Cron.Core.Interfaces.ISection.Clear()
   nameWithType: ISection.Clear()
-- uid: Cron.Interfaces.ISection.Clear*
+- uid: Cron.Core.Interfaces.ISection.Clear*
   name: Clear
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_Clear_
-  commentId: Overload:Cron.Interfaces.ISection.Clear
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_Clear_
+  commentId: Overload:Cron.Core.Interfaces.ISection.Clear
   isSpec: "True"
-  fullName: Cron.Interfaces.ISection.Clear
+  fullName: Cron.Core.Interfaces.ISection.Clear
   nameWithType: ISection.Clear
-- uid: Cron.Interfaces.ISection.Enabled
+- uid: Cron.Core.Interfaces.ISection.Enabled
   name: Enabled
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_Enabled
-  commentId: P:Cron.Interfaces.ISection.Enabled
-  fullName: Cron.Interfaces.ISection.Enabled
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_Enabled
+  commentId: P:Cron.Core.Interfaces.ISection.Enabled
+  fullName: Cron.Core.Interfaces.ISection.Enabled
   nameWithType: ISection.Enabled
-- uid: Cron.Interfaces.ISection.Enabled*
+- uid: Cron.Core.Interfaces.ISection.Enabled*
   name: Enabled
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_Enabled_
-  commentId: Overload:Cron.Interfaces.ISection.Enabled
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_Enabled_
+  commentId: Overload:Cron.Core.Interfaces.ISection.Enabled
   isSpec: "True"
-  fullName: Cron.Interfaces.ISection.Enabled
+  fullName: Cron.Core.Interfaces.ISection.Enabled
   nameWithType: ISection.Enabled
-- uid: Cron.Interfaces.ISection.Every
+- uid: Cron.Core.Interfaces.ISection.Every
   name: Every
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_Every
-  commentId: P:Cron.Interfaces.ISection.Every
-  fullName: Cron.Interfaces.ISection.Every
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_Every
+  commentId: P:Cron.Core.Interfaces.ISection.Every
+  fullName: Cron.Core.Interfaces.ISection.Every
   nameWithType: ISection.Every
-- uid: Cron.Interfaces.ISection.Every*
+- uid: Cron.Core.Interfaces.ISection.Every*
   name: Every
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_Every_
-  commentId: Overload:Cron.Interfaces.ISection.Every
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_Every_
+  commentId: Overload:Cron.Core.Interfaces.ISection.Every
   isSpec: "True"
-  fullName: Cron.Interfaces.ISection.Every
+  fullName: Cron.Core.Interfaces.ISection.Every
   nameWithType: ISection.Every
-- uid: Cron.Interfaces.ISection.IsValidRange(Cron.Interfaces.ISectionValues)
+- uid: Cron.Core.Interfaces.ISection.IsValidRange(Cron.Core.Interfaces.ISectionValues)
   name: IsValidRange(ISectionValues)
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_IsValidRange_Cron_Interfaces_ISectionValues_
-  commentId: M:Cron.Interfaces.ISection.IsValidRange(Cron.Interfaces.ISectionValues)
-  fullName: Cron.Interfaces.ISection.IsValidRange(Cron.Interfaces.ISectionValues)
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_IsValidRange_Cron_Core_Interfaces_ISectionValues_
+  commentId: M:Cron.Core.Interfaces.ISection.IsValidRange(Cron.Core.Interfaces.ISectionValues)
+  fullName: Cron.Core.Interfaces.ISection.IsValidRange(Cron.Core.Interfaces.ISectionValues)
   nameWithType: ISection.IsValidRange(ISectionValues)
-- uid: Cron.Interfaces.ISection.IsValidRange(System.Int32)
+- uid: Cron.Core.Interfaces.ISection.IsValidRange(System.Int32)
   name: IsValidRange(Int32)
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_IsValidRange_System_Int32_
-  commentId: M:Cron.Interfaces.ISection.IsValidRange(System.Int32)
-  fullName: Cron.Interfaces.ISection.IsValidRange(System.Int32)
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_IsValidRange_System_Int32_
+  commentId: M:Cron.Core.Interfaces.ISection.IsValidRange(System.Int32)
+  fullName: Cron.Core.Interfaces.ISection.IsValidRange(System.Int32)
   nameWithType: ISection.IsValidRange(Int32)
-- uid: Cron.Interfaces.ISection.IsValidRange*
+- uid: Cron.Core.Interfaces.ISection.IsValidRange*
   name: IsValidRange
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_IsValidRange_
-  commentId: Overload:Cron.Interfaces.ISection.IsValidRange
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_IsValidRange_
+  commentId: Overload:Cron.Core.Interfaces.ISection.IsValidRange
   isSpec: "True"
-  fullName: Cron.Interfaces.ISection.IsValidRange
+  fullName: Cron.Core.Interfaces.ISection.IsValidRange
   nameWithType: ISection.IsValidRange
-- uid: Cron.Interfaces.ISection.Remove(System.Int32)
+- uid: Cron.Core.Interfaces.ISection.Remove(System.Int32)
   name: Remove(Int32)
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_Remove_System_Int32_
-  commentId: M:Cron.Interfaces.ISection.Remove(System.Int32)
-  fullName: Cron.Interfaces.ISection.Remove(System.Int32)
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_Remove_System_Int32_
+  commentId: M:Cron.Core.Interfaces.ISection.Remove(System.Int32)
+  fullName: Cron.Core.Interfaces.ISection.Remove(System.Int32)
   nameWithType: ISection.Remove(Int32)
-- uid: Cron.Interfaces.ISection.Remove(System.Int32,System.Int32)
+- uid: Cron.Core.Interfaces.ISection.Remove(System.Int32,System.Int32)
   name: Remove(Int32, Int32)
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_Remove_System_Int32_System_Int32_
-  commentId: M:Cron.Interfaces.ISection.Remove(System.Int32,System.Int32)
-  fullName: Cron.Interfaces.ISection.Remove(System.Int32, System.Int32)
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_Remove_System_Int32_System_Int32_
+  commentId: M:Cron.Core.Interfaces.ISection.Remove(System.Int32,System.Int32)
+  fullName: Cron.Core.Interfaces.ISection.Remove(System.Int32, System.Int32)
   nameWithType: ISection.Remove(Int32, Int32)
-- uid: Cron.Interfaces.ISection.Remove*
+- uid: Cron.Core.Interfaces.ISection.Remove*
   name: Remove
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_Remove_
-  commentId: Overload:Cron.Interfaces.ISection.Remove
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_Remove_
+  commentId: Overload:Cron.Core.Interfaces.ISection.Remove
   isSpec: "True"
-  fullName: Cron.Interfaces.ISection.Remove
+  fullName: Cron.Core.Interfaces.ISection.Remove
   nameWithType: ISection.Remove
-- uid: Cron.Interfaces.ISection.Values
+- uid: Cron.Core.Interfaces.ISection.Values
   name: Values
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_Values
-  commentId: P:Cron.Interfaces.ISection.Values
-  fullName: Cron.Interfaces.ISection.Values
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_Values
+  commentId: P:Cron.Core.Interfaces.ISection.Values
+  fullName: Cron.Core.Interfaces.ISection.Values
   nameWithType: ISection.Values
-- uid: Cron.Interfaces.ISection.Values*
+- uid: Cron.Core.Interfaces.ISection.Values*
   name: Values
-  href: api/Cron.Interfaces.ISection.html#Cron_Interfaces_ISection_Values_
-  commentId: Overload:Cron.Interfaces.ISection.Values
+  href: api/Cron.Core.Interfaces.ISection.html#Cron_Core_Interfaces_ISection_Values_
+  commentId: Overload:Cron.Core.Interfaces.ISection.Values
   isSpec: "True"
-  fullName: Cron.Interfaces.ISection.Values
+  fullName: Cron.Core.Interfaces.ISection.Values
   nameWithType: ISection.Values
-- uid: Cron.Interfaces.ISectionValues
+- uid: Cron.Core.Interfaces.ISectionValues
   name: ISectionValues
-  href: api/Cron.Interfaces.ISectionValues.html
-  commentId: T:Cron.Interfaces.ISectionValues
-  fullName: Cron.Interfaces.ISectionValues
+  href: api/Cron.Core.Interfaces.ISectionValues.html
+  commentId: T:Cron.Core.Interfaces.ISectionValues
+  fullName: Cron.Core.Interfaces.ISectionValues
   nameWithType: ISectionValues
-- uid: Cron.Interfaces.ISectionValues.MaxValue
+- uid: Cron.Core.Interfaces.ISectionValues.MaxValue
   name: MaxValue
-  href: api/Cron.Interfaces.ISectionValues.html#Cron_Interfaces_ISectionValues_MaxValue
-  commentId: P:Cron.Interfaces.ISectionValues.MaxValue
-  fullName: Cron.Interfaces.ISectionValues.MaxValue
+  href: api/Cron.Core.Interfaces.ISectionValues.html#Cron_Core_Interfaces_ISectionValues_MaxValue
+  commentId: P:Cron.Core.Interfaces.ISectionValues.MaxValue
+  fullName: Cron.Core.Interfaces.ISectionValues.MaxValue
   nameWithType: ISectionValues.MaxValue
-- uid: Cron.Interfaces.ISectionValues.MaxValue*
+- uid: Cron.Core.Interfaces.ISectionValues.MaxValue*
   name: MaxValue
-  href: api/Cron.Interfaces.ISectionValues.html#Cron_Interfaces_ISectionValues_MaxValue_
-  commentId: Overload:Cron.Interfaces.ISectionValues.MaxValue
+  href: api/Cron.Core.Interfaces.ISectionValues.html#Cron_Core_Interfaces_ISectionValues_MaxValue_
+  commentId: Overload:Cron.Core.Interfaces.ISectionValues.MaxValue
   isSpec: "True"
-  fullName: Cron.Interfaces.ISectionValues.MaxValue
+  fullName: Cron.Core.Interfaces.ISectionValues.MaxValue
   nameWithType: ISectionValues.MaxValue
-- uid: Cron.Interfaces.ISectionValues.MinValue
+- uid: Cron.Core.Interfaces.ISectionValues.MinValue
   name: MinValue
-  href: api/Cron.Interfaces.ISectionValues.html#Cron_Interfaces_ISectionValues_MinValue
-  commentId: P:Cron.Interfaces.ISectionValues.MinValue
-  fullName: Cron.Interfaces.ISectionValues.MinValue
+  href: api/Cron.Core.Interfaces.ISectionValues.html#Cron_Core_Interfaces_ISectionValues_MinValue
+  commentId: P:Cron.Core.Interfaces.ISectionValues.MinValue
+  fullName: Cron.Core.Interfaces.ISectionValues.MinValue
   nameWithType: ISectionValues.MinValue
-- uid: Cron.Interfaces.ISectionValues.MinValue*
+- uid: Cron.Core.Interfaces.ISectionValues.MinValue*
   name: MinValue
-  href: api/Cron.Interfaces.ISectionValues.html#Cron_Interfaces_ISectionValues_MinValue_
-  commentId: Overload:Cron.Interfaces.ISectionValues.MinValue
+  href: api/Cron.Core.Interfaces.ISectionValues.html#Cron_Core_Interfaces_ISectionValues_MinValue_
+  commentId: Overload:Cron.Core.Interfaces.ISectionValues.MinValue
   isSpec: "True"
-  fullName: Cron.Interfaces.ISectionValues.MinValue
+  fullName: Cron.Core.Interfaces.ISectionValues.MinValue
   nameWithType: ISectionValues.MinValue
-- uid: Cron.Section
+- uid: Cron.Core.Section
   name: Section
-  href: api/Cron.Section.html
-  commentId: T:Cron.Section
-  fullName: Cron.Section
+  href: api/Cron.Core.Section.html
+  commentId: T:Cron.Core.Section
+  fullName: Cron.Core.Section
   nameWithType: Section
-- uid: Cron.Section.#ctor(Cron.Enums.CronTimeSections)
+- uid: Cron.Core.Section.#ctor(Cron.Core.Enums.CronTimeSections)
   name: Section(CronTimeSections)
-  href: api/Cron.Section.html#Cron_Section__ctor_Cron_Enums_CronTimeSections_
-  commentId: M:Cron.Section.#ctor(Cron.Enums.CronTimeSections)
-  fullName: Cron.Section.Section(Cron.Enums.CronTimeSections)
+  href: api/Cron.Core.Section.html#Cron_Core_Section__ctor_Cron_Core_Enums_CronTimeSections_
+  commentId: M:Cron.Core.Section.#ctor(Cron.Core.Enums.CronTimeSections)
+  fullName: Cron.Core.Section.Section(Cron.Core.Enums.CronTimeSections)
   nameWithType: Section.Section(CronTimeSections)
-- uid: Cron.Section.#ctor(Cron.Enums.CronTimeSections,System.String)
+- uid: Cron.Core.Section.#ctor(Cron.Core.Enums.CronTimeSections,System.String)
   name: Section(CronTimeSections, String)
-  href: api/Cron.Section.html#Cron_Section__ctor_Cron_Enums_CronTimeSections_System_String_
-  commentId: M:Cron.Section.#ctor(Cron.Enums.CronTimeSections,System.String)
-  fullName: Cron.Section.Section(Cron.Enums.CronTimeSections, System.String)
+  href: api/Cron.Core.Section.html#Cron_Core_Section__ctor_Cron_Core_Enums_CronTimeSections_System_String_
+  commentId: M:Cron.Core.Section.#ctor(Cron.Core.Enums.CronTimeSections,System.String)
+  fullName: Cron.Core.Section.Section(Cron.Core.Enums.CronTimeSections, System.String)
   nameWithType: Section.Section(CronTimeSections, String)
-- uid: Cron.Section.#ctor*
+- uid: Cron.Core.Section.#ctor*
   name: Section
-  href: api/Cron.Section.html#Cron_Section__ctor_
-  commentId: Overload:Cron.Section.#ctor
+  href: api/Cron.Core.Section.html#Cron_Core_Section__ctor_
+  commentId: Overload:Cron.Core.Section.#ctor
   isSpec: "True"
-  fullName: Cron.Section.Section
+  fullName: Cron.Core.Section.Section
   nameWithType: Section.Section
-- uid: Cron.Section.Add(System.Int32)
+- uid: Cron.Core.Section.Add(System.Int32)
   name: Add(Int32)
-  href: api/Cron.Section.html#Cron_Section_Add_System_Int32_
-  commentId: M:Cron.Section.Add(System.Int32)
-  fullName: Cron.Section.Add(System.Int32)
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Add_System_Int32_
+  commentId: M:Cron.Core.Section.Add(System.Int32)
+  fullName: Cron.Core.Section.Add(System.Int32)
   nameWithType: Section.Add(Int32)
-- uid: Cron.Section.Add(System.Int32,System.Int32)
+- uid: Cron.Core.Section.Add(System.Int32,System.Int32)
   name: Add(Int32, Int32)
-  href: api/Cron.Section.html#Cron_Section_Add_System_Int32_System_Int32_
-  commentId: M:Cron.Section.Add(System.Int32,System.Int32)
-  fullName: Cron.Section.Add(System.Int32, System.Int32)
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Add_System_Int32_System_Int32_
+  commentId: M:Cron.Core.Section.Add(System.Int32,System.Int32)
+  fullName: Cron.Core.Section.Add(System.Int32, System.Int32)
   nameWithType: Section.Add(Int32, Int32)
-- uid: Cron.Section.Add*
+- uid: Cron.Core.Section.Add*
   name: Add
-  href: api/Cron.Section.html#Cron_Section_Add_
-  commentId: Overload:Cron.Section.Add
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Add_
+  commentId: Overload:Cron.Core.Section.Add
   isSpec: "True"
-  fullName: Cron.Section.Add
+  fullName: Cron.Core.Section.Add
   nameWithType: Section.Add
-- uid: Cron.Section.Any
+- uid: Cron.Core.Section.Any
   name: Any
-  href: api/Cron.Section.html#Cron_Section_Any
-  commentId: P:Cron.Section.Any
-  fullName: Cron.Section.Any
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Any
+  commentId: P:Cron.Core.Section.Any
+  fullName: Cron.Core.Section.Any
   nameWithType: Section.Any
-- uid: Cron.Section.Any*
+- uid: Cron.Core.Section.Any*
   name: Any
-  href: api/Cron.Section.html#Cron_Section_Any_
-  commentId: Overload:Cron.Section.Any
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Any_
+  commentId: Overload:Cron.Core.Section.Any
   isSpec: "True"
-  fullName: Cron.Section.Any
+  fullName: Cron.Core.Section.Any
   nameWithType: Section.Any
-- uid: Cron.Section.Clear
+- uid: Cron.Core.Section.Clear
   name: Clear()
-  href: api/Cron.Section.html#Cron_Section_Clear
-  commentId: M:Cron.Section.Clear
-  fullName: Cron.Section.Clear()
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Clear
+  commentId: M:Cron.Core.Section.Clear
+  fullName: Cron.Core.Section.Clear()
   nameWithType: Section.Clear()
-- uid: Cron.Section.Clear*
+- uid: Cron.Core.Section.Clear*
   name: Clear
-  href: api/Cron.Section.html#Cron_Section_Clear_
-  commentId: Overload:Cron.Section.Clear
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Clear_
+  commentId: Overload:Cron.Core.Section.Clear
   isSpec: "True"
-  fullName: Cron.Section.Clear
+  fullName: Cron.Core.Section.Clear
   nameWithType: Section.Clear
-- uid: Cron.Section.Count
+- uid: Cron.Core.Section.Count
   name: Count
-  href: api/Cron.Section.html#Cron_Section_Count
-  commentId: P:Cron.Section.Count
-  fullName: Cron.Section.Count
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Count
+  commentId: P:Cron.Core.Section.Count
+  fullName: Cron.Core.Section.Count
   nameWithType: Section.Count
-- uid: Cron.Section.Count*
+- uid: Cron.Core.Section.Count*
   name: Count
-  href: api/Cron.Section.html#Cron_Section_Count_
-  commentId: Overload:Cron.Section.Count
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Count_
+  commentId: Overload:Cron.Core.Section.Count
   isSpec: "True"
-  fullName: Cron.Section.Count
+  fullName: Cron.Core.Section.Count
   nameWithType: Section.Count
-- uid: Cron.Section.Enabled
+- uid: Cron.Core.Section.Enabled
   name: Enabled
-  href: api/Cron.Section.html#Cron_Section_Enabled
-  commentId: P:Cron.Section.Enabled
-  fullName: Cron.Section.Enabled
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Enabled
+  commentId: P:Cron.Core.Section.Enabled
+  fullName: Cron.Core.Section.Enabled
   nameWithType: Section.Enabled
-- uid: Cron.Section.Enabled*
+- uid: Cron.Core.Section.Enabled*
   name: Enabled
-  href: api/Cron.Section.html#Cron_Section_Enabled_
-  commentId: Overload:Cron.Section.Enabled
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Enabled_
+  commentId: Overload:Cron.Core.Section.Enabled
   isSpec: "True"
-  fullName: Cron.Section.Enabled
+  fullName: Cron.Core.Section.Enabled
   nameWithType: Section.Enabled
-- uid: Cron.Section.Every
+- uid: Cron.Core.Section.Every
   name: Every
-  href: api/Cron.Section.html#Cron_Section_Every
-  commentId: P:Cron.Section.Every
-  fullName: Cron.Section.Every
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Every
+  commentId: P:Cron.Core.Section.Every
+  fullName: Cron.Core.Section.Every
   nameWithType: Section.Every
-- uid: Cron.Section.Every*
+- uid: Cron.Core.Section.Every*
   name: Every
-  href: api/Cron.Section.html#Cron_Section_Every_
-  commentId: Overload:Cron.Section.Every
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Every_
+  commentId: Overload:Cron.Core.Section.Every
   isSpec: "True"
-  fullName: Cron.Section.Every
+  fullName: Cron.Core.Section.Every
   nameWithType: Section.Every
-- uid: Cron.Section.GetEnumerator
+- uid: Cron.Core.Section.GetEnumerator
   name: GetEnumerator()
-  href: api/Cron.Section.html#Cron_Section_GetEnumerator
-  commentId: M:Cron.Section.GetEnumerator
-  fullName: Cron.Section.GetEnumerator()
+  href: api/Cron.Core.Section.html#Cron_Core_Section_GetEnumerator
+  commentId: M:Cron.Core.Section.GetEnumerator
+  fullName: Cron.Core.Section.GetEnumerator()
   nameWithType: Section.GetEnumerator()
-- uid: Cron.Section.GetEnumerator*
+- uid: Cron.Core.Section.GetEnumerator*
   name: GetEnumerator
-  href: api/Cron.Section.html#Cron_Section_GetEnumerator_
-  commentId: Overload:Cron.Section.GetEnumerator
+  href: api/Cron.Core.Section.html#Cron_Core_Section_GetEnumerator_
+  commentId: Overload:Cron.Core.Section.GetEnumerator
   isSpec: "True"
-  fullName: Cron.Section.GetEnumerator
+  fullName: Cron.Core.Section.GetEnumerator
   nameWithType: Section.GetEnumerator
-- uid: Cron.Section.IsValidRange(Cron.Interfaces.ISectionValues)
+- uid: Cron.Core.Section.IsValidRange(Cron.Core.Interfaces.ISectionValues)
   name: IsValidRange(ISectionValues)
-  href: api/Cron.Section.html#Cron_Section_IsValidRange_Cron_Interfaces_ISectionValues_
-  commentId: M:Cron.Section.IsValidRange(Cron.Interfaces.ISectionValues)
-  fullName: Cron.Section.IsValidRange(Cron.Interfaces.ISectionValues)
+  href: api/Cron.Core.Section.html#Cron_Core_Section_IsValidRange_Cron_Core_Interfaces_ISectionValues_
+  commentId: M:Cron.Core.Section.IsValidRange(Cron.Core.Interfaces.ISectionValues)
+  fullName: Cron.Core.Section.IsValidRange(Cron.Core.Interfaces.ISectionValues)
   nameWithType: Section.IsValidRange(ISectionValues)
-- uid: Cron.Section.IsValidRange(System.Int32)
+- uid: Cron.Core.Section.IsValidRange(System.Int32)
   name: IsValidRange(Int32)
-  href: api/Cron.Section.html#Cron_Section_IsValidRange_System_Int32_
-  commentId: M:Cron.Section.IsValidRange(System.Int32)
-  fullName: Cron.Section.IsValidRange(System.Int32)
+  href: api/Cron.Core.Section.html#Cron_Core_Section_IsValidRange_System_Int32_
+  commentId: M:Cron.Core.Section.IsValidRange(System.Int32)
+  fullName: Cron.Core.Section.IsValidRange(System.Int32)
   nameWithType: Section.IsValidRange(Int32)
-- uid: Cron.Section.IsValidRange*
+- uid: Cron.Core.Section.IsValidRange*
   name: IsValidRange
-  href: api/Cron.Section.html#Cron_Section_IsValidRange_
-  commentId: Overload:Cron.Section.IsValidRange
+  href: api/Cron.Core.Section.html#Cron_Core_Section_IsValidRange_
+  commentId: Overload:Cron.Core.Section.IsValidRange
   isSpec: "True"
-  fullName: Cron.Section.IsValidRange
+  fullName: Cron.Core.Section.IsValidRange
   nameWithType: Section.IsValidRange
-- uid: Cron.Section.Item(System.Int32)
+- uid: Cron.Core.Section.Item(System.Int32)
   name: Item[Int32]
-  href: api/Cron.Section.html#Cron_Section_Item_System_Int32_
-  commentId: P:Cron.Section.Item(System.Int32)
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Item_System_Int32_
+  commentId: P:Cron.Core.Section.Item(System.Int32)
   name.vb: Item(Int32)
-  fullName: Cron.Section.Item[System.Int32]
-  fullName.vb: Cron.Section.Item(System.Int32)
+  fullName: Cron.Core.Section.Item[System.Int32]
+  fullName.vb: Cron.Core.Section.Item(System.Int32)
   nameWithType: Section.Item[Int32]
   nameWithType.vb: Section.Item(Int32)
-- uid: Cron.Section.Item*
+- uid: Cron.Core.Section.Item*
   name: Item
-  href: api/Cron.Section.html#Cron_Section_Item_
-  commentId: Overload:Cron.Section.Item
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Item_
+  commentId: Overload:Cron.Core.Section.Item
   isSpec: "True"
-  fullName: Cron.Section.Item
+  fullName: Cron.Core.Section.Item
   nameWithType: Section.Item
-- uid: Cron.Section.Remove(System.Int32)
+- uid: Cron.Core.Section.Remove(System.Int32)
   name: Remove(Int32)
-  href: api/Cron.Section.html#Cron_Section_Remove_System_Int32_
-  commentId: M:Cron.Section.Remove(System.Int32)
-  fullName: Cron.Section.Remove(System.Int32)
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Remove_System_Int32_
+  commentId: M:Cron.Core.Section.Remove(System.Int32)
+  fullName: Cron.Core.Section.Remove(System.Int32)
   nameWithType: Section.Remove(Int32)
-- uid: Cron.Section.Remove(System.Int32,System.Int32)
+- uid: Cron.Core.Section.Remove(System.Int32,System.Int32)
   name: Remove(Int32, Int32)
-  href: api/Cron.Section.html#Cron_Section_Remove_System_Int32_System_Int32_
-  commentId: M:Cron.Section.Remove(System.Int32,System.Int32)
-  fullName: Cron.Section.Remove(System.Int32, System.Int32)
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Remove_System_Int32_System_Int32_
+  commentId: M:Cron.Core.Section.Remove(System.Int32,System.Int32)
+  fullName: Cron.Core.Section.Remove(System.Int32, System.Int32)
   nameWithType: Section.Remove(Int32, Int32)
-- uid: Cron.Section.Remove*
+- uid: Cron.Core.Section.Remove*
   name: Remove
-  href: api/Cron.Section.html#Cron_Section_Remove_
-  commentId: Overload:Cron.Section.Remove
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Remove_
+  commentId: Overload:Cron.Core.Section.Remove
   isSpec: "True"
-  fullName: Cron.Section.Remove
+  fullName: Cron.Core.Section.Remove
   nameWithType: Section.Remove
-- uid: Cron.Section.ToString
+- uid: Cron.Core.Section.System#Collections#IEnumerable#GetEnumerator
+  name: IEnumerable.GetEnumerator()
+  href: api/Cron.Core.Section.html#Cron_Core_Section_System_Collections_IEnumerable_GetEnumerator
+  commentId: M:Cron.Core.Section.System#Collections#IEnumerable#GetEnumerator
+  name.vb: System.Collections.IEnumerable.GetEnumerator()
+  fullName: Cron.Core.Section.System.Collections.IEnumerable.GetEnumerator()
+  nameWithType: Section.IEnumerable.GetEnumerator()
+  nameWithType.vb: Section.System.Collections.IEnumerable.GetEnumerator()
+- uid: Cron.Core.Section.System#Collections#IEnumerable#GetEnumerator*
+  name: IEnumerable.GetEnumerator
+  href: api/Cron.Core.Section.html#Cron_Core_Section_System_Collections_IEnumerable_GetEnumerator_
+  commentId: Overload:Cron.Core.Section.System#Collections#IEnumerable#GetEnumerator
+  isSpec: "True"
+  name.vb: System.Collections.IEnumerable.GetEnumerator
+  fullName: Cron.Core.Section.System.Collections.IEnumerable.GetEnumerator
+  nameWithType: Section.IEnumerable.GetEnumerator
+  nameWithType.vb: Section.System.Collections.IEnumerable.GetEnumerator
+- uid: Cron.Core.Section.ToString
   name: ToString()
-  href: api/Cron.Section.html#Cron_Section_ToString
-  commentId: M:Cron.Section.ToString
-  fullName: Cron.Section.ToString()
+  href: api/Cron.Core.Section.html#Cron_Core_Section_ToString
+  commentId: M:Cron.Core.Section.ToString
+  fullName: Cron.Core.Section.ToString()
   nameWithType: Section.ToString()
-- uid: Cron.Section.ToString*
+- uid: Cron.Core.Section.ToString*
   name: ToString
-  href: api/Cron.Section.html#Cron_Section_ToString_
-  commentId: Overload:Cron.Section.ToString
+  href: api/Cron.Core.Section.html#Cron_Core_Section_ToString_
+  commentId: Overload:Cron.Core.Section.ToString
   isSpec: "True"
-  fullName: Cron.Section.ToString
+  fullName: Cron.Core.Section.ToString
   nameWithType: Section.ToString
-- uid: Cron.Section.Values
+- uid: Cron.Core.Section.Values
   name: Values
-  href: api/Cron.Section.html#Cron_Section_Values
-  commentId: P:Cron.Section.Values
-  fullName: Cron.Section.Values
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Values
+  commentId: P:Cron.Core.Section.Values
+  fullName: Cron.Core.Section.Values
   nameWithType: Section.Values
-- uid: Cron.Section.Values*
+- uid: Cron.Core.Section.Values*
   name: Values
-  href: api/Cron.Section.html#Cron_Section_Values_
-  commentId: Overload:Cron.Section.Values
+  href: api/Cron.Core.Section.html#Cron_Core_Section_Values_
+  commentId: Overload:Cron.Core.Section.Values
   isSpec: "True"
-  fullName: Cron.Section.Values
+  fullName: Cron.Core.Section.Values
   nameWithType: Section.Values
-- uid: Cron.SectionValues
+- uid: Cron.Core.SectionValues
   name: SectionValues
-  href: api/Cron.SectionValues.html
-  commentId: T:Cron.SectionValues
-  fullName: Cron.SectionValues
+  href: api/Cron.Core.SectionValues.html
+  commentId: T:Cron.Core.SectionValues
+  fullName: Cron.Core.SectionValues
   nameWithType: SectionValues
-- uid: Cron.SectionValues.MaxValue
+- uid: Cron.Core.SectionValues.MaxValue
   name: MaxValue
-  href: api/Cron.SectionValues.html#Cron_SectionValues_MaxValue
-  commentId: P:Cron.SectionValues.MaxValue
-  fullName: Cron.SectionValues.MaxValue
+  href: api/Cron.Core.SectionValues.html#Cron_Core_SectionValues_MaxValue
+  commentId: P:Cron.Core.SectionValues.MaxValue
+  fullName: Cron.Core.SectionValues.MaxValue
   nameWithType: SectionValues.MaxValue
-- uid: Cron.SectionValues.MaxValue*
+- uid: Cron.Core.SectionValues.MaxValue*
   name: MaxValue
-  href: api/Cron.SectionValues.html#Cron_SectionValues_MaxValue_
-  commentId: Overload:Cron.SectionValues.MaxValue
+  href: api/Cron.Core.SectionValues.html#Cron_Core_SectionValues_MaxValue_
+  commentId: Overload:Cron.Core.SectionValues.MaxValue
   isSpec: "True"
-  fullName: Cron.SectionValues.MaxValue
+  fullName: Cron.Core.SectionValues.MaxValue
   nameWithType: SectionValues.MaxValue
-- uid: Cron.SectionValues.MinValue
+- uid: Cron.Core.SectionValues.MinValue
   name: MinValue
-  href: api/Cron.SectionValues.html#Cron_SectionValues_MinValue
-  commentId: P:Cron.SectionValues.MinValue
-  fullName: Cron.SectionValues.MinValue
+  href: api/Cron.Core.SectionValues.html#Cron_Core_SectionValues_MinValue
+  commentId: P:Cron.Core.SectionValues.MinValue
+  fullName: Cron.Core.SectionValues.MinValue
   nameWithType: SectionValues.MinValue
-- uid: Cron.SectionValues.MinValue*
+- uid: Cron.Core.SectionValues.MinValue*
   name: MinValue
-  href: api/Cron.SectionValues.html#Cron_SectionValues_MinValue_
-  commentId: Overload:Cron.SectionValues.MinValue
+  href: api/Cron.Core.SectionValues.html#Cron_Core_SectionValues_MinValue_
+  commentId: Overload:Cron.Core.SectionValues.MinValue
   isSpec: "True"
-  fullName: Cron.SectionValues.MinValue
+  fullName: Cron.Core.SectionValues.MinValue
   nameWithType: SectionValues.MinValue
-- uid: Cron.SectionValues.op_Explicit(List{Cron.Interfaces.ISectionValues})~Cron.SectionValues
+- uid: Cron.Core.SectionValues.op_Explicit(System.Collections.Generic.List{Cron.Core.Interfaces.ISectionValues})~Cron.Core.SectionValues
   name: Explicit(List<ISectionValues> to SectionValues)
-  href: api/Cron.SectionValues.html#Cron_SectionValues_op_Explicit_List_Cron_Interfaces_ISectionValues___Cron_SectionValues
-  commentId: M:Cron.SectionValues.op_Explicit(List{Cron.Interfaces.ISectionValues})~Cron.SectionValues
+  href: api/Cron.Core.SectionValues.html#Cron_Core_SectionValues_op_Explicit_System_Collections_Generic_List_Cron_Core_Interfaces_ISectionValues___Cron_Core_SectionValues
+  commentId: M:Cron.Core.SectionValues.op_Explicit(System.Collections.Generic.List{Cron.Core.Interfaces.ISectionValues})~Cron.Core.SectionValues
   name.vb: Narrowing(List(Of ISectionValues) to SectionValues)
-  fullName: Cron.SectionValues.Explicit(List<Cron.Interfaces.ISectionValues> to Cron.SectionValues)
-  fullName.vb: Cron.SectionValues.Narrowing(List(Of Cron.Interfaces.ISectionValues) to Cron.SectionValues)
+  fullName: Cron.Core.SectionValues.Explicit(System.Collections.Generic.List<Cron.Core.Interfaces.ISectionValues> to Cron.Core.SectionValues)
+  fullName.vb: Cron.Core.SectionValues.Narrowing(System.Collections.Generic.List(Of Cron.Core.Interfaces.ISectionValues) to Cron.Core.SectionValues)
   nameWithType: SectionValues.Explicit(List<ISectionValues> to SectionValues)
   nameWithType.vb: SectionValues.Narrowing(List(Of ISectionValues) to SectionValues)
-- uid: Cron.SectionValues.op_Explicit*
+- uid: Cron.Core.SectionValues.op_Explicit*
   name: Explicit
-  href: api/Cron.SectionValues.html#Cron_SectionValues_op_Explicit_
-  commentId: Overload:Cron.SectionValues.op_Explicit
+  href: api/Cron.Core.SectionValues.html#Cron_Core_SectionValues_op_Explicit_
+  commentId: Overload:Cron.Core.SectionValues.op_Explicit
   isSpec: "True"
   name.vb: Narrowing
-  fullName: Cron.SectionValues.Explicit
-  fullName.vb: Cron.SectionValues.Narrowing
+  fullName: Cron.Core.SectionValues.Explicit
+  fullName.vb: Cron.Core.SectionValues.Narrowing
   nameWithType: SectionValues.Explicit
   nameWithType.vb: SectionValues.Narrowing
-- uid: Cron.SectionValues.ToString
+- uid: Cron.Core.SectionValues.ToString
   name: ToString()
-  href: api/Cron.SectionValues.html#Cron_SectionValues_ToString
-  commentId: M:Cron.SectionValues.ToString
-  fullName: Cron.SectionValues.ToString()
+  href: api/Cron.Core.SectionValues.html#Cron_Core_SectionValues_ToString
+  commentId: M:Cron.Core.SectionValues.ToString
+  fullName: Cron.Core.SectionValues.ToString()
   nameWithType: SectionValues.ToString()
-- uid: Cron.SectionValues.ToString*
+- uid: Cron.Core.SectionValues.ToString*
   name: ToString
-  href: api/Cron.SectionValues.html#Cron_SectionValues_ToString_
-  commentId: Overload:Cron.SectionValues.ToString
+  href: api/Cron.Core.SectionValues.html#Cron_Core_SectionValues_ToString_
+  commentId: Overload:Cron.Core.SectionValues.ToString
   isSpec: "True"
-  fullName: Cron.SectionValues.ToString
+  fullName: Cron.Core.SectionValues.ToString
   nameWithType: SectionValues.ToString

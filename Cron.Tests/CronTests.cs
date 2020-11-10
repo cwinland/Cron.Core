@@ -1,20 +1,21 @@
-using Cron.Enums;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
+using Cron.Core.Interfaces;
+using Cron.Core.Enums;
 
 namespace Cron.Tests
 {
     [TestClass]
     public class CronTests
     {
-        private Cron schedule;
+        private ICron schedule;
 
         [TestInitialize]
         public void Init()
         {
-            schedule = new Cron();
+            schedule = new Core.Cron();
         }
 
         [TestMethod]
@@ -55,7 +56,7 @@ namespace Cron.Tests
         )]
         public void Cron_CanVerifyComplex(int seconds, int dayMonth, int years, string expectedValue, string expectedDescription)
         {
-            schedule = new Cron();
+            schedule = new Core.Cron();
             schedule
                 .Add(time: CronTimeSections.Seconds, value: seconds, repeatEvery: true)
                 .Add(CronTimeSections.Minutes, 4)
@@ -188,7 +189,7 @@ namespace Cron.Tests
         [DataRow("1 2", null)]
         public void Cron_CreateByExpression(string expression, string description)
         {
-            var cron = new Cron(expression);
+            var cron = new Core.Cron(expression);
 
             if (!string.IsNullOrEmpty(description))
             {
@@ -212,7 +213,7 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_CanRemoveSeconds()
         {
-            var cron = new Cron
+            var cron = new Core.Cron
             {
                 { CronTimeSections.Seconds, 5 },
                 { CronTimeSections.Seconds, 9 },
@@ -231,7 +232,7 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_CanRemoveByRange()
         {
-            var cron = new Cron
+            var cron = new Core.Cron
             {
                 { CronTimeSections.Seconds, 5, 6 },
                 { CronTimeSections.Seconds, 9 },
@@ -250,7 +251,7 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_CanAddByDayWeekRange()
         {
-            var cron = new Cron
+            var cron = new Core.Cron
             {
                 { CronDays.Thursday, CronDays.Saturday }
             };
@@ -262,7 +263,7 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_CanAddByCronMonthRange()
         {
-            var cron = new Cron
+            var cron = new Core.Cron
             {
                 { CronMonths.August, CronMonths.November }
             };
@@ -274,7 +275,7 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_CanResetDayWeek()
         {
-            var cron = new Cron();
+            var cron = new Core.Cron();
             var val = cron.Value;
 
             cron.Add(CronDays.Friday);
@@ -290,7 +291,7 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_CanResetAll()
         {
-            var cron = new Cron();
+            var cron = new Core.Cron();
             var val = cron.Value;
 
             cron.Add(CronDays.Friday);

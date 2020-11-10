@@ -1,8 +1,8 @@
-﻿using Cron.Interfaces;
+﻿using Cron.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 
-namespace Cron
+namespace Cron.Core
 {
     /// <inheritdoc cref="ISectionValues" />
     public class SectionValues : ISectionValues

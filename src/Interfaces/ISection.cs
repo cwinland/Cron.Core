@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Cron.Enums;
+using Cron.Core.Enums;
 
-namespace Cron.Interfaces
+namespace Cron.Core.Interfaces
 {
     /// <summary>
     ///   Section of time - represents the object for a specific given time element of the Cron expression.
