@@ -84,37 +84,13 @@
   <div classs="implements">
     <h5>Implements</h5>
     <div><a class="xref" href="Cron.Interfaces.ISection.html">ISection</a></div>
-    <div><span class="xref">System.Collections.Generic.IReadOnlyList</span>&lt;<a class="xref" href="Cron.Interfaces.ISectionValues.html">ISectionValues</a>&gt;</div>
-    <div><span class="xref">System.Collections.Generic.IReadOnlyCollection</span>&lt;<a class="xref" href="Cron.Interfaces.ISectionValues.html">ISectionValues</a>&gt;</div>
-    <div><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="Cron.Interfaces.ISectionValues.html">ISectionValues</a>&gt;</div>
-    <div><span class="xref">System.Collections.IEnumerable</span></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetHashCode()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.GetType()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.MemberwiseClone()</span>
-    </div>
-    <div>
-      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
-    </div>
+    <div><span class="xref">IReadOnlyList</span>&lt;<a class="xref" href="Cron.Interfaces.ISectionValues.html">ISectionValues</a>&gt;</div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Cron.html">Cron</a></h6>
-  <h6><strong>Assembly</strong>: Cron.Core.dll</h6>
+  <h6><strong>Assembly</strong>: Cron.Core_BACKUP_1569.dll</h6>
   <h5 id="Cron_Section_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Section : ISection, IReadOnlyList&lt;ISectionValues&gt;, IReadOnlyCollection&lt;ISectionValues&gt;, IEnumerable&lt;ISectionValues&gt;, IEnumerable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Section : object, ISection, IReadOnlyList&lt;ISectionValues&gt;</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -398,7 +374,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<span class="xref">System.String</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -419,7 +395,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ISection Add([Range(0, 9999)] int value)</code></pre>
+    <pre><code class="lang-csharp hljs">public ISection Add(int value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -468,7 +444,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ISection Add([Range(0, 9999)] int minVal, [Range(0, 9999)] int maxVal)</code></pre>
+    <pre><code class="lang-csharp hljs">public ISection Add(int minVal, int maxVal)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -566,7 +542,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerator</span>&lt;<a class="xref" href="Cron.Interfaces.ISectionValues.html">ISectionValues</a>&gt;</td>
+        <td><span class="xref">IEnumerator</span>&lt;<a class="xref" href="Cron.Interfaces.ISectionValues.html">ISectionValues</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -634,7 +610,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsValidRange([Range(0, 9999)] int value)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsValidRange(int value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -683,7 +659,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ISection Remove([Range(0, 9999)] int value)</code></pre>
+    <pre><code class="lang-csharp hljs">public ISection Remove(int value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -732,7 +708,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ISection Remove([Range(0, 9999)] int minVal, [Range(0, 9999)] int maxVal)</code></pre>
+    <pre><code class="lang-csharp hljs">public ISection Remove(int minVal, int maxVal)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -804,56 +780,12 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">System.Object.ToString()</span></div>
-  <h3 id="eii">Explicit Interface Implementations
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/cwinland/Cron-Builder/new/develop/apiSpec/new?filename=Cron_Section_System_Collections_IEnumerable_GetEnumerator.md&amp;value=---%0Auid%3A%20Cron.Section.System%23Collections%23IEnumerable%23GetEnumerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/cwinland/Cron-Builder/blob/develop/src/Section.cs/#L158">View Source</a>
-  </span>
-  <a id="Cron_Section_System_Collections_IEnumerable_GetEnumerator_" data-uid="Cron.Section.System#Collections#IEnumerable#GetEnumerator*"></a>
-  <h4 id="Cron_Section_System_Collections_IEnumerable_GetEnumerator" data-uid="Cron.Section.System#Collections#IEnumerable#GetEnumerator">IEnumerable.GetEnumerator()</h4>
-  <div class="markdown level1 summary"><p>Section of time - represents the object for a specific given time element of the Cron expression.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerator IEnumerable.GetEnumerator()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.IEnumerator</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="Cron.Interfaces.ISection.html">ISection</a>
   </div>
   <div>
-      <span class="xref">System.Collections.Generic.IReadOnlyList&lt;T&gt;</span>
-  </div>
-  <div>
-      <span class="xref">System.Collections.Generic.IReadOnlyCollection&lt;T&gt;</span>
-  </div>
-  <div>
-      <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>
-  </div>
-  <div>
-      <span class="xref">System.Collections.IEnumerable</span>
+      <span class="xref">IReadOnlyList&lt;&gt;</span>
   </div>
 </article>
           </div>

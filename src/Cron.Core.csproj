@@ -22,61 +22,60 @@
 		<PackageTags>Cron Expression builder Parser Object Description</PackageTags>
 		<PackageLicenseFile>license.txt</PackageLicenseFile>
 	</PropertyGroup>
-	<PropertyGroup>
-		<DefineConstants>Cron.Core</DefineConstants>
-		<AssemblyName>Cron.Core</AssemblyName>
-		<RootNamespace>Cron</RootNamespace>
-		<VersionSuffix>1.0.0.$([System.DateTime]::UtcNow.ToString(mmff))</VersionSuffix>
-		<AssemblyVersion Condition=" '$(VersionSuffix)' == '' ">0.0.0.1</AssemblyVersion>
-		<AssemblyVersion Condition=" '$(VersionSuffix)' != '' ">$(VersionSuffix)</AssemblyVersion>
-		<Version Condition=" '$(VersionSuffix)' == '' ">0.0.1.0</Version>
-		<Version Condition=" '$(VersionSuffix)' != '' ">$(VersionSuffix)</Version>
-		<Company>Microsoft Corporation</Company>
-		<Authors>Christopher Winland</Authors>
-		<Copyright>copyright(c) 2020 Christopher Winland</Copyright>
-		<Product>Cron.Core.StrongNamed</Product>
-		<Description>
-			Create and use Cron expressions in object format.
-			Useful for applications that need to generate Cron expressions either on demand or manipulated in code.
-		</Description>
-	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DocumentationFile>C:\Users\chris\source\repos\Cron\src\Cron.xml</DocumentationFile>
 	</PropertyGroup>
+	<PropertyGroup>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+		<AssemblyVersion>1.$([System.DateTime]::Now.ToString(&quot;1.MM.dd&quot;))</AssemblyVersion>
+		<FileVersion>1.$([System.DateTime]::Now.ToString(&quot;1.MM.dd&quot;))</FileVersion>
+		<Version>1.$([System.DateTime]::Now.ToString(&quot;1.MM.dd&quot;))</Version>
+	</PropertyGroup>
+	<PropertyGroup>
+		<GenerateNuspecDependsOn>$(GenerateNuspecDependsOn);SetPackageVersion</GenerateNuspecDependsOn>
+	</PropertyGroup>
+
+	<Target Name="SetPackageVersion" DependsOnTargets="Build">
+		<PropertyGroup>
+			<!-- <PackageVersion>$([System.DateTime]::Now.ToString(&quot;yyyy.MM.dd.HHmmss&quot;))</PackageVersion> -->
+			<!-- You can customize the format and the rule about how version increases here. -->
+			<PackageVersion>1.$([System.DateTime]::Now.ToString(&quot;1.MM.dd&quot;))</PackageVersion>
+		</PropertyGroup>
+	</Target>
 	<ItemGroup>
-	  <Compile Remove="%2a%2a\**" />
-	  <Compile Remove="bin\**" />
-	  <Compile Remove="obj\**" />
-	  <Compile Remove="TestResults\**" />
-	  <EmbeddedResource Remove="%2a%2a\**" />
-	  <EmbeddedResource Remove="bin\**" />
-	  <EmbeddedResource Remove="obj\**" />
-	  <EmbeddedResource Remove="TestResults\**" />
-	  <None Remove="%2a%2a\**" />
-	  <None Remove="bin\**" />
-	  <None Remove="obj\**" />
-	  <None Remove="TestResults\**" />
+		<Compile Remove="%2a%2a\**" />
+		<Compile Remove="bin\**" />
+		<Compile Remove="obj\**" />
+		<Compile Remove="TestResults\**" />
+		<EmbeddedResource Remove="%2a%2a\**" />
+		<EmbeddedResource Remove="bin\**" />
+		<EmbeddedResource Remove="obj\**" />
+		<EmbeddedResource Remove="TestResults\**" />
+		<None Remove="%2a%2a\**" />
+		<None Remove="bin\**" />
+		<None Remove="obj\**" />
+		<None Remove="TestResults\**" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Compile Remove="%2a%2a/%2a.cs" />
+		<Compile Remove="%2a%2a/%2a.cs" />
 	</ItemGroup>
 	<ItemGroup>
-	  <EmbeddedResource Remove="%2a%2a/%2a.resx" />
+		<EmbeddedResource Remove="%2a%2a/%2a.resx" />
 	</ItemGroup>
 	<ItemGroup>
-	  <None Remove="%2a%2a/%2a" />
+		<None Remove="%2a%2a/%2a" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Include="Cron.cs" />
-	  <Compile Include="Enums\CronDays.cs" />
-	  <Compile Include="Enums\CronMonths.cs" />
-	  <Compile Include="Enums\CronTimeSections.cs" />
-	  <Compile Include="Interfaces\ICron.cs" />
-	  <Compile Include="Interfaces\ISection.cs" />
-	  <Compile Include="Interfaces\ISectionValues.cs" />
-	  <Compile Include="Section.cs" />
-	  <Compile Include="SectionValues.cs" />
+		<Compile Include="Cron.cs" />
+		<Compile Include="Enums\CronDays.cs" />
+		<Compile Include="Enums\CronMonths.cs" />
+		<Compile Include="Enums\CronTimeSections.cs" />
+		<Compile Include="Interfaces\ICron.cs" />
+		<Compile Include="Interfaces\ISection.cs" />
+		<Compile Include="Interfaces\ISectionValues.cs" />
+		<Compile Include="Section.cs" />
+		<Compile Include="SectionValues.cs" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -224,23 +224,6 @@ references:
   isSpec: "True"
   fullName: Cron.Cron.Set
   nameWithType: Cron.Set
-- uid: Cron.Cron.System#Collections#IEnumerable#GetEnumerator
-  name: IEnumerable.GetEnumerator()
-  href: api/Cron.Cron.html#Cron_Cron_System_Collections_IEnumerable_GetEnumerator
-  commentId: M:Cron.Cron.System#Collections#IEnumerable#GetEnumerator
-  name.vb: System.Collections.IEnumerable.GetEnumerator()
-  fullName: Cron.Cron.System.Collections.IEnumerable.GetEnumerator()
-  nameWithType: Cron.IEnumerable.GetEnumerator()
-  nameWithType.vb: Cron.System.Collections.IEnumerable.GetEnumerator()
-- uid: Cron.Cron.System#Collections#IEnumerable#GetEnumerator*
-  name: IEnumerable.GetEnumerator
-  href: api/Cron.Cron.html#Cron_Cron_System_Collections_IEnumerable_GetEnumerator_
-  commentId: Overload:Cron.Cron.System#Collections#IEnumerable#GetEnumerator
-  isSpec: "True"
-  name.vb: System.Collections.IEnumerable.GetEnumerator
-  fullName: Cron.Cron.System.Collections.IEnumerable.GetEnumerator
-  nameWithType: Cron.IEnumerable.GetEnumerator
-  nameWithType.vb: Cron.System.Collections.IEnumerable.GetEnumerator
 - uid: Cron.Cron.ToString
   name: ToString()
   href: api/Cron.Cron.html#Cron_Cron_ToString
@@ -1026,23 +1009,6 @@ references:
   isSpec: "True"
   fullName: Cron.Section.Remove
   nameWithType: Section.Remove
-- uid: Cron.Section.System#Collections#IEnumerable#GetEnumerator
-  name: IEnumerable.GetEnumerator()
-  href: api/Cron.Section.html#Cron_Section_System_Collections_IEnumerable_GetEnumerator
-  commentId: M:Cron.Section.System#Collections#IEnumerable#GetEnumerator
-  name.vb: System.Collections.IEnumerable.GetEnumerator()
-  fullName: Cron.Section.System.Collections.IEnumerable.GetEnumerator()
-  nameWithType: Section.IEnumerable.GetEnumerator()
-  nameWithType.vb: Section.System.Collections.IEnumerable.GetEnumerator()
-- uid: Cron.Section.System#Collections#IEnumerable#GetEnumerator*
-  name: IEnumerable.GetEnumerator
-  href: api/Cron.Section.html#Cron_Section_System_Collections_IEnumerable_GetEnumerator_
-  commentId: Overload:Cron.Section.System#Collections#IEnumerable#GetEnumerator
-  isSpec: "True"
-  name.vb: System.Collections.IEnumerable.GetEnumerator
-  fullName: Cron.Section.System.Collections.IEnumerable.GetEnumerator
-  nameWithType: Section.IEnumerable.GetEnumerator
-  nameWithType.vb: Section.System.Collections.IEnumerable.GetEnumerator
 - uid: Cron.Section.ToString
   name: ToString()
   href: api/Cron.Section.html#Cron_Section_ToString
@@ -1101,13 +1067,13 @@ references:
   isSpec: "True"
   fullName: Cron.SectionValues.MinValue
   nameWithType: SectionValues.MinValue
-- uid: Cron.SectionValues.op_Explicit(System.Collections.Generic.List{Cron.Interfaces.ISectionValues})~Cron.SectionValues
+- uid: Cron.SectionValues.op_Explicit(List{Cron.Interfaces.ISectionValues})~Cron.SectionValues
   name: Explicit(List<ISectionValues> to SectionValues)
-  href: api/Cron.SectionValues.html#Cron_SectionValues_op_Explicit_System_Collections_Generic_List_Cron_Interfaces_ISectionValues___Cron_SectionValues
-  commentId: M:Cron.SectionValues.op_Explicit(System.Collections.Generic.List{Cron.Interfaces.ISectionValues})~Cron.SectionValues
+  href: api/Cron.SectionValues.html#Cron_SectionValues_op_Explicit_List_Cron_Interfaces_ISectionValues___Cron_SectionValues
+  commentId: M:Cron.SectionValues.op_Explicit(List{Cron.Interfaces.ISectionValues})~Cron.SectionValues
   name.vb: Narrowing(List(Of ISectionValues) to SectionValues)
-  fullName: Cron.SectionValues.Explicit(System.Collections.Generic.List<Cron.Interfaces.ISectionValues> to Cron.SectionValues)
-  fullName.vb: Cron.SectionValues.Narrowing(System.Collections.Generic.List(Of Cron.Interfaces.ISectionValues) to Cron.SectionValues)
+  fullName: Cron.SectionValues.Explicit(List<Cron.Interfaces.ISectionValues> to Cron.SectionValues)
+  fullName.vb: Cron.SectionValues.Narrowing(List(Of Cron.Interfaces.ISectionValues) to Cron.SectionValues)
   nameWithType: SectionValues.Explicit(List<ISectionValues> to SectionValues)
   nameWithType.vb: SectionValues.Narrowing(List(Of ISectionValues) to SectionValues)
 - uid: Cron.SectionValues.op_Explicit*

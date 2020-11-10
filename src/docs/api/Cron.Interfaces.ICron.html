@@ -76,14 +76,8 @@
   <div class="markdown level0 summary"><p>Cron Interface Object.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
-    <div>
-      <span class="xref">System.Collections.IEnumerable.GetEnumerator()</span>
-    </div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Cron.Interfaces.html">Cron.Interfaces</a></h6>
-  <h6><strong>Assembly</strong>: Cron.Core.dll</h6>
+  <h6><strong>Assembly</strong>: Cron.Core_BACKUP_1569.dll</h6>
   <h5 id="Cron_Interfaces_ICron_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public interface ICron : IEnumerable</code></pre>
@@ -623,7 +617,7 @@ Wednesday, only in March and May, every 5 years</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">ICron Add(CronTimeSections time, [Range(0, 9999)] int value, bool repeatEvery = false)</code></pre>
+    <pre><code class="lang-csharp hljs">ICron Add(CronTimeSections time, int value, bool repeatEvery = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -685,7 +679,7 @@ Wednesday, only in March and May, every 5 years</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">ICron Add(CronTimeSections time, [Range(0, 9999)] int minValue, [Range(0, 9999)] int maxValue)</code></pre>
+    <pre><code class="lang-csharp hljs">ICron Add(CronTimeSections time, int minValue, int maxValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
