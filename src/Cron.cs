@@ -148,7 +148,7 @@ namespace Cron.Core
         /// <inheritdoc cref="ICron" />
         public override string ToString() => Value;
 
-        private static bool IsApplyTime(int arrayLength, CronTimeSections time, int index) => ((arrayLength >= 6 || time != CronTimeSections.Seconds) && index < arrayLength);
+        private static bool IsApplyTime(int arrayLength, CronTimeSections time, int index) => (arrayLength >= 6 || time != CronTimeSections.Seconds) && index < arrayLength;
 
         private string Get(CronTimeSections time) => GetProperty(time).ToString();
 

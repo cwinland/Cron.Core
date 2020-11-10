@@ -9,10 +9,10 @@
       "output": {
         ".html": {
           "relative_path": "Cron.html",
-          "hash": "RXifARcaY5c2gOgbLbuQIw=="
+          "hash": "+x2jE3dMhRYKtUg1uQNOdA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -21,10 +21,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Cron.Core.Cron.html",
-          "hash": "6eONG82m/QYTQ2qT9MtzVQ=="
+          "hash": "M6+0xHbXa8IaEXOcXKtnPw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -33,10 +33,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Cron.Core.Enums.CronDays.html",
-          "hash": "PHru9Wm6bBh+MpCGzkxp3w=="
+          "hash": "ednOgRjBsRATRJJ4qe2nmA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -45,10 +45,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Cron.Core.Enums.CronMonths.html",
-          "hash": "GCfmECIXwrH0rfWmBS4DmQ=="
+          "hash": "g9u/eQ7w65UJ00DqWmLkTA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -57,10 +57,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Cron.Core.Enums.CronTimeSections.html",
-          "hash": "VxRT8j4pdUxwxRQtKO7D5w=="
+          "hash": "s2tjMwRI0gGp9C/xjuBdXA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -72,7 +72,7 @@
           "hash": "+5EurdZZaljCcBHecRxKIw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -81,10 +81,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Cron.Core.Interfaces.ICron.html",
-          "hash": "cHdlXqkKbUPJOhZyjb4GDw=="
+          "hash": "X/dTMQBibjBxJur7J1xRoQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -93,10 +93,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Cron.Core.Interfaces.ISection.html",
-          "hash": "3CQVobMgQ1i3pDWcRC5r4w=="
+          "hash": "OAlwUdH+MGk9r5keOHiV9Q=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -105,10 +105,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Cron.Core.Interfaces.ISectionValues.html",
-          "hash": "ANR3T/eEqaWtHEcFF58cnQ=="
+          "hash": "1+HxmP8QghBCXTKx2N/Y3g=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -120,7 +120,7 @@
           "hash": "GtPkD2U4FokRzaFMVxiLfQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -129,10 +129,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Cron.Core.Section.html",
-          "hash": "ubxzZRrTJUKFXlqavO4wQw=="
+          "hash": "p5s3jO9Of4vdi5Il5y6Fxw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -141,10 +141,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Cron.Core.SectionValues.html",
-          "hash": "FZ0hyE/g9V+X4FTSrHuWkw=="
+          "hash": "6kSdWfI1KDJq0cBCN7WQ4Q=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -156,7 +156,7 @@
           "hash": "FzOWZYU738bfHw+qw7XY7g=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -165,10 +165,10 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "c9AvXn1nG2Qpheg4afCLbA=="
+          "hash": "fcc39CSJIXFtGseeB38osA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -189,10 +189,10 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "aHY4CS7yr5WVUt+6beVxVw=="
+          "hash": "c5WM6ZhniBFDC64OjRxw8A=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -216,10 +216,10 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "7yxDSZp+oCw4NDvuJgJJ/g=="
+          "hash": "syYN3Gb6bKYpT6WGl95Ljw=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -238,23 +238,25 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": true,
+        "can_incremental": false,
+        "details": "Disable incremental build by force rebuild option.",
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0
+        "skipped_file_count": 0,
+        "full_build_reason_code": "ForceRebuild"
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 4,
-          "skipped_file_count": 4
+          "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 12,
-          "skipped_file_count": 12
+          "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
@@ -267,8 +269,8 @@
     },
     {
       "status": {
-        "can_incremental": true,
-        "details": "Can support incremental post processing.",
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: it's disabled.",
         "incrementalPhase": "postProcessing",
         "total_file_count": 0,
         "skipped_file_count": 0
