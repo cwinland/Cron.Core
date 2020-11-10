@@ -28,5 +28,5 @@ jobs:
       with:
        PROJECT_FILE_PATH: src/Cron.csproj
        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
-       VERSION_REGEX: (?(?<=[a-z])[1]|((?:\.?[0-9]+)(?:\.?[0-9]){3,}(?:[a-z]+)?))
+       VERSION_REGEX: ((?:\!?[0-9]+)(?:\.?[0-9]){3,}(?:[a-z]+)?)
        
