@@ -47,7 +47,7 @@ namespace Cron.Core
                             var val1 = int.Parse(vals[0]);
                             ISectionValues sectionValues = new SectionValues(
                                 val1,
-                                (vals.Count == 1)
+                                vals.Count == 1
                                     ? val1
                                     : int.Parse(vals[1])
                             );
@@ -203,9 +203,9 @@ namespace Cron.Core
         }
 
         /// <inheritdoc cref="ISection" />
-        public bool IsValidRange(ISectionValues values)
+        public bool IsValidRange(ISectionValues checkValues)
         {
-            return IsValidRange(values.MinValue) && IsValidRange(values.MaxValue);
+            return IsValidRange(checkValues.MinValue) && IsValidRange(checkValues.MaxValue);
         }
 
         /// <inheritdoc cref="ISection" />
@@ -238,7 +238,7 @@ namespace Cron.Core
                     break;
 
                 case CronTimeSections.Years:
-                    result = (value > 0 && value < 20) || (value > 2000);
+                    result = value > 0 && value < 20 || value > 2000;
                     break;
 
                 default:
@@ -254,7 +254,7 @@ namespace Cron.Core
             values.Sort(delegate (ISectionValues x, ISectionValues y)
             {
                 var compare1 = x.MinValue.CompareTo(y.MinValue);
-                return (compare1 != 0) ? compare1 : x.MaxValue.CompareTo(y.MaxValue);
+                return compare1 != 0 ? compare1 : x.MaxValue.CompareTo(y.MaxValue);
             });
         }
 

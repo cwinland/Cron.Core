@@ -18,49 +18,37 @@
 		<PackageTags>Cron Expression builder Parser Object Description</PackageTags>
 		<PackageLicenseFile>license.txt</PackageLicenseFile>
 	</PropertyGroup>
-	<PropertyGroup>
-		<DefineConstants>Cron.Core</DefineConstants>
-		<AssemblyName>Cron.Core</AssemblyName>
-		<RootNamespace>Cron.Core</RootNamespace>
-		<VersionSuffix>1.0.0.$([System.DateTime]::UtcNow.ToString(mmff))</VersionSuffix>
-		<AssemblyVersion Condition=" '$(VersionSuffix)' == '' ">0.0.0.1</AssemblyVersion>
-		<AssemblyVersion Condition=" '$(VersionSuffix)' != '' ">$(VersionSuffix)</AssemblyVersion>
-		<Version Condition=" '$(VersionSuffix)' == '' ">0.0.1.0</Version>
-		<Version Condition=" '$(VersionSuffix)' != '' ">$(VersionSuffix)</Version>
-		<Company>Microsoft Corporation</Company>
-		<Authors>Christopher Winland</Authors>
-		<Copyright>copyright(c) 2020 Christopher Winland</Copyright>
-		<Product>Cron.Core.StrongNamed</Product>
-		<Description>
-			Create and use Cron expressions in object format. Useful for applications that need to generate Cron expressions either on demand or manipulated in code.
-		</Description>
-	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DocumentationFile>C:\Users\chris\source\repos\Cron\src\Cron.xml</DocumentationFile>
 	</PropertyGroup>
 	<PropertyGroup>
 		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+		<AssemblyVersion>1.$([System.DateTime]::Now.ToString("1.MM.dd"))</AssemblyVersion>
+		<FileVersion>1.$([System.DateTime]::Now.ToString("1.MM.dd"))</FileVersion>
+		<Version>1.$([System.DateTime]::Now.ToString("1.MM.dd"))</Version>
 	</PropertyGroup>
+	<PropertyGroup>
+		<GenerateNuspecDependsOn>$(GenerateNuspecDependsOn);SetPackageVersion</GenerateNuspecDependsOn>
+	</PropertyGroup>
+
+	<Target Name="SetPackageVersion" DependsOnTargets="Build">
+		<PropertyGroup>
+			<!-- <PackageVersion>$([System.DateTime]::Now.ToString(&quot;yyyy.MM.dd.HHmmss&quot;))</PackageVersion> -->
+			<!-- You can customize the format and the rule about how version increases here. -->
+			<PackageVersion>1.$([System.DateTime]::Now.ToString("1.MM.dd"))</PackageVersion>
+		</PropertyGroup>
+	</Target>
 	<ItemGroup>
 		<Compile Remove="%2a%2a\**" />
-		<Compile Remove="api\**" />
-		<Compile Remove="articles\**" />
 		<Compile Remove="bin\**" />
-		<Compile Remove="docs\**" />
 		<Compile Remove="obj\**" />
 		<Compile Remove="TestResults\**" />
 		<EmbeddedResource Remove="%2a%2a\**" />
-		<EmbeddedResource Remove="api\**" />
-		<EmbeddedResource Remove="articles\**" />
 		<EmbeddedResource Remove="bin\**" />
-		<EmbeddedResource Remove="docs\**" />
 		<EmbeddedResource Remove="obj\**" />
 		<EmbeddedResource Remove="TestResults\**" />
 		<None Remove="%2a%2a\**" />
-		<None Remove="api\**" />
-		<None Remove="articles\**" />
 		<None Remove="bin\**" />
-		<None Remove="docs\**" />
 		<None Remove="obj\**" />
 		<None Remove="TestResults\**" />
 	</ItemGroup>
@@ -102,7 +90,6 @@
 			<PackagePath></PackagePath>
 		</None>
 		<None Include=".gitignore" />
-		<None Include="Cron.Core.sln" />
 		<None Include="Cron.md" />
 		<None Include="cron.snk" />
 		<None Include="docfx.json" />
