@@ -26,7 +26,7 @@ jobs:
     - name: Publish
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
-       PROJECT_FILE_PATH: src/Cron.csproj
+       PROJECT_FILE_PATH: src/Cron.Core.csproj
        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
        VERSION_REGEX: ((?:\!?[0-9]+)(?:\.?[0-9]){3,}(?:[a-z]+)?)
        

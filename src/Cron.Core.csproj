@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
@@ -6,10 +6,10 @@
 		<AssemblyOriginatorKeyFile>cron.snk</AssemblyOriginatorKeyFile>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageId>Cron.Core</PackageId>
+		<PackageId>Cron.Core.StrongNamed</PackageId>
 		<Authors>Christopher Winland</Authors>
 		<Company>Microsoft Corporation</Company>
-		<Product>Cron.Core</Product>
+		<Product>Cron.Core.StrongNamed</Product>
 		<Description>
 			Create and use Cron expressions in object format.
 			Useful for applications that need to generate Cron expressions either on demand or manipulated in code.
@@ -23,7 +23,7 @@
 		<PackageLicenseFile>license.txt</PackageLicenseFile>
 	</PropertyGroup>
 	<PropertyGroup>
-		<DefineConstants>Cron</DefineConstants>
+		<DefineConstants>Cron.Core</DefineConstants>
 		<AssemblyName>Cron.Core</AssemblyName>
 		<RootNamespace>Cron</RootNamespace>
 		<VersionSuffix>1.0.0.$([System.DateTime]::UtcNow.ToString(mmff))</VersionSuffix>
@@ -34,7 +34,7 @@
 		<Company>Microsoft Corporation</Company>
 		<Authors>Christopher Winland</Authors>
 		<Copyright>copyright(c) 2020 Christopher Winland</Copyright>
-		<Product>Cron.Core</Product>
+		<Product>Cron.Core.StrongNamed</Product>
 		<Description>
 			Create and use Cron expressions in object format.
 			Useful for applications that need to generate Cron expressions either on demand or manipulated in code.
