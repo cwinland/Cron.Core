@@ -1,12 +1,12 @@
-﻿using Cron.Enums;
-using Cron.Interfaces;
+﻿using Cron.Core.Enums;
+using Cron.Core.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace Cron
+namespace Cron.Core
 {
     /// <inheritdoc cref="ISection" />
     public class Section : ISection

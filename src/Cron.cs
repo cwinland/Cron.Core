@@ -1,12 +1,12 @@
-﻿using Cron.Enums;
-using Cron.Interfaces;
+﻿using Cron.Core.Enums;
+using Cron.Core.Interfaces;
 using CronExpressionDescriptor;
 using System;
 using System.Collections;
 using System.Linq;
 using System.Reflection;
 
-namespace Cron
+namespace Cron.Core
 {
     /// <inheritdoc cref="ICron" />
     public class Cron : ICron

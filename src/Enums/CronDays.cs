@@ -1,4 +1,4 @@
-﻿namespace Cron.Enums
+﻿namespace Cron.Core.Enums
 {
     /// <summary>
     ///   Day of the week values to build Cron expressions.

@@ -1,4 +1,4 @@
-﻿namespace Cron.Enums
+﻿namespace Cron.Core.Enums
 {
     /// <summary>
     ///   Month values used to build Cron expressions.

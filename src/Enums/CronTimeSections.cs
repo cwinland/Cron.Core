@@ -1,4 +1,4 @@
-﻿namespace Cron.Enums
+﻿namespace Cron.Core.Enums
 {
     /// <summary>
     ///   Sections of the Cron indicating the type of time.

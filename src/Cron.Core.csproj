@@ -10,10 +10,6 @@
 		<Authors>Christopher Winland</Authors>
 		<Company>Microsoft Corporation</Company>
 		<Product>Cron.Core.StrongNamed</Product>
-		<Description>
-			Create and use Cron expressions in object format.
-			Useful for applications that need to generate Cron expressions either on demand or manipulated in code.
-		</Description>
 		<Copyright>copyright(c) 2020 Christopher Winland</Copyright>
 		<PackageLicenseExpression></PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/cwinland/Cron.Core</PackageProjectUrl>
@@ -25,7 +21,7 @@
 	<PropertyGroup>
 		<DefineConstants>Cron.Core</DefineConstants>
 		<AssemblyName>Cron.Core</AssemblyName>
-		<RootNamespace>Cron</RootNamespace>
+		<RootNamespace>Cron.Core</RootNamespace>
 		<VersionSuffix>1.0.0.$([System.DateTime]::UtcNow.ToString(mmff))</VersionSuffix>
 		<AssemblyVersion Condition=" '$(VersionSuffix)' == '' ">0.0.0.1</AssemblyVersion>
 		<AssemblyVersion Condition=" '$(VersionSuffix)' != '' ">$(VersionSuffix)</AssemblyVersion>
@@ -35,9 +31,7 @@
 		<Authors>Christopher Winland</Authors>
 		<Copyright>copyright(c) 2020 Christopher Winland</Copyright>
 		<Product>Cron.Core.StrongNamed</Product>
-		<Description>
-			Create and use Cron expressions in object format.
-			Useful for applications that need to generate Cron expressions either on demand or manipulated in code.
+		<Description>Create and use Cron expressions in object format. Useful for applications that need to generate Cron expressions either on demand or manipulated in code.
 		</Description>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -45,15 +39,24 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <Compile Remove="%2a%2a\**" />
+	  <Compile Remove="api\**" />
+	  <Compile Remove="articles\**" />
 	  <Compile Remove="bin\**" />
+	  <Compile Remove="docs\**" />
 	  <Compile Remove="obj\**" />
 	  <Compile Remove="TestResults\**" />
 	  <EmbeddedResource Remove="%2a%2a\**" />
+	  <EmbeddedResource Remove="api\**" />
+	  <EmbeddedResource Remove="articles\**" />
 	  <EmbeddedResource Remove="bin\**" />
+	  <EmbeddedResource Remove="docs\**" />
 	  <EmbeddedResource Remove="obj\**" />
 	  <EmbeddedResource Remove="TestResults\**" />
 	  <None Remove="%2a%2a\**" />
+	  <None Remove="api\**" />
+	  <None Remove="articles\**" />
 	  <None Remove="bin\**" />
+	  <None Remove="docs\**" />
 	  <None Remove="obj\**" />
 	  <None Remove="TestResults\**" />
 	</ItemGroup>
@@ -95,68 +98,10 @@
 			<PackagePath></PackagePath>
 		</None>
 		<None Include=".gitignore" />
-		<None Include="api\.gitignore" />
-		<None Include="api\.manifest" />
-		<None Include="api\Cron.Cron.yml" />
-		<None Include="api\Cron.Enums.CronDays.yml" />
-		<None Include="api\Cron.Enums.CronMonths.yml" />
-		<None Include="api\Cron.Enums.CronTimeSections.yml" />
-		<None Include="api\Cron.Enums.yml" />
-		<None Include="api\Cron.Interfaces.ICron.yml" />
-		<None Include="api\Cron.Interfaces.ISection.yml" />
-		<None Include="api\Cron.Interfaces.ISectionValues.yml" />
-		<None Include="api\Cron.Interfaces.yml" />
-		<None Include="api\Cron.Section.yml" />
-		<None Include="api\Cron.SectionValues.yml" />
-		<None Include="api\Cron.yml" />
-		<None Include="api\index.md" />
-		<None Include="api\toc.yml" />
-		<None Include="articles\intro.md" />
-		<None Include="articles\toc.yml" />
 		<None Include="Cron.Core.sln" />
 		<None Include="Cron.md" />
 		<None Include="cron.snk" />
-		<None Include="Cron.xml" />
 		<None Include="docfx.json" />
-		<None Include="docs\api\Cron.Cron.html" />
-		<None Include="docs\api\Cron.Enums.CronDays.html" />
-		<None Include="docs\api\Cron.Enums.CronMonths.html" />
-		<None Include="docs\api\Cron.Enums.CronTimeSections.html" />
-		<None Include="docs\api\Cron.Enums.html" />
-		<None Include="docs\api\Cron.html" />
-		<None Include="docs\api\Cron.Interfaces.html" />
-		<None Include="docs\api\Cron.Interfaces.ICron.html" />
-		<None Include="docs\api\Cron.Interfaces.ISection.html" />
-		<None Include="docs\api\Cron.Interfaces.ISectionValues.html" />
-		<None Include="docs\api\Cron.Section.html" />
-		<None Include="docs\api\Cron.SectionValues.html" />
-		<None Include="docs\api\index.html" />
-		<None Include="docs\api\toc.html" />
-		<None Include="docs\articles\intro.html" />
-		<None Include="docs\articles\toc.html" />
-		<None Include="docs\Cron.html" />
-		<None Include="docs\favicon.ico" />
-		<None Include="docs\fonts\glyphicons-halflings-regular.eot" />
-		<None Include="docs\fonts\glyphicons-halflings-regular.svg" />
-		<None Include="docs\fonts\glyphicons-halflings-regular.ttf" />
-		<None Include="docs\fonts\glyphicons-halflings-regular.woff" />
-		<None Include="docs\fonts\glyphicons-halflings-regular.woff2" />
-		<None Include="docs\index.html" />
-		<None Include="docs\logo.svg" />
-		<None Include="docs\manifest.json" />
-		<None Include="docs\search-stopwords.json" />
-		<None Include="docs\styles\docfx.css" />
-		<None Include="docs\styles\docfx.js" />
-		<None Include="docs\styles\docfx.vendor.css" />
-		<None Include="docs\styles\docfx.vendor.js" />
-		<None Include="docs\styles\lunr.js" />
-		<None Include="docs\styles\lunr.min.js" />
-		<None Include="docs\styles\main.css" />
-		<None Include="docs\styles\main.js" />
-		<None Include="docs\styles\search-worker.js" />
-		<None Include="docs\toc.html" />
-		<None Include="docs\xrefmap.yml" />
 		<None Include="index.md" />
-		<None Include="toc.yml" />
 	</ItemGroup>
 </Project>
