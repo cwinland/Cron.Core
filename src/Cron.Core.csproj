@@ -43,11 +43,40 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DocumentationFile>C:\Users\chris\source\repos\Cron\src\Cron.xml</DocumentationFile>
 	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="%2a%2a\**" />
+	  <Compile Remove="bin\**" />
+	  <Compile Remove="obj\**" />
+	  <Compile Remove="TestResults\**" />
+	  <EmbeddedResource Remove="%2a%2a\**" />
+	  <EmbeddedResource Remove="bin\**" />
+	  <EmbeddedResource Remove="obj\**" />
+	  <EmbeddedResource Remove="TestResults\**" />
+	  <None Remove="%2a%2a\**" />
+	  <None Remove="bin\**" />
+	  <None Remove="obj\**" />
+	  <None Remove="TestResults\**" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="%2a%2a/%2a.cs" />
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Remove="%2a%2a/%2a.resx" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="%2a%2a/%2a" />
+	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Remove="TestResults\**" />
-		<EmbeddedResource Remove="TestResults\**" />
-		<None Remove="TestResults\**" />
+	  <Compile Include="Cron.cs" />
+	  <Compile Include="Enums\CronDays.cs" />
+	  <Compile Include="Enums\CronMonths.cs" />
+	  <Compile Include="Enums\CronTimeSections.cs" />
+	  <Compile Include="Interfaces\ICron.cs" />
+	  <Compile Include="Interfaces\ISection.cs" />
+	  <Compile Include="Interfaces\ISectionValues.cs" />
+	  <Compile Include="Section.cs" />
+	  <Compile Include="SectionValues.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -65,5 +94,70 @@
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
+		<None Include=".gitignore" />
+		<None Include="api\.gitignore" />
+		<None Include="api\.manifest" />
+		<None Include="api\Cron.Cron.yml" />
+		<None Include="api\Cron.Enums.CronDays.yml" />
+		<None Include="api\Cron.Enums.CronMonths.yml" />
+		<None Include="api\Cron.Enums.CronTimeSections.yml" />
+		<None Include="api\Cron.Enums.yml" />
+		<None Include="api\Cron.Interfaces.ICron.yml" />
+		<None Include="api\Cron.Interfaces.ISection.yml" />
+		<None Include="api\Cron.Interfaces.ISectionValues.yml" />
+		<None Include="api\Cron.Interfaces.yml" />
+		<None Include="api\Cron.Section.yml" />
+		<None Include="api\Cron.SectionValues.yml" />
+		<None Include="api\Cron.yml" />
+		<None Include="api\index.md" />
+		<None Include="api\toc.yml" />
+		<None Include="articles\intro.md" />
+		<None Include="articles\toc.yml" />
+		<None Include="Cron.Core.sln" />
+		<None Include="Cron.md" />
+		<None Include="cron.snk" />
+		<None Include="Cron.xml" />
+		<None Include="docfx.json" />
+		<None Include="docs\api\Cron.Cron.html" />
+		<None Include="docs\api\Cron.Enums.CronDays.html" />
+		<None Include="docs\api\Cron.Enums.CronMonths.html" />
+		<None Include="docs\api\Cron.Enums.CronTimeSections.html" />
+		<None Include="docs\api\Cron.Enums.html" />
+		<None Include="docs\api\Cron.html" />
+		<None Include="docs\api\Cron.Interfaces.html" />
+		<None Include="docs\api\Cron.Interfaces.ICron.html" />
+		<None Include="docs\api\Cron.Interfaces.ISection.html" />
+		<None Include="docs\api\Cron.Interfaces.ISectionValues.html" />
+		<None Include="docs\api\Cron.Section.html" />
+		<None Include="docs\api\Cron.SectionValues.html" />
+		<None Include="docs\api\index.html" />
+		<None Include="docs\api\toc.html" />
+		<None Include="docs\articles\intro.html" />
+		<None Include="docs\articles\toc.html" />
+		<None Include="docs\Cron.html" />
+		<None Include="docs\favicon.ico" />
+		<None Include="docs\fonts\glyphicons-halflings-regular.eot" />
+		<None Include="docs\fonts\glyphicons-halflings-regular.svg" />
+		<None Include="docs\fonts\glyphicons-halflings-regular.ttf" />
+		<None Include="docs\fonts\glyphicons-halflings-regular.woff" />
+		<None Include="docs\fonts\glyphicons-halflings-regular.woff2" />
+		<None Include="docs\index.html" />
+		<None Include="docs\logo.svg" />
+		<None Include="docs\manifest.json" />
+		<None Include="docs\search-stopwords.json" />
+		<None Include="docs\styles\docfx.css" />
+		<None Include="docs\styles\docfx.js" />
+		<None Include="docs\styles\docfx.vendor.css" />
+		<None Include="docs\styles\docfx.vendor.js" />
+		<None Include="docs\styles\lunr.js" />
+		<None Include="docs\styles\lunr.min.js" />
+		<None Include="docs\styles\main.css" />
+		<None Include="docs\styles\main.js" />
+		<None Include="docs\styles\search-worker.js" />
+		<None Include="docs\toc.html" />
+		<None Include="docs\xrefmap.yml" />
+		<None Include="index.md" />
+		<None Include="log.txt" />
+		<None Include="toc.yml" />
 	</ItemGroup>
 </Project>
