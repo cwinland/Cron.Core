@@ -157,7 +157,6 @@
 		<None Include="docs\toc.html" />
 		<None Include="docs\xrefmap.yml" />
 		<None Include="index.md" />
-		<None Include="log.txt" />
 		<None Include="toc.yml" />
 	</ItemGroup>
 </Project>

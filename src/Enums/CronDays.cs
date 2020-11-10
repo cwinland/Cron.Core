@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Cron.Enums
+﻿namespace Cron.Enums
 {
     /// <summary>
     ///   Day of the week values to build Cron expressions.
