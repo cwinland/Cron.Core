@@ -31,7 +31,7 @@
 		<GenerateNuspecDependsOn>$(GenerateNuspecDependsOn);SetPackageVersion</GenerateNuspecDependsOn>
 	</PropertyGroup>
 
-	<Target Name="SetPackageVersion" DependsOnTargets="Build">
+	<Target Name="SetPackageVersion">
 		<PropertyGroup>
 			<!-- <PackageVersion>$([System.DateTime]::Now.ToString(&quot;yyyy.MM.dd.HHmmss&quot;))</PackageVersion> -->
 			<!-- You can customize the format and the rule about how version increases here. -->
