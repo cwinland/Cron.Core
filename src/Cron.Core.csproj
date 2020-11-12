@@ -29,6 +29,7 @@
 	</PropertyGroup>
 	<PropertyGroup>
 		<GenerateNuspecDependsOn>$(GenerateNuspecDependsOn);SetPackageVersion</GenerateNuspecDependsOn>
+		<Description>Cron object that can be used to build Cron expressions, describe them, and manipulate objects.</Description>
 	</PropertyGroup>
 
 	<Target Name="SetPackageVersion">
