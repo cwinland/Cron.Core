@@ -79,9 +79,6 @@
         <member name="M:Cron.Core.Cron.ToString">
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="M:Cron.Core.Cron.Next(System.DateTime)">
-            <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
-        </member>
         <member name="T:Cron.Core.Enums.CronDays">
             <summary>
               Day of the week values to build Cron expressions.
@@ -291,11 +288,6 @@
             </summary>
             <returns><see cref="T:Cron.Core.Interfaces.ISection" /></returns>
         </member>
-        <member name="M:Cron.Core.Interfaces.ICron.Next(System.DateTime)">
-            <summary>
-              Indicates next Date/Time Cron is scheduled.
-            </summary>
-        </member>
         <member name="M:Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronTimeSections,System.Int32,System.Boolean)">
             <summary>
               Add time value for the specified time section.
@@ -488,12 +480,6 @@
               Convert to Integer.
             </summary>
         </member>
-        <member name="M:Cron.Core.Interfaces.ISection.Next(System.DateTime)">
-            <summary>
-              Next value for this section.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:Cron.Core.Interfaces.ISectionValues">
             <summary>
               Stores the values for a section list.
@@ -594,9 +580,6 @@
             <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
         </member>
         <member name="M:Cron.Core.Section.ToString">
-            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
-        </member>
-        <member name="M:Cron.Core.Section.Next(System.DateTime)">
             <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
         </member>
         <member name="T:Cron.Core.SectionValues">
