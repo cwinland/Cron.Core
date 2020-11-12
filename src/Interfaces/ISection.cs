@@ -110,11 +110,5 @@ namespace Cron.Core.Interfaces
         ///   Convert to Integer.
         /// </summary>
         int ToInt();
-
-        /// <summary>
-        ///   Next value for this section.
-        /// </summary>
-        /// <returns></returns>
-        TimeSpan Next(DateTime dateTime);
     }
 }

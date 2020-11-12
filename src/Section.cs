@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using Cron.Core.Enums;
 using Cron.Core.Interfaces;
 
@@ -385,71 +386,6 @@ namespace Cron.Core
 
         /// <inheritdoc cref="ISection" />
         public override string ToString() => ToString(false, null, true);
-
-        /// <inheritdoc cref="ISection" />
-        public TimeSpan Next(DateTime dateTime)
-        {
-            if (!Enabled)
-            {
-                return new TimeSpan(0);
-            }
-
-            switch (time)
-            {
-                case CronTimeSections.Seconds:
-                    return new TimeSpan(0, 0, ToInt());
-
-                case CronTimeSections.Minutes:
-                    return new TimeSpan(0, ToInt(), 0);
-
-                case CronTimeSections.Hours:
-                    // return (Every && IsInt()) ? (12 / ToInt()).ToString() : ToString();
-                    return new TimeSpan(ToInt(), 0, 0);
-
-                case CronTimeSections.DayMonth:
-                    if (dateTime.Day <= ToInt())
-                    {
-                        return new DateTime(dateTime.Year, dateTime.Month, ToInt()).Subtract(new DateTime(dateTime.Year, dateTime.Month, dateTime.Day));
-                    }
-                    else
-                    {
-                        var d = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
-
-                        while (d.Day != ToInt())
-                        {
-                            d = d.AddDays(1);
-                        }
-
-                        return d.Subtract(dateTime);
-                    }
-
-                case CronTimeSections.Months:
-                    if (dateTime.Month <= ToInt())
-                    {
-                        return new DateTime(dateTime.Year, ToInt(), dateTime.Day).Subtract(new DateTime(dateTime.Year, dateTime.Month, dateTime.Day));
-                    }
-                    else
-                    {
-                        var d = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
-
-                        while (d.Month != ToInt())
-                        {
-                            d = d.AddDays(1);
-                        }
-
-                        return d.Subtract(dateTime);
-                    }
-
-                case CronTimeSections.DayWeek:
-                    return new TimeSpan(0);
-
-                case CronTimeSections.Years:
-                    return new TimeSpan(365 * ToInt());
-
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
 
         private void SortValues()
         {

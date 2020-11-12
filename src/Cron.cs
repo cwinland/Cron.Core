@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace Cron.Core
 {
@@ -266,33 +267,6 @@ namespace Cron.Core
         /// <inheritdoc cref="ICron" />
         public override string ToString() => Value;
 
-        /// <inheritdoc cref="ICron" />
-        public DateTime Next(DateTime dateTime)
-        {
-            var nextDateTime = new DateTime(dateTime.Ticks);
-            var timeDiff = GetProperty(CronTimeSections.Years)
-                .Next(dateTime);
-
-            timeDiff = timeDiff.Add(Months.Next(dateTime.Add(timeDiff)));
-            timeDiff = timeDiff.Add(DayMonth.Next(dateTime.Add(timeDiff)));
-            timeDiff = timeDiff.Add(DayWeek.Next(dateTime.Add(timeDiff)));
-            timeDiff = timeDiff.Add(Hours.Next(dateTime.Add(timeDiff)));
-
-            if (!Seconds.Enabled && !Minutes.Enabled && timeDiff.Minutes == 0)
-            {
-                timeDiff = timeDiff.Add(new TimeSpan(0, 1, 0));
-            }
-            else
-            {
-                timeDiff = timeDiff.Add(GetProperty(CronTimeSections.Minutes)
-                                            .Next(dateTime.Add(timeDiff)));
-                timeDiff = timeDiff.Add(GetProperty(CronTimeSections.Seconds)
-                                            .Next(dateTime.Add(timeDiff)));
-            }
-
-            return nextDateTime.Add(timeDiff);
-        }
-
         private static bool IsApplyTime(int arrayLength, CronTimeSections time, int index) => (arrayLength >= 6 || time != CronTimeSections.Seconds) && index < arrayLength;
 
         private string Get(CronTimeSections time) => GetProperty(time).ToString();
@@ -302,10 +276,6 @@ namespace Cron.Core
         private ISection GetProperty(CronTimeSections time) => GetFieldInfo(time).GetValue(this) as ISection;
 
         private void SetProperty(CronTimeSections time, ISection val) => GetFieldInfo(time).SetValue(this, val, null);
-
-        private int SectionCount =>
-            Value.Split(' ')
-                .Length;
 
         #endregion Methods
     }

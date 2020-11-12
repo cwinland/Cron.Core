@@ -418,45 +418,5 @@ namespace Cron.Tests
             cron.Description.Should()
                 .Be(cron.Description);
         }
-
-        [TestMethod]
-        public void Cron_NextTime()
-        {
-            var cron = new Core.Cron
-            {
-                { CronTimeSections.Seconds, 1, true },
-                { CronTimeSections.Minutes, 2, true },
-                { CronTimeSections.Hours, 3, true },
-            };
-            var t = cron.Description;
-            var newDateTime = new DateTime(d.Ticks).AddSeconds(1)
-                                                   .AddMinutes(2)
-                                                   .AddHours(3);
-
-            cron.Next(d).Should()
-                .Be(newDateTime);
-            cron.Next(newDateTime)
-                .Should()
-                .Be(newDateTime.AddSeconds(1)
-                               .AddMinutes(2)
-                               .AddHours(3));
-        }
-
-        [TestMethod]
-        public void Cron_NextDate()
-        {
-            var cron = new Core.Cron
-            {
-                { CronTimeSections.DayMonth, 3}, {CronMonths.August },
-            };
-            var t = cron.Description;
-            var newDateTime = new DateTime(2021, 8, 3, 0, 0, 0);
-            cron.Next(d).Should()
-                .Be(newDateTime);
-
-            cron.Next(newDateTime)
-                .Should()
-                .Be(newDateTime.AddMinutes(1));
-        }
     }
 }

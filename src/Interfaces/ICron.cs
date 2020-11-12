@@ -68,11 +68,6 @@ namespace Cron.Core.Interfaces
         ISection Years { get; }
 
         /// <summary>
-        ///   Indicates next Date/Time Cron is scheduled.
-        /// </summary>
-        DateTime Next(DateTime dateTime);
-
-        /// <summary>
         ///   Add time value for the specified time section.
         /// </summary>
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
