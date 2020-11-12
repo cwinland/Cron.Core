@@ -209,14 +209,14 @@
               Day of the Month.
             </summary>
         </member>
-        <member name="F:Cron.Core.Enums.CronTimeSections.DayWeek">
-            <summary>
-              Day of the Week.
-            </summary>
-        </member>
         <member name="F:Cron.Core.Enums.CronTimeSections.Months">
             <summary>
               Month.
+            </summary>
+        </member>
+        <member name="F:Cron.Core.Enums.CronTimeSections.DayWeek">
+            <summary>
+              Day of the Week.
             </summary>
         </member>
         <member name="F:Cron.Core.Enums.CronTimeSections.Years">
@@ -245,6 +245,48 @@
               Cron Expression.
             </summary>
             <example>*/22 */3,4 3-5,7-11 12 3,5 3 */5</example>
+        </member>
+        <member name="P:Cron.Core.Interfaces.ICron.DayMonth">
+            <summary>
+              Day of the Month Information
+            </summary>
+            <returns><see cref="T:Cron.Core.Interfaces.ISection" /></returns>
+        </member>
+        <member name="P:Cron.Core.Interfaces.ICron.DayWeek">
+            <summary>
+              Day of the Week Information
+            </summary>
+            <returns><see cref="T:Cron.Core.Interfaces.ISection" /></returns>
+        </member>
+        <member name="P:Cron.Core.Interfaces.ICron.Hours">
+            <summary>
+              Hours Information
+            </summary>
+            <returns><see cref="T:Cron.Core.Interfaces.ISection" /></returns>
+        </member>
+        <member name="P:Cron.Core.Interfaces.ICron.Minutes">
+            <summary>
+              Minutes Information
+            </summary>
+            <returns><see cref="T:Cron.Core.Interfaces.ISection" /></returns>
+        </member>
+        <member name="P:Cron.Core.Interfaces.ICron.Months">
+            <summary>
+              Months Information
+            </summary>
+            <returns><see cref="T:Cron.Core.Interfaces.ISection" /></returns>
+        </member>
+        <member name="P:Cron.Core.Interfaces.ICron.Seconds">
+            <summary>
+              Seconds Information
+            </summary>
+            <returns><see cref="T:Cron.Core.Interfaces.ISection" /></returns>
+        </member>
+        <member name="P:Cron.Core.Interfaces.ICron.Years">
+            <summary>
+              Year Information
+            </summary>
+            <returns><see cref="T:Cron.Core.Interfaces.ISection" /></returns>
         </member>
         <member name="M:Cron.Core.Interfaces.ICron.Add(Cron.Core.Enums.CronTimeSections,System.Int32,System.Boolean)">
             <summary>
@@ -332,47 +374,10 @@
             <param name="value">Value for the specified time section.</param>
             <returns><see cref="T:Cron.Core.Interfaces.ICron" /></returns>
         </member>
-        <member name="P:Cron.Core.Interfaces.ICron.DayMonth">
+        <member name="T:Cron.Core.Interfaces.IDateSection">
             <summary>
-              Day of the Month Information
+            Section specifically for Date values.
             </summary>
-            <returns><see cref="T:Cron.Core.Interfaces.ISection" /></returns>
-        </member>
-        <member name="P:Cron.Core.Interfaces.ICron.DayWeek">
-            <summary>
-              Day of the Week Information
-            </summary>
-            <returns><see cref="T:Cron.Core.Interfaces.ISection" /></returns>
-        </member>
-        <member name="P:Cron.Core.Interfaces.ICron.Hours">
-            <summary>
-              Hours Information
-            </summary>
-            <returns><see cref="T:Cron.Core.Interfaces.ISection" /></returns>
-        </member>
-        <member name="P:Cron.Core.Interfaces.ICron.Minutes">
-            <summary>
-              Minutes Information
-            </summary>
-            <returns><see cref="T:Cron.Core.Interfaces.ISection" /></returns>
-        </member>
-        <member name="P:Cron.Core.Interfaces.ICron.Months">
-            <summary>
-              Months Information
-            </summary>
-            <returns><see cref="T:Cron.Core.Interfaces.ISection" /></returns>
-        </member>
-        <member name="P:Cron.Core.Interfaces.ICron.Seconds">
-            <summary>
-              Seconds Information
-            </summary>
-            <returns><see cref="T:Cron.Core.Interfaces.ISection" /></returns>
-        </member>
-        <member name="P:Cron.Core.Interfaces.ICron.Years">
-            <summary>
-              Year Information
-            </summary>
-            <returns><see cref="T:Cron.Core.Interfaces.ISection" /></returns>
         </member>
         <member name="T:Cron.Core.Interfaces.ISection">
             <summary>
@@ -389,6 +394,11 @@
               Indicates that the value should be translated using the */ every indicator.
             </summary>
         </member>
+        <member name="P:Cron.Core.Interfaces.ISection.ContainsRange">
+            <summary>
+              Indicates if any values contain a range.
+            </summary>
+        </member>
         <member name="P:Cron.Core.Interfaces.ISection.Any">
             <summary>
               Indicates that the value should be translated using the ? any indicator.
@@ -398,6 +408,11 @@
         <member name="P:Cron.Core.Interfaces.ISection.Enabled">
             <summary>
               Indicates that the value is enabled or used. Equivalent to using ? in a cron expression.
+            </summary>
+        </member>
+        <member name="P:Cron.Core.Interfaces.ISection.Description">
+            <summary>
+              Get readable description.
             </summary>
         </member>
         <member name="M:Cron.Core.Interfaces.ISection.IsValidRange(Cron.Core.Interfaces.ISectionValues)">
@@ -450,6 +465,26 @@
             <param name="maxVal">Ending value for this <see cref="T:Cron.Core.Interfaces.ISection" />.</param>
             <returns></returns>
         </member>
+        <member name="M:Cron.Core.Interfaces.ISection.ToString(System.Boolean,System.Type,System.Boolean)">
+            <summary>
+              Convert to string.
+            </summary>
+            <param name="translateEnum">Indicates if there is an enumerable, that it should be represented as a string instead of integer.</param>
+            <param name="enumType">Type of Enumerable.</param>
+            <param name="showEvery">Show every indicator.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Cron.Core.Interfaces.ISection.IsInt">
+            <summary>
+              Indicates if this be represented as an integer.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Cron.Core.Interfaces.ISection.ToInt">
+            <summary>
+              Convert to Integer.
+            </summary>
+        </member>
         <member name="T:Cron.Core.Interfaces.ISectionValues">
             <summary>
               Stores the values for a section list.
@@ -465,10 +500,47 @@
               Minimum value in a value range. Also represents the only value, if the section is not a range.
             </summary>
         </member>
-        <member name="T:Cron.Core.Section">
+        <member name="M:Cron.Core.Interfaces.ISectionValues.ToString(System.Boolean,System.Type)">
+            <summary>
+              Convert to a string and translate to Enum, if applicable.
+            </summary>
+            <param name="translate">Translate values.</param>
+            <param name="enumType">Associated Enum Type.</param>
+        </member>
+        <member name="T:Cron.Core.Interfaces.ITimeSection">
+            <summary>
+            Section specifically for Time (seconds, minutes, hours).
+            </summary>
+        </member>
+        <member name="P:Cron.Core.Interfaces.ITimeSection.AllowedIncrements">
+            <summary>
+            List of allowed increments when the Every option is used.
+            </summary>
+        </member>
+        <member name="T:Cron.Core.Sections.DateSection">
+            <inheritdoc cref="T:Cron.Core.Interfaces.IDateSection"/>
+        </member>
+        <member name="M:Cron.Core.Sections.DateSection.#ctor(Cron.Core.Enums.CronTimeSections,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="P:Cron.Core.Sections.DateSection.Every">
+            <inheritdoc />
+        </member>
+        <member name="M:Cron.Core.Sections.DateSection.#ctor(Cron.Core.Enums.CronTimeSections)">
+            <inheritdoc />
+        </member>
+        <member name="T:Cron.Core.Sections.Section">
             <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
         </member>
-        <member name="M:Cron.Core.Section.#ctor(Cron.Core.Enums.CronTimeSections,System.String)">
+        <member name="P:Cron.Core.Sections.Section.Item(System.Int32)">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
+        </member>
+        <member name="F:Cron.Core.Sections.Section.time">
+            <summary>
+            Time Section Type.
+            </summary>
+        </member>
+        <member name="M:Cron.Core.Sections.Section.#ctor(Cron.Core.Enums.CronTimeSections,System.String)">
             <summary>
               Create an <see cref="T:Cron.Core.Interfaces.ISection" /> based on the specified expression.
             </summary>
@@ -476,74 +548,101 @@
             <param name="time">Specific <see cref="T:Cron.Core.Enums.CronTimeSections" />.</param>
             <param name="expression">Cron Expression</param>
         </member>
-        <member name="M:Cron.Core.Section.#ctor(Cron.Core.Enums.CronTimeSections)">
+        <member name="M:Cron.Core.Sections.Section.#ctor(Cron.Core.Enums.CronTimeSections)">
             <summary>
               Create <see cref="T:Cron.Core.Interfaces.ISection" /> for a specific <see cref="T:Cron.Core.Enums.CronTimeSections" />.
             </summary>
             <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="T:Cron.Core.Enums.CronTimeSections" />.</param>
         </member>
-        <member name="P:Cron.Core.Section.Count">
+        <member name="P:Cron.Core.Sections.Section.Any">
             <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
         </member>
-        <member name="P:Cron.Core.Section.Enabled">
-            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
-        </member>
-        <member name="P:Cron.Core.Section.Every">
-            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
-        </member>
-        <member name="P:Cron.Core.Section.Any">
-            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
-        </member>
-        <member name="P:Cron.Core.Section.Values">
-            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
-        </member>
-        <member name="P:Cron.Core.Section.Item(System.Int32)">
-            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
-        </member>
-        <member name="M:Cron.Core.Section.Add(System.Int32)">
-            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
-        </member>
-        <member name="M:Cron.Core.Section.Add(System.Int32,System.Int32)">
-            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
-        </member>
-        <member name="M:Cron.Core.Section.Clear">
-            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
-        </member>
-        <member name="M:Cron.Core.Section.GetEnumerator">
-            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
-        </member>
-        <member name="M:Cron.Core.Section.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
-        </member>
-        <member name="M:Cron.Core.Section.Remove(System.Int32)">
-            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
-        </member>
-        <member name="M:Cron.Core.Section.Remove(System.Int32,System.Int32)">
-            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
-        </member>
-        <member name="M:Cron.Core.Section.ToString">
-            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
-        </member>
-        <member name="M:Cron.Core.Section.IsValidRange(Cron.Core.Interfaces.ISectionValues)">
-            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
-        </member>
-        <member name="M:Cron.Core.Section.IsValidRange(System.Int32)">
-            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
-        </member>
-        <member name="T:Cron.Core.SectionValues">
+        <member name="P:Cron.Core.Sections.Section.ContainsRange">
             <inheritdoc cref="T:Cron.Core.Interfaces.ISectionValues" />
         </member>
-        <member name="P:Cron.Core.SectionValues.MaxValue">
+        <member name="P:Cron.Core.Sections.Section.Count">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
+        </member>
+        <member name="P:Cron.Core.Sections.Section.Description">
+            <inheritdoc />
+        </member>
+        <member name="P:Cron.Core.Sections.Section.Enabled">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
+        </member>
+        <member name="P:Cron.Core.Sections.Section.Every">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
+        </member>
+        <member name="P:Cron.Core.Sections.Section.Values">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
+        </member>
+        <member name="M:Cron.Core.Sections.Section.Add(System.Int32)">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
+        </member>
+        <member name="M:Cron.Core.Sections.Section.Add(System.Int32,System.Int32)">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
+        </member>
+        <member name="M:Cron.Core.Sections.Section.Clear">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
+        </member>
+        <member name="M:Cron.Core.Sections.Section.GetEnumerator">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
+        </member>
+        <member name="M:Cron.Core.Sections.Section.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
+        </member>
+        <member name="M:Cron.Core.Sections.Section.IsInt">
             <inheritdoc cref="T:Cron.Core.Interfaces.ISectionValues" />
         </member>
-        <member name="P:Cron.Core.SectionValues.MinValue">
+        <member name="M:Cron.Core.Sections.Section.IsValidRange(Cron.Core.Interfaces.ISectionValues)">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
+        </member>
+        <member name="M:Cron.Core.Sections.Section.IsValidRange(System.Int32)">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
+        </member>
+        <member name="M:Cron.Core.Sections.Section.Remove(System.Int32)">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
+        </member>
+        <member name="M:Cron.Core.Sections.Section.Remove(System.Int32,System.Int32)">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
+        </member>
+        <member name="M:Cron.Core.Sections.Section.ToInt">
             <inheritdoc cref="T:Cron.Core.Interfaces.ISectionValues" />
         </member>
-        <member name="M:Cron.Core.SectionValues.ToString">
+        <member name="M:Cron.Core.Sections.Section.ToString(System.Boolean,System.Type,System.Boolean)">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
+        </member>
+        <member name="M:Cron.Core.Sections.Section.ToString">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
+        </member>
+        <member name="T:Cron.Core.Sections.SectionValues">
             <inheritdoc cref="T:Cron.Core.Interfaces.ISectionValues" />
         </member>
-        <member name="M:Cron.Core.SectionValues.op_Explicit(System.Collections.Generic.List{Cron.Core.Interfaces.ISectionValues})~Cron.Core.SectionValues">
+        <member name="P:Cron.Core.Sections.SectionValues.MaxValue">
             <inheritdoc cref="T:Cron.Core.Interfaces.ISectionValues" />
+        </member>
+        <member name="P:Cron.Core.Sections.SectionValues.MinValue">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISectionValues" />
+        </member>
+        <member name="M:Cron.Core.Sections.SectionValues.ToString(System.Boolean,System.Type)">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISectionValues" />
+        </member>
+        <member name="M:Cron.Core.Sections.SectionValues.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:Cron.Core.Sections.SectionValues.op_Explicit(System.Collections.Generic.List{Cron.Core.Interfaces.ISectionValues})~Cron.Core.Sections.SectionValues">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ISectionValues" />
+        </member>
+        <member name="T:Cron.Core.Sections.TimeSection">
+            <inheritdoc cref="T:Cron.Core.Interfaces.ITimeSection"/>
+        </member>
+        <member name="M:Cron.Core.Sections.TimeSection.#ctor(Cron.Core.Enums.CronTimeSections,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Cron.Core.Sections.TimeSection.#ctor(Cron.Core.Enums.CronTimeSections)">
+            <inheritdoc />
+        </member>
+        <member name="P:Cron.Core.Sections.TimeSection.AllowedIncrements">
+            <inheritdoc />
         </member>
     </members>
 </doc>

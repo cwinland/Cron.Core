@@ -5,7 +5,7 @@
 		<SignAssembly>true</SignAssembly>
 		<AssemblyOriginatorKeyFile>cron.snk</AssemblyOriginatorKeyFile>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<PackageId>Cron.Core.StrongNamed</PackageId>
 		<Authors>Christopher Winland</Authors>
 		<Company>Microsoft Corporation</Company>
@@ -68,15 +68,17 @@
 		<Compile Include="Enums\CronMonths.cs" />
 		<Compile Include="Enums\CronTimeSections.cs" />
 		<Compile Include="Interfaces\ICron.cs" />
+		<Compile Include="Interfaces\IDateSection.cs" />
 		<Compile Include="Interfaces\ISection.cs" />
 		<Compile Include="Interfaces\ISectionValues.cs" />
-		<Compile Include="Section.cs" />
-		<Compile Include="SectionValues.cs" />
+		<Compile Include="Interfaces\ITimeSection.cs" />
+		<Compile Include="Sections\DateSection.cs" />
+		<Compile Include="Sections\Section.cs" />
+		<Compile Include="Sections\SectionValues.cs" />
+		<Compile Include="Sections\TimeSection.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CronExpressionDescriptor" Version="2.15.0" />
-		<PackageReference Include="StrongNamer" Version="0.2.5" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
 	</ItemGroup>
 
@@ -88,7 +90,6 @@
 		<None Include=".gitignore" />
 		<None Include="Cron.md" />
 		<None Include="cron.snk" />
-		<None Include="docfx.json" />
 		<None Include="index.md" />
 	</ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
-﻿using System.Collections;
+﻿using Cron.Core.Enums;
+using System.Collections;
 using System.ComponentModel.DataAnnotations;
-using Cron.Core.Enums;
 
 namespace Cron.Core.Interfaces
 {
@@ -23,6 +23,48 @@ namespace Cron.Core.Interfaces
         /// </summary>
         /// <example>*/22 */3,4 3-5,7-11 12 3,5 3 */5</example>
         string Value { get; }
+
+        /// <summary>
+        ///   Day of the Month Information
+        /// </summary>
+        /// <returns><see cref="ISection" /></returns>
+        ISection DayMonth { get; }
+
+        /// <summary>
+        ///   Day of the Week Information
+        /// </summary>
+        /// <returns><see cref="ISection" /></returns>
+        ISection DayWeek { get; }
+
+        /// <summary>
+        ///   Hours Information
+        /// </summary>
+        /// <returns><see cref="ISection" /></returns>
+        ISection Hours { get; }
+
+        /// <summary>
+        ///   Minutes Information
+        /// </summary>
+        /// <returns><see cref="ISection" /></returns>
+        ISection Minutes { get; }
+
+        /// <summary>
+        ///   Months Information
+        /// </summary>
+        /// <returns><see cref="ISection" /></returns>
+        ISection Months { get; }
+
+        /// <summary>
+        ///   Seconds Information
+        /// </summary>
+        /// <returns><see cref="ISection" /></returns>
+        ISection Seconds { get; }
+
+        /// <summary>
+        ///   Year Information
+        /// </summary>
+        /// <returns><see cref="ISection" /></returns>
+        ISection Years { get; }
 
         /// <summary>
         ///   Add time value for the specified time section.
@@ -109,47 +151,5 @@ namespace Cron.Core.Interfaces
         /// <param name="value">Value for the specified time section.</param>
         /// <returns><see cref="ICron" /></returns>
         ICron Set(CronTimeSections time, ISection value);
-
-        /// <summary>
-        ///   Day of the Month Information
-        /// </summary>
-        /// <returns><see cref="ISection" /></returns>
-        ISection DayMonth { get; }
-
-        /// <summary>
-        ///   Day of the Week Information
-        /// </summary>
-        /// <returns><see cref="ISection" /></returns>
-        ISection DayWeek { get; }
-
-        /// <summary>
-        ///   Hours Information
-        /// </summary>
-        /// <returns><see cref="ISection" /></returns>
-        ISection Hours { get; }
-
-        /// <summary>
-        ///   Minutes Information
-        /// </summary>
-        /// <returns><see cref="ISection" /></returns>
-        ISection Minutes { get; }
-
-        /// <summary>
-        ///   Months Information
-        /// </summary>
-        /// <returns><see cref="ISection" /></returns>
-        ISection Months { get; }
-
-        /// <summary>
-        ///   Seconds Information
-        /// </summary>
-        /// <returns><see cref="ISection" /></returns>
-        ISection Seconds { get; }
-
-        /// <summary>
-        ///   Year Information
-        /// </summary>
-        /// <returns><see cref="ISection" /></returns>
-        ISection Years { get; }
     }
 }

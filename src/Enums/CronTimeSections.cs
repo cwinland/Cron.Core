@@ -26,14 +26,14 @@
         DayMonth = 4,
 
         /// <summary>
-        ///   Day of the Week.
-        /// </summary>
-        DayWeek = 5,
-
-        /// <summary>
         ///   Month.
         /// </summary>
-        Months = 6,
+        Months = 5,
+
+        /// <summary>
+        ///   Day of the Week.
+        /// </summary>
+        DayWeek = 6,
 
         /// <summary>
         ///   Year or interval of years.
