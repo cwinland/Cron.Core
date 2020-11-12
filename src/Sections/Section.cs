@@ -3,19 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.Serialization;
 using Cron.Core.Enums;
 using Cron.Core.Interfaces;
 
-namespace Cron.Core
+namespace Cron.Core.Sections
 {
     /// <inheritdoc cref="ISection" />
-    public class Section : ISection
+    public abstract class Section : ISection
     {
         #region Indexers
 
         /// <inheritdoc cref="ISection" />
-        public ISectionValues this[int index] => ((IReadOnlyList<ISectionValues>)values)[index];
+        public ISectionValues this[int index] => ((IReadOnlyList<ISectionValues>) values)[index];
 
         #endregion Indexers
 
@@ -23,7 +22,12 @@ namespace Cron.Core
 
         private const string ANY_CHAR = "?";
         private const string DEFAULT_CHAR = "*";
-        private readonly CronTimeSections time;
+
+        /// <summary>
+        /// Time Section Type.
+        /// </summary>
+        protected readonly CronTimeSections time;
+
         private readonly List<ISectionValues> values = new List<ISectionValues>();
 
         #endregion Fields
@@ -36,9 +40,10 @@ namespace Cron.Core
         /// <remarks>Experimental.</remarks>
         /// <param name="time">Specific <see cref="CronTimeSections" />.</param>
         /// <param name="expression">Cron Expression</param>
-        protected internal Section(CronTimeSections time, string expression) : this(time)
+        protected Section(CronTimeSections time, string expression) : this(time)
         {
             Any = expression == ANY_CHAR;
+
             // Should only allow every on times
             Every = expression.Length > 1 && (expression.StartsWith("/") || expression.StartsWith("*"));
             expression = expression.StartsWith("*") ? expression.Substring(1) : expression;
@@ -51,24 +56,24 @@ namespace Cron.Core
 
             Enabled = true;
             expression.Split(',')
-                .ToList()
-                .ForEach(
-                    x =>
-                    {
-                        var vals = x.Split('-')
-                            .ToList();
-                        var val1 = int.Parse(vals[0]);
-                        ISectionValues sectionValues = new SectionValues(
-                            time,
-                            val1,
-                            vals.Count == 1
-                                ? val1
-                                : int.Parse(vals[1])
-                        );
+                      .ToList()
+                      .ForEach(
+                          x =>
+                          {
+                              var vals = x.Split('-')
+                                          .ToList();
+                              var val1 = int.Parse(vals[0]);
+                              ISectionValues sectionValues = new SectionValues(
+                                  time,
+                                  val1,
+                                  vals.Count == 1
+                                      ? val1
+                                      : int.Parse(vals[1])
+                              );
 
-                        values.Add(sectionValues);
-                    }
-                );
+                              values.Add(sectionValues);
+                          }
+                      );
         }
 
         /// <summary>
@@ -109,7 +114,6 @@ namespace Cron.Core
                 switch (time)
                 {
                     case CronTimeSections.Seconds:
-
                         result += Every
                             ? $"Every {ToString(false, null, false)} seconds"
                             : $"Only at {ToString(false, null, false)} seconds past the minute";
@@ -178,7 +182,7 @@ namespace Cron.Core
         public bool Enabled { get; set; }
 
         /// <inheritdoc cref="ISection" />
-        public bool Every { get; set; } = true;
+        public virtual bool Every { get; set; } = true;
 
         /// <inheritdoc cref="ISection" />
         public IEnumerable<string> Values
@@ -256,13 +260,13 @@ namespace Cron.Core
         /// <inheritdoc cref="ISection" />
         public IEnumerator<ISectionValues> GetEnumerator()
         {
-            return ((IEnumerable<ISectionValues>)values).GetEnumerator();
+            return ((IEnumerable<ISectionValues>) values).GetEnumerator();
         }
 
         /// <inheritdoc cref="ISection" />
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((IEnumerable)values).GetEnumerator();
+            return ((IEnumerable) values).GetEnumerator();
         }
 
         /// <inheritdoc cref="ISectionValues" />
@@ -353,7 +357,8 @@ namespace Cron.Core
             SortValues();
 
             var myValues = values.Select(x => x.ToString(false, null));
-            var valueString = string.Join(",", myValues).Trim();
+            var valueString = string.Join(",", myValues)
+                                    .Trim();
 
             return int.TryParse(valueString, out var num) ? num : 0;
         }
@@ -376,6 +381,7 @@ namespace Cron.Core
 
             var myValues = values.Select(x => x.ToString(translateEnum, enumType));
             var valueString = string.Join(",", myValues);
+
             if (Every && showEvery)
             {
                 valueString = $"{DEFAULT_CHAR}/" + valueString;
@@ -390,7 +396,7 @@ namespace Cron.Core
         private void SortValues()
         {
             values.Sort(
-                delegate (ISectionValues x, ISectionValues y)
+                delegate(ISectionValues x, ISectionValues y)
                 {
                     var compare1 = x.MinValue.CompareTo(y.MinValue);
 

@@ -68,10 +68,14 @@
 		<Compile Include="Enums\CronMonths.cs" />
 		<Compile Include="Enums\CronTimeSections.cs" />
 		<Compile Include="Interfaces\ICron.cs" />
+		<Compile Include="Interfaces\IDateSection.cs" />
 		<Compile Include="Interfaces\ISection.cs" />
 		<Compile Include="Interfaces\ISectionValues.cs" />
-		<Compile Include="Section.cs" />
-		<Compile Include="SectionValues.cs" />
+		<Compile Include="Interfaces\ITimeSection.cs" />
+		<Compile Include="Sections\DateSection.cs" />
+		<Compile Include="Sections\Section.cs" />
+		<Compile Include="Sections\SectionValues.cs" />
+		<Compile Include="Sections\TimeSection.cs" />
 	</ItemGroup>
 
 	<ItemGroup>

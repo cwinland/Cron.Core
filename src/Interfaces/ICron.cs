@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Cron.Core.Enums;
 using System.Collections;
 using System.ComponentModel.DataAnnotations;
-using Cron.Core.Enums;
 
 namespace Cron.Core.Interfaces
 {

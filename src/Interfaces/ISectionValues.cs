@@ -20,7 +20,7 @@ namespace Cron.Core.Interfaces
         /// <summary>
         ///   Convert to a string and translate to Enum, if applicable.
         /// </summary>
-        /// <param name="translateEnum">Translate Enum.</param>
+        /// <param name="translate">Translate values.</param>
         /// <param name="enumType">Associated Enum Type.</param>
         string ToString(bool translate, Type enumType);
     }

@@ -12,51 +12,48 @@ namespace Cron.Tests
     public class CronTests
     {
         private ICron schedule;
-        private DateTime d;
 
         [TestInitialize]
         public void Init()
         {
             schedule = new Core.Cron();
-            // Saturday 340th day of the year
-            d = new DateTime(2020, 12, 5, 11, 03, 22);
         }
 
         [TestMethod]
         [DataRow(
             3,
             1,
-            1,
-            "*/3 */3,4 3-5,7-11 1 3 3,5 */1",
+            0,
+            "*/3 */3,4 3-5,7-11 1 3 3,5 *",
             "Every 3 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 1 of the month, only on Wednesday,Friday, only in March"
         )]
         [DataRow(
             4,
             4,
-            2,
-            "*/4 */3,4 3-5,7-11 4 3 3,5 */2",
-            "Every 4 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 4 of the month, only on Wednesday,Friday, only in March, every 2 years"
+            0,
+            "*/4 */3,4 3-5,7-11 4 3 3,5 *",
+            "Every 4 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 4 of the month, only on Wednesday,Friday, only in March"
         )]
         [DataRow(
             50,
             7,
-            3,
-            "*/50 */3,4 3-5,7-11 7 3 3,5 */3",
-            "Every 50 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 7 of the month, only on Wednesday,Friday, only in March, every 3 years"
+            0,
+            "*/50 */3,4 3-5,7-11 7 3 3,5 *",
+            "Every 50 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 7 of the month, only on Wednesday,Friday, only in March"
         )]
         [DataRow(
             13,
             9,
-            4,
-            "*/13 */3,4 3-5,7-11 9 3 3,5 */4",
-            "Every 13 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 9 of the month, only on Wednesday,Friday, only in March, every 4 years"
+            2022,
+            "*/13 */3,4 3-5,7-11 9 3 3,5 2022",
+            "Every 13 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 9 of the month, only on Wednesday,Friday, only in March, only in year 2022"
         )]
         [DataRow(
             22,
             12,
-            5,
-            "*/22 */3,4 3-5,7-11 12 3 3,5 */5",
-            "Every 22 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 12 of the month, only on Wednesday,Friday, only in March, every 5 years"
+            0,
+            "*/22 */3,4 3-5,7-11 12 3 3,5 *",
+            "Every 22 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 12 of the month, only on Wednesday,Friday, only in March"
         )]
         public void Cron_CanVerifyComplex(int seconds, int dayMonth, int years, string expectedValue, string expectedDescription)
         {
@@ -70,13 +67,17 @@ namespace Cron.Tests
                 .Add(CronMonths.March)
                 .Add(CronDays.Wednesday)
                 .Add(CronDays.Friday)
-                .Add(CronTimeSections.DayMonth, dayMonth)
-                .Add(CronTimeSections.Years, years, true);
+                .Add(CronTimeSections.DayMonth, dayMonth);
+
+            if (years > 0)
+            {
+                schedule.Add(CronTimeSections.Years, years);
+            }
 
             schedule.Seconds.Select(x => x.MinValue)
-                .First()
-                .Should()
-                .Be(seconds);
+                    .First()
+                    .Should()
+                    .Be(seconds);
 
             schedule.Minutes.Select(x => x.MinValue)
                 .ToList()
@@ -111,14 +112,17 @@ namespace Cron.Tests
                 .Should()
                 .Be(dayMonth);
 
-            schedule.Years.Select(x => x.MinValue)
-                .First()
-                .Should()
-                .Be(years);
+            if (years > 0)
+            {
+                schedule.Years.Select(x => x.MinValue)
+                        .First()
+                        .Should()
+                        .Be(years);
+            }
 
             schedule.Value
-                .Should()
-                .Be(expectedValue);
+                    .Should()
+                    .Be(expectedValue);
 
             schedule.Description
                 .Should()
@@ -185,20 +189,19 @@ namespace Cron.Tests
         [DataRow("0", null, null)]
         [DataRow("1 2", null, null)]
         [DataRow("* * 5-5 * *", "* * * 5 * * *", "Every minute, only on day 5 of the month")]
-        [DataRow("* * 3-5 5-7 * */2", "* * 3-5 5-7 * */2 *", "Every minute, 03:00 AM-05:59 AM, only on day 5-7 of the month, every 2 day of the week")]
-        [DataRow("* * 5 * * */2", "* * 5 * * */2 *", "Every minute, 05:00 AM-05:59 AM, every 2 day of the week")]
+        [DataRow("* * 3-5 5-7 * 2", "* * 3-5 5-7 * 2 *", "Every minute, 03:00 AM-05:59 AM, only on day 5-7 of the month, only on Tuesday")]
         [DataRow("* * 5 * * 2", "* * 5 * * 2 *", "Every minute, 05:00 AM-05:59 AM, only on Tuesday")]
-        [DataRow("* * * 5 * * */2", "* * * 5 * * */2", "Every minute, only on day 5 of the month, every 2 years")]
-        [DataRow("1-2 * * 5 * * */2", "1-2 * * 5 * * */2", "Only at 1-2 seconds past the minute, only on day 5 of the month, every 2 years")]
-        [DataRow("1-2 * * 5-7 * * */2-3", "1-2 * * 5-7 * * */2-3", "Only at 1-2 seconds past the minute, only on day 5-7 of the month, every 2-3 years")]
+        [DataRow("* * * 5 * * 2020", "* * * 5 * * 2020", "Every minute, only on day 5 of the month, only in year 2020")]
+        [DataRow("1-2 * * 5 * * 2020", "1-2 * * 5 * * 2020", "Only at 1-2 seconds past the minute, only on day 5 of the month, only in year 2020")]
+        [DataRow("1-2 * * 5-7 * * 2020,2021", "1-2 * * 5-7 * * 2020,2021", "Only at 1-2 seconds past the minute, only on day 5-7 of the month, only in year 2020,2021")]
         [DataRow("* * 5 * *", "* * * 5 * * *", "Every minute, only on day 5 of the month")]
         public void Cron_CreateByExpressionDescriptionMatches(string expression, string matchExpression, string description)
         {
-            Core.Cron act1() => new Core.Cron(expression);
+            Core.Cron Act1() => new Core.Cron(expression);
 
             if (matchExpression != null)
             {
-                var cron = act1();
+                var cron = Act1();
 
                 cron.ToString()
                     .Should()
@@ -207,7 +210,7 @@ namespace Cron.Tests
 
             if (!string.IsNullOrEmpty(description))
             {
-                act1().Description.Should()
+                Act1().Description.Should()
                     .Be(description);
             }
             else
@@ -217,7 +220,7 @@ namespace Cron.Tests
                 act
                     .Should()
                     .Throw<InvalidDataException>(
-                        because: $"This expression only has {0} parts. An expression must have 5, 6, or 7 parts.",
+                        because: "This expression only has {0} parts. An expression must have 5, 6, or 7 parts.",
                         becauseArgs: expression.Split(' ')
                             .Length
                     );
@@ -354,14 +357,14 @@ namespace Cron.Tests
                 .Every = true;
             cron.DayWeek.Add(5)
                 .Every = true;
-            cron.Years.Add(2).Every = true;
+            cron.Years.Add(2021);
 
             cron.Description.Should()
-                .Be("Every minute, every 5 day of the week, every 2 years");
+                .Be("Every minute, only on Friday, only in January, only in year 2021");
         }
 
         [TestMethod]
-        public void Cron_TimeEveryDescription1IsDescription2()
+        public void Cron_TimeEveryDescriptionMatches()
         {
             var cron = new Core.Cron();
 

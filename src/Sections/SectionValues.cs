@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Cron.Core.Enums;
 using Cron.Core.Interfaces;
 
-namespace Cron.Core
+namespace Cron.Core.Sections
 {
     /// <inheritdoc cref="ISectionValues" />
     public class SectionValues : ISectionValues
