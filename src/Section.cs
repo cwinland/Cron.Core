@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using Cron.Core.FormatProviders;
 
 namespace Cron.Core
 {
@@ -13,9 +14,8 @@ namespace Cron.Core
     {
         #region Fields
 
-        private const string DEFAULT_CHAR = "*";
         private const string ANY_CHAR = "?";
-
+        private const string DEFAULT_CHAR = "*";
         private readonly CronTimeSections time;
         private readonly List<ISectionValues> values = new List<ISectionValues>();
 
@@ -36,26 +36,27 @@ namespace Cron.Core
             expression = expression.StartsWith("*") ? expression.Substring(1) : expression;
             expression = expression.StartsWith("/") ? expression.Substring(1) : expression;
 
-            if (expression.Length > 0)
-            {
-                expression.Split(',')
-                    .ToList()
-                    .ForEach(
-                        x =>
-                        {
-                            var vals = x.Split('-').ToList();
-                            var val1 = int.Parse(vals[0]);
-                            ISectionValues sectionValues = new SectionValues(
-                                val1,
-                                vals.Count == 1
-                                    ? val1
-                                    : int.Parse(vals[1])
-                            );
+            if (expression.Length <= 0)
+                return;
 
-                            values.Add(sectionValues);
-                        }
-                    );
-            }
+            Enabled = true;
+            expression.Split(',')
+                .ToList()
+                .ForEach(
+                    x =>
+                    {
+                        var vals = x.Split('-').ToList();
+                        var val1 = int.Parse(vals[0]);
+                        ISectionValues sectionValues = new SectionValues(time,
+                            val1,
+                            vals.Count == 1
+                                ? val1
+                                : int.Parse(vals[1])
+                        );
+
+                        values.Add(sectionValues);
+                    }
+                );
         }
 
         /// <summary>
@@ -72,16 +73,95 @@ namespace Cron.Core
         #region Properties
 
         /// <inheritdoc cref="ISection" />
+        public bool Any { get; set; }
+
+        /// <inheritdoc cref="ISectionValues" />
+        public bool ContainsRange => values.Any(x => x.MinValue != x.MaxValue);
+
+        /// <inheritdoc cref="ISection" />
         public int Count => values.Count;
 
-        /// <inheritdoc cref="ISection" />
-        public bool Enabled { get; set; } = true;
+        /// <inheritdoc />
+        public string Description
+        {
+            get
+            {
+                var result = string.Empty;
+
+                if (!Enabled ||
+                    values.Count == 0)
+                {
+                    return (time == CronTimeSections.Seconds && Every) ? "Every second" : string.Empty;
+                }
+
+                switch (time)
+                {
+                    case CronTimeSections.Seconds:
+
+                        result += (Every)
+                            ? $"Every {ToString(false, null, false)} seconds"
+                            : $"Only at {ToString(false, null, false)} seconds past the minute";
+
+                        break;
+
+                    case CronTimeSections.Minutes:
+                        result += (Every)
+                            ? $"every {ToString(false, null, false)} minutes"
+                            : $"only at {ToString(false, null, false)} minutes past the hour";
+
+                        break;
+
+                    case CronTimeSections.Hours:
+                        result += (ContainsRange) ? $"{ToString(true, null, true)}"
+                            : (Every)
+                            ? $"every {ToString(false, null, false)} hours"
+                            : $"only at {ToString(false, null, false)} hours";
+
+                        break;
+
+                    case CronTimeSections.DayMonth:
+                        result += (Every)
+                            ? $"every {ToString(false, null, false)} days"
+                            : $"only on day {ToString(false, null, false)} of the month";
+
+                        break;
+
+                    case CronTimeSections.DayWeek:
+                        result += (Every)
+                            ? $"every {ToString(false, null, false)} day of the week"
+                            : $"only on {ToString(true, typeof(CronDays), false)}";
+
+                        break;
+
+                    case CronTimeSections.Months:
+                        var everyMonthValue = ToString(false, null, false);
+                        result += (Every)
+                            ? everyMonthValue == "1" ? string.Empty : $"every {everyMonthValue} months"
+                            : $"only in {ToString(true, typeof(CronMonths), false)}";
+
+                        break;
+
+                    case CronTimeSections.Years:
+                        var everyYearValue = ToString(false, null, false);
+                        result += (Every)
+                            ? everyYearValue == "1" ? string.Empty : $"every {everyYearValue} years"
+                            : $"only in year {ToString(false, null, false)}";
+
+                        break;
+
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                return result.Trim();
+            }
+        }
 
         /// <inheritdoc cref="ISection" />
-        public bool Every { get; set; }
+        public bool Enabled { get; set; } = false;
 
         /// <inheritdoc cref="ISection" />
-        public bool Any { get; set; }
+        public bool Every { get; set; } = true;
 
         /// <inheritdoc cref="ISection" />
         public IEnumerable<string> Values
@@ -126,7 +206,15 @@ namespace Cron.Core
             {
                 throw new ArgumentOutOfRangeException();
             }
-            values.Add(new SectionValues(value));
+            values.Add(new SectionValues(time, value));
+
+            if (values.Count == 1)
+            {
+                Every = false;
+            }
+
+            Enabled = true;
+
             return this;
         }
 
@@ -137,7 +225,8 @@ namespace Cron.Core
             {
                 throw new ArgumentOutOfRangeException();
             }
-            values.Add(new SectionValues(minVal, maxVal));
+            values.Add(new SectionValues(time, minVal, maxVal));
+            Enabled = true;
             return this;
         }
 
@@ -145,6 +234,7 @@ namespace Cron.Core
         public ISection Clear()
         {
             values.Clear();
+            Enabled = false;
             return this;
         }
 
@@ -160,47 +250,8 @@ namespace Cron.Core
             return ((IEnumerable)values).GetEnumerator();
         }
 
-        /// <inheritdoc cref="ISection" />
-        public ISection Remove([Range(0, 9999)] int value)
-        {
-            var val = values.Find(x => x.MinValue == value);
-            values.Remove(val);
-            return this;
-        }
-
-        /// <inheritdoc cref="ISection" />
-        public ISection Remove([Range(0, 9999)] int minVal, [Range(0, 9999)] int maxVal)
-        {
-            var val = values.Find(x => x.MinValue == minVal && x.MaxValue == maxVal);
-            values.Remove(val);
-            return this;
-        }
-
-        /// <inheritdoc cref="ISection" />
-        public override string ToString()
-        {
-            if (!Enabled)
-            {
-                return string.Empty;
-            }
-
-            if (values.Count == 0)
-            {
-                return DEFAULT_CHAR;
-            }
-            else
-            {
-                SortValues();
-
-                var valueString = string.Join(",", values);
-                if (Every)
-                {
-                    valueString = $"{DEFAULT_CHAR}/" + valueString;
-                }
-
-                return valueString;
-            }
-        }
+        /// <inheritdoc cref="ISectionValues" />
+        public bool IsInt() => !ContainsRange && int.TryParse(ToString(), out _);
 
         /// <inheritdoc cref="ISection" />
         public bool IsValidRange(ISectionValues checkValues)
@@ -248,6 +299,63 @@ namespace Cron.Core
 
             return result;
         }
+
+        /// <inheritdoc cref="ISection" />
+        public ISection Remove([Range(0, 9999)] int value)
+        {
+            var val = values.Find(x => x.MinValue == value);
+            values.Remove(val);
+            return this;
+        }
+
+        /// <inheritdoc cref="ISection" />
+        public ISection Remove([Range(0, 9999)] int minVal, [Range(0, 9999)] int maxVal)
+        {
+            var val = values.Find(x => x.MinValue == minVal && x.MaxValue == maxVal);
+            values.Remove(val);
+            return this;
+        }
+
+        /// <inheritdoc cref="ISectionValues" />
+        public int ToInt()
+        {
+            if (!Enabled)
+            {
+                return 0;
+            }
+
+            return IsInt() ? (int)int.Parse(ToString()) : throw new InvalidCastException();
+        }
+
+        /// <inheritdoc cref="ISection" />
+        public string ToString(bool translateEnum, Type enumType, bool showEvery, string format = null)
+        {
+            if (!Enabled && !showEvery)
+            {
+                return string.Empty;
+            }
+
+            if (values.Count == 0)
+            {
+                return DEFAULT_CHAR;
+            }
+            else
+            {
+                SortValues();
+
+                var myValues = values.Select(x => x.ToString(translateEnum, enumType));
+                var valueString = string.Join(",", myValues);
+                if (Every && showEvery)
+                {
+                    valueString = $"{DEFAULT_CHAR}/" + valueString;
+                }
+
+                return valueString.Trim();
+            }
+        }
+
+        /// <inheritdoc cref="ISection" />
+        public override string ToString() => ToString(false, null, true, (time == CronTimeSections.Hours) ? "hh:mm tt" : null);
 
         private void SortValues()
         {

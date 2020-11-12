@@ -67,6 +67,7 @@
 		<Compile Include="Enums\CronDays.cs" />
 		<Compile Include="Enums\CronMonths.cs" />
 		<Compile Include="Enums\CronTimeSections.cs" />
+		<Compile Include="FormatProviders\HourFormatProvider.cs" />
 		<Compile Include="Interfaces\ICron.cs" />
 		<Compile Include="Interfaces\ISection.cs" />
 		<Compile Include="Interfaces\ISectionValues.cs" />
@@ -75,8 +76,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CronExpressionDescriptor" Version="2.15.0" />
-		<PackageReference Include="StrongNamer" Version="0.2.5" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
 	</ItemGroup>
 

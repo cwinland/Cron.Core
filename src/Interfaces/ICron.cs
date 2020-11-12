@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using Cron.Core.Enums;
 
@@ -151,5 +152,10 @@ namespace Cron.Core.Interfaces
         /// </summary>
         /// <returns><see cref="ISection" /></returns>
         ISection Years { get; }
+
+        /// <summary>
+        ///   Indicates next Date/Time Cron is scheduled.
+        /// </summary>
+        DateTime Next { get; }
     }
 }
