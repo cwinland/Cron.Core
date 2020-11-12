@@ -97,9 +97,8 @@ namespace Cron.Core.Interfaces
         /// <param name="translateEnum">Indicates if there is an enumerable, that it should be represented as a string instead of integer.</param>
         /// <param name="enumType">Type of Enumerable.</param>
         /// <param name="showEvery">Show every indicator.</param>
-        /// <param name="format">Optional string format.</param>
         /// <returns></returns>
-        string ToString(bool translateEnum, Type enumType, bool showEvery, string format = null);
+        string ToString(bool translateEnum, Type enumType, bool showEvery);
 
         /// <summary>
         ///   Indicates if this be represented as an integer.
@@ -111,5 +110,11 @@ namespace Cron.Core.Interfaces
         ///   Convert to Integer.
         /// </summary>
         int ToInt();
+
+        /// <summary>
+        ///   Next value for this section.
+        /// </summary>
+        /// <returns></returns>
+        TimeSpan Next(DateTime dateTime);
     }
 }

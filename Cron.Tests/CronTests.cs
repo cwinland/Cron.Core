@@ -12,11 +12,14 @@ namespace Cron.Tests
     public class CronTests
     {
         private ICron schedule;
+        private DateTime d;
 
         [TestInitialize]
         public void Init()
         {
             schedule = new Core.Cron();
+            // Saturday 340th day of the year
+            d = new DateTime(2020, 12, 5, 11, 03, 22);
         }
 
         [TestMethod]
@@ -368,8 +371,8 @@ namespace Cron.Tests
                 .Every = true;
             cron.Hours.Add(3)
                 .Every = true;
-
-            ValidateCronDesc(cron);
+            cron.Description.Should()
+                .Be("Every 5 seconds, every 44 minutes, every 3 hours");
         }
 
         [TestMethod]
@@ -381,7 +384,8 @@ namespace Cron.Tests
             cron.Minutes.Add(44);
             cron.Hours.Add(3);
 
-            ValidateCronDesc(cron);
+            cron.Description.Should()
+                .Be("At 03:44:05 AM");
         }
 
         [TestMethod]
@@ -415,10 +419,44 @@ namespace Cron.Tests
                 .Be(cron.Description);
         }
 
-        private static void ValidateCronDesc(Core.Cron cron)
+        [TestMethod]
+        public void Cron_NextTime()
         {
-            cron.Description.Trim().Should()
-                .Be(cron.Description.Trim());
+            var cron = new Core.Cron
+            {
+                { CronTimeSections.Seconds, 1, true },
+                { CronTimeSections.Minutes, 2, true },
+                { CronTimeSections.Hours, 3, true },
+            };
+            var t = cron.Description;
+            var newDateTime = new DateTime(d.Ticks).AddSeconds(1)
+                                                   .AddMinutes(2)
+                                                   .AddHours(3);
+
+            cron.Next(d).Should()
+                .Be(newDateTime);
+            cron.Next(newDateTime)
+                .Should()
+                .Be(newDateTime.AddSeconds(1)
+                               .AddMinutes(2)
+                               .AddHours(3));
+        }
+
+        [TestMethod]
+        public void Cron_NextDate()
+        {
+            var cron = new Core.Cron
+            {
+                { CronTimeSections.DayMonth, 3}, {CronMonths.August },
+            };
+            var t = cron.Description;
+            var newDateTime = new DateTime(2021, 8, 3, 0, 0, 0);
+            cron.Next(d).Should()
+                .Be(newDateTime);
+
+            cron.Next(newDateTime)
+                .Should()
+                .Be(newDateTime.AddMinutes(1));
         }
     }
 }

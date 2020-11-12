@@ -70,7 +70,7 @@ namespace Cron.Core.Interfaces
         /// <summary>
         ///   Indicates next Date/Time Cron is scheduled.
         /// </summary>
-        DateTime Next { get; }
+        DateTime Next(DateTime dateTime);
 
         /// <summary>
         ///   Add time value for the specified time section.

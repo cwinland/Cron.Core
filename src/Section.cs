@@ -38,12 +38,15 @@ namespace Cron.Core
         protected internal Section(CronTimeSections time, string expression) : this(time)
         {
             Any = expression == ANY_CHAR;
+            // Should only allow every on times
             Every = expression.Length > 1 && (expression.StartsWith("/") || expression.StartsWith("*"));
             expression = expression.StartsWith("*") ? expression.Substring(1) : expression;
             expression = expression.StartsWith("/") ? expression.Substring(1) : expression;
 
             if (expression.Length <= 0)
+            {
                 return;
+            }
 
             Enabled = true;
             expression.Split(',')
@@ -98,7 +101,9 @@ namespace Cron.Core
 
                 if (!Enabled ||
                     values.Count == 0)
+                {
                     return time == CronTimeSections.Seconds && Every ? "Every second" : string.Empty;
+                }
 
                 switch (time)
                 {
@@ -189,7 +194,9 @@ namespace Cron.Core
                 }
 
                 if (Every)
+                {
                     valueString.Add($"{DEFAULT_CHAR}/");
+                }
 
                 valueString.AddRange(values.Select(s => s.ToString()));
 
@@ -205,11 +212,16 @@ namespace Cron.Core
         public ISection Add([Range(0, 9999)] int value)
         {
             if (!IsValidRange(value))
+            {
                 throw new ArgumentOutOfRangeException();
+            }
+
             values.Add(new SectionValues(time, value));
 
             if (values.Count == 1)
+            {
                 Every = false;
+            }
 
             Enabled = true;
 
@@ -221,7 +233,10 @@ namespace Cron.Core
         {
             if (!IsValidRange(minVal) ||
                 !IsValidRange(maxVal))
+            {
                 throw new ArgumentOutOfRangeException();
+            }
+
             values.Add(new SectionValues(time, minVal, maxVal));
             Enabled = true;
 
@@ -252,7 +267,7 @@ namespace Cron.Core
         /// <inheritdoc cref="ISectionValues" />
         public bool IsInt()
         {
-            return !ContainsRange && int.TryParse(ToString(), out _);
+            return !ContainsRange && int.TryParse(ToString(false, null, true), out _);
         }
 
         /// <inheritdoc cref="ISection" />
@@ -330,17 +345,26 @@ namespace Cron.Core
         public int ToInt()
         {
             if (!Enabled)
+            {
                 return 0;
+            }
 
-            return IsInt() ? int.Parse(ToString()) : throw new InvalidCastException();
+            SortValues();
+
+            var myValues = values.Select(x => x.ToString(false, null));
+            var valueString = string.Join(",", myValues).Trim();
+
+            return int.TryParse(valueString, out var num) ? num : 0;
         }
 
         /// <inheritdoc cref="ISection" />
-        public string ToString(bool translateEnum, Type enumType, bool showEvery, string format = null)
+        public string ToString(bool translateEnum, Type enumType, bool showEvery)
         {
             if (!Enabled &&
                 !showEvery)
+            {
                 return string.Empty;
+            }
 
             if (values.Count == 0)
             {
@@ -352,15 +376,79 @@ namespace Cron.Core
             var myValues = values.Select(x => x.ToString(translateEnum, enumType));
             var valueString = string.Join(",", myValues);
             if (Every && showEvery)
+            {
                 valueString = $"{DEFAULT_CHAR}/" + valueString;
+            }
 
             return valueString.Trim();
         }
 
         /// <inheritdoc cref="ISection" />
-        public override string ToString()
+        public override string ToString() => ToString(false, null, true);
+
+        /// <inheritdoc cref="ISection" />
+        public TimeSpan Next(DateTime dateTime)
         {
-            return ToString(false, null, true, time == CronTimeSections.Hours ? "hh:mm tt" : null);
+            if (!Enabled)
+            {
+                return new TimeSpan(0);
+            }
+
+            switch (time)
+            {
+                case CronTimeSections.Seconds:
+                    return new TimeSpan(0, 0, ToInt());
+
+                case CronTimeSections.Minutes:
+                    return new TimeSpan(0, ToInt(), 0);
+
+                case CronTimeSections.Hours:
+                    // return (Every && IsInt()) ? (12 / ToInt()).ToString() : ToString();
+                    return new TimeSpan(ToInt(), 0, 0);
+
+                case CronTimeSections.DayMonth:
+                    if (dateTime.Day <= ToInt())
+                    {
+                        return new DateTime(dateTime.Year, dateTime.Month, ToInt()).Subtract(new DateTime(dateTime.Year, dateTime.Month, dateTime.Day));
+                    }
+                    else
+                    {
+                        var d = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+
+                        while (d.Day != ToInt())
+                        {
+                            d = d.AddDays(1);
+                        }
+
+                        return d.Subtract(dateTime);
+                    }
+
+                case CronTimeSections.Months:
+                    if (dateTime.Month <= ToInt())
+                    {
+                        return new DateTime(dateTime.Year, ToInt(), dateTime.Day).Subtract(new DateTime(dateTime.Year, dateTime.Month, dateTime.Day));
+                    }
+                    else
+                    {
+                        var d = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+
+                        while (d.Month != ToInt())
+                        {
+                            d = d.AddDays(1);
+                        }
+
+                        return d.Subtract(dateTime);
+                    }
+
+                case CronTimeSections.DayWeek:
+                    return new TimeSpan(0);
+
+                case CronTimeSections.Years:
+                    return new TimeSpan(365 * ToInt());
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         private void SortValues()
