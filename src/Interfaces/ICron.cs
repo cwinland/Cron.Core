@@ -26,6 +26,53 @@ namespace Cron.Core.Interfaces
         string Value { get; }
 
         /// <summary>
+        ///   Day of the Month Information
+        /// </summary>
+        /// <returns><see cref="ISection" /></returns>
+        ISection DayMonth { get; }
+
+        /// <summary>
+        ///   Day of the Week Information
+        /// </summary>
+        /// <returns><see cref="ISection" /></returns>
+        ISection DayWeek { get; }
+
+        /// <summary>
+        ///   Hours Information
+        /// </summary>
+        /// <returns><see cref="ISection" /></returns>
+        ISection Hours { get; }
+
+        /// <summary>
+        ///   Minutes Information
+        /// </summary>
+        /// <returns><see cref="ISection" /></returns>
+        ISection Minutes { get; }
+
+        /// <summary>
+        ///   Months Information
+        /// </summary>
+        /// <returns><see cref="ISection" /></returns>
+        ISection Months { get; }
+
+        /// <summary>
+        ///   Seconds Information
+        /// </summary>
+        /// <returns><see cref="ISection" /></returns>
+        ISection Seconds { get; }
+
+        /// <summary>
+        ///   Year Information
+        /// </summary>
+        /// <returns><see cref="ISection" /></returns>
+        ISection Years { get; }
+
+        /// <summary>
+        ///   Indicates next Date/Time Cron is scheduled.
+        /// </summary>
+        DateTime Next { get; }
+
+        /// <summary>
         ///   Add time value for the specified time section.
         /// </summary>
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
@@ -110,52 +157,5 @@ namespace Cron.Core.Interfaces
         /// <param name="value">Value for the specified time section.</param>
         /// <returns><see cref="ICron" /></returns>
         ICron Set(CronTimeSections time, ISection value);
-
-        /// <summary>
-        ///   Day of the Month Information
-        /// </summary>
-        /// <returns><see cref="ISection" /></returns>
-        ISection DayMonth { get; }
-
-        /// <summary>
-        ///   Day of the Week Information
-        /// </summary>
-        /// <returns><see cref="ISection" /></returns>
-        ISection DayWeek { get; }
-
-        /// <summary>
-        ///   Hours Information
-        /// </summary>
-        /// <returns><see cref="ISection" /></returns>
-        ISection Hours { get; }
-
-        /// <summary>
-        ///   Minutes Information
-        /// </summary>
-        /// <returns><see cref="ISection" /></returns>
-        ISection Minutes { get; }
-
-        /// <summary>
-        ///   Months Information
-        /// </summary>
-        /// <returns><see cref="ISection" /></returns>
-        ISection Months { get; }
-
-        /// <summary>
-        ///   Seconds Information
-        /// </summary>
-        /// <returns><see cref="ISection" /></returns>
-        ISection Seconds { get; }
-
-        /// <summary>
-        ///   Year Information
-        /// </summary>
-        /// <returns><see cref="ISection" /></returns>
-        ISection Years { get; }
-
-        /// <summary>
-        ///   Indicates next Date/Time Cron is scheduled.
-        /// </summary>
-        DateTime Next { get; }
     }
 }

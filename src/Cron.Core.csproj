@@ -67,7 +67,6 @@
 		<Compile Include="Enums\CronDays.cs" />
 		<Compile Include="Enums\CronMonths.cs" />
 		<Compile Include="Enums\CronTimeSections.cs" />
-		<Compile Include="FormatProviders\HourFormatProvider.cs" />
 		<Compile Include="Interfaces\ICron.cs" />
 		<Compile Include="Interfaces\ISection.cs" />
 		<Compile Include="Interfaces\ISectionValues.cs" />
@@ -87,7 +86,6 @@
 		<None Include=".gitignore" />
 		<None Include="Cron.md" />
 		<None Include="cron.snk" />
-		<None Include="docfx.json" />
 		<None Include="index.md" />
 	</ItemGroup>
 </Project>

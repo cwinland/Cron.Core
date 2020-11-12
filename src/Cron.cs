@@ -116,7 +116,7 @@ namespace Cron.Core
             }
         }
 
-        private bool IsTimeSpecific(ISection section)
+        private static bool IsTimeSpecific(ISection section)
         {
             return !(section.Enabled && (section.Every || section.ContainsRange));
         }

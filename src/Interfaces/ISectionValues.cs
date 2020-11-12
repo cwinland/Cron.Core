@@ -23,16 +23,5 @@ namespace Cron.Core.Interfaces
         /// <param name="translateEnum">Translate Enum.</param>
         /// <param name="enumType">Associated Enum Type.</param>
         string ToString(bool translate, Type enumType);
-
-        /// <summary>
-        ///   Indicates if this be represented as an integer.
-        /// </summary>
-        /// <returns></returns>
-        bool IsInt();
-
-        /// <summary>
-        ///   Convert to Integer.
-        /// </summary>
-        int ToInt();
     }
 }

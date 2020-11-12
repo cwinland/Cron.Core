@@ -37,6 +37,11 @@ namespace Cron.Core.Interfaces
         bool Enabled { get; set; }
 
         /// <summary>
+        ///   Get readable description.
+        /// </summary>
+        string Description { get; }
+
+        /// <summary>
         ///   Checks if the given values are valid for the current <see cref="ISection" />'s <see cref="CronTimeSections" /> value.
         /// </summary>
         /// <param name="values"><see cref="ISectionValues" /> values.</param>
@@ -85,11 +90,6 @@ namespace Cron.Core.Interfaces
         /// <param name="maxVal">Ending value for this <see cref="ISection" />.</param>
         /// <returns></returns>
         ISection Remove(int minVal, int maxVal);
-
-        /// <summary>
-        ///   Get readable description.
-        /// </summary>
-        string Description { get; }
 
         /// <summary>
         ///   Convert to string.
