@@ -1,10 +1,30 @@
-﻿using Cron.Core.Enums;
+﻿// ***********************************************************************
+// Assembly         : Cron.Core
+// Author           : chris
+// Created          : 11-12-2020
+//
+// Last Modified By : chris
+// Last Modified On : 11-12-2020
+// ***********************************************************************
+// <copyright file="TimeSection.cs" company="Microsoft Corporation">
+//     copyright(c) 2020 Christopher Winland
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using Cron.Core.Enums;
 using Cron.Core.Interfaces;
 using System.Collections.Generic;
 
 namespace Cron.Core.Sections
 {
-    /// <inheritdoc cref="ITimeSection"/>
+    /// <summary>
+    /// Class TimeSection.
+    /// Implements the <see cref="Cron.Core.Sections.Section" />
+    /// Implements the <see cref="Cron.Core.Interfaces.ITimeSection" />
+    /// </summary>
+    /// <seealso cref="Cron.Core.Sections.Section" />
+    /// <seealso cref="Cron.Core.Interfaces.ITimeSection" />
+    /// <inheritdoc cref="ITimeSection" />
     public class TimeSection : Section, ITimeSection
     {
         /// <inheritdoc />

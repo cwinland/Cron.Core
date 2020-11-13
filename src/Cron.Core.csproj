@@ -45,11 +45,17 @@
 		<Compile Remove="obj\**" />
 		<Compile Remove="TestResults\**" />
 		<EmbeddedResource Remove="%2a%2a\**" />
+		<EmbeddedResource Remove="api\**" />
+		<EmbeddedResource Remove="articles\**" />
 		<EmbeddedResource Remove="bin\**" />
+		<EmbeddedResource Remove="docs\**" />
 		<EmbeddedResource Remove="obj\**" />
 		<EmbeddedResource Remove="TestResults\**" />
 		<None Remove="%2a%2a\**" />
+		<None Remove="api\**" />
+		<None Remove="articles\**" />
 		<None Remove="bin\**" />
+		<None Remove="docs\**" />
 		<None Remove="obj\**" />
 		<None Remove="TestResults\**" />
 	</ItemGroup>

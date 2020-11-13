@@ -1,73 +1,88 @@
-﻿using Cron.Core.Enums;
+﻿// ***********************************************************************
+// Assembly         : Cron.Core
+// Author           : chris
+// Created          : 11-05-2020
+//
+// Last Modified By : chris
+// Last Modified On : 11-12-2020
+// ***********************************************************************
+// <copyright file="ICron.cs" company="Microsoft Corporation">
+//     copyright(c) 2020 Christopher Winland
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using Cron.Core.Enums;
 using System.Collections;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cron.Core.Interfaces
 {
     /// <summary>
-    ///   Cron Interface Object.
+    /// Cron Interface Object.
     /// </summary>
     public interface ICron : IEnumerable
     {
         /// <summary>
-        ///   Human readable description.
+        /// Human readable description.
         /// </summary>
+        /// <value>The description.</value>
         /// <example>
-        ///   Every 22 seconds, every 3,4 minutes, at 03:00 AM through 05:59 AM and 07:00 AM through 11:59 AM, on day 12 of the month, only on
-        ///   Wednesday, only in March and May, every 5 years
+        /// Every 22 seconds, every 3,4 minutes, at 03:00 AM through 05:59 AM and 07:00 AM through 11:59 AM, on day 12 of the month, only on
+        /// Wednesday, only in March and May, every 5 years
         /// </example>
         string Description { get; }
 
         /// <summary>
-        ///   Cron Expression.
+        /// Cron Expression.
         /// </summary>
+        /// <value>The value.</value>
         /// <example>*/22 */3,4 3-5,7-11 12 3,5 3 */5</example>
         string Value { get; }
 
         /// <summary>
-        ///   Day of the Month Information
+        /// Day of the Month Information
         /// </summary>
-        /// <returns><see cref="ISection" /></returns>
+        /// <value>The day month.</value>
         ISection DayMonth { get; }
 
         /// <summary>
-        ///   Day of the Week Information
+        /// Day of the Week Information
         /// </summary>
-        /// <returns><see cref="ISection" /></returns>
+        /// <value>The day week.</value>
         ISection DayWeek { get; }
 
         /// <summary>
-        ///   Hours Information
+        /// Hours Information
         /// </summary>
-        /// <returns><see cref="ISection" /></returns>
+        /// <value>The hours.</value>
         ISection Hours { get; }
 
         /// <summary>
-        ///   Minutes Information
+        /// Minutes Information
         /// </summary>
-        /// <returns><see cref="ISection" /></returns>
+        /// <value>The minutes.</value>
         ISection Minutes { get; }
 
         /// <summary>
-        ///   Months Information
+        /// Months Information
         /// </summary>
-        /// <returns><see cref="ISection" /></returns>
+        /// <value>The months.</value>
         ISection Months { get; }
 
         /// <summary>
-        ///   Seconds Information
+        /// Seconds Information
         /// </summary>
-        /// <returns><see cref="ISection" /></returns>
+        /// <value>The seconds.</value>
         ISection Seconds { get; }
 
         /// <summary>
-        ///   Year Information
+        /// Year Information
         /// </summary>
-        /// <returns><see cref="ISection" /></returns>
+        /// <value>The years.</value>
         ISection Years { get; }
 
         /// <summary>
-        ///   Add time value for the specified time section.
+        /// Add time value for the specified time section.
         /// </summary>
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         /// <param name="value">Value for the specified time section.</param>
@@ -76,7 +91,7 @@ namespace Cron.Core.Interfaces
         ICron Add(CronTimeSections time, [Range(0, 9999)] int value, bool repeatEvery = false);
 
         /// <summary>
-        ///   Add time value for the specified time section.
+        /// Add time value for the specified time section.
         /// </summary>
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         /// <param name="minValue">Starting value for the specified time section.</param>
@@ -85,7 +100,7 @@ namespace Cron.Core.Interfaces
         ICron Add(CronTimeSections time, [Range(0, 9999)] int minValue, [Range(0, 9999)] int maxValue);
 
         /// <summary>
-        ///   Add day of the week.
+        /// Add day of the week.
         /// </summary>
         /// <param name="value"><see cref="CronDays" /> representing the day of the week.</param>
         /// <param name="repeatEvery">Indicates if the value is a repeating day or specific day.</param>
@@ -93,7 +108,7 @@ namespace Cron.Core.Interfaces
         ICron Add(CronDays value, bool repeatEvery = false);
 
         /// <summary>
-        ///   Add month.
+        /// Add month.
         /// </summary>
         /// <param name="value"><see cref="CronMonths" /> representing the month.</param>
         /// <param name="repeatEvery">Indicates if the value is a repeating month or specific month.</param>
@@ -101,7 +116,7 @@ namespace Cron.Core.Interfaces
         ICron Add(CronMonths value, bool repeatEvery = false);
 
         /// <summary>
-        ///   Add range of days in the week.
+        /// Add range of days in the week.
         /// </summary>
         /// <param name="minValue">Starting <see cref="CronDays" /> representing the day of the week.</param>
         /// <param name="maxValue">Ending <see cref="CronDays" /> representing the day of the week.</param>
@@ -109,7 +124,7 @@ namespace Cron.Core.Interfaces
         ICron Add(CronDays minValue, CronDays maxValue);
 
         /// <summary>
-        ///   Add range of months.
+        /// Add range of months.
         /// </summary>
         /// <param name="minValue">Starting <see cref="CronMonths" /> representing the day of the month.</param>
         /// <param name="maxValue">Ending <see cref="CronMonths" /> representing the day of the month.</param>
@@ -117,14 +132,14 @@ namespace Cron.Core.Interfaces
         ICron Add(CronMonths minValue, CronMonths maxValue);
 
         /// <summary>
-        ///   Remove <see cref="CronTimeSections" /> with a specified value.
+        /// Remove <see cref="CronTimeSections" /> with a specified value.
         /// </summary>
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         /// <param name="value">Value for the specified time section.</param>
         void Remove(CronTimeSections time, int value);
 
         /// <summary>
-        ///   Remove <see cref="CronTimeSections" /> with a specified value.
+        /// Remove <see cref="CronTimeSections" /> with a specified value.
         /// </summary>
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         /// <param name="minValue">Starting value for the specified time section.</param>
@@ -132,20 +147,20 @@ namespace Cron.Core.Interfaces
         void Remove(CronTimeSections time, int minValue, int maxValue);
 
         /// <summary>
-        ///   Clear the specific time element of the Cron object to defaults without any numerical cron representations.
+        /// Clear the specific time element of the Cron object to defaults without any numerical cron representations.
         /// </summary>
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         /// <returns><see cref="ICron" /></returns>
         ICron Reset(CronTimeSections time);
 
         /// <summary>
-        ///   Clear the entire Cron object to defaults without any numerical cron representations.
+        /// Clear the entire Cron object to defaults without any numerical cron representations.
         /// </summary>
         /// <returns><see cref="ICron" /></returns>
         ICron ResetAll();
 
         /// <summary>
-        ///   Set time with <see cref="ISection" /> value.
+        /// Set time with <see cref="ISection" /> value.
         /// </summary>
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         /// <param name="value">Value for the specified time section.</param>

@@ -16,7 +16,7 @@ namespace Cron.Tests
         [TestInitialize]
         public void Init()
         {
-            schedule = new Core.Cron();
+            schedule = new Cron.Core.Cron();
         }
 
         [TestMethod]
