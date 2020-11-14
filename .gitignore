@@ -1,5 +1,8 @@
 src/TestResults/
-
+src/docs
+src/api
+src/articles
+src/Help
 
 # Created by https://www.gitignore.io/api/visualstudio
 
