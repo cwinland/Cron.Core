@@ -4,7 +4,7 @@
 // Created          : 11-05-2020
 //
 // Last Modified By : chris
-// Last Modified On : 11-12-2020
+// Last Modified On : 11-13-2020
 // ***********************************************************************
 // <copyright file="ICron.cs" company="Microsoft Corporation">
 //     copyright(c) 2020 Christopher Winland
@@ -12,7 +12,7 @@
 // <summary></summary>
 // ***********************************************************************
 using Cron.Core.Enums;
-using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Cron.Core.Interfaces
@@ -20,7 +20,7 @@ namespace Cron.Core.Interfaces
     /// <summary>
     /// Cron Interface Object.
     /// </summary>
-    public interface ICron : IEnumerable
+    public interface ICron : IEnumerable<CronTimeSections>
     {
         /// <summary>
         /// Human readable description.
@@ -103,17 +103,15 @@ namespace Cron.Core.Interfaces
         /// Add day of the week.
         /// </summary>
         /// <param name="value"><see cref="CronDays" /> representing the day of the week.</param>
-        /// <param name="repeatEvery">Indicates if the value is a repeating day or specific day.</param>
         /// <returns><see cref="ICron" /></returns>
-        ICron Add(CronDays value, bool repeatEvery = false);
+        ICron Add(CronDays value);
 
         /// <summary>
         /// Add month.
         /// </summary>
         /// <param name="value"><see cref="CronMonths" /> representing the month.</param>
-        /// <param name="repeatEvery">Indicates if the value is a repeating month or specific month.</param>
         /// <returns><see cref="ICron" /></returns>
-        ICron Add(CronMonths value, bool repeatEvery = false);
+        ICron Add(CronMonths value);
 
         /// <summary>
         /// Add range of days in the week.
@@ -162,9 +160,8 @@ namespace Cron.Core.Interfaces
         /// <summary>
         /// Set time with <see cref="ISection" /> value.
         /// </summary>
-        /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         /// <param name="value">Value for the specified time section.</param>
         /// <returns><see cref="ICron" /></returns>
-        ICron Set(CronTimeSections time, ISection value);
+        ICron Set(ISection value);
     }
 }

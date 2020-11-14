@@ -4,5 +4,108 @@
     <name>Cron.Tests</name>
   </assembly>
   <members>
+    <member name="T:Cron.Tests.CronTests">
+      <summary>
+   Defines test class CronTests.
+   </summary>
+    </member>
+    <member name="M:Cron.Tests.CronTests.Init">
+      <summary>
+   Initializes this instance.
+   </summary>
+    </member>
+    <member name="M:Cron.Tests.CronTests.Cron_CanVerifyComplex(System.Int32,System.Int32,System.Int32,System.String,System.String)">
+      <summary>
+   Defines the test method Cron_CanVerifyComplex.
+   </summary>
+      <param name="seconds">The seconds.</param>
+      <param name="dayMonth">The day month.</param>
+      <param name="years">The years.</param>
+      <param name="expectedValue">The expected value.</param>
+      <param name="expectedDescription">The expected description.</param>
+    </member>
+    <member name="M:Cron.Tests.CronTests.Cron_CanVerifyDefault">
+      <summary>
+   Defines the test method Cron_CanVerifyDefault.
+   </summary>
+    </member>
+    <member name="M:Cron.Tests.CronTests.Cron_YearOutOfRange">
+      <summary>
+   Defines the test method Cron_YearOutOfRange.
+   </summary>
+    </member>
+    <member name="M:Cron.Tests.CronTests.Cron_CanThrowSecondsOutOfRange">
+      <summary>
+   Defines the test method Cron_CanThrowSecondsOutOfRange.
+   </summary>
+    </member>
+    <member name="M:Cron.Tests.CronTests.Cron_CanThrowMonthsOutOfRange">
+      <summary>
+   Defines the test method Cron_CanThrowMonthsOutOfRange.
+   </summary>
+    </member>
+    <member name="M:Cron.Tests.CronTests.Cron_CreateByExpressionDescriptionMatches(System.String,System.String,System.String)">
+      <summary>
+   Defines the test method Cron_CreateByExpressionDescriptionMatches.
+   </summary>
+      <param name="expression">The expression.</param>
+      <param name="matchExpression">The match expression.</param>
+      <param name="description">The description.</param>
+    </member>
+    <member name="M:Cron.Tests.CronTests.Cron_CanRemoveSeconds">
+      <summary>
+   Defines the test method Cron_CanRemoveSeconds.
+   </summary>
+    </member>
+    <member name="M:Cron.Tests.CronTests.Cron_CanRemoveByRange">
+      <summary>
+   Defines the test method Cron_CanRemoveByRange.
+   </summary>
+    </member>
+    <member name="M:Cron.Tests.CronTests.Cron_CanAddByDayWeekRange">
+      <summary>
+   Defines the test method Cron_CanAddByDayWeekRange.
+   </summary>
+    </member>
+    <member name="M:Cron.Tests.CronTests.Cron_CanAddByCronMonthRange">
+      <summary>
+   Defines the test method Cron_CanAddByCronMonthRange.
+   </summary>
+    </member>
+    <member name="M:Cron.Tests.CronTests.Cron_CanResetDayWeek">
+      <summary>
+   Defines the test method Cron_CanResetDayWeek.
+   </summary>
+    </member>
+    <member name="M:Cron.Tests.CronTests.Cron_CanResetAll">
+      <summary>
+   Defines the test method Cron_CanResetAll.
+   </summary>
+    </member>
+    <member name="M:Cron.Tests.CronTests.Cron_DateAtDescriptionMatches">
+      <summary>
+   Defines the test method Cron_DateAtDescriptionMatches.
+   </summary>
+    </member>
+    <member name="M:Cron.Tests.CronTests.Cron_DateEveryDescriptionMatches">
+      <summary>
+   Defines the test method Cron_DateEveryDescriptionMatches.
+   </summary>
+    </member>
+    <member name="M:Cron.Tests.CronTests.Cron_TimeEveryDescriptionMatches">
+      <summary>
+   Defines the test method Cron_TimeEveryDescriptionMatches.
+   </summary>
+    </member>
+    <member name="M:Cron.Tests.CronTests.Cron_TimeAtDescriptionMatches">
+      <summary>
+   Defines the test method Cron_TimeAtDescriptionMatches.
+   </summary>
+    </member>
+    <member name="M:Cron.Tests.CronTests.Cron_DescriptionTimeMatches">
+      <summary>
+   Defines the test method Cron_DescriptionTimeMatches.
+   </summary>
+    </member>
   </members>
 </doc>

@@ -160,45 +160,38 @@
     <b>Assembly:</b>
    <span sdata="assembly">Cron.Core</span> (in Cron.Core.dll)<div class="LW_CollapsibleArea_Container"><div class="LW_CollapsibleArea_TitleDiv"><h2 class="LW_CollapsibleArea_Title">Syntax</h2><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr" /></div></div><a id="syntaxSection"><!----></a><div class="CodeSnippetContainer"><div class="CodeSnippetContainerTabs"><div class="CodeSnippetContainerTabLeft"><!----></div><div class="CodeSnippetContainerTabFirst CSharpTab" id="CSharpTabId" style="background:white;border-bottom-color:white"><a href="javascript:setActiveTab('CodeSnippetContainerCode','CSharpCode','CSharpTabId');" title="C#">C#</a></div><div class="CodeSnippetContainerTab VisualBasicTab" id="VisualBasicTabId"><a href="javascript:setActiveTab('CodeSnippetContainerCode','VisualBasicCode','VisualBasicTabId');" title="Visual Basic">VB</a></div><div class="CodeSnippetContainerTab ManagedCPlusPlusTab" id="ManagedCPlusPlusTabId"><a href="javascript:setActiveTab('CodeSnippetContainerCode','ManagedCPlusPlusCode','ManagedCPlusPlusTabId');" title="Visual C++">C++</a></div><div class="CodeSnippetContainerTabRight"><!----></div></div><div class="CodeSnippetContainerCodeCollection"><div class="CodeSnippetToolBar"><div class="CodeSnippetToolBarText" /></div><div class="CodeSnippetContainerCode CSharpCode"><pre xml:space="preserve" class="libCScode"><span class="keyword">public</span> <span class="keyword">class</span> <span class="identifier">Cron</span> : <a href="T-Cron.Core.Interfaces.ICron.htm">ICron</a></pre></div><div class="CodeSnippetContainerCode VisualBasicCode"><pre xml:space="preserve" class="libCScode"><span class="keyword">Public</span> <span class="keyword">Class</span> <span class="identifier">Cron</span> _
 	<span class="keyword">Implements</span> <a href="T-Cron.Core.Interfaces.ICron.htm">ICron</a></pre></div><div class="CodeSnippetContainerCode ManagedCPlusPlusCode"><pre xml:space="preserve" class="libCScode"><span class="keyword">public</span> <span class="keyword">ref class</span> <span class="identifier">Cron</span> : <a href="T-Cron.Core.Interfaces.ICron.htm">ICron</a></pre></div></div></div></div><div class="LW_CollapsibleArea_Container"><div class="LW_CollapsibleArea_TitleDiv"><h2 class="LW_CollapsibleArea_Title">Examples</h2><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr" /></div></div><a id="exampleSection"><!----></a>
-  
    Create a Cron object.
   <span id="cbc_1" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve">schedule = <span class="highlight-keyword">new</span> Cron.Core.Cron();</pre></div></span>
-  
    Add Cron sections by section.
   <span id="cbc_2" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve">schedule.Add(time: CronTimeSections.Seconds, <span class="highlight-keyword">value</span>: seconds, repeatEvery: <span class="highlight-keyword">true</span>)
 schedule.Add(CronTimeSections.Minutes, <span class="highlight-number">4</span>)
 schedule.Add(CronTimeSections.Hours, <span class="highlight-number">3</span>, <span class="highlight-number">5</span>)</pre></div></span>
-  
    Add time sections by months.
   <span id="cbc_3" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve">schedule.Add(CronMonths.March)</pre></div></span>
-  
    Add time section by Day.
   <span id="cbc_4" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve">schedule.Add(CronDays.Wednesday)</pre></div></span>
-  
    Chain sections.
   <span id="cbc_5" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve">schedule = <span class="highlight-keyword">new</span> Cron()
-    .Add(CronDays.Friday)
-    .Add(CronTimeSections.DayMonth, dayMonth)
-    .Add(CronTimeSections.Years, years, <span class="highlight-keyword">true</span>);</pre></div></span>
-  
+.Add(CronDays.Friday)
+.Add(CronTimeSections.DayMonth, dayMonth)
+.Add(CronTimeSections.Years, years, <span class="highlight-keyword">true</span>);</pre></div></span>
    Create Cron with an existing expression
   <span id="cbc_6" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve"><span class="highlight-keyword">var</span> cron = <span class="highlight-keyword">new</span> Cron(expression);</pre></div></span>
-  
    Remove single value entry.
-  <span id="cbc_7" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve">cron.Remove(CronTimeSections.Seconds, <span class="highlight-number">5</span>);
-cron.Remove(CronTimeSections.Seconds, <span class="highlight-number">5</span>, <span class="highlight-number">6</span>);</pre></div></span>
-  
+  <span id="cbc_7" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve">cron.Remove(CronTimeSections.Seconds, <span class="highlight-number">5</span>);</pre></div></span>
+   Remove Multiple value entry.
+  <span id="cbc_8" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve">cron.Remove(CronTimeSections.Seconds, <span class="highlight-number">5</span>, <span class="highlight-number">6</span>);</pre></div></span>
    Create Initial Cron with Days
-  <span id="cbc_8" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve"><span class="highlight-keyword">var</span> cron = <span class="highlight-keyword">new</span> Cron
+  <span id="cbc_9" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve"><span class="highlight-keyword">var</span> cron = <span class="highlight-keyword">new</span> Cron
 {
-    { CronDays.Thursday, CronDays.Saturday }
+{ CronDays.Thursday, CronDays.Saturday }
 };</pre></div></span>
    Create Initial Cron with Months.
-  <span id="cbc_9" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve"><span class="highlight-keyword">var</span> cron = <span class="highlight-keyword">new</span> Cron { { CronMonths.August, CronMonths.November } };</pre></div></span>
+  <span id="cbc_10" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve"><span class="highlight-keyword">var</span> cron = <span class="highlight-keyword">new</span> Cron { { CronMonths.August, CronMonths.November } };</pre></div></span>
    Reset Day of the Week section only.
-  <span id="cbc_10" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve">cron.Reset(CronTimeSections.DayWeek);</pre></div></span>
+  <span id="cbc_11" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve">cron.Reset(CronTimeSections.DayWeek);</pre></div></span>
    Reset all sections to the defaults.
-  <span id="cbc_11" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve">cron.ResetAll();</pre></div></span></div><div class="LW_CollapsibleArea_Container"><div class="LW_CollapsibleArea_TitleDiv"><h2 class="LW_CollapsibleArea_Title">Inheritance Hierarchy</h2><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr" /></div></div><a id="familySection"><!----></a><a href="http://msdn.microsoft.com/en-us/library/system.object.aspx" target="_blank">Object</a><br />  <span class="selflink">Cron.Core<span class="languageSpecificText"><span class="cs">.</span><span class="vb">.</span><span class="cpp">::</span><span class="nu">.</span><span class="fs">.</span></span>Cron</span><br /></div><div class="LW_CollapsibleArea_Container"><div class="LW_CollapsibleArea_TitleDiv"><h2 class="LW_CollapsibleArea_Title">See Also</h2><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr" /></div></div><a id="seeAlsoSection"><!----></a><div class="seeAlsoStyle"><a href="AllMembers.T-Cron.Core.Cron.htm">Cron Members</a></div><div class="seeAlsoStyle"><a href="N-Cron.Core.htm">Cron.Core Namespace</a></div><div class="seeAlsoStyle"><a href="T-Cron.Core.Interfaces.ICron.htm">Cron.Core.Interfaces<span class="languageSpecificText"><span class="cs">.</span><span class="vb">.</span><span class="cpp">::</span><span class="nu">.</span><span class="fs">.</span></span>ICron</a></div></div></div>
+  <span id="cbc_12" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve">cron.ResetAll();</pre></div></span></div><div class="LW_CollapsibleArea_Container"><div class="LW_CollapsibleArea_TitleDiv"><h2 class="LW_CollapsibleArea_Title">Inheritance Hierarchy</h2><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr" /></div></div><a id="familySection"><!----></a><a href="http://msdn.microsoft.com/en-us/library/system.object.aspx" target="_blank">Object</a><br />  <span class="selflink">Cron.Core<span class="languageSpecificText"><span class="cs">.</span><span class="vb">.</span><span class="cpp">::</span><span class="nu">.</span><span class="fs">.</span></span>Cron</span><br /></div><div class="LW_CollapsibleArea_Container"><div class="LW_CollapsibleArea_TitleDiv"><h2 class="LW_CollapsibleArea_Title">See Also</h2><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr" /></div></div><a id="seeAlsoSection"><!----></a><div class="seeAlsoStyle"><a href="AllMembers.T-Cron.Core.Cron.htm">Cron Members</a></div><div class="seeAlsoStyle"><a href="N-Cron.Core.htm">Cron.Core Namespace</a></div></div></div>
             </div>
           </div>
         </div>

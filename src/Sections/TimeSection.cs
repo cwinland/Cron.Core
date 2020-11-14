@@ -4,7 +4,7 @@
 // Created          : 11-12-2020
 //
 // Last Modified By : chris
-// Last Modified On : 11-12-2020
+// Last Modified On : 11-13-2020
 // ***********************************************************************
 // <copyright file="TimeSection.cs" company="Microsoft Corporation">
 //     copyright(c) 2020 Christopher Winland
@@ -35,7 +35,7 @@ namespace Cron.Core.Sections
 
         /// <inheritdoc />
         public List<int> AllowedIncrements =>
-            time == CronTimeSections.Hours
+            Time == CronTimeSections.Hours
                 ? new List<int>()
                 {
                     2,

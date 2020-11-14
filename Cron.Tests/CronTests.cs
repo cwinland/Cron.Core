@@ -1,3 +1,16 @@
+// ***********************************************************************
+// Assembly         : Cron.Tests
+// Author           : chris
+// Created          : 11-05-2020
+//
+// Last Modified By : chris
+// Last Modified On : 11-13-2020
+// ***********************************************************************
+// <copyright file="CronTests.cs" company="Cron.Tests">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -8,17 +21,31 @@ using Cron.Core.Enums;
 
 namespace Cron.Tests
 {
+    /// <summary>
+    /// Defines test class CronTests.
+    /// </summary>
     [TestClass]
     public class CronTests
     {
         private ICron schedule;
 
+        /// <summary>
+        /// Initializes this instance.
+        /// </summary>
         [TestInitialize]
         public void Init()
         {
             schedule = new Cron.Core.Cron();
         }
 
+        /// <summary>
+        /// Defines the test method Cron_CanVerifyComplex.
+        /// </summary>
+        /// <param name="seconds">The seconds.</param>
+        /// <param name="dayMonth">The day month.</param>
+        /// <param name="years">The years.</param>
+        /// <param name="expectedValue">The expected value.</param>
+        /// <param name="expectedDescription">The expected description.</param>
         [TestMethod]
         [DataRow(
             3,
@@ -144,6 +171,9 @@ namespace Cron.Tests
                 .Be($"{dayMonth}");
         }
 
+        /// <summary>
+        /// Defines the test method Cron_CanVerifyDefault.
+        /// </summary>
         [TestMethod]
         public void Cron_CanVerifyDefault()
         {
@@ -156,6 +186,9 @@ namespace Cron.Tests
                 .Be("Every minute");
         }
 
+        /// <summary>
+        /// Defines the test method Cron_YearOutOfRange.
+        /// </summary>
         [TestMethod]
         public void Cron_YearOutOfRange()
         {
@@ -165,6 +198,9 @@ namespace Cron.Tests
                 .Throw<ArgumentOutOfRangeException>();
         }
 
+        /// <summary>
+        /// Defines the test method Cron_CanThrowSecondsOutOfRange.
+        /// </summary>
         [TestMethod]
         public void Cron_CanThrowSecondsOutOfRange()
         {
@@ -174,6 +210,9 @@ namespace Cron.Tests
                 .Throw<ArgumentOutOfRangeException>();
         }
 
+        /// <summary>
+        /// Defines the test method Cron_CanThrowMonthsOutOfRange.
+        /// </summary>
         [TestMethod]
         public void Cron_CanThrowMonthsOutOfRange()
         {
@@ -183,6 +222,12 @@ namespace Cron.Tests
                 .Throw<ArgumentOutOfRangeException>();
         }
 
+        /// <summary>
+        /// Defines the test method Cron_CreateByExpressionDescriptionMatches.
+        /// </summary>
+        /// <param name="expression">The expression.</param>
+        /// <param name="matchExpression">The match expression.</param>
+        /// <param name="description">The description.</param>
         [TestMethod]
         [DataRow("2 3 4 5 6", "* 2 3 4 5 6 *", "At 03:02 AM, only on day 4 of the month, only on Saturday, only in May")]
         [DataRow("0 0 0 0", null, null)]
@@ -227,6 +272,9 @@ namespace Cron.Tests
             }
         }
 
+        /// <summary>
+        /// Defines the test method Cron_CanRemoveSeconds.
+        /// </summary>
         [TestMethod]
         public void Cron_CanRemoveSeconds()
         {
@@ -246,6 +294,9 @@ namespace Cron.Tests
                 .Be("7,9 * * * * * *");
         }
 
+        /// <summary>
+        /// Defines the test method Cron_CanRemoveByRange.
+        /// </summary>
         [TestMethod]
         public void Cron_CanRemoveByRange()
         {
@@ -265,6 +316,9 @@ namespace Cron.Tests
                 .Be("7,9 * * * * * *");
         }
 
+        /// <summary>
+        /// Defines the test method Cron_CanAddByDayWeekRange.
+        /// </summary>
         [TestMethod]
         public void Cron_CanAddByDayWeekRange()
         {
@@ -277,6 +331,9 @@ namespace Cron.Tests
                 .BeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method Cron_CanAddByCronMonthRange.
+        /// </summary>
         [TestMethod]
         public void Cron_CanAddByCronMonthRange()
         {
@@ -289,6 +346,9 @@ namespace Cron.Tests
                 .BeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method Cron_CanResetDayWeek.
+        /// </summary>
         [TestMethod]
         public void Cron_CanResetDayWeek()
         {
@@ -305,6 +365,9 @@ namespace Cron.Tests
                 .Be(cron.Value);
         }
 
+        /// <summary>
+        /// Defines the test method Cron_CanResetAll.
+        /// </summary>
         [TestMethod]
         public void Cron_CanResetAll()
         {
@@ -326,6 +389,9 @@ namespace Cron.Tests
                 .Be(cron.Value);
         }
 
+        /// <summary>
+        /// Defines the test method Cron_DateAtDescriptionMatches.
+        /// </summary>
         [TestMethod]
         public void Cron_DateAtDescriptionMatches()
         {
@@ -349,6 +415,9 @@ namespace Cron.Tests
                 .Be("Every minute, 04:00 AM-04:59 AM, only on Friday, only in January, only in year 2020,2022,2024-2026");
         }
 
+        /// <summary>
+        /// Defines the test method Cron_DateEveryDescriptionMatches.
+        /// </summary>
         [TestMethod]
         public void Cron_DateEveryDescriptionMatches()
         {
@@ -363,6 +432,9 @@ namespace Cron.Tests
                 .Be("Every minute, only on Friday, only in January, only in year 2021");
         }
 
+        /// <summary>
+        /// Defines the test method Cron_TimeEveryDescriptionMatches.
+        /// </summary>
         [TestMethod]
         public void Cron_TimeEveryDescriptionMatches()
         {
@@ -378,6 +450,9 @@ namespace Cron.Tests
                 .Be("Every 5 seconds, every 44 minutes, every 3 hours");
         }
 
+        /// <summary>
+        /// Defines the test method Cron_TimeAtDescriptionMatches.
+        /// </summary>
         [TestMethod]
         public void Cron_TimeAtDescriptionMatches()
         {
@@ -391,6 +466,9 @@ namespace Cron.Tests
                 .Be("At 03:44:05 AM");
         }
 
+        /// <summary>
+        /// Defines the test method Cron_DescriptionTimeMatches.
+        /// </summary>
         [TestMethod]
         public void Cron_DescriptionTimeMatches()
         {

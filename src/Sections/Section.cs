@@ -4,20 +4,20 @@
 // Created          : 11-12-2020
 //
 // Last Modified By : chris
-// Last Modified On : 11-12-2020
+// Last Modified On : 11-13-2020
 // ***********************************************************************
 // <copyright file="Section.cs" company="Microsoft Corporation">
 //     copyright(c) 2020 Christopher Winland
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+using Cron.Core.Enums;
+using Cron.Core.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using Cron.Core.Enums;
-using Cron.Core.Interfaces;
 
 namespace Cron.Core.Sections
 {
@@ -29,10 +29,33 @@ namespace Cron.Core.Sections
     /// <inheritdoc cref="ISection" />
     public abstract class Section : ISection
     {
+        /// <summary>
+        /// Determines whether [is time cron section] [the specified time].
+        /// </summary>
+        /// <param name="time">The time.</param>
+        /// <returns><c>true</c> if [is time cron section] [the specified time]; otherwise, <c>false</c>.</returns>
+        public static bool IsTimeCronSection(CronTimeSections time)
+        {
+            switch (time)
+            {
+                case CronTimeSections.Seconds:
+                case CronTimeSections.Minutes:
+                case CronTimeSections.Hours:
+                    return true;
+                case CronTimeSections.DayMonth:
+                case CronTimeSections.Months:
+                case CronTimeSections.DayWeek:
+                case CronTimeSections.Years:
+                    return false;
+                default:
+                    return false;
+            }
+
+        }
         #region Indexers
 
         /// <summary>
-        /// Gets the <see cref="ISectionValues"/> at the specified index.
+        /// Gets the <see cref="ISectionValues" /> at the specified index.
         /// </summary>
         /// <param name="index">The index.</param>
         /// <returns>ISectionValues.</returns>
@@ -45,12 +68,6 @@ namespace Cron.Core.Sections
 
         private const string ANY_CHAR = "?";
         private const string DEFAULT_CHAR = "*";
-
-        /// <summary>
-        /// Time Section Type.
-        /// </summary>
-        protected readonly CronTimeSections time;
-
         private readonly List<ISectionValues> values = new List<ISectionValues>();
 
         #endregion Fields
@@ -105,12 +122,20 @@ namespace Cron.Core.Sections
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         protected internal Section(CronTimeSections time)
         {
-            this.time = time;
+            this.Time = time;
         }
 
         #endregion Constructors
 
         #region Properties
+
+        /// <summary>
+        /// Gets the type of the section.
+        /// </summary>
+        /// <value>The type of the section.</value>
+        public CronSectionType SectionType => IsTimeCronSection(Time)
+            ? CronSectionType.Time 
+            : CronSectionType.Date;
 
         /// <summary>
         /// Indicates that the value should be translated using the ? any indicator.
@@ -144,10 +169,10 @@ namespace Cron.Core.Sections
                 if (!Enabled ||
                     values.Count == 0)
                 {
-                    return time == CronTimeSections.Seconds && Every ? "Every second" : string.Empty;
+                    return Time == CronTimeSections.Seconds && Every ? "Every second" : string.Empty;
                 }
 
-                switch (time)
+                switch (Time)
                 {
                     case CronTimeSections.Seconds:
                         result += Every
@@ -257,6 +282,13 @@ namespace Cron.Core.Sections
             }
         }
 
+        private CronTimeSections time;
+        /// <summary>
+        /// Gets or sets the time section Type <see cref="CronTimeSections" />.
+        /// </summary>
+        /// <value>The time.</value>
+        public CronTimeSections Time { get => time; protected internal set => time = value; }
+
         #endregion Properties
 
         #region Methods
@@ -266,6 +298,7 @@ namespace Cron.Core.Sections
         /// </summary>
         /// <param name="value">Value for this <see cref="ISection" />.</param>
         /// <returns>ISection.</returns>
+        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         /// <inheritdoc cref="ISection" />
         public ISection Add([Range(0, 9999)] int value)
@@ -275,7 +308,7 @@ namespace Cron.Core.Sections
                 throw new ArgumentOutOfRangeException();
             }
 
-            values.Add(new SectionValues(time, value));
+            values.Add(new SectionValues(Time, value));
 
             if (values.Count == 1)
             {
@@ -293,6 +326,7 @@ namespace Cron.Core.Sections
         /// <param name="minVal">Starting value for this <see cref="ISection" />.</param>
         /// <param name="maxVal">Ending value for this <see cref="ISection" />.</param>
         /// <returns>ISection.</returns>
+        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         /// <inheritdoc cref="ISection" />
         public ISection Add([Range(0, 9999)] int minVal, [Range(0, 9999)] int maxVal)
@@ -303,7 +337,7 @@ namespace Cron.Core.Sections
                 throw new ArgumentOutOfRangeException();
             }
 
-            values.Add(new SectionValues(time, minVal, maxVal));
+            values.Add(new SectionValues(Time, minVal, maxVal));
             Enabled = true;
 
             return this;
@@ -327,26 +361,17 @@ namespace Cron.Core.Sections
         /// </summary>
         /// <returns>An enumerator that can be used to iterate through the collection.</returns>
         /// <inheritdoc cref="ISection" />
-        public IEnumerator<ISectionValues> GetEnumerator()
-        {
-            return ((IEnumerable<ISectionValues>) values).GetEnumerator();
-        }
+        public IEnumerator<ISectionValues> GetEnumerator() => ((IEnumerable<ISectionValues>) values).GetEnumerator();
 
         /// <inheritdoc cref="ISection" />
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return ((IEnumerable) values).GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable) values).GetEnumerator();
 
         /// <summary>
         /// Indicates if this be represented as an integer.
         /// </summary>
         /// <returns><c>true</c> if this instance is int; otherwise, <c>false</c>.</returns>
         /// <inheritdoc cref="ISectionValues" />
-        public bool IsInt()
-        {
-            return !ContainsRange && int.TryParse(ToString(false, null, true), out _);
-        }
+        public bool IsInt() => !ContainsRange && int.TryParse(ToString(false, null, true), out _);
 
         /// <summary>
         /// Determines whether [is valid range] [the specified check values].
@@ -369,7 +394,7 @@ namespace Cron.Core.Sections
         {
             bool result;
 
-            switch (time)
+            switch (Time)
             {
                 case CronTimeSections.Seconds:
                 case CronTimeSections.Minutes:

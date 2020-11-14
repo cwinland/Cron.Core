@@ -4,7 +4,7 @@
 // Created          : 11-05-2020
 //
 // Last Modified By : Chris Winland
-// Last Modified On : 11-12-2020
+// Last Modified On : 11-13-2020
 // ***********************************************************************
 // <copyright file="Cron.cs" company="Microsoft Corporation">
 //     copyright(c) 2020 Christopher Winland
@@ -13,13 +13,13 @@
 // ***********************************************************************
 using Cron.Core.Enums;
 using Cron.Core.Interfaces;
+using Cron.Core.Sections;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Cron.Core.Sections;
 
 namespace Cron.Core
 {
@@ -27,55 +27,49 @@ namespace Cron.Core
     /// Represents a Cron expression, Description, and object that can be used to create and modify cron expressions.
     /// Implements the <see cref="Cron.Core.Interfaces.ICron" />
     /// </summary>
-    /// 
     /// <example>
-    /// 
     /// Create a Cron object.
     /// <code>
-    ///     schedule = new Cron.Core.Cron();
+    /// schedule = new Cron.Core.Cron();
     /// </code>
-    /// 
     /// Add Cron sections by section.
     /// <code>
-    ///     schedule.Add(time: CronTimeSections.Seconds, value: seconds, repeatEvery: true)
-    ///     schedule.Add(CronTimeSections.Minutes, 4)
-    ///     schedule.Add(CronTimeSections.Hours, 3, 5)
+    /// schedule.Add(time: CronTimeSections.Seconds, value: seconds, repeatEvery: true)
+    /// schedule.Add(CronTimeSections.Minutes, 4)
+    /// schedule.Add(CronTimeSections.Hours, 3, 5)
     /// </code>
-    ///
     /// Add time sections by months.
     /// <code>
-    ///     schedule.Add(CronMonths.March)
+    /// schedule.Add(CronMonths.March)
     /// </code>
-    ///
     /// Add time section by Day.
     /// <code>
-    ///     schedule.Add(CronDays.Wednesday)
+    /// schedule.Add(CronDays.Wednesday)
     /// </code>
-    ///
     /// Chain sections.
     /// <code>
-    ///     schedule = new Cron()
-    ///         .Add(CronDays.Friday)
-    ///         .Add(CronTimeSections.DayMonth, dayMonth)
-    ///         .Add(CronTimeSections.Years, years, true);
+    /// schedule = new Cron()
+    /// .Add(CronDays.Friday)
+    /// .Add(CronTimeSections.DayMonth, dayMonth)
+    /// .Add(CronTimeSections.Years, years, true);
     /// </code>
-    ///
     /// Create Cron with an existing expression
     /// <code>
-    ///     var cron = new Cron(expression);
+    /// var cron = new Cron(expression);
     /// </code>
-    ///
     /// Remove single value entry.
     /// <code>
-    ///     cron.Remove(CronTimeSections.Seconds, 5);
-    ///     cron.Remove(CronTimeSections.Seconds, 5, 6);
+    /// cron.Remove(CronTimeSections.Seconds, 5);
     /// </code>
-    ///
+    /// Remove Multiple value entry.
+    /// <code>
+    /// cron.Remove(CronTimeSections.Seconds, 5, 6);
+    /// </code>
     /// Create Initial Cron with Days
     /// <code>
     /// var cron = new Cron
     /// {
-    ///     { CronDays.Thursday, CronDays.Saturday }
+    /// { CronDays.Thursday, CronDays.Saturday }
     /// };
     /// </code>
     /// Create Initial Cron with Months.
@@ -89,44 +83,49 @@ namespace Cron.Core
     /// Reset all sections to the defaults.
     /// <code>
     /// cron.ResetAll();
-    /// </code>
-    /// </example>
-    /// <seealso cref="Cron.Core.Interfaces.ICron" />
+    /// </code></example>
     /// <inheritdoc cref="ICron" />
     public class Cron : ICron
     {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Cron"/> class.
+        /// Initializes a new instance of the <see cref="Cron" /> class.
         /// </summary>
+        /// <example>
+        /// Create a Cron object.
+        /// <code>
+        /// schedule = new Cron.Core.Cron();
+        /// </code></example>
         /// <inheritdoc cref="ICron" />
         public Cron()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Cron"/> class.
+        /// Initializes a new instance of the <see cref="Cron" /> class.
         /// </summary>
         /// <param name="expression">The expression.</param>
         /// <exception cref="InvalidDataException">This expression only has {cronArray.Length} parts. An expression must have 5, 6, or 7 parts.</exception>
+        /// <example>
+        /// Create Cron with an existing expression
+        /// <code>
+        /// var cron = new Cron(expression);
+        /// </code></example>
         /// <inheritdoc cref="ICron" />
         public Cron(string expression) : this()
         {
             var cronArray = expression.Split(' ');
-
             var startingIndex = 0;
 
             if (cronArray.Length < 5)
             {
                 throw new InvalidDataException($"This expression only has {cronArray.Length} parts. An expression must have 5, 6, or 7 parts.");
             }
-            foreach (CronTimeSections timeSection in this)
-            {
-                SetProperty(timeSection, IsApplyTime(cronArray.Length, timeSection, startingIndex)
-                                ? (GetProperty(timeSection) is TimeSection ? (ISection) new TimeSection(timeSection, cronArray[startingIndex++]) : new DateSection(timeSection, cronArray[startingIndex++]))
-                                : DisabledSection);
-            }
+
+            TimeSections.ForEach(timeSection => SetProperty(timeSection, IsApplyTime(cronArray.Length, timeSection, startingIndex)
+                                                                     ? (GetProperty(timeSection) is TimeSection ? (ISection)new TimeSection(timeSection, cronArray[startingIndex++]) : new DateSection(timeSection, cronArray[startingIndex++]))
+                                                                     : DisabledSection));
         }
 
         #endregion Constructors
@@ -162,6 +161,305 @@ namespace Cron.Core
                 return $"{time} {date}".Trim();
             }
         }
+
+        /// <summary>
+        /// Hours Information
+        /// </summary>
+        /// <value>The hours.</value>
+        /// <inheritdoc cref="ICron" />
+        public ISection Hours { get; private set; } = new TimeSection(CronTimeSections.Hours);
+
+        /// <summary>
+        /// Minutes Information
+        /// </summary>
+        /// <value>The minutes.</value>
+        /// <inheritdoc cref="ICron" />
+        public ISection Minutes { get; private set; } = new TimeSection(CronTimeSections.Minutes);
+
+        /// <summary>
+        /// Months Information
+        /// </summary>
+        /// <value>The months.</value>
+        /// <inheritdoc cref="ICron" />
+        public ISection Months { get; private set; } = new DateSection(CronTimeSections.Months);
+
+        /// <summary>
+        /// Seconds Information
+        /// </summary>
+        /// <value>The seconds.</value>
+        /// <inheritdoc cref="ICron" />
+        public ISection Seconds { get; private set; } = new TimeSection(CronTimeSections.Seconds);
+
+        /// <summary>
+        /// Get a list of sections.
+        /// </summary>
+        /// <value>The section list.</value>
+        public List<ISection> SectionList =>
+            new SortedList<int, ISection>(typeof(Cron)
+                                          .GetRuntimeProperties()
+                                          .Where(x => x.PropertyType == typeof(ISection))
+                                          .Select(x => (ISection)x.GetValue(this))
+                                          .ToList().ToDictionary(s => (int)s.Time)).Values.ToList();
+
+        /// <summary>
+        /// Cron Expression.
+        /// </summary>
+        /// <value>The value.</value>
+        /// <inheritdoc cref="ICron" />
+        public string Value => $"{Get(CronTimeSections.Seconds)} {Get(CronTimeSections.Minutes)} {Get(CronTimeSections.Hours)} {Get(CronTimeSections.DayMonth)} {Get(CronTimeSections.Months)} {Get(CronTimeSections.DayWeek)} {Get(CronTimeSections.Years)}";
+
+        /// <summary>
+        /// Year Information
+        /// </summary>
+        /// <value>The years.</value>
+        /// <inheritdoc cref="ICron" />
+        public ISection Years { get; private set; } = new DateSection(CronTimeSections.Years);
+
+        private static ISection DisabledSection => new DateSection(0) { Enabled = false };
+
+        private static List<CronTimeSections> TimeSections =>
+            new SortedList<int, CronTimeSections>(
+            Enum.GetValues(typeof(CronTimeSections))
+                .Cast<CronTimeSections>()
+                .ToList().ToDictionary(s => (int)s)).Values.ToList();
+
+        #endregion Properties
+
+        #region Methods
+
+        /// <summary>
+        /// Add time value for the specified time section.
+        /// </summary>
+        /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
+        /// <param name="value">Value for the specified time section.</param>
+        /// <param name="repeatEvery">Indicates if the value is a repeating time or specific time.</param>
+        /// <returns><see cref="ICron" /></returns>
+        /// <exception cref="System.ArgumentOutOfRangeException">repeatEvery</exception>
+        /// <exception cref="ArgumentOutOfRangeException">repeatEvery</exception>
+        /// <example>
+        /// Add Cron sections by section.
+        /// <code>
+        /// schedule.Add(time: CronTimeSections.Seconds, value: seconds, repeatEvery: true)
+        /// schedule.Add(CronTimeSections.Minutes, 4)
+        /// </code></example>
+        /// <inheritdoc cref="ICron" />
+        public ICron Add(CronTimeSections time, int value, bool repeatEvery = false)
+        {
+            GetProperty(time).Add(value);
+
+            if (!repeatEvery)
+            {
+                return this;
+            }
+
+            if (!Section.IsTimeCronSection(time))
+            {
+                throw new ArgumentOutOfRangeException(nameof(repeatEvery));
+            }
+
+            GetProperty(time).Every = true;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Add time value for the specified time section.
+        /// </summary>
+        /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
+        /// <param name="minValue">Starting value for the specified time section.</param>
+        /// <param name="maxValue">Ending value for the specified time section.</param>
+        /// <returns><see cref="ICron" /></returns>
+        /// <example>
+        /// Add Cron sections by section.
+        /// <code>
+        /// schedule.Add(CronTimeSections.Hours, 3, 5);
+        /// schedule.Add(CronTimeSections.Years, 2020, 2022);
+        /// </code></example>
+        /// <inheritdoc cref="ICron" />
+        public ICron Add(CronTimeSections time, int minValue, int maxValue)
+        {
+            GetProperty(time)
+                .Add(minValue, maxValue)
+                .Every = false;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Add day of the week.
+        /// </summary>
+        /// <param name="value"><see cref="CronDays" /> representing the day of the week.</param>
+        /// <returns><see cref="ICron" /></returns>
+        /// <example>
+        /// Add time section by Day.
+        /// <code>
+        /// schedule.Add(CronDays.Wednesday);
+        /// </code></example>
+        /// <inheritdoc cref="ICron" />
+        public ICron Add(CronDays value) =>
+            Add(CronTimeSections.DayWeek, (int)value);
+
+        /// <summary>
+        /// Add month.
+        /// </summary>
+        /// <param name="value"><see cref="CronMonths" /> representing the month.</param>
+        /// <returns><see cref="ICron" /></returns>
+        /// <example>
+        /// Add time sections by months.
+        /// <code>
+        /// schedule.Add(CronMonths.March);
+        /// </code></example>
+        /// <inheritdoc cref="ICron" />
+        public ICron Add(CronMonths value) =>
+            Add(CronTimeSections.Months, (int)value);
+
+        /// <summary>
+        /// Add range of days in the week.
+        /// </summary>
+        /// <param name="minValue">Starting <see cref="CronDays" /> representing the day of the week.</param>
+        /// <param name="maxValue">Ending <see cref="CronDays" /> representing the day of the week.</param>
+        /// <returns><see cref="ICron" /></returns>
+        /// <example>
+        /// Add time section by Day.
+        /// <code>
+        /// schedule.Add(CronDays.Wednesday, CronDays.Friday);
+        /// </code></example>
+        /// <inheritdoc cref="ICron" />
+        public ICron Add(CronDays minValue, CronDays maxValue) =>
+            Add(CronTimeSections.DayWeek, (int)minValue, (int)maxValue);
+
+        /// <summary>
+        /// Add range of months.
+        /// </summary>
+        /// <param name="minValue">Starting <see cref="CronMonths" /> representing the day of the month.</param>
+        /// <param name="maxValue">Ending <see cref="CronMonths" /> representing the day of the month.</param>
+        /// <returns><see cref="ICron" /></returns>
+        /// <example>
+        /// Add time sections by months.
+        /// <code>
+        /// schedule.Add(CronMonths.March, CronMonths.August);
+        /// </code></example>
+        /// <inheritdoc cref="ICron" />
+        public ICron Add(CronMonths minValue, CronMonths maxValue) =>
+            Add(CronTimeSections.Months, (int)minValue, (int)maxValue);
+
+        /// <inheritdoc />
+        public IEnumerator<CronTimeSections> GetEnumerator() => TimeSections.GetEnumerator();
+
+        /// <inheritdoc />
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        /// <summary>
+        /// Remove <see cref="CronTimeSections" /> with a specified value.
+        /// </summary>
+        /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
+        /// <param name="value">Value for the specified time section.</param>
+        /// Remove single value entry.
+        /// <code>
+        /// cron.Remove(CronTimeSections.Seconds, 5);
+        /// </code><inheritdoc cref="ICron" />
+        public void Remove(CronTimeSections time, int value) =>
+            GetProperty(time)
+                .Remove(value);
+
+        /// <summary>
+        /// Remove <see cref="CronTimeSections" /> with a specified value.
+        /// </summary>
+        /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
+        /// <param name="minValue">Starting value for the specified time section.</param>
+        /// <param name="maxValue">Ending value for the specified time section.</param>
+        /// Remove Multiple value entry.
+        /// <code>
+        /// cron.Remove(CronTimeSections.Seconds, 5, 6);
+        /// </code><inheritdoc cref="ICron" />
+        public void Remove(CronTimeSections time, int minValue, int maxValue) =>
+            GetProperty(time)
+                .Remove(minValue, maxValue);
+
+        /// <summary>
+        /// Clear the specific time element of the Cron object to defaults without any numerical cron representations.
+        /// </summary>
+        /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
+        /// <returns><see cref="ICron" /></returns>
+        /// <inheritdoc cref="ICron" />
+        public ICron Reset(CronTimeSections time) => Section.IsTimeCronSection(time)
+            ? Set(new TimeSection(time))
+            : Set(new DateSection(time));
+
+        /// <summary>
+        /// Clear the entire Cron object to defaults without any numerical cron representations.
+        /// </summary>
+        /// <returns><see cref="ICron" /></returns>
+        /// <inheritdoc cref="ICron" />
+        public ICron ResetAll()
+        {
+            TimeSections.ForEach(cronTimeSections => Reset(cronTimeSections));
+
+            return this;
+        }
+
+        /// <summary>
+        /// Set time with <see cref="ISection" /> value.
+        /// </summary>
+        /// <param name="value">Value for the specified time section.</param>
+        /// <returns><see cref="ICron" /></returns>
+        /// <inheritdoc cref="ICron" />
+        public ICron Set(ISection value)
+        {
+            SetProperty(value.Time, value);
+            return this;
+        }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+        /// <inheritdoc cref="ICron" />
+        public override string ToString() => Value;
+
+        private static bool IsApplyTime(int arrayLength, CronTimeSections time, int index) =>
+            (arrayLength >= 6 || time != CronTimeSections.Seconds) 
+            && index < arrayLength;
+
+        private static bool IsTimeSpecific(ISection section) => !(section.Enabled && (section.Every || section.ContainsRange));
+
+        private string Get(CronTimeSections time) => GetProperty(time).ToString();
+
+        private string GetDate()
+        {
+            var desc = new List<string>();
+
+            var dayMonth = GetProperty(CronTimeSections.DayMonth);
+            var dayWeek = GetProperty(CronTimeSections.DayWeek);
+            var months = GetProperty(CronTimeSections.Months);
+            var years = GetProperty(CronTimeSections.Years);
+
+            if (dayMonth.Description.Length > 0)
+            {
+                desc.Add(dayMonth.Description);
+            }
+
+            if (dayWeek.Description.Length > 0)
+            {
+                desc.Add(dayWeek.Description);
+            }
+
+            if (months.Description.Length > 0)
+            {
+                desc.Add(months.Description);
+            }
+
+            if (years.Description.Length > 0)
+            {
+                desc.Add(years.Description);
+            }
+
+            return string.Join(", ", desc);
+        }
+
+        private PropertyInfo GetFieldInfo(CronTimeSections time) => GetType().GetRuntimeProperties().FirstOrDefault(x => x.Name == time.ToString());
+
+        private ISection GetProperty(CronTimeSections time) => GetFieldInfo(time).GetValue(this) as ISection;
 
         private string GetTime()
         {
@@ -219,270 +517,7 @@ namespace Cron.Core
             }
         }
 
-        private static bool IsTimeSpecific(ISection section) => !(section.Enabled && (section.Every || section.ContainsRange));
-
-        private string GetDate()
-        {
-            var desc = new List<string>();
-
-            var dayMonth = GetProperty(CronTimeSections.DayMonth);
-            var dayWeek = GetProperty(CronTimeSections.DayWeek);
-            var months = GetProperty(CronTimeSections.Months);
-            var years = GetProperty(CronTimeSections.Years);
-
-            if (dayMonth.Description.Length > 0)
-            {
-                desc.Add(dayMonth.Description);
-            }
-
-            if (dayWeek.Description.Length > 0)
-            {
-                desc.Add(dayWeek.Description);
-            }
-
-            if (months.Description.Length > 0)
-            {
-                desc.Add(months.Description);
-            }
-
-            if (years.Description.Length > 0)
-            {
-                desc.Add(years.Description);
-            }
-
-            return string.Join(", ", desc);
-        }
-
-        /// <summary>
-        /// Hours Information
-        /// </summary>
-        /// <value>The hours.</value>
-        /// <inheritdoc cref="ICron" />
-        public ISection Hours { get; private set; } = new TimeSection(CronTimeSections.Hours);
-
-        /// <summary>
-        /// Minutes Information
-        /// </summary>
-        /// <value>The minutes.</value>
-        /// <inheritdoc cref="ICron" />
-        public ISection Minutes { get; private set; } = new TimeSection(CronTimeSections.Minutes);
-
-        /// <summary>
-        /// Months Information
-        /// </summary>
-        /// <value>The months.</value>
-        /// <inheritdoc cref="ICron" />
-        public ISection Months { get; private set; } = new DateSection(CronTimeSections.Months);
-
-        /// <summary>
-        /// Seconds Information
-        /// </summary>
-        /// <value>The seconds.</value>
-        /// <inheritdoc cref="ICron" />
-        public ISection Seconds { get; private set; } = new TimeSection(CronTimeSections.Seconds);
-
-        /// <summary>
-        /// Cron Expression.
-        /// </summary>
-        /// <value>The value.</value>
-        /// <inheritdoc cref="ICron" />
-        public string Value => $"{Get(CronTimeSections.Seconds)} {Get(CronTimeSections.Minutes)} {Get(CronTimeSections.Hours)} {Get(CronTimeSections.DayMonth)} {Get(CronTimeSections.Months)} {Get(CronTimeSections.DayWeek)} {Get(CronTimeSections.Years)}";
-
-        /// <summary>
-        /// Year Information
-        /// </summary>
-        /// <value>The years.</value>
-        /// <inheritdoc cref="ICron" />
-        public ISection Years { get; private set; } = new DateSection(CronTimeSections.Years);
-
-        private static ISection DisabledSection => new DateSection(0) { Enabled = false };
-
-        #endregion Properties
-
-        #region Methods
-
-        /// <summary>
-        /// Add time value for the specified time section.
-        /// </summary>
-        /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
-        /// <param name="value">Value for the specified time section.</param>
-        /// <param name="repeatEvery">Indicates if the value is a repeating time or specific time.</param>
-        /// <returns><see cref="ICron" /></returns>
-        /// <exception cref="ArgumentOutOfRangeException">repeatEvery</exception>
-        /// <inheritdoc cref="ICron" />
-        public ICron Add(CronTimeSections time, int value, bool repeatEvery = false)
-        {
-            GetProperty(time).Add(value);
-
-            if (!repeatEvery)
-            {
-                return this;
-            }
-
-            if (!IsTimeCronSection(time))
-            {
-                throw new ArgumentOutOfRangeException(nameof(repeatEvery));
-            }
-
-            GetProperty(time).Every = true;
-
-            return this;
-        }
-
-        private static bool IsTimeCronSection(CronTimeSections time)
-        {
-            switch (time)
-            {
-                case CronTimeSections.Seconds:
-                case CronTimeSections.Minutes:
-                case CronTimeSections.Hours:
-                    return true;
-                case CronTimeSections.DayMonth:
-                case CronTimeSections.Months:
-                case CronTimeSections.DayWeek:
-                case CronTimeSections.Years:
-                    return false;
-                default:
-                    return false;
-            }
-
-        }
-
-        /// <summary>
-        /// Add time value for the specified time section.
-        /// </summary>
-        /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
-        /// <param name="minValue">Starting value for the specified time section.</param>
-        /// <param name="maxValue">Ending value for the specified time section.</param>
-        /// <returns><see cref="ICron" /></returns>
-        /// <inheritdoc cref="ICron" />
-        public ICron Add(CronTimeSections time, int minValue, int maxValue)
-        {
-            GetProperty(time)
-                .Add(minValue, maxValue)
-                .Every = false;
-
-            return this;
-        }
-
-        /// <summary>
-        /// Add day of the week.
-        /// </summary>
-        /// <param name="value"><see cref="CronDays" /> representing the day of the week.</param>
-        /// <param name="repeatEvery">Indicates if the value is a repeating day or specific day.</param>
-        /// <returns><see cref="ICron" /></returns>
-        /// <inheritdoc cref="ICron" />
-        public ICron Add(CronDays value, bool repeatEvery = false) =>
-            Add(CronTimeSections.DayWeek, (int)value, repeatEvery);
-
-        /// <summary>
-        /// Add month.
-        /// </summary>
-        /// <param name="value"><see cref="CronMonths" /> representing the month.</param>
-        /// <param name="repeatEvery">Indicates if the value is a repeating month or specific month.</param>
-        /// <returns><see cref="ICron" /></returns>
-        /// <inheritdoc cref="ICron" />
-        public ICron Add(CronMonths value, bool repeatEvery = false) =>
-            Add(CronTimeSections.Months, (int)value, repeatEvery);
-
-        /// <summary>
-        /// Add range of days in the week.
-        /// </summary>
-        /// <param name="minValue">Starting <see cref="CronDays" /> representing the day of the week.</param>
-        /// <param name="maxValue">Ending <see cref="CronDays" /> representing the day of the week.</param>
-        /// <returns><see cref="ICron" /></returns>
-        /// <inheritdoc cref="ICron" />
-        public ICron Add(CronDays minValue, CronDays maxValue) =>
-            Add(CronTimeSections.DayWeek, (int)minValue, (int)maxValue);
-
-        /// <summary>
-        /// Add range of months.
-        /// </summary>
-        /// <param name="minValue">Starting <see cref="CronMonths" /> representing the day of the month.</param>
-        /// <param name="maxValue">Ending <see cref="CronMonths" /> representing the day of the month.</param>
-        /// <returns><see cref="ICron" /></returns>
-        /// <inheritdoc cref="ICron" />
-        public ICron Add(CronMonths minValue, CronMonths maxValue) =>
-            Add(CronTimeSections.Months, (int)minValue, (int)maxValue);
-
-        /// <inheritdoc cref="ICron" />
-        IEnumerator IEnumerable.GetEnumerator() =>
-            Enum.GetValues(typeof(CronTimeSections))
-                .GetEnumerator();
-
-        /// <summary>
-        /// Remove <see cref="CronTimeSections" /> with a specified value.
-        /// </summary>
-        /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
-        /// <param name="value">Value for the specified time section.</param>
-        /// <inheritdoc cref="ICron" />
-        public void Remove(CronTimeSections time, int value) =>
-            GetProperty(time)
-                .Remove(value);
-
-        /// <summary>
-        /// Remove <see cref="CronTimeSections" /> with a specified value.
-        /// </summary>
-        /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
-        /// <param name="minValue">Starting value for the specified time section.</param>
-        /// <param name="maxValue">Ending value for the specified time section.</param>
-        /// <inheritdoc cref="ICron" />
-        public void Remove(CronTimeSections time, int minValue, int maxValue) =>
-            GetProperty(time)
-                .Remove(minValue, maxValue);
-
-        /// <summary>
-        /// Clear the specific time element of the Cron object to defaults without any numerical cron representations.
-        /// </summary>
-        /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
-        /// <returns><see cref="ICron" /></returns>
-        /// <inheritdoc cref="ICron" />
-        public ICron Reset(CronTimeSections time) => IsTimeCronSection(time) ? Set(time, new TimeSection(time)) : Set(time, new DateSection(time));
-
-        /// <summary>
-        /// Clear the entire Cron object to defaults without any numerical cron representations.
-        /// </summary>
-        /// <returns><see cref="ICron" /></returns>
-        /// <inheritdoc cref="ICron" />
-        public ICron ResetAll()
-        {
-            foreach (CronTimeSections cronTimeSections in this)
-            {
-                Reset(cronTimeSections);
-            }
-
-            return this;
-        }
-
-        /// <summary>
-        /// Set time with <see cref="ISection" /> value.
-        /// </summary>
-        /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
-        /// <param name="value">Value for the specified time section.</param>
-        /// <returns><see cref="ICron" /></returns>
-        /// <inheritdoc cref="ICron" />
-        public ICron Set(CronTimeSections time, ISection value)
-        {
-            SetProperty(time, value);
-            return this;
-        }
-
-        /// <summary>
-        /// Returns a <see cref="System.String" /> that represents this instance.
-        /// </summary>
-        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
-        /// <inheritdoc cref="ICron" />
-        public override string ToString() => Value;
-
-        private static bool IsApplyTime(int arrayLength, CronTimeSections time, int index) => (arrayLength >= 6 || time != CronTimeSections.Seconds) && index < arrayLength;
-
-        private string Get(CronTimeSections time) => GetProperty(time).ToString();
-
-        private PropertyInfo GetFieldInfo(CronTimeSections time) => GetType().GetRuntimeProperties().FirstOrDefault(x => x.Name == time.ToString());
-
-        private ISection GetProperty(CronTimeSections time) => GetFieldInfo(time).GetValue(this) as ISection;
-
-        private void SetProperty(CronTimeSections time, ISection val) => GetFieldInfo(time).SetValue(this, val, null);
+        private void SetProperty(CronTimeSections time, IEnumerable<ISectionValues> val) => GetFieldInfo(time).SetValue(this, val, null);
 
         #endregion Methods
     }

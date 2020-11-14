@@ -4,7 +4,7 @@
 // Created          : 11-12-2020
 //
 // Last Modified By : chris
-// Last Modified On : 11-12-2020
+// Last Modified On : 11-13-2020
 // ***********************************************************************
 // <copyright file="SectionValues.cs" company="Microsoft Corporation">
 //     copyright(c) 2020 Christopher Winland
@@ -30,7 +30,7 @@ namespace Cron.Core.Sections
         private readonly CronTimeSections time;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SectionValues"/> class.
+        /// Initializes a new instance of the <see cref="SectionValues" /> class.
         /// </summary>
         /// <param name="time">The time.</param>
         /// <param name="val">The value.</param>
@@ -41,7 +41,7 @@ namespace Cron.Core.Sections
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SectionValues"/> class.
+        /// Initializes a new instance of the <see cref="SectionValues" /> class.
         /// </summary>
         /// <param name="time">The time.</param>
         /// <param name="minVal">The minimum value.</param>
@@ -107,10 +107,11 @@ namespace Cron.Core.Sections
         }
 
         /// <summary>
-        /// Performs an explicit conversion from <see cref="List{ISectionValues}"/> to <see cref="SectionValues"/>.
+        /// Performs an explicit conversion from <see cref="List{ISectionValues}" /> to <see cref="SectionValues" />.
         /// </summary>
         /// <param name="v">The v.</param>
         /// <returns>The result of the conversion.</returns>
+        /// <exception cref="System.NotImplementedException"></exception>
         /// <exception cref="NotImplementedException"></exception>
         /// <inheritdoc cref="ISectionValues" />
         public static explicit operator SectionValues(List<ISectionValues> v)

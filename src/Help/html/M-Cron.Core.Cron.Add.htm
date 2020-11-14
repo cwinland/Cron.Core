@@ -26,6 +26,7 @@
       <MSHelp:Attr Name="Abstract" Value="Add time value for the specified time section." />
       <MSHelp:Attr Name="AssemblyVersion" Value="" />
     </xml>
+    <link type="text/css" rel="stylesheet" href="../styles/highlight.css" />
   <link rel="stylesheet" href="../TOC.css"><script type="text/javascript" src="../TOC.js"></script></head>
   <body onload="javascript: Initialize();" onresize="javascript: ResizeTree();">
             <div id="TOCDiv" class="TOCDiv" style="width: 310px; float: left; position: relative; ">
@@ -105,10 +106,10 @@
 <img src="../Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="M-Cron.Core.Cron.Add_1.htm" target="_self">Add Method (CronTimeSections, Int32, Int32)</a>
 </div>
 <div class="TreeItem">
-<img src="../Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="M-Cron.Core.Cron.Add_2.htm" target="_self">Add Method (CronDays, Boolean)</a>
+<img src="../Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="M-Cron.Core.Cron.Add_2.htm" target="_self">Add Method (CronDays)</a>
 </div>
 <div class="TreeItem">
-<img src="../Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="M-Cron.Core.Cron.Add_3.htm" target="_self">Add Method (CronMonths, Boolean)</a>
+<img src="../Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="M-Cron.Core.Cron.Add_3.htm" target="_self">Add Method (CronMonths)</a>
 </div>
 <div class="TreeItem">
 <img src="../Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="M-Cron.Core.Cron.Add_4.htm" target="_self">Add Method (CronDays, CronDays)</a>
@@ -117,6 +118,9 @@
 <img src="../Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="M-Cron.Core.Cron.Add_5.htm" target="_self">Add Method (CronMonths, CronMonths)</a>
 </div>
 </div>
+</div>
+<div class="TreeItem">
+<img src="../Item.gif"/><a class="UnselectedNode" onclick="javascript: return SelectNode(this);" href="M-Cron.Core.Cron.GetEnumerator.htm" target="_self">GetEnumerator Method </a>
 </div>
 <div class="TreeNode">
 <img class="TreeNodeImg" onclick="javascript: Toggle(this);" src="../Collapsed.png"/><a class="UnselectedNode" onclick="javascript: return Expand(this);" href="Overload-Cron.Core.Cron.Remove.htm" target="_self">Remove Method </a>
@@ -204,7 +208,10 @@
 	<a href="T-Cron.Core.Enums.CronTimeSections.htm">CronTimeSections</a>^ <span class="parameter">time</span>, 
 	<a href="http://msdn.microsoft.com/en-us/library/system.int32.aspx" target="_blank">int</a>^ <span class="parameter">value</span>, 
 	<a href="http://msdn.microsoft.com/en-us/library/system.boolean.aspx" target="_blank">bool</a>^ <span class="parameter">repeatEvery</span>
-)</pre></div></div></div><div id="parameters"><h4 class="subHeading">Parameters</h4><dl paramName="time"><dt><span class="parameterItalic">time</span></dt><dd>Type: <a href="T-Cron.Core.Enums.CronTimeSections.htm">Cron.Core.Enums<span class="languageSpecificText"><span class="cs">.</span><span class="vb">.</span><span class="cpp">::</span><span class="nu">.</span><span class="fs">.</span></span>CronTimeSections</a><br />The type of time section such as seconds, minutes, etc. See <a href="T-Cron.Core.Enums.CronTimeSections.htm">CronTimeSections</a>.</dd></dl><dl paramName="value"><dt><span class="parameterItalic">value</span></dt><dd>Type: <a href="http://msdn.microsoft.com/en-us/library/system.int32.aspx" target="_blank">Int32</a><br />Value for the specified time section.</dd></dl><dl paramName="repeatEvery"><dt><span class="parameterItalic">repeatEvery</span></dt><dd>Type: <a href="http://msdn.microsoft.com/en-us/library/system.boolean.aspx" target="_blank">Boolean</a><br />Indicates if the value is a repeating time or specific time.</dd></dl></div><h4 class="subHeading">Return Value</h4><a href="T-Cron.Core.Interfaces.ICron.htm">ICron</a></div><div class="LW_CollapsibleArea_Container"><div class="LW_CollapsibleArea_TitleDiv"><h2 class="LW_CollapsibleArea_Title">Exceptions</h2><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr" /></div></div><a id="exceptionsSection"><!----></a><div class="tableSection"><table width="100%" cellspacing="0" cellpadding="5" frame="lhs"><tr><th class="exceptionNameColumn">Exception</th><th class="exceptionConditionColumn">Condition</th></tr><tr><td><a href="http://msdn.microsoft.com/en-us/library/system.argumentoutofrangeexception.aspx" target="_blank">ArgumentOutOfRangeException</a></td><td>repeatEvery</td></tr></table></div></div><div class="LW_CollapsibleArea_Container"><div class="LW_CollapsibleArea_TitleDiv"><h2 class="LW_CollapsibleArea_Title">See Also</h2><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr" /></div></div><a id="seeAlsoSection"><!----></a><div class="seeAlsoStyle"><a href="T-Cron.Core.Cron.htm">Cron Class</a></div><div class="seeAlsoStyle"><a href="Overload-Cron.Core.Cron.Add.htm">Add Overload</a></div><div class="seeAlsoStyle"><a href="N-Cron.Core.htm">Cron.Core Namespace</a></div></div></div>
+)</pre></div></div></div><div id="parameters"><h4 class="subHeading">Parameters</h4><dl paramName="time"><dt><span class="parameterItalic">time</span></dt><dd>Type: <a href="T-Cron.Core.Enums.CronTimeSections.htm">Cron.Core.Enums<span class="languageSpecificText"><span class="cs">.</span><span class="vb">.</span><span class="cpp">::</span><span class="nu">.</span><span class="fs">.</span></span>CronTimeSections</a><br />The type of time section such as seconds, minutes, etc. See <a href="T-Cron.Core.Enums.CronTimeSections.htm">CronTimeSections</a>.</dd></dl><dl paramName="value"><dt><span class="parameterItalic">value</span></dt><dd>Type: <a href="http://msdn.microsoft.com/en-us/library/system.int32.aspx" target="_blank">Int32</a><br />Value for the specified time section.</dd></dl><dl paramName="repeatEvery"><dt><span class="parameterItalic">repeatEvery</span></dt><dd>Type: <a href="http://msdn.microsoft.com/en-us/library/system.boolean.aspx" target="_blank">Boolean</a><br />Indicates if the value is a repeating time or specific time.</dd></dl></div><h4 class="subHeading">Return Value</h4><a href="T-Cron.Core.Interfaces.ICron.htm">ICron</a></div><div class="LW_CollapsibleArea_Container"><div class="LW_CollapsibleArea_TitleDiv"><h2 class="LW_CollapsibleArea_Title">Exceptions</h2><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr" /></div></div><a id="exceptionsSection"><!----></a><div class="tableSection"><table width="100%" cellspacing="0" cellpadding="5" frame="lhs"><tr><th class="exceptionNameColumn">Exception</th><th class="exceptionConditionColumn">Condition</th></tr><tr><td><a href="http://msdn.microsoft.com/en-us/library/system.argumentoutofrangeexception.aspx" target="_blank">ArgumentOutOfRangeException</a></td><td>repeatEvery</td></tr><tr><td><a href="http://msdn.microsoft.com/en-us/library/system.argumentoutofrangeexception.aspx" target="_blank">ArgumentOutOfRangeException</a></td><td>repeatEvery</td></tr></table></div></div><div class="LW_CollapsibleArea_Container"><div class="LW_CollapsibleArea_TitleDiv"><h2 class="LW_CollapsibleArea_Title">Examples</h2><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr" /></div></div><a id="exampleSection"><!----></a>
+   Add Cron sections by section.
+  <span id="cbc_1" x-lang="CSharp" codeLanguage="CSharp"><div class="highlight-title"><span class="highlight-copycode" tabindex="0"></span>C#</div><div class="code"><pre xml:space="preserve">schedule.Add(time: CronTimeSections.Seconds, <span class="highlight-keyword">value</span>: seconds, repeatEvery: <span class="highlight-keyword">true</span>)
+schedule.Add(CronTimeSections.Minutes, <span class="highlight-number">4</span>)</pre></div></span></div><div class="LW_CollapsibleArea_Container"><div class="LW_CollapsibleArea_TitleDiv"><h2 class="LW_CollapsibleArea_Title">See Also</h2><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr" /></div></div><a id="seeAlsoSection"><!----></a><div class="seeAlsoStyle"><a href="T-Cron.Core.Cron.htm">Cron Class</a></div><div class="seeAlsoStyle"><a href="Overload-Cron.Core.Cron.Add.htm">Add Overload</a></div><div class="seeAlsoStyle"><a href="N-Cron.Core.htm">Cron.Core Namespace</a></div></div></div>
             </div>
           </div>
         </div>
