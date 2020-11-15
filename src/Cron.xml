@@ -7,7 +7,7 @@
         <member name="T:Cron.Core.Cron">
             <summary>
             Represents a Cron expression, Description, and object that can be used to create and modify cron expressions.
-            Implements the <see cref="!:Cron.Core.Interfaces.ICron" />
+            Implements the <see cref="T:Cron.Core.Interfaces.ICron" />
             </summary>
             <example>
             Create a Cron object.
@@ -286,7 +286,14 @@
             <returns><see cref="T:Cron.Core.Interfaces.ICron" /></returns>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="M:Cron.Core.Cron.ResetAll">
+        <member name="M:Cron.Core.Cron.Reset(Cron.Core.Interfaces.ISection)">
+            <summary>
+            Resets the specified section.
+            </summary>
+            <param name="section"><see cref="T:Cron.Core.Interfaces.ISection"/></param>
+            <returns><see cref="T:Cron.Core.Interfaces.ICron" /></returns>
+        </member>
+        <member name="M:Cron.Core.Cron.Reset">
             <summary>
             Clear the entire Cron object to defaults without any numerical cron representations.
             </summary>
@@ -504,30 +511,13 @@
             <summary>
             Year or interval of years.
             </summary>
-            <example>2020, 2021.</example>
-            <example>*/2 (Every two years).</example>
+            <example>2020,2021.</example>
+            <example>2020-2022.</example>
         </member>
         <member name="T:Cron.Core.Interfaces.ICron">
             <summary>
             Cron Interface Object.
             </summary>
-        </member>
-        <member name="P:Cron.Core.Interfaces.ICron.Description">
-            <summary>
-            Human readable description.
-            </summary>
-            <value>The description.</value>
-            <example>
-            Every 22 seconds, every 3,4 minutes, at 03:00 AM through 05:59 AM and 07:00 AM through 11:59 AM, on day 12 of the month, only on
-            Wednesday, only in March and May, every 5 years
-            </example>
-        </member>
-        <member name="P:Cron.Core.Interfaces.ICron.Value">
-            <summary>
-            Cron Expression.
-            </summary>
-            <value>The value.</value>
-            <example>*/22 */3,4 3-5,7-11 12 3,5 3 */5</example>
         </member>
         <member name="P:Cron.Core.Interfaces.ICron.DayMonth">
             <summary>
@@ -540,6 +530,16 @@
             Day of the Week Information
             </summary>
             <value>The day week.</value>
+        </member>
+        <member name="P:Cron.Core.Interfaces.ICron.Description">
+            <summary>
+            Human readable description.
+            </summary>
+            <value>The description.</value>
+            <example>
+            Every 22 seconds, every 3,4 minutes, at 03:00 AM through 05:59 AM and 07:00 AM through 11:59 AM, on day 12 of the month, only on
+            Wednesday, only in March and May, every 5 years
+            </example>
         </member>
         <member name="P:Cron.Core.Interfaces.ICron.Hours">
             <summary>
@@ -564,6 +564,19 @@
             Seconds Information
             </summary>
             <value>The seconds.</value>
+        </member>
+        <member name="P:Cron.Core.Interfaces.ICron.SectionList">
+            <summary>
+            Gets the section list.
+            </summary>
+            <value>The section list.</value>
+        </member>
+        <member name="P:Cron.Core.Interfaces.ICron.Value">
+            <summary>
+            Cron Expression.
+            </summary>
+            <value>The value.</value>
+            <example>*/22 */3,4 3-5,7-11 12 3,5 3 */5</example>
         </member>
         <member name="P:Cron.Core.Interfaces.ICron.Years">
             <summary>
@@ -641,7 +654,7 @@
             <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="T:Cron.Core.Enums.CronTimeSections" />.</param>
             <returns><see cref="T:Cron.Core.Interfaces.ICron" /></returns>
         </member>
-        <member name="M:Cron.Core.Interfaces.ICron.ResetAll">
+        <member name="M:Cron.Core.Interfaces.ICron.Reset">
             <summary>
             Clear the entire Cron object to defaults without any numerical cron representations.
             </summary>
@@ -740,13 +753,6 @@
             </summary>
             <returns><c>true</c> if this instance is int; otherwise, <c>false</c>.</returns>
         </member>
-        <member name="M:Cron.Core.Interfaces.ISection.IsValidRange(Cron.Core.Interfaces.ISectionValues)">
-            <summary>
-            Checks if the given values are valid for the current <see cref="T:Cron.Core.Interfaces.ISection" />'s <see cref="T:Cron.Core.Enums.CronTimeSections" /> value.
-            </summary>
-            <param name="values"><see cref="T:Cron.Core.Interfaces.ISectionValues" /> values.</param>
-            <returns><c>true</c> if [is valid range] [the specified values]; otherwise, <c>false</c>.</returns>
-        </member>
         <member name="M:Cron.Core.Interfaces.ISection.IsValidRange(System.Int32)">
             <summary>
             Checks if the given value is valid for the current <see cref="T:Cron.Core.Interfaces.ISection" />'s <see cref="T:Cron.Core.Enums.CronTimeSections" /> value.
@@ -816,35 +822,38 @@
         </member>
         <member name="P:Cron.Core.Interfaces.ITimeSection.AllowedIncrements">
             <summary>
-            List of allowed increments when the Every option is used.
+            The allowed increments
             </summary>
-            <value>The allowed increments.</value>
         </member>
         <member name="T:Cron.Core.Sections.DateSection">
             <summary>
             Class DateSection.
-            Implements the <see cref="!:Cron.Core.Sections.Section" />
-            Implements the <see cref="!:Cron.Core.Interfaces.IDateSection" />
+            Implements the <see cref="T:Cron.Core.Sections.Section" />
+            Implements the <see cref="T:Cron.Core.Interfaces.IDateSection" />
             </summary>
-            <seealso cref="!:Cron.Core.Sections.Section" />
-            <seealso cref="!:Cron.Core.Interfaces.IDateSection" />
+            <seealso cref="T:Cron.Core.Sections.Section" />
+            <seealso cref="T:Cron.Core.Interfaces.IDateSection" />
             <inheritdoc cref="T:Cron.Core.Interfaces.IDateSection" />
         </member>
         <member name="M:Cron.Core.Sections.DateSection.#ctor(Cron.Core.Enums.CronTimeSections,System.String)">
             <inheritdoc />
         </member>
-        <member name="P:Cron.Core.Sections.DateSection.Every">
-            <inheritdoc />
-        </member>
         <member name="M:Cron.Core.Sections.DateSection.#ctor(Cron.Core.Enums.CronTimeSections)">
             <inheritdoc />
+        </member>
+        <member name="M:Cron.Core.Sections.DateSection.#ctor(Cron.Core.Enums.CronTimeSections,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cron.Core.Sections.TimeSection"/> class.
+            </summary>
+            <param name="time">The time.</param>
+            <param name="enabled">if set to <c>true</c> [enabled].</param>
         </member>
         <member name="T:Cron.Core.Sections.Section">
             <summary>
             Class Section.
-            Implements the <see cref="!:Cron.Core.Interfaces.ISection" />
+            Implements the <see cref="T:Cron.Core.Interfaces.ISection" />
             </summary>
-            <seealso cref="!:Cron.Core.Interfaces.ISection" />
+            <seealso cref="T:Cron.Core.Interfaces.ISection" />
             <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
         </member>
         <member name="M:Cron.Core.Sections.Section.IsTimeCronSection(Cron.Core.Enums.CronTimeSections)">
@@ -919,6 +928,7 @@
             Indicates that the value should be translated using the */ every indicator.
             </summary>
             <value><c>true</c> if every; otherwise, <c>false</c>.</value>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
             <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
         </member>
         <member name="P:Cron.Core.Sections.Section.Values">
@@ -979,14 +989,6 @@
             <returns><c>true</c> if this instance is int; otherwise, <c>false</c>.</returns>
             <inheritdoc cref="T:Cron.Core.Interfaces.ISectionValues" />
         </member>
-        <member name="M:Cron.Core.Sections.Section.IsValidRange(Cron.Core.Interfaces.ISectionValues)">
-            <summary>
-            Determines whether [is valid range] [the specified check values].
-            </summary>
-            <param name="checkValues">The check values.</param>
-            <returns><c>true</c> if [is valid range] [the specified check values]; otherwise, <c>false</c>.</returns>
-            <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
-        </member>
         <member name="M:Cron.Core.Sections.Section.IsValidRange(System.Int32)">
             <summary>
             Checks if the given value is valid for the current <see cref="T:Cron.Core.Interfaces.ISection" />'s <see cref="T:Cron.Core.Enums.CronTimeSections" /> value.
@@ -1039,9 +1041,9 @@
         <member name="T:Cron.Core.Sections.SectionValues">
             <summary>
             Class SectionValues.
-            Implements the <see cref="!:Cron.Core.Interfaces.ISectionValues" />
+            Implements the <see cref="T:Cron.Core.Interfaces.ISectionValues" />
             </summary>
-            <seealso cref="!:Cron.Core.Interfaces.ISectionValues" />
+            <seealso cref="T:Cron.Core.Interfaces.ISectionValues" />
             <inheritdoc cref="T:Cron.Core.Interfaces.ISectionValues" />
         </member>
         <member name="M:Cron.Core.Sections.SectionValues.#ctor(Cron.Core.Enums.CronTimeSections,System.Int32)">
@@ -1085,30 +1087,30 @@
         <member name="M:Cron.Core.Sections.SectionValues.ToString">
             <inheritdoc />
         </member>
-        <member name="M:Cron.Core.Sections.SectionValues.op_Explicit(System.Collections.Generic.List{Cron.Core.Interfaces.ISectionValues})~Cron.Core.Sections.SectionValues">
-            <summary>
-            Performs an explicit conversion from <see cref="T:System.Collections.Generic.List`1" /> to <see cref="T:Cron.Core.Sections.SectionValues" />.
-            </summary>
-            <param name="v">The v.</param>
-            <returns>The result of the conversion.</returns>
-            <exception cref="T:System.NotImplementedException"></exception>
-            <exception cref="T:System.NotImplementedException"></exception>
-            <inheritdoc cref="T:Cron.Core.Interfaces.ISectionValues" />
-        </member>
         <member name="T:Cron.Core.Sections.TimeSection">
             <summary>
             Class TimeSection.
-            Implements the <see cref="!:Cron.Core.Sections.Section" />
-            Implements the <see cref="!:Cron.Core.Interfaces.ITimeSection" />
+            Implements the <see cref="T:Cron.Core.Sections.Section" />
+            Implements the <see cref="T:Cron.Core.Interfaces.ITimeSection" />
             </summary>
-            <seealso cref="!:Cron.Core.Sections.Section" />
-            <seealso cref="!:Cron.Core.Interfaces.ITimeSection" />
+            <seealso cref="T:Cron.Core.Sections.Section" />
+            <seealso cref="T:Cron.Core.Interfaces.ITimeSection" />
             <inheritdoc cref="T:Cron.Core.Interfaces.ITimeSection" />
         </member>
         <member name="M:Cron.Core.Sections.TimeSection.#ctor(Cron.Core.Enums.CronTimeSections,System.String)">
             <inheritdoc />
         </member>
         <member name="M:Cron.Core.Sections.TimeSection.#ctor(Cron.Core.Enums.CronTimeSections)">
+            <inheritdoc />
+        </member>
+        <member name="M:Cron.Core.Sections.TimeSection.#ctor(Cron.Core.Enums.CronTimeSections,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Cron.Core.Sections.TimeSection"/> class.
+            </summary>
+            <param name="time">The time.</param>
+            <param name="enabled">if set to <c>true</c> [enabled].</param>
+        </member>
+        <member name="M:Cron.Core.Sections.TimeSection.IsValidRange(System.Int32)">
             <inheritdoc />
         </member>
         <member name="P:Cron.Core.Sections.TimeSection.AllowedIncrements">

@@ -22,22 +22,6 @@ namespace Cron.Core.Interfaces
     /// </summary>
     public interface ICron : IEnumerable<CronTimeSections>
     {
-        /// <summary>
-        /// Human readable description.
-        /// </summary>
-        /// <value>The description.</value>
-        /// <example>
-        /// Every 22 seconds, every 3,4 minutes, at 03:00 AM through 05:59 AM and 07:00 AM through 11:59 AM, on day 12 of the month, only on
-        /// Wednesday, only in March and May, every 5 years
-        /// </example>
-        string Description { get; }
-
-        /// <summary>
-        /// Cron Expression.
-        /// </summary>
-        /// <value>The value.</value>
-        /// <example>*/22 */3,4 3-5,7-11 12 3,5 3 */5</example>
-        string Value { get; }
 
         /// <summary>
         /// Day of the Month Information
@@ -50,6 +34,16 @@ namespace Cron.Core.Interfaces
         /// </summary>
         /// <value>The day week.</value>
         ISection DayWeek { get; }
+
+        /// <summary>
+        /// Human readable description.
+        /// </summary>
+        /// <value>The description.</value>
+        /// <example>
+        /// Every 22 seconds, every 3,4 minutes, at 03:00 AM through 05:59 AM and 07:00 AM through 11:59 AM, on day 12 of the month, only on
+        /// Wednesday, only in March and May, every 5 years
+        /// </example>
+        string Description { get; }
 
         /// <summary>
         /// Hours Information
@@ -76,6 +70,18 @@ namespace Cron.Core.Interfaces
         ISection Seconds { get; }
 
         /// <summary>
+        /// Gets the section list.
+        /// </summary>
+        /// <value>The section list.</value>
+        List<ISection> SectionList { get; }
+
+        /// <summary>
+        /// Cron Expression.
+        /// </summary>
+        /// <value>The value.</value>
+        /// <example>*/22 */3,4 3-5,7-11 12 3,5 3 */5</example>
+        string Value { get; }
+        /// <summary>
         /// Year Information
         /// </summary>
         /// <value>The years.</value>
@@ -89,7 +95,6 @@ namespace Cron.Core.Interfaces
         /// <param name="repeatEvery">Indicates if the value is a repeating time or specific time.</param>
         /// <returns><see cref="ICron" /></returns>
         ICron Add(CronTimeSections time, [Range(0, 9999)] int value, bool repeatEvery = false);
-
         /// <summary>
         /// Add time value for the specified time section.
         /// </summary>
@@ -134,7 +139,7 @@ namespace Cron.Core.Interfaces
         /// </summary>
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         /// <param name="value">Value for the specified time section.</param>
-        void Remove(CronTimeSections time, int value);
+        ICron Remove(CronTimeSections time, int value);
 
         /// <summary>
         /// Remove <see cref="CronTimeSections" /> with a specified value.
@@ -142,7 +147,7 @@ namespace Cron.Core.Interfaces
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         /// <param name="minValue">Starting value for the specified time section.</param>
         /// <param name="maxValue">Ending value for the specified time section.</param>
-        void Remove(CronTimeSections time, int minValue, int maxValue);
+        ICron Remove(CronTimeSections time, int minValue, int maxValue);
 
         /// <summary>
         /// Clear the specific time element of the Cron object to defaults without any numerical cron representations.
@@ -155,7 +160,7 @@ namespace Cron.Core.Interfaces
         /// Clear the entire Cron object to defaults without any numerical cron representations.
         /// </summary>
         /// <returns><see cref="ICron" /></returns>
-        ICron ResetAll();
+        ICron Reset();
 
         /// <summary>
         /// Set time with <see cref="ISection" /> value.

@@ -18,21 +18,34 @@ namespace Cron.Core.Sections
 {
     /// <summary>
     /// Class DateSection.
-    /// Implements the <see cref="Cron.Core.Sections.Section" />
-    /// Implements the <see cref="Cron.Core.Interfaces.IDateSection" />
+    /// Implements the <see cref="Section" />
+    /// Implements the <see cref="IDateSection" />
     /// </summary>
-    /// <seealso cref="Cron.Core.Sections.Section" />
-    /// <seealso cref="Cron.Core.Interfaces.IDateSection" />
+    /// <seealso cref="Section" />
+    /// <seealso cref="IDateSection" />
     /// <inheritdoc cref="IDateSection" />
     public class DateSection : Section, IDateSection
     {
         /// <inheritdoc />
-        protected internal DateSection(CronTimeSections time, string expression) : base(time, expression) { }
+        protected internal DateSection(CronTimeSections time, string expression) : base(time, expression)
+        {
+            Every = false;
+        }
 
         /// <inheritdoc />
-        public override bool Every => false;
+        protected internal DateSection(CronTimeSections time) : base(time)
+        {
+            Every = false;
+        }
 
-        /// <inheritdoc />
-        protected internal DateSection(CronTimeSections time) : base(time) { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TimeSection"/> class.
+        /// </summary>
+        /// <param name="time">The time.</param>
+        /// <param name="enabled">if set to <c>true</c> [enabled].</param>
+        protected internal DateSection(CronTimeSections time, bool enabled) : this(time)
+        {
+            Enabled = enabled;
+        }
     }
 }

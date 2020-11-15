@@ -62,30 +62,29 @@ namespace Cron.Tests
             "Every 4 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 4 of the month, only on Wednesday,Friday, only in March"
         )]
         [DataRow(
-            50,
+            30,
             7,
             0,
-            "*/50 */3,4 3-5,7-11 7 3 3,5 *",
-            "Every 50 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 7 of the month, only on Wednesday,Friday, only in March"
+            "*/30 */3,4 3-5,7-11 7 3 3,5 *",
+            "Every 30 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 7 of the month, only on Wednesday,Friday, only in March"
         )]
         [DataRow(
-            13,
+            20,
             9,
             2022,
-            "*/13 */3,4 3-5,7-11 9 3 3,5 2022",
-            "Every 13 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 9 of the month, only on Wednesday,Friday, only in March, only in year 2022"
+            "*/20 */3,4 3-5,7-11 9 3 3,5 2022",
+            "Every 20 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 9 of the month, only on Wednesday,Friday, only in March, only in year 2022"
         )]
         [DataRow(
-            22,
+            20,
             12,
             0,
-            "*/22 */3,4 3-5,7-11 12 3 3,5 *",
-            "Every 22 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 12 of the month, only on Wednesday,Friday, only in March"
+            "*/20 */3,4 3-5,7-11 12 3 3,5 *",
+            "Every 20 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 12 of the month, only on Wednesday,Friday, only in March"
         )]
         public void Cron_CanVerifyComplex(int seconds, int dayMonth, int years, string expectedValue, string expectedDescription)
         {
-            schedule = new Core.Cron();
-            schedule
+            schedule = new Core.Cron()
                 .Add(time: CronTimeSections.Seconds, value: seconds, repeatEvery: true)
                 .Add(CronTimeSections.Minutes, 4)
                 .Add(CronTimeSections.Minutes, 3, true)
@@ -276,22 +275,32 @@ namespace Cron.Tests
         /// Defines the test method Cron_CanRemoveSeconds.
         /// </summary>
         [TestMethod]
-        public void Cron_CanRemoveSeconds()
+        public void Cron_CanRemoveSecondsMinutes()
         {
             var cron = new Core.Cron
             {
                 { CronTimeSections.Seconds, 5 },
                 { CronTimeSections.Seconds, 9 },
-                { CronTimeSections.Seconds, 7 }
+                { CronTimeSections.Seconds, 7 },
             };
 
             cron.Value.Should()
                 .Be("5,7,9 * * * * * *");
 
-            cron.Remove(CronTimeSections.Seconds, 5);
-
-            cron.Value.Should()
+            cron.Remove(CronTimeSections.Seconds, 5)
+                .Value.Should()
                 .Be("7,9 * * * * * *");
+
+            cron.Minutes.Add(5)
+                .ToString()
+                .Should()
+                .Be("5");
+
+            cron.Minutes.Remove(5)
+                .ToString()
+                .Should()
+                .Be("*");
+
         }
 
         /// <summary>
@@ -304,15 +313,31 @@ namespace Cron.Tests
             {
                 { CronTimeSections.Seconds, 5, 6 },
                 { CronTimeSections.Seconds, 9 },
-                { CronTimeSections.Seconds, 7 }
+                { CronTimeSections.Seconds, 7 },
             };
 
             cron.Value.Should()
                 .Be("5-6,7,9 * * * * * *");
 
-            cron.Remove(CronTimeSections.Seconds, 5, 6);
+            cron.Seconds.ToString()
+                .Should()
+                .Be("5-6,7,9");
+
+            cron.Seconds.Remove(5, 6)
+                .ToString()
+                .Should()
+                .Be("7,9");
 
             cron.Value.Should()
+                .Be("7,9 * * * * * *");
+
+            cron.Minutes.Add(5, 6)
+                .ToString()
+                .Should()
+                .Be("5-6");
+            cron.Remove(CronTimeSections.Minutes, 5, 6)
+                .ToString()
+                .Should()
                 .Be("7,9 * * * * * *");
         }
 
@@ -322,10 +347,12 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_CanAddByDayWeekRange()
         {
-            var cron = new Core.Cron
-            {
-                { CronDays.Thursday, CronDays.Saturday }
-            };
+            var cron = new Core.Cron();
+            cron.Add(CronDays.Thursday, CronDays.Saturday)
+                .Value
+                .Should()
+                .Be("* * * * * 4-6 *");
+
             cron.DayWeek.Values.Any(x => x == "4-6")
                 .Should()
                 .BeTrue();
@@ -337,13 +364,75 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_CanAddByCronMonthRange()
         {
-            var cron = new Core.Cron
-            {
-                { CronMonths.August, CronMonths.November }
-            };
+            var cron = new Core.Cron();
+            cron.Add(CronMonths.August, CronMonths.November)
+                .Value.Should()
+                .Be("* * * * 8-11 * *");
+
             cron.Months.Values.Any(x => x == "8-11")
                 .Should()
                 .BeTrue();
+        }
+
+        [TestMethod]
+        public void Cron_EveryTimeTestsWithResets()
+        {
+            var cron = new Core.Cron();
+            TestTimeSection(cron, cron.Seconds);
+
+            cron = new Core.Cron();
+            TestTimeSection(cron, cron.Minutes);
+
+            cron = new Core.Cron();
+            TestTimeSection(cron, cron.Hours);
+        }
+
+        [TestMethod]
+        public void Cron_EveryTimeTestsNoResets()
+        {
+            var cron = new Core.Cron();
+            TestTimeSection(cron, cron.Seconds);
+            TestTimeSection(cron, cron.Minutes);
+            TestTimeSection(cron, cron.Hours);
+        }
+
+        private static void TestTimeSection(ICron cron, ISection section)
+        {
+            section.Add(1)
+                   .Every.Should()
+                   .BeFalse();
+            cron.Add(section.Time, 2);
+            section.Every.Should()
+                   .BeFalse();
+            cron.Add(section.Time, 3, true);
+            section.Every.Should()
+                   .BeTrue();
+        }
+
+        /// <summary>
+        /// Defines the test method Cron_EveryDateTests.
+        /// </summary>
+        [TestMethod]
+        public void Cron_EveryDateTests()
+        {
+            var cron = new Core.Cron();
+            cron.SectionList.Where(x => x.SectionType == CronSectionType.Date)
+                .ToList()
+                .ForEach(x => TestDateSection(cron, x));
+        }
+
+
+        private static void TestDateSection(ICron cron, ISection section)
+        {
+            section.Add(1)
+                   .Every.Should()
+                   .BeFalse();
+            cron.Add(section.Time, 2);
+            section.Every.Should()
+                   .BeFalse();
+            Action act = () => cron.Add(section.Time, 3, true);
+            act.Should()
+               .Throw<Exception>();
         }
 
         /// <summary>
@@ -355,16 +444,48 @@ namespace Cron.Tests
             var cron = new Core.Cron();
             var val = cron.Value;
 
-            cron.Add(CronDays.Friday);
-            val.Should()
-                .NotBe(cron.Value);
+            cron.Add(CronDays.Friday)
+                .Value.Should()
+                .NotBe(val);
 
-            cron.Reset(CronTimeSections.DayWeek);
-
-            val.Should()
-                .Be(cron.Value);
+            cron.Reset(CronTimeSections.DayWeek)
+                .Value.Should()
+                .Be(val);
         }
 
+        /// <summary>
+        /// Defines the test method Cron_CanResetDayWeek.
+        /// </summary>
+        [TestMethod]
+        public void Cron_CanResetMinutes()
+        {
+            var cron = new Core.Cron();
+            var val = cron.Value;
+
+            cron.Add(CronTimeSections.Minutes, 4)
+                .Value.Should()
+                .NotBe(val);
+
+            cron.Reset(cron.Minutes).Value.Should().Be(val);
+        }
+
+        [TestMethod]
+        public void Cron_CanClearMinutes()
+        {
+            var cron = new Core.Cron();
+            var val = cron.Minutes.ToString();
+
+            cron
+                .Add(CronTimeSections.Minutes, 4)
+                .Minutes.ToString()
+                .Should()
+                .NotBe(val);
+
+            cron.Minutes.Clear()
+                .ToString()
+                .Should()
+                .Be(val);
+        }
         /// <summary>
         /// Defines the test method Cron_CanResetAll.
         /// </summary>
@@ -374,19 +495,17 @@ namespace Cron.Tests
             var cron = new Core.Cron();
             var val = cron.Value;
 
-            cron.Add(CronDays.Friday);
-            cron.Add(CronMonths.August);
-            cron.Add(CronTimeSections.Seconds, 44);
-            cron.Add(CronTimeSections.Minutes, 4, 8);
-            cron.Add(CronDays.Monday);
+            cron.Add(CronDays.Friday)
+                .Add(CronMonths.August)
+                .Add(CronTimeSections.Seconds, 44)
+                .Add(CronTimeSections.Minutes, 4, 8)
+                .Add(CronDays.Monday)
+                .Value.Should()
+                .NotBe(val);
 
-            val.Should()
-                .NotBe(cron.Value);
-
-            cron.ResetAll();
-
-            val.Should()
-                .Be(cron.Value);
+            cron.Reset()
+                .Value.Should()
+                .Be(val);
         }
 
         /// <summary>
@@ -422,10 +541,8 @@ namespace Cron.Tests
         public void Cron_DateEveryDescriptionMatches()
         {
             var cron = new Core.Cron();
-            cron.Months.Add(1)
-                .Every = true;
-            cron.DayWeek.Add(5)
-                .Every = true;
+            cron.Months.Add(1);
+            cron.DayWeek.Add(5);
             cron.Years.Add(2021);
 
             cron.Description.Should()
@@ -498,6 +615,49 @@ namespace Cron.Tests
 
             cron.Description.Should()
                 .Be(cron.Description);
+        }
+
+        [TestMethod]
+        public void Ranges_Valid()
+        {
+            var cron = new Core.Cron();
+            cron.Minutes.Every = false;
+            cron.Minutes.IsValidRange(44)
+                .Should()
+                .BeTrue();
+            cron.Minutes.Every = true;
+            cron.Minutes.IsValidRange(44)
+                .Should()
+                .BeFalse();
+
+            cron.Months.IsValidRange(1)
+                .Should()
+                .BeTrue();
+
+            cron.Months.IsValidRange(12)
+                .Should()
+                .BeTrue();
+
+            cron.Months.IsValidRange(13)
+                .Should()
+                .BeFalse();
+
+        }
+
+        [TestMethod]
+        public void Int_IsInt()
+        {
+            var minutes = new Core.Cron()
+              .Minutes
+              .Add(5);
+            minutes.IsInt()
+                   .Should()
+                   .BeTrue();
+            minutes.Every = true;
+            minutes.IsInt()
+                   .Should()
+                   .BeFalse();
+
         }
     }
 }

@@ -99,13 +99,6 @@ namespace Cron.Core.Interfaces
         bool IsInt();
 
         /// <summary>
-        /// Checks if the given values are valid for the current <see cref="ISection" />'s <see cref="CronTimeSections" /> value.
-        /// </summary>
-        /// <param name="values"><see cref="ISectionValues" /> values.</param>
-        /// <returns><c>true</c> if [is valid range] [the specified values]; otherwise, <c>false</c>.</returns>
-        bool IsValidRange(ISectionValues values);
-
-        /// <summary>
         /// Checks if the given value is valid for the current <see cref="ISection" />'s <see cref="CronTimeSections" /> value.
         /// </summary>
         /// <param name="value">Value for this <see cref="ISection" />.</param>

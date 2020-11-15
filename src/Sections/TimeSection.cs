@@ -11,19 +11,19 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+using System.Collections.Generic;
 using Cron.Core.Enums;
 using Cron.Core.Interfaces;
-using System.Collections.Generic;
 
 namespace Cron.Core.Sections
 {
     /// <summary>
     /// Class TimeSection.
-    /// Implements the <see cref="Cron.Core.Sections.Section" />
-    /// Implements the <see cref="Cron.Core.Interfaces.ITimeSection" />
+    /// Implements the <see cref="Section" />
+    /// Implements the <see cref="ITimeSection" />
     /// </summary>
-    /// <seealso cref="Cron.Core.Sections.Section" />
-    /// <seealso cref="Cron.Core.Interfaces.ITimeSection" />
+    /// <seealso cref="Section" />
+    /// <seealso cref="ITimeSection" />
     /// <inheritdoc cref="ITimeSection" />
     public class TimeSection : Section, ITimeSection
     {
@@ -33,10 +33,23 @@ namespace Cron.Core.Sections
         /// <inheritdoc />
         protected internal TimeSection(CronTimeSections time) : base(time) { }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TimeSection"/> class.
+        /// </summary>
+        /// <param name="time">The time.</param>
+        /// <param name="enabled">if set to <c>true</c> [enabled].</param>
+        protected internal TimeSection(CronTimeSections time, bool enabled) : this(time)
+        {
+            Enabled = enabled;
+        }
+
+        /// <inheritdoc />
+        public override bool IsValidRange(int value) => base.IsValidRange(value) && (!Every || AllowedIncrements.Contains(value));
+
         /// <inheritdoc />
         public List<int> AllowedIncrements =>
             Time == CronTimeSections.Hours
-                ? new List<int>()
+                ? new List<int>
                 {
                     2,
                     3,
@@ -45,7 +58,7 @@ namespace Cron.Core.Sections
                     8,
                     12,
                 }
-                : new List<int>()
+                : new List<int>
                 {
                     2,
                     3,

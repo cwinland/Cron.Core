@@ -51,6 +51,6 @@ namespace Cron.Core.Enums
         /// <summary>
         /// Saturday.
         /// </summary>
-        Saturday = 6
+        Saturday = 6,
     }
 }

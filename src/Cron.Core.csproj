@@ -97,9 +97,6 @@
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
-		<None Include=".gitignore" />
-		<None Include="Cron.md" />
 		<None Include="cron.snk" />
-		<None Include="index.md" />
 	</ItemGroup>
 </Project>

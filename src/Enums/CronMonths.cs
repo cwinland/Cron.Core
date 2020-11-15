@@ -112,6 +112,6 @@ namespace Cron.Core.Enums
         /// <summary>
         /// The december
         /// </summary>
-        December = 12
+        December = 12,
     }
 }

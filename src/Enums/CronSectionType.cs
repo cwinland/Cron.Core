@@ -26,6 +26,6 @@ namespace Cron.Core.Enums
         /// <summary>
         /// The date section Type.
         /// </summary>
-        Date
+        Date,
     }
 }

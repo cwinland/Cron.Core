@@ -25,7 +25,7 @@ namespace Cron.Core
 {
     /// <summary>
     /// Represents a Cron expression, Description, and object that can be used to create and modify cron expressions.
-    /// Implements the <see cref="Cron.Core.Interfaces.ICron" />
+    /// Implements the <see cref="Core.Interfaces.ICron" />
     /// </summary>
     /// <example>
     /// Create a Cron object.
@@ -87,6 +87,7 @@ namespace Cron.Core
     /// <inheritdoc cref="ICron" />
     public class Cron : ICron
     {
+
         #region Constructors
 
         /// <summary>
@@ -123,9 +124,26 @@ namespace Cron.Core
                 throw new InvalidDataException($"This expression only has {cronArray.Length} parts. An expression must have 5, 6, or 7 parts.");
             }
 
-            TimeSections.ForEach(timeSection => SetProperty(timeSection, IsApplyTime(cronArray.Length, timeSection, startingIndex)
-                                                                     ? (GetProperty(timeSection) is TimeSection ? (ISection)new TimeSection(timeSection, cronArray[startingIndex++]) : new DateSection(timeSection, cronArray[startingIndex++]))
-                                                                     : DisabledSection));
+            SectionList.Where(section => section.SectionType == CronSectionType.Time)
+                       .ToList()
+                       .ForEach(section => Set(
+                                    IsApplyTime(cronArray.Length, section.Time, startingIndex)
+                                        ? new TimeSection(
+                                            section.Time,
+                                            cronArray[startingIndex++])
+                                        : new TimeSection(section.Time, false)
+                                ));
+
+            SectionList.Where(section => section.SectionType == CronSectionType.Date)
+                       .ToList()
+                       .ForEach(section => Set(
+                                    IsApplyTime(cronArray.Length, section.Time, startingIndex)
+                                        ? new DateSection(
+                                            section.Time,
+                                            cronArray[startingIndex++])
+                                        : new DateSection(section.Time, false)
+                                ));
+
         }
 
         #endregion Constructors
@@ -156,7 +174,7 @@ namespace Cron.Core
             get
             {
                 var date = GetDate().Trim();
-                var time = $"{GetTime()}{((date.Length > 0) ? "," : string.Empty)}".Trim();
+                var time = $"{GetTime()}{(date.Length > 0 ? "," : string.Empty)}".Trim();
 
                 return $"{time} {date}".Trim();
             }
@@ -195,11 +213,14 @@ namespace Cron.Core
         /// </summary>
         /// <value>The section list.</value>
         public List<ISection> SectionList =>
-            new SortedList<int, ISection>(typeof(Cron)
-                                          .GetRuntimeProperties()
-                                          .Where(x => x.PropertyType == typeof(ISection))
-                                          .Select(x => (ISection)x.GetValue(this))
-                                          .ToList().ToDictionary(s => (int)s.Time)).Values.ToList();
+            new SortedList<int, ISection>(
+                typeof(Cron)
+                    .GetRuntimeProperties()
+                    .Where(x => x.PropertyType == typeof(ISection))
+                    .Select(x => (ISection) x.GetValue(this))
+                    .ToList()
+                    .ToDictionary(s => (int) s.Time)
+            ).Values.ToList();
 
         /// <summary>
         /// Cron Expression.
@@ -214,8 +235,6 @@ namespace Cron.Core
         /// <value>The years.</value>
         /// <inheritdoc cref="ICron" />
         public ISection Years { get; private set; } = new DateSection(CronTimeSections.Years);
-
-        private static ISection DisabledSection => new DateSection(0) { Enabled = false };
 
         private static List<CronTimeSections> TimeSections =>
             new SortedList<int, CronTimeSections>(
@@ -245,19 +264,15 @@ namespace Cron.Core
         /// <inheritdoc cref="ICron" />
         public ICron Add(CronTimeSections time, int value, bool repeatEvery = false)
         {
-            GetProperty(time).Add(value);
-
-            if (!repeatEvery)
-            {
-                return this;
-            }
-
-            if (!Section.IsTimeCronSection(time))
+            if (!Section.IsTimeCronSection(time) && repeatEvery)
             {
                 throw new ArgumentOutOfRangeException(nameof(repeatEvery));
             }
 
-            GetProperty(time).Every = true;
+            var prop = GetProperty(time);
+
+            prop.Add(value);
+            prop.Every = Section.IsTimeCronSection(time) && repeatEvery;
 
             return this;
         }
@@ -278,9 +293,9 @@ namespace Cron.Core
         /// <inheritdoc cref="ICron" />
         public ICron Add(CronTimeSections time, int minValue, int maxValue)
         {
-            GetProperty(time)
-                .Add(minValue, maxValue)
-                .Every = false;
+            var prop = GetProperty(time)
+                .Add(minValue, maxValue);
+            prop.Every = false;
 
             return this;
         }
@@ -358,9 +373,13 @@ namespace Cron.Core
         /// <code>
         /// cron.Remove(CronTimeSections.Seconds, 5);
         /// </code><inheritdoc cref="ICron" />
-        public void Remove(CronTimeSections time, int value) =>
+        public ICron Remove(CronTimeSections time, int value)
+        {
             GetProperty(time)
                 .Remove(value);
+
+            return this;
+        }
 
         /// <summary>
         /// Remove <see cref="CronTimeSections" /> with a specified value.
@@ -372,9 +391,13 @@ namespace Cron.Core
         /// <code>
         /// cron.Remove(CronTimeSections.Seconds, 5, 6);
         /// </code><inheritdoc cref="ICron" />
-        public void Remove(CronTimeSections time, int minValue, int maxValue) =>
+        public ICron Remove(CronTimeSections time, int minValue, int maxValue)
+        {
             GetProperty(time)
                 .Remove(minValue, maxValue);
+
+            return this;
+        }
 
         /// <summary>
         /// Clear the specific time element of the Cron object to defaults without any numerical cron representations.
@@ -382,18 +405,33 @@ namespace Cron.Core
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         /// <returns><see cref="ICron" /></returns>
         /// <inheritdoc cref="ICron" />
-        public ICron Reset(CronTimeSections time) => Section.IsTimeCronSection(time)
-            ? Set(new TimeSection(time))
-            : Set(new DateSection(time));
+        public ICron Reset(CronTimeSections time)
+        {
+            GetProperty(time).Clear();
+
+            return this;
+        }
+
+        /// <summary>
+        /// Resets the specified section.
+        /// </summary>
+        /// <param name="section"><see cref="ISection"/></param>
+        /// <returns><see cref="ICron" /></returns>
+        public ICron Reset(ISection section)
+        {
+            section.Clear();
+
+            return this;
+        }
 
         /// <summary>
         /// Clear the entire Cron object to defaults without any numerical cron representations.
         /// </summary>
         /// <returns><see cref="ICron" /></returns>
         /// <inheritdoc cref="ICron" />
-        public ICron ResetAll()
+        public ICron Reset()
         {
-            TimeSections.ForEach(cronTimeSections => Reset(cronTimeSections));
+            SectionList.ForEach(section => section.Clear());
 
             return this;
         }
@@ -406,9 +444,17 @@ namespace Cron.Core
         /// <inheritdoc cref="ICron" />
         public ICron Set(ISection value)
         {
-            SetProperty(value.Time, value);
+            GetFieldInfo(value.Time)
+                .SetValue(this, value, null);
             return this;
         }
+
+        //public ICron Set(CronTimeSections time, IEnumerable<ISectionValues> value)
+        //{
+        //    GetFieldInfo(time).SetValue(this, value, null);
+
+        //    return this;
+        //}
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
@@ -418,7 +464,7 @@ namespace Cron.Core
         public override string ToString() => Value;
 
         private static bool IsApplyTime(int arrayLength, CronTimeSections time, int index) =>
-            (arrayLength >= 6 || time != CronTimeSections.Seconds) 
+            (arrayLength >= 6 || time != CronTimeSections.Seconds)
             && index < arrayLength;
 
         private static bool IsTimeSpecific(ISection section) => !(section.Enabled && (section.Every || section.ContainsRange));
@@ -498,27 +544,25 @@ namespace Cron.Core
                 {
                     desc.Add(hours.Description);
                 }
+
                 return string.Join(", ", desc);
             }
-            else
-            {
-                const string FORMAT_STRING = "hh:mm:ss tt";
-                const string FORMAT_STRING2 = "hh:mm tt";
-                var time = new DateTime().AddHours(hours.ToInt()).AddMinutes(minutes.ToInt()).AddSeconds(seconds.ToInt());
-                var formattedTime = (seconds.ToInt() > 0)
-                    ? time.ToString(FORMAT_STRING)
-                    : time.ToString(FORMAT_STRING2);
-                var endTime = new DateTime().AddHours(hours.ToInt()).AddMinutes(59).AddSeconds(59);
-                var formattedEndTime = endTime.ToString(FORMAT_STRING2);
 
-                return ((!seconds.Enabled && !minutes.Enabled)
-                    ? $"Every minute, {formattedTime}-{formattedEndTime}"
-                    : $"At {formattedTime}");
-            }
+            const string FORMAT_STRING = "hh:mm:ss tt";
+            const string FORMAT_STRING2 = "hh:mm tt";
+            var time = new DateTime().AddHours(hours.ToInt()).AddMinutes(minutes.ToInt()).AddSeconds(seconds.ToInt());
+            var formattedTime = seconds.ToInt() > 0
+                ? time.ToString(FORMAT_STRING)
+                : time.ToString(FORMAT_STRING2);
+            var endTime = new DateTime().AddHours(hours.ToInt()).AddMinutes(59).AddSeconds(59);
+            var formattedEndTime = endTime.ToString(FORMAT_STRING2);
+
+            return !seconds.Enabled && !minutes.Enabled
+                ? $"Every minute, {formattedTime}-{formattedEndTime}"
+                : $"At {formattedTime}";
         }
 
-        private void SetProperty(CronTimeSections time, IEnumerable<ISectionValues> val) => GetFieldInfo(time).SetValue(this, val, null);
-
         #endregion Methods
+
     }
 }

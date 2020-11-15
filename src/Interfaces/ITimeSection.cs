@@ -11,6 +11,7 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+
 using System.Collections.Generic;
 
 namespace Cron.Core.Interfaces
@@ -21,9 +22,8 @@ namespace Cron.Core.Interfaces
     public interface ITimeSection : ISection
     {
         /// <summary>
-        /// List of allowed increments when the Every option is used.
+        /// The allowed increments
         /// </summary>
-        /// <value>The allowed increments.</value>
         List<int> AllowedIncrements { get; }
     }
 }

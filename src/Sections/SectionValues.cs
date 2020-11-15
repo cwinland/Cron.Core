@@ -11,18 +11,17 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-using System;
-using System.Collections.Generic;
 using Cron.Core.Enums;
 using Cron.Core.Interfaces;
+using System;
 
 namespace Cron.Core.Sections
 {
     /// <summary>
     /// Class SectionValues.
-    /// Implements the <see cref="Cron.Core.Interfaces.ISectionValues" />
+    /// Implements the <see cref="ISectionValues" />
     /// </summary>
-    /// <seealso cref="Cron.Core.Interfaces.ISectionValues" />
+    /// <seealso cref="ISectionValues" />
     /// <inheritdoc cref="ISectionValues" />
     public class SectionValues : ISectionValues
     {
@@ -85,15 +84,16 @@ namespace Cron.Core.Sections
                     .ToString()
                 : MaxValue.ToString();
 
-            if (time == CronTimeSections.Hours && translate)
-            {
-                minVal = new DateTime().AddHours(int.Parse(minVal))
-                    .ToString("hh:mm tt");
-                maxVal = new DateTime().AddHours(int.Parse(maxVal))
-                    .AddMinutes(59)
-                    .AddSeconds(59)
-                    .ToString("hh:mm tt");
-            }
+            minVal = time == CronTimeSections.Hours && translate
+                ? new DateTime().AddHours(int.Parse(minVal))
+                                .ToString("hh:mm tt")
+                : minVal;
+            maxVal = time == CronTimeSections.Hours && translate
+                ? new DateTime().AddHours(int.Parse(maxVal))
+                                .AddMinutes(59)
+                                .AddSeconds(59)
+                                .ToString("hh:mm tt")
+                : maxVal;
 
             return (minVal == maxVal
                 ? minVal
@@ -101,22 +101,6 @@ namespace Cron.Core.Sections
         }
 
         /// <inheritdoc />
-        public override string ToString()
-        {
-            return ToString(false, null);
-        }
-
-        /// <summary>
-        /// Performs an explicit conversion from <see cref="List{ISectionValues}" /> to <see cref="SectionValues" />.
-        /// </summary>
-        /// <param name="v">The v.</param>
-        /// <returns>The result of the conversion.</returns>
-        /// <exception cref="System.NotImplementedException"></exception>
-        /// <exception cref="NotImplementedException"></exception>
-        /// <inheritdoc cref="ISectionValues" />
-        public static explicit operator SectionValues(List<ISectionValues> v)
-        {
-            throw new NotImplementedException();
-        }
+        public override string ToString() => ToString(false, null);
     }
 }

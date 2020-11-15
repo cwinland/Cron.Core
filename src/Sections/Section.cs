@@ -23,9 +23,9 @@ namespace Cron.Core.Sections
 {
     /// <summary>
     /// Class Section.
-    /// Implements the <see cref="Cron.Core.Interfaces.ISection" />
+    /// Implements the <see cref="ISection" />
     /// </summary>
-    /// <seealso cref="Cron.Core.Interfaces.ISection" />
+    /// <seealso cref="ISection" />
     /// <inheritdoc cref="ISection" />
     public abstract class Section : ISection
     {
@@ -122,7 +122,7 @@ namespace Cron.Core.Sections
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         protected internal Section(CronTimeSections time)
         {
-            this.Time = time;
+            Time = time;
         }
 
         #endregion Constructors
@@ -134,7 +134,7 @@ namespace Cron.Core.Sections
         /// </summary>
         /// <value>The type of the section.</value>
         public CronSectionType SectionType => IsTimeCronSection(Time)
-            ? CronSectionType.Time 
+            ? CronSectionType.Time
             : CronSectionType.Date;
 
         /// <summary>
@@ -250,8 +250,16 @@ namespace Cron.Core.Sections
         /// Indicates that the value should be translated using the */ every indicator.
         /// </summary>
         /// <value><c>true</c> if every; otherwise, <c>false</c>.</value>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         /// <inheritdoc cref="ISection" />
-        public virtual bool Every { get; set; } = true;
+        public bool Every
+        {
+            get => every;
+            set =>
+                every = SectionType != CronSectionType.Time && value
+                    ? throw new ArgumentOutOfRangeException(paramName: nameof(Every), message: "Can only be true when SectionType is Time.")
+                    : value;
+        }
 
         /// <summary>
         /// List of Cron value expression specific to the <see cref="ISection" />.
@@ -283,6 +291,8 @@ namespace Cron.Core.Sections
         }
 
         private CronTimeSections time;
+        private bool every = true;
+
         /// <summary>
         /// Gets or sets the time section Type <see cref="CronTimeSections" />.
         /// </summary>
@@ -303,17 +313,14 @@ namespace Cron.Core.Sections
         /// <inheritdoc cref="ISection" />
         public ISection Add([Range(0, 9999)] int value)
         {
+            Every = false;
+
             if (!IsValidRange(value))
             {
                 throw new ArgumentOutOfRangeException();
             }
 
             values.Add(new SectionValues(Time, value));
-
-            if (values.Count == 1)
-            {
-                Every = false;
-            }
 
             Enabled = true;
 
@@ -331,6 +338,8 @@ namespace Cron.Core.Sections
         /// <inheritdoc cref="ISection" />
         public ISection Add([Range(0, 9999)] int minVal, [Range(0, 9999)] int maxVal)
         {
+            Every = false;
+
             if (!IsValidRange(minVal) ||
                 !IsValidRange(maxVal))
             {
@@ -374,23 +383,12 @@ namespace Cron.Core.Sections
         public bool IsInt() => !ContainsRange && int.TryParse(ToString(false, null, true), out _);
 
         /// <summary>
-        /// Determines whether [is valid range] [the specified check values].
-        /// </summary>
-        /// <param name="checkValues">The check values.</param>
-        /// <returns><c>true</c> if [is valid range] [the specified check values]; otherwise, <c>false</c>.</returns>
-        /// <inheritdoc cref="ISection" />
-        public bool IsValidRange(ISectionValues checkValues)
-        {
-            return IsValidRange(checkValues.MinValue) && IsValidRange(checkValues.MaxValue);
-        }
-
-        /// <summary>
         /// Checks if the given value is valid for the current <see cref="ISection" />'s <see cref="CronTimeSections" /> value.
         /// </summary>
         /// <param name="value">Value for this <see cref="ISection" />.</param>
         /// <returns><c>true</c> if [is valid range] [the specified value]; otherwise, <c>false</c>.</returns>
         /// <inheritdoc cref="ISection" />
-        public bool IsValidRange([Range(0, 9999)] int value)
+        public virtual bool IsValidRange([Range(0, 9999)] int value)
         {
             bool result;
 
@@ -504,7 +502,7 @@ namespace Cron.Core.Sections
 
             if (values.Count == 0)
             {
-                return DEFAULT_CHAR;
+                return Any ? ANY_CHAR : DEFAULT_CHAR;
             }
 
             SortValues();

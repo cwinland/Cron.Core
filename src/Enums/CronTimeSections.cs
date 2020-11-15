@@ -51,8 +51,8 @@ namespace Cron.Core.Enums
         /// <summary>
         /// Year or interval of years.
         /// </summary>
-        /// <example>2020, 2021.</example>
-        /// <example>*/2 (Every two years).</example>
+        /// <example>2020,2021.</example>
+        /// <example>2020-2022.</example>
         Years = 7,
     }
 }
