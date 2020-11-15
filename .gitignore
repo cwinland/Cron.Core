@@ -3,6 +3,7 @@ src/docs
 src/api
 src/articles
 src/Help
+src/*.editorConfig
 
 # Created by https://www.gitignore.io/api/visualstudio
 
