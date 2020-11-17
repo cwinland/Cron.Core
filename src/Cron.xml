@@ -4,7 +4,7 @@
         <name>Cron.Core</name>
     </assembly>
     <members>
-        <member name="T:Cron.Core.Cron">
+        <member name="T:Cron.Core.CronBuilder">
             <summary>
             Represents a Cron expression, Description, and object that can be used to create and modify cron expressions.
             Implements the <see cref="T:Cron.Core.Interfaces.ICron" />
@@ -12,7 +12,7 @@
             <example>
             Create a Cron object.
             <code>
-            schedule = new Cron.Core.Cron();
+            schedule = new CronBuilder();
             </code>
             Add Cron sections by section.
             <code>
@@ -30,15 +30,15 @@
             </code>
             Chain sections.
             <code>
-            schedule = new Cron()
+            schedule = new CronBuilder()
             .Add(CronDays.Friday)
             .Add(CronTimeSections.DayMonth, dayMonth)
             .Add(CronTimeSections.Years, years, true);
             </code>
             Create Cron with an existing expression
             <code>
-            var cron = new Cron(expression);
-            </code>
+				var cron = new CronBuilder(expression);
+			</code>
             Remove single value entry.
             <code>
             cron.Remove(CronTimeSections.Seconds, 5);
@@ -49,15 +49,15 @@
             </code>
             Create Initial Cron with Days
             <code>
-            var cron = new Cron
-            {
-            { CronDays.Thursday, CronDays.Saturday }
-            };
-            </code>
+				var cron = new CronBuilder
+				{
+				{ CronDays.Thursday, CronDays.Saturday }
+				};
+			</code>
             Create Initial Cron with Months.
             <code>
-            var cron = new Cron { { CronMonths.August, CronMonths.November } };
-            </code>
+				var cron = new CronBuilder { { CronMonths.August, CronMonths.November } };
+			</code>
             Reset Day of the Week section only.
             <code>
             cron.Reset(CronTimeSections.DayWeek);
@@ -68,100 +68,100 @@
             </code></example>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="M:Cron.Core.Cron.#ctor">
+        <member name="M:Cron.Core.CronBuilder.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:Cron.Core.Cron" /> class.
+            Initializes a new instance of the <see cref="T:Cron.Core.CronBuilder" /> class.
             </summary>
             <example>
             Create a Cron object.
             <code>
-            schedule = new Cron.Core.Cron();
+            schedule = new CronBuilder();
             </code></example>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="M:Cron.Core.Cron.#ctor(System.String)">
+        <member name="M:Cron.Core.CronBuilder.#ctor(System.String)">
             <summary>
-            Initializes a new instance of the <see cref="T:Cron.Core.Cron" /> class.
+            Initializes a new instance of the <see cref="T:Cron.Core.CronBuilder" /> class.
             </summary>
             <param name="expression">The expression.</param>
             <exception cref="T:System.IO.InvalidDataException">This expression only has {cronArray.Length} parts. An expression must have 5, 6, or 7 parts.</exception>
             <example>
             Create Cron with an existing expression
             <code>
-            var cron = new Cron(expression);
-            </code></example>
+				var cron = new CronBuilder(expression);
+			</code></example>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="P:Cron.Core.Cron.DayMonth">
+        <member name="P:Cron.Core.CronBuilder.DayMonth">
             <summary>
             Day of the Month Information
             </summary>
             <value>The day month.</value>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="P:Cron.Core.Cron.DayWeek">
+        <member name="P:Cron.Core.CronBuilder.DayWeek">
             <summary>
             Day of the Week Information
             </summary>
             <value>The day week.</value>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="P:Cron.Core.Cron.Description">
+        <member name="P:Cron.Core.CronBuilder.Description">
             <summary>
             Human readable description.
             </summary>
             <value>The description.</value>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="P:Cron.Core.Cron.Hours">
+        <member name="P:Cron.Core.CronBuilder.Hours">
             <summary>
             Hours Information
             </summary>
             <value>The hours.</value>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="P:Cron.Core.Cron.Minutes">
+        <member name="P:Cron.Core.CronBuilder.Minutes">
             <summary>
             Minutes Information
             </summary>
             <value>The minutes.</value>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="P:Cron.Core.Cron.Months">
+        <member name="P:Cron.Core.CronBuilder.Months">
             <summary>
             Months Information
             </summary>
             <value>The months.</value>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="P:Cron.Core.Cron.Seconds">
+        <member name="P:Cron.Core.CronBuilder.Seconds">
             <summary>
             Seconds Information
             </summary>
             <value>The seconds.</value>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="P:Cron.Core.Cron.SectionList">
+        <member name="P:Cron.Core.CronBuilder.SectionList">
             <summary>
-            Get a list of sections.
+            Get a list of sections, originally sorted.
             </summary>
             <value>The section list.</value>
         </member>
-        <member name="P:Cron.Core.Cron.Value">
+        <member name="P:Cron.Core.CronBuilder.Value">
             <summary>
             Cron Expression.
             </summary>
             <value>The value.</value>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="P:Cron.Core.Cron.Years">
+        <member name="P:Cron.Core.CronBuilder.Years">
             <summary>
             Year Information
             </summary>
             <value>The years.</value>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="M:Cron.Core.Cron.Add(Cron.Core.Enums.CronTimeSections,System.Int32,System.Boolean)">
+        <member name="M:Cron.Core.CronBuilder.Add(Cron.Core.Enums.CronTimeSections,System.Int32,System.Boolean)">
             <summary>
             Add time value for the specified time section.
             </summary>
@@ -179,7 +179,7 @@
             </code></example>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="M:Cron.Core.Cron.Add(Cron.Core.Enums.CronTimeSections,System.Int32,System.Int32)">
+        <member name="M:Cron.Core.CronBuilder.Add(Cron.Core.Enums.CronTimeSections,System.Int32,System.Int32)">
             <summary>
             Add time value for the specified time section.
             </summary>
@@ -195,7 +195,7 @@
             </code></example>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="M:Cron.Core.Cron.Add(Cron.Core.Enums.CronDays)">
+        <member name="M:Cron.Core.CronBuilder.Add(Cron.Core.Enums.CronDays)">
             <summary>
             Add day of the week.
             </summary>
@@ -208,7 +208,7 @@
             </code></example>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="M:Cron.Core.Cron.Add(Cron.Core.Enums.CronMonths)">
+        <member name="M:Cron.Core.CronBuilder.Add(Cron.Core.Enums.CronMonths)">
             <summary>
             Add month.
             </summary>
@@ -221,7 +221,7 @@
             </code></example>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="M:Cron.Core.Cron.Add(Cron.Core.Enums.CronDays,Cron.Core.Enums.CronDays)">
+        <member name="M:Cron.Core.CronBuilder.Add(Cron.Core.Enums.CronDays,Cron.Core.Enums.CronDays)">
             <summary>
             Add range of days in the week.
             </summary>
@@ -235,7 +235,7 @@
             </code></example>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="M:Cron.Core.Cron.Add(Cron.Core.Enums.CronMonths,Cron.Core.Enums.CronMonths)">
+        <member name="M:Cron.Core.CronBuilder.Add(Cron.Core.Enums.CronMonths,Cron.Core.Enums.CronMonths)">
             <summary>
             Add range of months.
             </summary>
@@ -249,36 +249,38 @@
             </code></example>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="M:Cron.Core.Cron.GetEnumerator">
+        <member name="M:Cron.Core.CronBuilder.GetEnumerator">
             <inheritdoc />
         </member>
-        <member name="M:Cron.Core.Cron.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Cron.Core.CronBuilder.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc />
         </member>
-        <member name="M:Cron.Core.Cron.Remove(Cron.Core.Enums.CronTimeSections,System.Int32)">
+        <member name="M:Cron.Core.CronBuilder.Remove(Cron.Core.Enums.CronTimeSections,System.Int32)">
             <summary>
             Remove <see cref="T:Cron.Core.Enums.CronTimeSections" /> with a specified value.
             </summary>
             <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="T:Cron.Core.Enums.CronTimeSections" />.</param>
             <param name="value">Value for the specified time section.</param>
+            <returns>ICron.</returns>
             Remove single value entry.
             <code>
             cron.Remove(CronTimeSections.Seconds, 5);
             </code><inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="M:Cron.Core.Cron.Remove(Cron.Core.Enums.CronTimeSections,System.Int32,System.Int32)">
+        <member name="M:Cron.Core.CronBuilder.Remove(Cron.Core.Enums.CronTimeSections,System.Int32,System.Int32)">
             <summary>
             Remove <see cref="T:Cron.Core.Enums.CronTimeSections" /> with a specified value.
             </summary>
             <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="T:Cron.Core.Enums.CronTimeSections" />.</param>
             <param name="minValue">Starting value for the specified time section.</param>
             <param name="maxValue">Ending value for the specified time section.</param>
+            <returns>ICron.</returns>
             Remove Multiple value entry.
             <code>
             cron.Remove(CronTimeSections.Seconds, 5, 6);
             </code><inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="M:Cron.Core.Cron.Reset(Cron.Core.Enums.CronTimeSections)">
+        <member name="M:Cron.Core.CronBuilder.Reset(Cron.Core.Enums.CronTimeSections)">
             <summary>
             Clear the specific time element of the Cron object to defaults without any numerical cron representations.
             </summary>
@@ -286,21 +288,21 @@
             <returns><see cref="T:Cron.Core.Interfaces.ICron" /></returns>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="M:Cron.Core.Cron.Reset(Cron.Core.Interfaces.ISection)">
+        <member name="M:Cron.Core.CronBuilder.Reset(Cron.Core.Interfaces.ISection)">
             <summary>
             Resets the specified section.
             </summary>
-            <param name="section"><see cref="T:Cron.Core.Interfaces.ISection"/></param>
+            <param name="section"><see cref="T:Cron.Core.Interfaces.ISection" /></param>
             <returns><see cref="T:Cron.Core.Interfaces.ICron" /></returns>
         </member>
-        <member name="M:Cron.Core.Cron.Reset">
+        <member name="M:Cron.Core.CronBuilder.Reset">
             <summary>
             Clear the entire Cron object to defaults without any numerical cron representations.
             </summary>
             <returns><see cref="T:Cron.Core.Interfaces.ICron" /></returns>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="M:Cron.Core.Cron.Set(Cron.Core.Interfaces.ISection)">
+        <member name="M:Cron.Core.CronBuilder.Set(Cron.Core.Interfaces.ISection)">
             <summary>
             Set time with <see cref="T:Cron.Core.Interfaces.ISection" /> value.
             </summary>
@@ -308,7 +310,7 @@
             <returns><see cref="T:Cron.Core.Interfaces.ICron" /></returns>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
-        <member name="M:Cron.Core.Cron.ToString">
+        <member name="M:Cron.Core.CronBuilder.ToString">
             <summary>
             Returns a <see cref="T:System.String" /> that represents this instance.
             </summary>
@@ -364,96 +366,60 @@
             <summary>
             January.
             </summary>
-            <summary>
-            The january
-            </summary>
         </member>
         <member name="F:Cron.Core.Enums.CronMonths.February">
             <summary>
             February.
-            </summary>
-            <summary>
-            The february
             </summary>
         </member>
         <member name="F:Cron.Core.Enums.CronMonths.March">
             <summary>
             March.
             </summary>
-            <summary>
-            The march
-            </summary>
         </member>
         <member name="F:Cron.Core.Enums.CronMonths.April">
             <summary>
             April.
-            </summary>
-            <summary>
-            The april
             </summary>
         </member>
         <member name="F:Cron.Core.Enums.CronMonths.May">
             <summary>
             May.
             </summary>
-            <summary>
-            The may
-            </summary>
         </member>
         <member name="F:Cron.Core.Enums.CronMonths.June">
             <summary>
             June.
-            </summary>
-            <summary>
-            The june
             </summary>
         </member>
         <member name="F:Cron.Core.Enums.CronMonths.July">
             <summary>
             July.
             </summary>
-            <summary>
-            The july
-            </summary>
         </member>
         <member name="F:Cron.Core.Enums.CronMonths.August">
             <summary>
             August.
-            </summary>
-            <summary>
-            The august
             </summary>
         </member>
         <member name="F:Cron.Core.Enums.CronMonths.September">
             <summary>
             September.
             </summary>
-            <summary>
-            The september
-            </summary>
         </member>
         <member name="F:Cron.Core.Enums.CronMonths.October">
             <summary>
             October.
-            </summary>
-            <summary>
-            The october
             </summary>
         </member>
         <member name="F:Cron.Core.Enums.CronMonths.November">
             <summary>
             November.
             </summary>
-            <summary>
-            The november
-            </summary>
         </member>
         <member name="F:Cron.Core.Enums.CronMonths.December">
             <summary>
             December.
-            </summary>
-            <summary>
-            The december
             </summary>
         </member>
         <member name="T:Cron.Core.Enums.CronSectionType">
@@ -638,6 +604,7 @@
             </summary>
             <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="T:Cron.Core.Enums.CronTimeSections" />.</param>
             <param name="value">Value for the specified time section.</param>
+            <returns>ICron.</returns>
         </member>
         <member name="M:Cron.Core.Interfaces.ICron.Remove(Cron.Core.Enums.CronTimeSections,System.Int32,System.Int32)">
             <summary>
@@ -646,6 +613,7 @@
             <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="T:Cron.Core.Enums.CronTimeSections" />.</param>
             <param name="minValue">Starting value for the specified time section.</param>
             <param name="maxValue">Ending value for the specified time section.</param>
+            <returns>ICron.</returns>
         </member>
         <member name="M:Cron.Core.Interfaces.ICron.Reset(Cron.Core.Enums.CronTimeSections)">
             <summary>
@@ -824,6 +792,7 @@
             <summary>
             The allowed increments
             </summary>
+            <value>The allowed increments.</value>
         </member>
         <member name="T:Cron.Core.Sections.DateSection">
             <summary>
@@ -843,7 +812,7 @@
         </member>
         <member name="M:Cron.Core.Sections.DateSection.#ctor(Cron.Core.Enums.CronTimeSections,System.Boolean)">
             <summary>
-            Initializes a new instance of the <see cref="T:Cron.Core.Sections.TimeSection"/> class.
+            Initializes a new instance of the <see cref="T:Cron.Core.Sections.TimeSection" /> class.
             </summary>
             <param name="time">The time.</param>
             <param name="enabled">if set to <c>true</c> [enabled].</param>
@@ -1105,7 +1074,7 @@
         </member>
         <member name="M:Cron.Core.Sections.TimeSection.#ctor(Cron.Core.Enums.CronTimeSections,System.Boolean)">
             <summary>
-            Initializes a new instance of the <see cref="T:Cron.Core.Sections.TimeSection"/> class.
+            Initializes a new instance of the <see cref="T:Cron.Core.Sections.TimeSection" /> class.
             </summary>
             <param name="time">The time.</param>
             <param name="enabled">if set to <c>true</c> [enabled].</param>

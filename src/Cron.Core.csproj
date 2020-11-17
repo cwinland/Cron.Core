@@ -72,7 +72,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include="Cron.cs" />
+		<Compile Include="CronBuilder.cs" />
 		<Compile Include="Enums\CronDays.cs" />
 		<Compile Include="Enums\CronMonths.cs" />
 		<Compile Include="Enums\CronSectionType.cs" />

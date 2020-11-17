@@ -4,7 +4,7 @@
 // Created          : 11-12-2020
 //
 // Last Modified By : chris
-// Last Modified On : 11-13-2020
+// Last Modified On : 11-17-2020
 // ***********************************************************************
 // <copyright file="ITimeSection.cs" company="Microsoft Corporation">
 //     copyright(c) 2020 Christopher Winland
@@ -24,6 +24,7 @@ namespace Cron.Core.Interfaces
         /// <summary>
         /// The allowed increments
         /// </summary>
+        /// <value>The allowed increments.</value>
         List<int> AllowedIncrements { get; }
     }
 }

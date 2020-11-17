@@ -4,7 +4,7 @@
 // Created          : 11-12-2020
 //
 // Last Modified By : chris
-// Last Modified On : 11-13-2020
+// Last Modified On : 11-17-2020
 // ***********************************************************************
 // <copyright file="Section.cs" company="Microsoft Corporation">
 //     copyright(c) 2020 Christopher Winland
@@ -250,6 +250,7 @@ namespace Cron.Core.Sections
         /// Indicates that the value should be translated using the */ every indicator.
         /// </summary>
         /// <value><c>true</c> if every; otherwise, <c>false</c>.</value>
+        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         /// <inheritdoc cref="ISection" />
         public bool Every

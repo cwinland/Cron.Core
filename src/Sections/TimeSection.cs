@@ -4,7 +4,7 @@
 // Created          : 11-12-2020
 //
 // Last Modified By : chris
-// Last Modified On : 11-13-2020
+// Last Modified On : 11-17-2020
 // ***********************************************************************
 // <copyright file="TimeSection.cs" company="Microsoft Corporation">
 //     copyright(c) 2020 Christopher Winland
@@ -34,7 +34,7 @@ namespace Cron.Core.Sections
         protected internal TimeSection(CronTimeSections time) : base(time) { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TimeSection"/> class.
+        /// Initializes a new instance of the <see cref="TimeSection" /> class.
         /// </summary>
         /// <param name="time">The time.</param>
         /// <param name="enabled">if set to <c>true</c> [enabled].</param>

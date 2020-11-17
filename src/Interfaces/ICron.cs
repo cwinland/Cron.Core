@@ -4,7 +4,7 @@
 // Created          : 11-05-2020
 //
 // Last Modified By : chris
-// Last Modified On : 11-13-2020
+// Last Modified On : 11-17-2020
 // ***********************************************************************
 // <copyright file="ICron.cs" company="Microsoft Corporation">
 //     copyright(c) 2020 Christopher Winland
@@ -139,6 +139,7 @@ namespace Cron.Core.Interfaces
         /// </summary>
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         /// <param name="value">Value for the specified time section.</param>
+        /// <returns>ICron.</returns>
         ICron Remove(CronTimeSections time, int value);
 
         /// <summary>
@@ -147,6 +148,7 @@ namespace Cron.Core.Interfaces
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         /// <param name="minValue">Starting value for the specified time section.</param>
         /// <param name="maxValue">Ending value for the specified time section.</param>
+        /// <returns>ICron.</returns>
         ICron Remove(CronTimeSections time, int minValue, int maxValue);
 
         /// <summary>

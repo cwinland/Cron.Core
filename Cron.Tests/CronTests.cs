@@ -4,7 +4,7 @@
 // Created          : 11-05-2020
 //
 // Last Modified By : chris
-// Last Modified On : 11-13-2020
+// Last Modified On : 11-17-2020
 // ***********************************************************************
 // <copyright file="CronTests.cs" company="Cron.Tests">
 //     Copyright (c) . All rights reserved.
@@ -16,6 +16,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 using System.Linq;
+using Cron.Core;
 using Cron.Core.Interfaces;
 using Cron.Core.Enums;
 
@@ -33,10 +34,7 @@ namespace Cron.Tests
         /// Initializes this instance.
         /// </summary>
         [TestInitialize]
-        public void Init()
-        {
-            schedule = new Cron.Core.Cron();
-        }
+        public void Init() => schedule = new CronBuilder();
 
         /// <summary>
         /// Defines the test method Cron_CanVerifyComplex.
@@ -52,39 +50,39 @@ namespace Cron.Tests
             1,
             0,
             "*/3 */3,4 3-5,7-11 1 3 3,5 *",
-            "Every 3 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 1 of the month, only on Wednesday,Friday, only in March"
+            "Every 3 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 1 of the month, only in March, only on Wednesday,Friday"
         )]
         [DataRow(
             4,
             4,
             0,
             "*/4 */3,4 3-5,7-11 4 3 3,5 *",
-            "Every 4 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 4 of the month, only on Wednesday,Friday, only in March"
+            "Every 4 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 4 of the month, only in March, only on Wednesday,Friday"
         )]
         [DataRow(
             30,
             7,
             0,
             "*/30 */3,4 3-5,7-11 7 3 3,5 *",
-            "Every 30 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 7 of the month, only on Wednesday,Friday, only in March"
+            "Every 30 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 7 of the month, only in March, only on Wednesday,Friday"
         )]
         [DataRow(
             20,
             9,
             2022,
             "*/20 */3,4 3-5,7-11 9 3 3,5 2022",
-            "Every 20 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 9 of the month, only on Wednesday,Friday, only in March, only in year 2022"
+            "Every 20 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 9 of the month, only in March, only on Wednesday,Friday, only in year 2022"
         )]
         [DataRow(
             20,
             12,
             0,
             "*/20 */3,4 3-5,7-11 12 3 3,5 *",
-            "Every 20 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 12 of the month, only on Wednesday,Friday, only in March"
+            "Every 20 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 12 of the month, only in March, only on Wednesday,Friday"
         )]
         public void Cron_CanVerifyComplex(int seconds, int dayMonth, int years, string expectedValue, string expectedDescription)
         {
-            schedule = new Core.Cron()
+            schedule = new CronBuilder()
                 .Add(time: CronTimeSections.Seconds, value: seconds, repeatEvery: true)
                 .Add(CronTimeSections.Minutes, 4)
                 .Add(CronTimeSections.Minutes, 3, true)
@@ -228,7 +226,7 @@ namespace Cron.Tests
         /// <param name="matchExpression">The match expression.</param>
         /// <param name="description">The description.</param>
         [TestMethod]
-        [DataRow("2 3 4 5 6", "* 2 3 4 5 6 *", "At 03:02 AM, only on day 4 of the month, only on Saturday, only in May")]
+        [DataRow("2 3 4 5 6", "* 2 3 4 5 6 *", "At 03:02 AM, only on day 4 of the month, only in May, only on Saturday")]
         [DataRow("0 0 0 0", null, null)]
         [DataRow("0", null, null)]
         [DataRow("1 2", null, null)]
@@ -241,7 +239,7 @@ namespace Cron.Tests
         [DataRow("* * 5 * *", "* * * 5 * * *", "Every minute, only on day 5 of the month")]
         public void Cron_CreateByExpressionDescriptionMatches(string expression, string matchExpression, string description)
         {
-            Core.Cron Act1() => new Core.Cron(expression);
+            CronBuilder Act1() => new CronBuilder(expression);
 
             if (matchExpression != null)
             {
@@ -259,7 +257,7 @@ namespace Cron.Tests
             }
             else
             {
-                Action act = () => _ = new Core.Cron(expression).Description;
+                Action act = () => _ = new CronBuilder(expression).Description;
 
                 act
                     .Should()
@@ -277,7 +275,7 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_CanRemoveSecondsMinutes()
         {
-            var cron = new Core.Cron
+            var cron = new CronBuilder
             {
                 { CronTimeSections.Seconds, 5 },
                 { CronTimeSections.Seconds, 9 },
@@ -309,7 +307,7 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_CanRemoveByRange()
         {
-            var cron = new Core.Cron
+            var cron = new CronBuilder
             {
                 { CronTimeSections.Seconds, 5, 6 },
                 { CronTimeSections.Seconds, 9 },
@@ -347,7 +345,7 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_CanAddByDayWeekRange()
         {
-            var cron = new Core.Cron();
+            var cron = new CronBuilder();
             cron.Add(CronDays.Thursday, CronDays.Saturday)
                 .Value
                 .Should()
@@ -364,7 +362,7 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_CanAddByCronMonthRange()
         {
-            var cron = new Core.Cron();
+            var cron = new CronBuilder();
             cron.Add(CronMonths.August, CronMonths.November)
                 .Value.Should()
                 .Be("* * * * 8-11 * *");
@@ -374,23 +372,29 @@ namespace Cron.Tests
                 .BeTrue();
         }
 
+        /// <summary>
+        /// Defines the test method Cron_EveryTimeTestsWithResets.
+        /// </summary>
         [TestMethod]
         public void Cron_EveryTimeTestsWithResets()
         {
-            var cron = new Core.Cron();
+            var cron = new CronBuilder();
             TestTimeSection(cron, cron.Seconds);
 
-            cron = new Core.Cron();
+            cron = new CronBuilder();
             TestTimeSection(cron, cron.Minutes);
 
-            cron = new Core.Cron();
+            cron = new CronBuilder();
             TestTimeSection(cron, cron.Hours);
         }
 
+        /// <summary>
+        /// Defines the test method Cron_EveryTimeTestsNoResets.
+        /// </summary>
         [TestMethod]
         public void Cron_EveryTimeTestsNoResets()
         {
-            var cron = new Core.Cron();
+            var cron = new CronBuilder();
             TestTimeSection(cron, cron.Seconds);
             TestTimeSection(cron, cron.Minutes);
             TestTimeSection(cron, cron.Hours);
@@ -415,7 +419,7 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_EveryDateTests()
         {
-            var cron = new Core.Cron();
+            var cron = new CronBuilder();
             cron.SectionList.Where(x => x.SectionType == CronSectionType.Date)
                 .ToList()
                 .ForEach(x => TestDateSection(cron, x));
@@ -441,7 +445,7 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_CanResetDayWeek()
         {
-            var cron = new Core.Cron();
+            var cron = new CronBuilder();
             var val = cron.Value;
 
             cron.Add(CronDays.Friday)
@@ -459,7 +463,7 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_CanResetMinutes()
         {
-            var cron = new Core.Cron();
+            var cron = new CronBuilder();
             var val = cron.Value;
 
             cron.Add(CronTimeSections.Minutes, 4)
@@ -469,10 +473,13 @@ namespace Cron.Tests
             cron.Reset(cron.Minutes).Value.Should().Be(val);
         }
 
+        /// <summary>
+        /// Defines the test method Cron_CanClearMinutes.
+        /// </summary>
         [TestMethod]
         public void Cron_CanClearMinutes()
         {
-            var cron = new Core.Cron();
+            var cron = new CronBuilder();
             var val = cron.Minutes.ToString();
 
             cron
@@ -492,7 +499,7 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_CanResetAll()
         {
-            var cron = new Core.Cron();
+            var cron = new CronBuilder();
             var val = cron.Value;
 
             cron.Add(CronDays.Friday)
@@ -514,7 +521,7 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_DateAtDescriptionMatches()
         {
-            var cron = new Core.Cron { CronMonths.January, CronDays.Friday };
+            var cron = new CronBuilder { CronMonths.January, CronDays.Friday };
             cron.Years.Add(2020);
 
             cron.Years.Description.Should()
@@ -527,11 +534,11 @@ namespace Cron.Tests
                 .Be("only in year 2020,2022,2024-2026");
 
             cron.Description.Should()
-                .Be("Every minute, only on Friday, only in January, only in year 2020,2022,2024-2026");
+                .Be("Every minute, only in January, only on Friday, only in year 2020,2022,2024-2026");
 
             cron.Hours.Add(4);
             cron.Description.Should()
-                .Be("Every minute, 04:00 AM-04:59 AM, only on Friday, only in January, only in year 2020,2022,2024-2026");
+                .Be("Every minute, 04:00 AM-04:59 AM, only in January, only on Friday, only in year 2020,2022,2024-2026");
         }
 
         /// <summary>
@@ -540,13 +547,13 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_DateEveryDescriptionMatches()
         {
-            var cron = new Core.Cron();
+            var cron = new CronBuilder();
             cron.Months.Add(1);
             cron.DayWeek.Add(5);
             cron.Years.Add(2021);
 
             cron.Description.Should()
-                .Be("Every minute, only on Friday, only in January, only in year 2021");
+                .Be("Every minute, only in January, only on Friday, only in year 2021");
         }
 
         /// <summary>
@@ -555,7 +562,7 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_TimeEveryDescriptionMatches()
         {
-            var cron = new Core.Cron();
+            var cron = new CronBuilder();
 
             cron.Seconds.Add(5)
                 .Every = true;
@@ -573,7 +580,7 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_TimeAtDescriptionMatches()
         {
-            var cron = new Core.Cron();
+            var cron = new CronBuilder();
 
             cron.Seconds.Add(5);
             cron.Minutes.Add(44);
@@ -589,7 +596,7 @@ namespace Cron.Tests
         [TestMethod]
         public void Cron_DescriptionTimeMatches()
         {
-            var cron = new Core.Cron();
+            var cron = new CronBuilder();
             cron.Seconds.Add(4)
                 .Every = true;
             cron.Seconds.Description.Should()
@@ -617,10 +624,13 @@ namespace Cron.Tests
                 .Be(cron.Description);
         }
 
+        /// <summary>
+        /// Defines the test method Ranges_Valid.
+        /// </summary>
         [TestMethod]
         public void Ranges_Valid()
         {
-            var cron = new Core.Cron();
+            var cron = new CronBuilder();
             cron.Minutes.Every = false;
             cron.Minutes.IsValidRange(44)
                 .Should()
@@ -644,10 +654,13 @@ namespace Cron.Tests
 
         }
 
+        /// <summary>
+        /// Defines the test method Int_IsInt.
+        /// </summary>
         [TestMethod]
         public void Int_IsInt()
         {
-            var minutes = new Core.Cron()
+            var minutes = new CronBuilder()
               .Minutes
               .Add(5);
             minutes.IsInt()

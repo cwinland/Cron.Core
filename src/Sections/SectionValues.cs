@@ -4,7 +4,7 @@
 // Created          : 11-12-2020
 //
 // Last Modified By : chris
-// Last Modified On : 11-13-2020
+// Last Modified On : 11-17-2020
 // ***********************************************************************
 // <copyright file="SectionValues.cs" company="Microsoft Corporation">
 //     copyright(c) 2020 Christopher Winland
@@ -25,6 +25,7 @@ namespace Cron.Core.Sections
     /// <inheritdoc cref="ISectionValues" />
     public class SectionValues : ISectionValues
     {
+        private const string MINUTE_FORMAT = "hh:mm tt";
         private readonly int? maxValue;
         private readonly CronTimeSections time;
 
@@ -86,13 +87,13 @@ namespace Cron.Core.Sections
 
             minVal = time == CronTimeSections.Hours && translate
                 ? new DateTime().AddHours(int.Parse(minVal))
-                                .ToString("hh:mm tt")
+                                .ToString(MINUTE_FORMAT)
                 : minVal;
             maxVal = time == CronTimeSections.Hours && translate
                 ? new DateTime().AddHours(int.Parse(maxVal))
                                 .AddMinutes(59)
                                 .AddSeconds(59)
-                                .ToString("hh:mm tt")
+                                .ToString(MINUTE_FORMAT)
                 : maxVal;
 
             return (minVal == maxVal
