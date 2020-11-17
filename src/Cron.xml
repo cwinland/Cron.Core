@@ -37,8 +37,8 @@
             </code>
             Create Cron with an existing expression
             <code>
-				var cron = new CronBuilder(expression);
-			</code>
+            var cron = new CronBuilder(expression);
+            </code>
             Remove single value entry.
             <code>
             cron.Remove(CronTimeSections.Seconds, 5);
@@ -49,15 +49,15 @@
             </code>
             Create Initial Cron with Days
             <code>
-				var cron = new CronBuilder
-				{
-				{ CronDays.Thursday, CronDays.Saturday }
-				};
-			</code>
+            var cron = new CronBuilder
+            {
+            { CronDays.Thursday, CronDays.Saturday }
+            };
+            </code>
             Create Initial Cron with Months.
             <code>
-				var cron = new CronBuilder { { CronMonths.August, CronMonths.November } };
-			</code>
+            var cron = new CronBuilder { { CronMonths.August, CronMonths.November } };
+            </code>
             Reset Day of the Week section only.
             <code>
             cron.Reset(CronTimeSections.DayWeek);
@@ -88,8 +88,8 @@
             <example>
             Create Cron with an existing expression
             <code>
-				var cron = new CronBuilder(expression);
-			</code></example>
+            var cron = new CronBuilder(expression);
+            </code></example>
             <inheritdoc cref="T:Cron.Core.Interfaces.ICron" />
         </member>
         <member name="P:Cron.Core.CronBuilder.DayMonth">
@@ -897,6 +897,7 @@
             Indicates that the value should be translated using the */ every indicator.
             </summary>
             <value><c>true</c> if every; otherwise, <c>false</c>.</value>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
             <exception cref="T:System.ArgumentOutOfRangeException"></exception>
             <inheritdoc cref="T:Cron.Core.Interfaces.ISection" />
         </member>

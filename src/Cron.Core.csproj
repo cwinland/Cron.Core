@@ -15,11 +15,11 @@
 		<PackageProjectUrl>https://github.com/cwinland/Cron.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/cwinland/Cron.Core</RepositoryUrl>
 		<RepositoryType>github</RepositoryType>
-		<PackageTags>Cron Expression builder Parser Object Description</PackageTags>
+		<PackageTags>Cron;Builder;Expression;Parser;Object;Description;chain;chaining;interval;</PackageTags>
 		<PackageLicenseFile>license.txt</PackageLicenseFile>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DocumentationFile>C:\Users\chris\source\repos\Cron\src\Cron.xml</DocumentationFile>
+		<DocumentationFile>C:\Users\chris\source\repos\Cron\README.md</DocumentationFile>
 	</PropertyGroup>
 	<PropertyGroup>
 		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
@@ -29,7 +29,8 @@
 	</PropertyGroup>
 	<PropertyGroup>
 		<GenerateNuspecDependsOn>$(GenerateNuspecDependsOn);SetPackageVersion</GenerateNuspecDependsOn>
-		<Description>Cron object that can be used to build Cron expressions, describe them, and manipulate objects.</Description>
+		<Description>Cron builder object that can be used to build Cron expressions, describe them, and manipulate objects.</Description>
+		<PackageReleaseNotes>1.1.11.17: Cron renamed to Cron Builder. Bug Fixes in Description property.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<Target Name="SetPackageVersion">
