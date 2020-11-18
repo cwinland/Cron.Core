@@ -15,7 +15,7 @@
 		<PackageProjectUrl>https://github.com/cwinland/Cron.Core</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/cwinland/Cron.Core</RepositoryUrl>
 		<RepositoryType>github</RepositoryType>
-		<PackageTags>Cron;Builder;Expression;Parser;Object;Description;chain;chaining;interval;</PackageTags>
+		<PackageTags>Cron Builder Expression Parser Object Description chain chaining interval</PackageTags>
 		<PackageLicenseFile>license.txt</PackageLicenseFile>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -23,9 +23,9 @@
 	</PropertyGroup>
 	<PropertyGroup>
 		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
-		<AssemblyVersion>1.$([System.DateTime]::Now.ToString("1.MM.dd"))</AssemblyVersion>
-		<FileVersion>1.$([System.DateTime]::Now.ToString("1.MM.dd"))</FileVersion>
-		<Version>1.$([System.DateTime]::Now.ToString("1.MM.dd"))</Version>
+		<AssemblyVersion>1.$([System.DateTime]::Now.ToString("y.MM.ddHH"))</AssemblyVersion>
+		<FileVersion>1.$([System.DateTime]::Now.ToString("y.MM.ddHH"))</FileVersion>
+		<Version>1.$([System.DateTime]::Now.ToString("y.MM.ddHH"))</Version>
 	</PropertyGroup>
 	<PropertyGroup>
 		<GenerateNuspecDependsOn>$(GenerateNuspecDependsOn);SetPackageVersion</GenerateNuspecDependsOn>
@@ -35,9 +35,8 @@
 
 	<Target Name="SetPackageVersion">
 		<PropertyGroup>
-			<!-- <PackageVersion>$([System.DateTime]::Now.ToString(&quot;yyyy.MM.dd.HHmmss&quot;))</PackageVersion> -->
 			<!-- You can customize the format and the rule about how version increases here. -->
-			<PackageVersion>1.$([System.DateTime]::Now.ToString("1.MM.dd"))</PackageVersion>
+			<PackageVersion>1.$([System.DateTime]::Now.ToString("y.MM.ddHH"))</PackageVersion>
 		</PropertyGroup>
 	</Target>
 	<ItemGroup>
