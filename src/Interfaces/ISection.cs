@@ -65,6 +65,7 @@ namespace Cron.Core.Interfaces
         /// </summary>
         /// <value>The time.</value>
         CronTimeSections Time { get; }
+
         /// <summary>
         /// List of Cron value expression specific to the <see cref="ISection" />.
         /// </summary>
@@ -76,7 +77,7 @@ namespace Cron.Core.Interfaces
         /// </summary>
         /// <param name="value">Value for this <see cref="ISection" />.</param>
         /// <returns>ISection.</returns>
-        ISection Add([Range(0, 9999)] int value);
+        ISection Add([Range(0, 9999)]int value);
 
         /// <summary>
         /// Add a time value range to this <see cref="ISection" />.
@@ -84,7 +85,7 @@ namespace Cron.Core.Interfaces
         /// <param name="minVal">Starting value for this <see cref="ISection" />.</param>
         /// <param name="maxVal">Ending value for this <see cref="ISection" />.</param>
         /// <returns>ISection.</returns>
-        ISection Add([Range(0, 9999)] int minVal, [Range(0, 9999)] int maxVal);
+        ISection Add([Range(0, 9999)]int minVal, [Range(0, 9999)]int maxVal);
 
         /// <summary>
         /// Clear the values in the <see cref="ISection" />.
@@ -103,7 +104,8 @@ namespace Cron.Core.Interfaces
         /// </summary>
         /// <param name="value">Value for this <see cref="ISection" />.</param>
         /// <returns><c>true</c> if [is valid range] [the specified value]; otherwise, <c>false</c>.</returns>
-        bool IsValidRange([Range(0, 9999)] int value);
+        bool IsValidRange([Range(0, 9999)]int value);
+
         /// <summary>
         /// Remove the specified value from the <see cref="ISection" />.
         /// </summary>
@@ -133,6 +135,5 @@ namespace Cron.Core.Interfaces
         /// <param name="showEvery">Show every indicator.</param>
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         string ToString(bool translateEnum, Type enumType, bool showEvery);
-
     }
 }

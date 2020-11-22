@@ -11,13 +11,13 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-using Cron.Core.Enums;
-using Cron.Core.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using Cron.Core.Enums;
+using Cron.Core.Interfaces;
 
 namespace Cron.Core.Sections
 {
@@ -29,6 +29,18 @@ namespace Cron.Core.Sections
     /// <inheritdoc cref="ISection" />
     public abstract class Section : ISection
     {
+        #region Indexers
+
+        /// <summary>
+        /// Gets the <see cref="ISectionValues" /> at the specified index.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <returns>ISectionValues.</returns>
+        /// <inheritdoc cref="ISection" />
+        public ISectionValues this[int index] => ((IReadOnlyList<ISectionValues>)values)[index];
+
+        #endregion Indexers
+
         /// <summary>
         /// Determines whether [is time cron section] [the specified time].
         /// </summary>
@@ -47,22 +59,9 @@ namespace Cron.Core.Sections
                 case CronTimeSections.DayWeek:
                 case CronTimeSections.Years:
                     return false;
-                default:
-                    return false;
+                default: return false;
             }
-
         }
-        #region Indexers
-
-        /// <summary>
-        /// Gets the <see cref="ISectionValues" /> at the specified index.
-        /// </summary>
-        /// <param name="index">The index.</param>
-        /// <returns>ISectionValues.</returns>
-        /// <inheritdoc cref="ISection" />
-        public ISectionValues this[int index] => ((IReadOnlyList<ISectionValues>) values)[index];
-
-        #endregion Indexers
 
         #region Fields
 
@@ -97,23 +96,19 @@ namespace Cron.Core.Sections
             Enabled = true;
             expression.Split(',')
                       .ToList()
-                      .ForEach(
-                          x =>
-                          {
-                              var vals = x.Split('-')
-                                          .ToList();
-                              var val1 = int.Parse(vals[0]);
-                              ISectionValues sectionValues = new SectionValues(
-                                  time,
-                                  val1,
-                                  vals.Count == 1
-                                      ? val1
-                                      : int.Parse(vals[1])
-                              );
+                      .ForEach(x =>
+                               {
+                                   var vals = x.Split('-')
+                                               .ToList();
+                                   var val1 = int.Parse(vals[0]);
+                                   ISectionValues sectionValues = new SectionValues(time,
+                                       val1,
+                                       vals.Count == 1
+                                           ? val1
+                                           : int.Parse(vals[1]));
 
-                              values.Add(sectionValues);
-                          }
-                      );
+                                   values.Add(sectionValues);
+                               });
         }
 
         /// <summary>
@@ -231,8 +226,7 @@ namespace Cron.Core.Sections
 
                         break;
 
-                    default:
-                        throw new ArgumentOutOfRangeException();
+                    default: throw new ArgumentOutOfRangeException();
                 }
 
                 return result.Trim();
@@ -256,10 +250,10 @@ namespace Cron.Core.Sections
         public bool Every
         {
             get => every;
-            set =>
-                every = SectionType != CronSectionType.Time && value
-                    ? throw new ArgumentOutOfRangeException(paramName: nameof(Every), message: "Can only be true when SectionType is Time.")
-                    : value;
+            set => every = SectionType != CronSectionType.Time && value
+                ? throw new ArgumentOutOfRangeException(paramName: nameof(Every),
+                                                        message: "Can only be true when SectionType is Time.")
+                : value;
         }
 
         /// <summary>
@@ -312,7 +306,7 @@ namespace Cron.Core.Sections
         /// <exception cref="System.ArgumentOutOfRangeException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         /// <inheritdoc cref="ISection" />
-        public ISection Add([Range(0, 9999)] int value)
+        public ISection Add([Range(0, 9999)]int value)
         {
             Every = false;
 
@@ -337,7 +331,7 @@ namespace Cron.Core.Sections
         /// <exception cref="System.ArgumentOutOfRangeException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         /// <inheritdoc cref="ISection" />
-        public ISection Add([Range(0, 9999)] int minVal, [Range(0, 9999)] int maxVal)
+        public ISection Add([Range(0, 9999)]int minVal, [Range(0, 9999)]int maxVal)
         {
             Every = false;
 
@@ -371,10 +365,10 @@ namespace Cron.Core.Sections
         /// </summary>
         /// <returns>An enumerator that can be used to iterate through the collection.</returns>
         /// <inheritdoc cref="ISection" />
-        public IEnumerator<ISectionValues> GetEnumerator() => ((IEnumerable<ISectionValues>) values).GetEnumerator();
+        public IEnumerator<ISectionValues> GetEnumerator() => ((IEnumerable<ISectionValues>)values).GetEnumerator();
 
         /// <inheritdoc cref="ISection" />
-        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable) values).GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)values).GetEnumerator();
 
         /// <summary>
         /// Indicates if this be represented as an integer.
@@ -389,7 +383,7 @@ namespace Cron.Core.Sections
         /// <param name="value">Value for this <see cref="ISection" />.</param>
         /// <returns><c>true</c> if [is valid range] [the specified value]; otherwise, <c>false</c>.</returns>
         /// <inheritdoc cref="ISection" />
-        public virtual bool IsValidRange([Range(0, 9999)] int value)
+        public virtual bool IsValidRange([Range(0, 9999)]int value)
         {
             bool result;
 
@@ -441,7 +435,7 @@ namespace Cron.Core.Sections
         /// <param name="value">Value for this <see cref="ISection" />.</param>
         /// <returns>ISection.</returns>
         /// <inheritdoc cref="ISection" />
-        public ISection Remove([Range(0, 9999)] int value)
+        public ISection Remove([Range(0, 9999)]int value)
         {
             var val = values.Find(x => x.MinValue == value);
             values.Remove(val);
@@ -456,7 +450,7 @@ namespace Cron.Core.Sections
         /// <param name="maxVal">Ending value for this <see cref="ISection" />.</param>
         /// <returns>ISection.</returns>
         /// <inheritdoc cref="ISection" />
-        public ISection Remove([Range(0, 9999)] int minVal, [Range(0, 9999)] int maxVal)
+        public ISection Remove([Range(0, 9999)]int minVal, [Range(0, 9999)]int maxVal)
         {
             var val = values.Find(x => x.MinValue == minVal && x.MaxValue == maxVal);
             values.Remove(val);
@@ -526,17 +520,12 @@ namespace Cron.Core.Sections
         /// <inheritdoc cref="ISection" />
         public override string ToString() => ToString(false, null, true);
 
-        private void SortValues()
-        {
-            values.Sort(
-                delegate(ISectionValues x, ISectionValues y)
-                {
-                    var compare1 = x.MinValue.CompareTo(y.MinValue);
+        private void SortValues() => values.Sort(delegate(ISectionValues x, ISectionValues y)
+                                                 {
+                                                     var compare1 = x.MinValue.CompareTo(y.MinValue);
 
-                    return compare1 != 0 ? compare1 : x.MaxValue.CompareTo(y.MaxValue);
-                }
-            );
-        }
+                                                     return compare1 != 0 ? compare1 : x.MaxValue.CompareTo(y.MaxValue);
+                                                 });
 
         #endregion Methods
     }

@@ -44,32 +44,15 @@ namespace Cron.Core.Sections
         }
 
         /// <inheritdoc />
-        public override bool IsValidRange(int value) => base.IsValidRange(value) && (!Every || AllowedIncrements.Contains(value));
+        public override bool IsValidRange(int value) =>
+            base.IsValidRange(value) && (!Every || AllowedIncrements.Contains(value));
 
         /// <inheritdoc />
-        public List<int> AllowedIncrements =>
-            Time == CronTimeSections.Hours
-                ? new List<int>
-                {
-                    2,
-                    3,
-                    4,
-                    6,
-                    8,
-                    12,
-                }
-                : new List<int>
-                {
-                    2,
-                    3,
-                    4,
-                    5,
-                    6,
-                    10,
-                    12,
-                    15,
-                    20,
-                    30,
-                };
+        public List<int> AllowedIncrements => Time == CronTimeSections.Hours
+            ? new List<int> { 2, 3, 4, 6, 8, 12, }
+            : new List<int>
+            {
+                2, 3, 4, 5, 6, 10, 12, 15, 20, 30,
+            };
     }
 }

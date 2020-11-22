@@ -23,6 +23,7 @@ namespace Cron.Core.Enums
         /// The time Section Type.
         /// </summary>
         Time,
+
         /// <summary>
         /// The date section Type.
         /// </summary>

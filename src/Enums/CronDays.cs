@@ -11,6 +11,7 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+// ReSharper disable UnusedMember.Global
 namespace Cron.Core.Enums
 {
     /// <summary>

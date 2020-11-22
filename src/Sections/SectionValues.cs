@@ -11,9 +11,9 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+using System;
 using Cron.Core.Enums;
 using Cron.Core.Interfaces;
-using System;
 
 namespace Cron.Core.Sections
 {
@@ -77,12 +77,12 @@ namespace Cron.Core.Sections
             var translateEnum = translate && enumType != null;
             var minVal = translateEnum
                 ? Enum.ToObject(enumType, MinValue)
-                    .ToString()
+                      .ToString()
                 : MinValue.ToString();
 
             var maxVal = translateEnum
                 ? Enum.ToObject(enumType, MaxValue)
-                    .ToString()
+                      .ToString()
                 : MaxValue.ToString();
 
             minVal = time == CronTimeSections.Hours && translate
