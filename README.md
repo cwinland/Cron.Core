@@ -102,5 +102,8 @@ Cron Builder object that can be used to build Cron expressions, describe them, a
 ```
 
 # Updates
+## Version 1.20.11.2216
+Minor Cleanup and Fixes / Update packages.
+
 ## Version 1.1.11.17
 Cron Object renamed to CronBuilder to simplify creation due to conflicting namespace.
