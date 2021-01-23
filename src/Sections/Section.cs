@@ -27,7 +27,7 @@ namespace Cron.Core.Sections
     /// </summary>
     /// <seealso cref="ISection" />
     /// <inheritdoc cref="ISection" />
-    public abstract class Section : ISection
+    public abstract class Section<T> : ISection
     {
         #region Indexers
 
@@ -46,7 +46,7 @@ namespace Cron.Core.Sections
         /// </summary>
         /// <param name="time">The time.</param>
         /// <returns><c>true</c> if [is time cron section] [the specified time]; otherwise, <c>false</c>.</returns>
-        public static bool IsTimeCronSection(CronTimeSections time)
+        private static bool IsTimeCronSection(CronTimeSections time)
         {
             switch (time)
             {
@@ -101,7 +101,7 @@ namespace Cron.Core.Sections
                                    var vals = x.Split('-')
                                                .ToList();
                                    var val1 = int.Parse(vals[0]);
-                                   ISectionValues sectionValues = new SectionValues(time,
+                                   ISectionValues sectionValues = new SectionValues<T>(time,
                                        val1,
                                        vals.Count == 1
                                            ? val1
@@ -251,8 +251,8 @@ namespace Cron.Core.Sections
         {
             get => every;
             set => every = SectionType != CronSectionType.Time && value
-                ? throw new ArgumentOutOfRangeException(paramName: nameof(Every),
-                                                        message: "Can only be true when SectionType is Time.")
+                ? throw new ArgumentOutOfRangeException(nameof(Every),
+                                                        "Can only be true when SectionType is Time.")
                 : value;
         }
 
@@ -285,14 +285,13 @@ namespace Cron.Core.Sections
             }
         }
 
-        private CronTimeSections time;
         private bool every = true;
 
         /// <summary>
         /// Gets or sets the time section Type <see cref="CronTimeSections" />.
         /// </summary>
         /// <value>The time.</value>
-        public CronTimeSections Time { get => time; protected internal set => time = value; }
+        public CronTimeSections Time { get; protected internal set; }
 
         #endregion Properties
 
@@ -315,7 +314,7 @@ namespace Cron.Core.Sections
                 throw new ArgumentOutOfRangeException();
             }
 
-            values.Add(new SectionValues(Time, value));
+            values.Add(new SectionValues<T>(Time, value));
 
             Enabled = true;
 
@@ -341,7 +340,7 @@ namespace Cron.Core.Sections
                 throw new ArgumentOutOfRangeException();
             }
 
-            values.Add(new SectionValues(Time, minVal, maxVal));
+            values.Add(new SectionValues<T>(Time, minVal, maxVal));
             Enabled = true;
 
             return this;
@@ -401,7 +400,7 @@ namespace Cron.Core.Sections
                     break;
 
                 case CronTimeSections.DayWeek:
-                    result = Enum.IsDefined(typeof(CronDays), value);
+                    result = CronDays.TryConvert(value, out _);
 
                     break;
 
@@ -489,6 +488,11 @@ namespace Cron.Core.Sections
         /// <inheritdoc cref="ISection" />
         public string ToString(bool translateEnum, Type enumType, bool showEvery)
         {
+            //var isEnum = enumType?.BaseType == typeof(Enum);
+            //var isEnhanced =
+            //    !isEnum && enumType != null && (enumType?.BaseType?.Name.Contains("EnhancedEnum") ?? false);
+            //translateEnum = isEnum || isEnhanced;
+
             if (!Enabled &&
                 !showEvery)
             {

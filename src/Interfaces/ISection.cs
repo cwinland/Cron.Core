@@ -16,6 +16,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Cron.Core.Enums;
 
+// ReSharper disable UnusedMemberInSuper.Global
+
 namespace Cron.Core.Interfaces
 {
     /// <summary>
@@ -23,55 +25,6 @@ namespace Cron.Core.Interfaces
     /// </summary>
     public interface ISection : IReadOnlyList<ISectionValues>
     {
-        /// <summary>
-        /// Indicates that the value should be translated using the ? any indicator.
-        /// </summary>
-        /// <value><c>true</c> if any; otherwise, <c>false</c>.</value>
-        /// <remarks>Experimental.</remarks>
-        bool Any { get; set; }
-
-        /// <summary>
-        /// Indicates if any values contain a range.
-        /// </summary>
-        /// <value><c>true</c> if [contains range]; otherwise, <c>false</c>.</value>
-        bool ContainsRange { get; }
-
-        /// <summary>
-        /// Get readable description.
-        /// </summary>
-        /// <value>The description.</value>
-        string Description { get; }
-
-        /// <summary>
-        /// Indicates that the value is enabled or used. Equivalent to using ? in a cron expression.
-        /// </summary>
-        /// <value><c>true</c> if enabled; otherwise, <c>false</c>.</value>
-        bool Enabled { get; set; }
-
-        /// <summary>
-        /// Indicates that the value should be translated using the */ every indicator.
-        /// </summary>
-        /// <value><c>true</c> if every; otherwise, <c>false</c>.</value>
-        bool Every { get; set; }
-
-        /// <summary>
-        /// Gets the type of the section.
-        /// </summary>
-        /// <value>The type of the section.</value>
-        CronSectionType SectionType { get; }
-
-        /// <summary>
-        /// Gets the <see cref="CronTimeSections" />.
-        /// </summary>
-        /// <value>The time.</value>
-        CronTimeSections Time { get; }
-
-        /// <summary>
-        /// List of Cron value expression specific to the <see cref="ISection" />.
-        /// </summary>
-        /// <value>The values.</value>
-        IEnumerable<string> Values { get; }
-
         /// <summary>
         /// Add time value to this <see cref="ISection" />.
         /// </summary>
@@ -135,5 +88,54 @@ namespace Cron.Core.Interfaces
         /// <param name="showEvery">Show every indicator.</param>
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         string ToString(bool translateEnum, Type enumType, bool showEvery);
+
+        /// <summary>
+        /// Indicates that the value should be translated using the ? any indicator.
+        /// </summary>
+        /// <value><c>true</c> if any; otherwise, <c>false</c>.</value>
+        /// <remarks>Experimental.</remarks>
+        bool Any { get; set; }
+
+        /// <summary>
+        /// Indicates if any values contain a range.
+        /// </summary>
+        /// <value><c>true</c> if [contains range]; otherwise, <c>false</c>.</value>
+        bool ContainsRange { get; }
+
+        /// <summary>
+        /// Get readable description.
+        /// </summary>
+        /// <value>The description.</value>
+        string Description { get; }
+
+        /// <summary>
+        /// Indicates that the value is enabled or used. Equivalent to using ? in a cron expression.
+        /// </summary>
+        /// <value><c>true</c> if enabled; otherwise, <c>false</c>.</value>
+        bool Enabled { get; set; }
+
+        /// <summary>
+        /// Indicates that the value should be translated using the */ every indicator.
+        /// </summary>
+        /// <value><c>true</c> if every; otherwise, <c>false</c>.</value>
+        bool Every { get; set; }
+
+        /// <summary>
+        /// Gets the type of the section.
+        /// </summary>
+        /// <value>The type of the section.</value>
+        CronSectionType SectionType { get; }
+
+        /// <summary>
+        /// Gets the <see cref="CronTimeSections" />.
+        /// </summary>
+        /// <value>The time.</value>
+        CronTimeSections Time { get; }
+
+        /// <summary>
+        /// List of Cron value expression specific to the <see cref="ISection" />.
+        /// </summary>
+        /// <value>The values.</value>
+        IEnumerable<string> Values { get; }
     }
 }

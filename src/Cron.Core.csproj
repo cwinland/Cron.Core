@@ -89,6 +89,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="EnhancedEnum-StrongNamed" Version="1.21.1.2310" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 	</ItemGroup>
 

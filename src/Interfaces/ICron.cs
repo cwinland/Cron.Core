@@ -11,9 +11,15 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 using Cron.Core.Enums;
+
+// ReSharper disable UnusedMemberInSuper.Global
+
+// ReSharper disable UnusedMember.Global
 
 namespace Cron.Core.Interfaces
 {
@@ -72,7 +78,7 @@ namespace Cron.Core.Interfaces
         /// Gets the section list.
         /// </summary>
         /// <value>The section list.</value>
-        List<ISection> SectionList { get; }
+        List<Tuple<PropertyInfo, ISection>> SectionList { get; }
 
         /// <summary>
         /// Cron Expression.

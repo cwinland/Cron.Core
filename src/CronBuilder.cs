@@ -130,10 +130,33 @@ namespace Cron.Core
             }
 
             var startingIndex = 0;
-
+            var mi = typeof(CronBuilder)
+                     .GetRuntimeMethods()
+                     .First(x => x.Name.Equals("CreateSection"));
             SectionList
                 .ToList()
-                .ForEach(section => Set(CreateSection(section, cronArray, ref startingIndex)));
+                .ForEach(section =>
+                         {
+                             var (prop, sectionData) = section;
+                             var fooRef = mi.MakeGenericMethod(sectionData.GetType().GetGenericArguments().First());
+                             var incrementVar =
+                                 (cronArray.Length >= 6 || sectionData.Time != CronTimeSections.Seconds) &&
+                                 startingIndex < cronArray.Length;
+                             var result = (ISection)fooRef.Invoke(null,
+                                                                  new object[]
+                                                                  {
+                                                                      sectionData, cronArray, startingIndex,
+                                                                  });
+
+                             if (incrementVar)
+                             {
+                                 startingIndex++;
+                             }
+
+                             prop
+                                 .SetValue(this,
+                                           result);
+                         });
         }
 
         #endregion Constructors
@@ -145,14 +168,14 @@ namespace Cron.Core
         /// </summary>
         /// <value>The day month.</value>
         /// <inheritdoc cref="ICron" />
-        public ISection DayMonth { get; private set; } = new DateSection(CronTimeSections.DayMonth);
+        public ISection DayMonth { get; private set; } = new DateSection<CronDays>(CronTimeSections.DayMonth);
 
         /// <summary>
         /// Day of the Week Information
         /// </summary>
         /// <value>The day week.</value>
         /// <inheritdoc cref="ICron" />
-        public ISection DayWeek { get; private set; } = new DateSection(CronTimeSections.DayWeek);
+        public ISection DayWeek { get; private set; } = new DateSection<DayOfWeek>(CronTimeSections.DayWeek);
 
         /// <summary>
         /// Human readable description.
@@ -175,41 +198,42 @@ namespace Cron.Core
         /// </summary>
         /// <value>The hours.</value>
         /// <inheritdoc cref="ICron" />
-        public ISection Hours { get; private set; } = new TimeSection(CronTimeSections.Hours);
+        public ISection Hours { get; private set; } = new TimeSection<int>(CronTimeSections.Hours);
 
         /// <summary>
         /// Minutes Information
         /// </summary>
         /// <value>The minutes.</value>
         /// <inheritdoc cref="ICron" />
-        public ISection Minutes { get; private set; } = new TimeSection(CronTimeSections.Minutes);
+        public ISection Minutes { get; private set; } = new TimeSection<int>(CronTimeSections.Minutes);
 
         /// <summary>
         /// Months Information
         /// </summary>
         /// <value>The months.</value>
         /// <inheritdoc cref="ICron" />
-        public ISection Months { get; private set; } = new DateSection(CronTimeSections.Months);
+        public ISection Months { get; private set; } = new DateSection<CronMonths>(CronTimeSections.Months);
 
         /// <summary>
         /// Seconds Information
         /// </summary>
         /// <value>The seconds.</value>
         /// <inheritdoc cref="ICron" />
-        public ISection Seconds { get; private set; } = new TimeSection(CronTimeSections.Seconds);
+        public ISection Seconds { get; private set; } = new TimeSection<int>(CronTimeSections.Seconds);
 
         /// <summary>
         /// Get a list of sections, originally sorted.
         /// </summary>
         /// <value>The section list.</value>
-        public List<ISection> SectionList => new SortedList<int, ISection>(typeof(CronBuilder)
-                                                                           .GetRuntimeProperties()
-                                                                           .Where(x => x.PropertyType ==
-                                                                               typeof(ISection))
-                                                                           .Select(x => (ISection)x.GetValue(this))
-                                                                           .ToList()
-                                                                           .ToDictionary(s => (int)s.Time)).Values
-            .ToList();
+        public List<Tuple<PropertyInfo, ISection>> SectionList => new SortedList<int, Tuple<PropertyInfo, ISection>>(
+                typeof(CronBuilder)
+                    .GetRuntimeProperties()
+                    .Where(x => x.PropertyType ==
+                                typeof(ISection))
+                    .Select(x => new Tuple<PropertyInfo, ISection>(x, (ISection)x.GetValue(this)))
+                    .ToList()
+                    .ToDictionary(s => (int)s.Item2.Time)).Values
+                                                          .ToList();
 
         /// <summary>
         /// Cron Expression.
@@ -224,7 +248,7 @@ namespace Cron.Core
         /// </summary>
         /// <value>The years.</value>
         /// <inheritdoc cref="ICron" />
-        public ISection Years { get; private set; } = new DateSection(CronTimeSections.Years);
+        public ISection Years { get; private set; } = new DateSection<int>(CronTimeSections.Years);
 
         #endregion Properties
 
@@ -420,7 +444,7 @@ namespace Cron.Core
         /// <inheritdoc cref="ICron" />
         public ICron Reset()
         {
-            SectionList.ForEach(section => section.Clear());
+            SectionList.ForEach(section => section.Item2.Clear());
 
             return this;
         }
@@ -458,29 +482,29 @@ namespace Cron.Core
             return true;
         }
 
-        private static ISection CreateDisabledSection(ISection section) => section.SectionType == CronSectionType.Time
-            ? (ISection)new TimeSection(section.Time, false)
-            : new DateSection(section.Time, false);
+        private static ISection CreateDisabledSection<T>(ISection section) =>
+            section.SectionType == CronSectionType.Time
+                ? (ISection)new TimeSection<T>(section.Time, false)
+                : new DateSection<T>(section.Time, false);
 
-        private static ISection CreateExpressionSection(
-            ISection section, IReadOnlyList<string> cronArray, ref int startingIndex) =>
+        private static ISection CreateExpressionSection<T>(ISection section, string value) =>
             section.SectionType == CronSectionType.Time
                 ? (ISection)
-                new TimeSection(section.Time,
-                                cronArray[startingIndex++])
-                : new DateSection(section.Time,
-                                  cronArray[startingIndex++]);
+                new TimeSection<T>(section.Time,
+                                   value)
+                : new DateSection<T>(section.Time,
+                                     value);
 
         private static ISection
-            CreateSection(ISection section, IReadOnlyList<string> cronArray, ref int startingIndex) =>
+#pragma warning disable IDE0051 // Remove unused private members
+
+            // ReSharper disable once UnusedMember.Local
+            CreateSection<T>(ISection section, IReadOnlyList<string> cronArray, int startingIndex) =>
+#pragma warning restore IDE0051 // Remove unused private members
             (cronArray.Count >= 6 || section.Time != CronTimeSections.Seconds) &&
             startingIndex < cronArray.Count
-                ? CreateExpressionSection(section, cronArray, ref startingIndex)
-                : CreateDisabledSection(section);
-
-        //public ICron Set(CronTimeSections time, IEnumerable<ISectionValues> value)
-        //{
-        //    GetFieldInfo(time).SetValue(this, value, null);
+                ? CreateExpressionSection<T>(section, cronArray[startingIndex])
+                : CreateDisabledSection<T>(section);
 
         private static string GetSpecificTime(ISection seconds, ISection minutes, ISection hours)
         {
@@ -530,9 +554,9 @@ namespace Cron.Core
         {
             var desc = new List<string>();
 
-            SectionList.Where(section => section.SectionType == CronSectionType.Date)
+            SectionList.Where(section => section.Item2.SectionType == CronSectionType.Date)
                        .ToList()
-                       .ForEach(section => AddDescription(section, desc));
+                       .ForEach(section => AddDescription(section.Item2, desc));
 
             return string.Join(", ", desc);
         }

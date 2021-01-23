@@ -25,7 +25,7 @@ namespace Cron.Core.Sections
     /// <seealso cref="Section" />
     /// <seealso cref="ITimeSection" />
     /// <inheritdoc cref="ITimeSection" />
-    public class TimeSection : Section, ITimeSection
+    public class TimeSection<T> : Section<T>, ITimeSection
     {
         /// <inheritdoc />
         protected internal TimeSection(CronTimeSections time, string expression) : base(time, expression) { }

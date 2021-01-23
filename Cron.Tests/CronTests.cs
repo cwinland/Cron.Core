@@ -263,9 +263,9 @@ namespace Cron.Tests
                 act
                     .Should()
                     .Throw<InvalidDataException>(
-                        because: "This expression only has {0} parts. An expression must have 5, 6, or 7 parts.",
-                        becauseArgs: expression.Split(' ')
-                                               .Length);
+                        "This expression only has {0} parts. An expression must have 5, 6, or 7 parts.",
+                        expression.Split(' ')
+                                  .Length);
             }
         }
 
@@ -417,9 +417,9 @@ namespace Cron.Tests
         public void Cron_EveryDateTests()
         {
             var cron = new CronBuilder();
-            cron.SectionList.Where(x => x.SectionType == CronSectionType.Date)
+            cron.SectionList.Where(x => x.Item2.SectionType == CronSectionType.Date)
                 .ToList()
-                .ForEach(x => TestDateSection(cron, x));
+                .ForEach(x => TestDateSection(cron, x.Item2));
         }
 
         private static void TestDateSection(ICron cron, ISection section)

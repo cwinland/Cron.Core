@@ -12,6 +12,7 @@
 // <summary></summary>
 // ***********************************************************************
 using System;
+using System.ComponentModel;
 using Cron.Core.Enums;
 using Cron.Core.Interfaces;
 
@@ -23,14 +24,14 @@ namespace Cron.Core.Sections
     /// </summary>
     /// <seealso cref="ISectionValues" />
     /// <inheritdoc cref="ISectionValues" />
-    public class SectionValues : ISectionValues
+    public class SectionValues<T> : ISectionValues
     {
         private const string MINUTE_FORMAT = "hh:mm tt";
         private readonly int? maxValue;
         private readonly CronTimeSections time;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SectionValues" /> class.
+        /// Initializes a new instance of the <see cref="SectionValues{T}" /> class.
         /// </summary>
         /// <param name="time">The time.</param>
         /// <param name="val">The value.</param>
@@ -41,7 +42,7 @@ namespace Cron.Core.Sections
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SectionValues" /> class.
+        /// Initializes a new instance of the <see cref="SectionValues{T}" /> class.
         /// </summary>
         /// <param name="time">The time.</param>
         /// <param name="minVal">The minimum value.</param>
@@ -74,16 +75,27 @@ namespace Cron.Core.Sections
         /// <inheritdoc cref="ISectionValues" />
         public string ToString(bool translate, Type enumType)
         {
-            var translateEnum = translate && enumType != null;
-            var minVal = translateEnum
+            var isEnum = enumType?.BaseType == typeof(Enum);
+            var isEnhanced =
+                !isEnum && enumType != null && (enumType.BaseType?.Name.Contains("EnhancedEnum") ?? false);
+
+            var minVal = isEnum
                 ? Enum.ToObject(enumType, MinValue)
                       .ToString()
-                : MinValue.ToString();
+                : isEnhanced
+                    ? ((T)TypeDescriptor.GetConverter(typeof(T)).ConvertFromInvariantString(MinValue.ToString()))
+                      ?.ToString() ??
+                      string.Empty
+                    : MinValue.ToString();
 
-            var maxVal = translateEnum
+            var maxVal = isEnum
                 ? Enum.ToObject(enumType, MaxValue)
                       .ToString()
-                : MaxValue.ToString();
+                : isEnhanced
+                    ? ((T)TypeDescriptor.GetConverter(typeof(T)).ConvertFromInvariantString(MaxValue.ToString()))
+                      ?.ToString() ??
+                      string.Empty
+                    : MaxValue.ToString();
 
             minVal = time == CronTimeSections.Hours && translate
                 ? new DateTime().AddHours(int.Parse(minVal))
