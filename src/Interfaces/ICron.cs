@@ -13,7 +13,6 @@
 // ***********************************************************************
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using Cron.Core.Enums;
 
@@ -28,6 +27,11 @@ namespace Cron.Core.Interfaces
     /// </summary>
     public interface ICron : IEnumerable<CronTimeSections>
     {
+        /// <summary>
+        /// Gets or Sets to allow Seconds in the cron expression output.
+        /// </summary>
+        bool AllowSeconds { get; set; }
+
         /// <summary>
         /// Day of the Month Information
         /// </summary>
@@ -85,13 +89,7 @@ namespace Cron.Core.Interfaces
         /// </summary>
         /// <value>The value.</value>
         /// <example>*/22 */3,4 3-5,7-11 12 3,5 3 */5</example>
-        string Value { get; }
-
-        /// <summary>
-        /// Year Information
-        /// </summary>
-        /// <value>The years.</value>
-        ISection Years { get; }
+        string Value { get; set; }
 
         /// <summary>
         /// Add time value for the specified time section.
@@ -100,7 +98,7 @@ namespace Cron.Core.Interfaces
         /// <param name="value">Value for the specified time section.</param>
         /// <param name="repeatEvery">Indicates if the value is a repeating time or specific time.</param>
         /// <returns><see cref="ICron" /></returns>
-        ICron Add(CronTimeSections time, [Range(0, 9999)]int value, bool repeatEvery = false);
+        ICron Add(CronTimeSections time, int value, bool repeatEvery = false);
 
         /// <summary>
         /// Add time value for the specified time section.
@@ -109,7 +107,7 @@ namespace Cron.Core.Interfaces
         /// <param name="minValue">Starting value for the specified time section.</param>
         /// <param name="maxValue">Ending value for the specified time section.</param>
         /// <returns><see cref="ICron" /></returns>
-        ICron Add(CronTimeSections time, [Range(0, 9999)]int minValue, [Range(0, 9999)]int maxValue);
+        ICron Add(CronTimeSections time, int minValue, int maxValue);
 
         /// <summary>
         /// Add day of the week.
@@ -177,5 +175,11 @@ namespace Cron.Core.Interfaces
         /// <param name="value">Value for the specified time section.</param>
         /// <returns><see cref="ICron" /></returns>
         ICron Set(ISection value);
+
+        /// <summary>
+        /// String value of the object.
+        /// </summary>
+        /// <returns></returns>
+        string ToString();
     }
 }

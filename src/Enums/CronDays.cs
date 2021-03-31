@@ -12,70 +12,44 @@
 // <summary></summary>
 // ***********************************************************************
 // ReSharper disable UnusedMember.Global
-using EnhancedEnum;
-using EnhancedEnum.Attributes;
 
 namespace Cron.Core.Enums
 {
-    /// <summary>
-    /// Day of the week values to build Cron expressions.
-    /// </summary>
-    public sealed class CronDays : EnhancedEnum<int, CronDays>
+    public enum CronDays
     {
         /// <summary>
         /// The sunday
         /// </summary>
-        [Value(0)]
-        public static readonly CronDays Sunday = new CronDays();
+        Sunday = 0,
 
         /// <summary>
         /// The monday
         /// </summary>
-        [Value(1)]
-        public static readonly CronDays Monday = new CronDays();
+        Monday = 1,
 
         /// <summary>
         /// The tuesday
         /// </summary>
-        [Value(2)]
-        public static readonly CronDays Tuesday = new CronDays();
+        Tuesday = 2,
 
         /// <summary>
         /// The wednesday
         /// </summary>
-        [Value(3)]
-        public static readonly CronDays Wednesday = new CronDays();
+        Wednesday = 3,
 
         /// <summary>
         /// The thursday
         /// </summary>
-        [Value(4)]
-        public static readonly CronDays Thursday = new CronDays();
+        Thursday = 4,
 
         /// <summary>
         /// The friday
         /// </summary>
-        [Value(5)]
-        public static readonly CronDays Friday = new CronDays();
+        Friday = 5,
 
         /// <summary>
         /// The saturday
         /// </summary>
-        [Value(6)]
-        public static readonly CronDays Saturday = new CronDays();
-
-        /// <summary>
-        /// Performs an implicit conversion from <see cref="System.String"/> to <see cref="CronDays"/>.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <returns>The result of the conversion.</returns>
-        public static implicit operator CronDays(string value) => Convert(value);
-
-        /// <summary>
-        /// Performs an implicit conversion from <see cref="System.Int32"/> to <see cref="CronDays"/>.
-        /// </summary>
-        /// <param name="value">The value.</param>
-        /// <returns>The result of the conversion.</returns>
-        public static implicit operator CronDays(int value) => Convert(value);
+        Saturday = 6,
     }
 }

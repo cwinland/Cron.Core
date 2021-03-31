@@ -14,7 +14,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Cron.Core.Enums;
 using Cron.Core.Interfaces;
@@ -57,7 +56,6 @@ namespace Cron.Core.Sections
                 case CronTimeSections.DayMonth:
                 case CronTimeSections.Months:
                 case CronTimeSections.DayWeek:
-                case CronTimeSections.Years:
                     return false;
                 default: return false;
             }
@@ -216,16 +214,6 @@ namespace Cron.Core.Sections
 
                         break;
 
-                    case CronTimeSections.Years:
-                        var everyYearValue = ToString(false, null, false);
-                        result += Every
-                            ? everyYearValue == "1"
-                                ? string.Empty
-                                : $"every {everyYearValue} years"
-                            : $"only in year {ToString(false, null, false)}";
-
-                        break;
-
                     default: throw new ArgumentOutOfRangeException();
                 }
 
@@ -305,7 +293,7 @@ namespace Cron.Core.Sections
         /// <exception cref="System.ArgumentOutOfRangeException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         /// <inheritdoc cref="ISection" />
-        public ISection Add([Range(0, 9999)]int value)
+        public ISection Add(int value)
         {
             Every = false;
 
@@ -330,7 +318,7 @@ namespace Cron.Core.Sections
         /// <exception cref="System.ArgumentOutOfRangeException"></exception>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         /// <inheritdoc cref="ISection" />
-        public ISection Add([Range(0, 9999)]int minVal, [Range(0, 9999)]int maxVal)
+        public ISection Add(int minVal, int maxVal)
         {
             Every = false;
 
@@ -382,7 +370,7 @@ namespace Cron.Core.Sections
         /// <param name="value">Value for this <see cref="ISection" />.</param>
         /// <returns><c>true</c> if [is valid range] [the specified value]; otherwise, <c>false</c>.</returns>
         /// <inheritdoc cref="ISection" />
-        public virtual bool IsValidRange([Range(0, 9999)]int value)
+        public virtual bool IsValidRange(int value)
         {
             bool result;
 
@@ -400,7 +388,7 @@ namespace Cron.Core.Sections
                     break;
 
                 case CronTimeSections.DayWeek:
-                    result = CronDays.TryConvert(value, out _);
+                    result = Enum.IsDefined(typeof(CronDays), value);
 
                     break;
 
@@ -411,11 +399,6 @@ namespace Cron.Core.Sections
 
                 case CronTimeSections.Months:
                     result = Enum.IsDefined(typeof(CronMonths), value);
-
-                    break;
-
-                case CronTimeSections.Years:
-                    result = value > 0 && value < 20 || value > 2000;
 
                     break;
 
@@ -434,7 +417,7 @@ namespace Cron.Core.Sections
         /// <param name="value">Value for this <see cref="ISection" />.</param>
         /// <returns>ISection.</returns>
         /// <inheritdoc cref="ISection" />
-        public ISection Remove([Range(0, 9999)]int value)
+        public ISection Remove(int value)
         {
             var val = values.Find(x => x.MinValue == value);
             values.Remove(val);
@@ -449,7 +432,7 @@ namespace Cron.Core.Sections
         /// <param name="maxVal">Ending value for this <see cref="ISection" />.</param>
         /// <returns>ISection.</returns>
         /// <inheritdoc cref="ISection" />
-        public ISection Remove([Range(0, 9999)]int minVal, [Range(0, 9999)]int maxVal)
+        public ISection Remove(int minVal, int maxVal)
         {
             var val = values.Find(x => x.MinValue == minVal && x.MaxValue == maxVal);
             values.Remove(val);
