@@ -6,10 +6,10 @@
 		<AssemblyOriginatorKeyFile>cron.snk</AssemblyOriginatorKeyFile>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<PackageId>Cron.Core</PackageId>
+		<PackageId>CronBuilder</PackageId>
 		<Authors>Christopher Winland</Authors>
 		<Company>Microsoft Corporation</Company>
-		<Product>Cron.Core.StrongNamed</Product>
+		<Product>Cron Builder</Product>
 		<Copyright>copyright(c) 2020, 2021 Christopher Winland</Copyright>
 		<PackageLicenseExpression></PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/cwinland/Cron.Core</PackageProjectUrl>
