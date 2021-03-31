@@ -17,6 +17,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Cron.Core.Enums;
 using Cron.Core.Interfaces;
 using Cron.Core.Sections;
@@ -85,6 +87,8 @@ namespace Cron.Core
     /// cron.ResetAll();
     /// </code></example>
     /// <inheritdoc cref="ICron" />
+    [Serializable]
+    [JsonConverter(typeof(CronConverter))]
     public class CronBuilder : ICron
     {
         #region Fields
@@ -97,6 +101,9 @@ namespace Cron.Core
 
         #region Constructors
 
+        [JsonConstructor]
+        public CronBuilder() : this(false) { }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CronBuilder" /> class.
         /// </summary>
@@ -106,12 +113,13 @@ namespace Cron.Core
         /// schedule = new CronBuilder();
         /// </code></example>
         /// <inheritdoc cref="ICron" />
-        public CronBuilder() { }
+        public CronBuilder(bool allowSeconds = false) => AllowSeconds = allowSeconds;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CronBuilder" /> class.
         /// </summary>
         /// <param name="expression">The expression.</param>
+        /// <param name="allowSeconds">Use seconds in the calculations.</param>
         /// <exception cref="InvalidDataException">This expression only has {cronArray.Length} parts. An expression must have 5, 6, or 7 parts.</exception>
         /// <example>
         /// Create Cron with an existing expression
@@ -119,55 +127,23 @@ namespace Cron.Core
         /// var cron = new CronBuilder(expression);
         /// </code></example>
         /// <inheritdoc cref="ICron" />
-        public CronBuilder(string expression) : this()
-        {
-            var cronArray = expression.Split(' ');
-
-            if (cronArray.Length < 5)
-            {
-                throw new InvalidDataException(
-                    $"This expression only has {cronArray.Length} parts. An expression must have 5, 6, or 7 parts.");
-            }
-
-            var startingIndex = 0;
-            var mi = typeof(CronBuilder)
-                     .GetRuntimeMethods()
-                     .First(x => x.Name.Equals("CreateSection"));
-            SectionList
-                .ToList()
-                .ForEach(section =>
-                         {
-                             var (prop, sectionData) = section;
-                             var fooRef = mi.MakeGenericMethod(sectionData.GetType().GetGenericArguments().First());
-                             var incrementVar =
-                                 (cronArray.Length >= 6 || sectionData.Time != CronTimeSections.Seconds) &&
-                                 startingIndex < cronArray.Length;
-                             var result = (ISection)fooRef.Invoke(null,
-                                                                  new object[]
-                                                                  {
-                                                                      sectionData, cronArray, startingIndex,
-                                                                  });
-
-                             if (incrementVar)
-                             {
-                                 startingIndex++;
-                             }
-
-                             prop
-                                 .SetValue(this,
-                                           result);
-                         });
-        }
+        public CronBuilder(string expression, bool allowSeconds = false) : this(allowSeconds) =>
+            BuildExpression(expression);
 
         #endregion Constructors
 
         #region Properties
+
+        /// <inheritdoc />
+        [JsonInclude]
+        public bool AllowSeconds { get; set; }
 
         /// <summary>
         /// Day of the Month Information
         /// </summary>
         /// <value>The day month.</value>
         /// <inheritdoc cref="ICron" />
+        [JsonIgnore]
         public ISection DayMonth { get; private set; } = new DateSection<CronDays>(CronTimeSections.DayMonth);
 
         /// <summary>
@@ -175,6 +151,7 @@ namespace Cron.Core
         /// </summary>
         /// <value>The day week.</value>
         /// <inheritdoc cref="ICron" />
+        [JsonIgnore]
         public ISection DayWeek { get; private set; } = new DateSection<DayOfWeek>(CronTimeSections.DayWeek);
 
         /// <summary>
@@ -182,6 +159,7 @@ namespace Cron.Core
         /// </summary>
         /// <value>The description.</value>
         /// <inheritdoc cref="ICron" />
+        [JsonIgnore]
         public string Description
         {
             get
@@ -198,6 +176,7 @@ namespace Cron.Core
         /// </summary>
         /// <value>The hours.</value>
         /// <inheritdoc cref="ICron" />
+        [JsonIgnore]
         public ISection Hours { get; private set; } = new TimeSection<int>(CronTimeSections.Hours);
 
         /// <summary>
@@ -205,6 +184,7 @@ namespace Cron.Core
         /// </summary>
         /// <value>The minutes.</value>
         /// <inheritdoc cref="ICron" />
+        [JsonIgnore]
         public ISection Minutes { get; private set; } = new TimeSection<int>(CronTimeSections.Minutes);
 
         /// <summary>
@@ -212,6 +192,7 @@ namespace Cron.Core
         /// </summary>
         /// <value>The months.</value>
         /// <inheritdoc cref="ICron" />
+        [JsonIgnore]
         public ISection Months { get; private set; } = new DateSection<CronMonths>(CronTimeSections.Months);
 
         /// <summary>
@@ -219,12 +200,14 @@ namespace Cron.Core
         /// </summary>
         /// <value>The seconds.</value>
         /// <inheritdoc cref="ICron" />
+        [JsonIgnore]
         public ISection Seconds { get; private set; } = new TimeSection<int>(CronTimeSections.Seconds);
 
         /// <summary>
         /// Get a list of sections, originally sorted.
         /// </summary>
         /// <value>The section list.</value>
+        [JsonIgnore]
         public List<Tuple<PropertyInfo, ISection>> SectionList => new SortedList<int, Tuple<PropertyInfo, ISection>>(
                 typeof(CronBuilder)
                     .GetRuntimeProperties()
@@ -240,15 +223,58 @@ namespace Cron.Core
         /// </summary>
         /// <value>The value.</value>
         /// <inheritdoc cref="ICron" />
-        public string Value =>
-            $"{Get(CronTimeSections.Seconds)} {Get(CronTimeSections.Minutes)} {Get(CronTimeSections.Hours)} {Get(CronTimeSections.DayMonth)} {Get(CronTimeSections.Months)} {Get(CronTimeSections.DayWeek)} {Get(CronTimeSections.Years)}";
+        [JsonInclude]
+        public string Value
+        {
+            get =>
+                AllowSeconds
+                    ? $"{Get(CronTimeSections.Seconds)} {Get(CronTimeSections.Minutes)} {Get(CronTimeSections.Hours)} {Get(CronTimeSections.DayMonth)} {Get(CronTimeSections.Months)} {Get(CronTimeSections.DayWeek)}"
+                    : $"{Get(CronTimeSections.Minutes)} {Get(CronTimeSections.Hours)} {Get(CronTimeSections.DayMonth)} {Get(CronTimeSections.Months)} {Get(CronTimeSections.DayWeek)}"
+            ;
+            set => BuildExpression(value);
+        }
 
-        /// <summary>
-        /// Year Information
-        /// </summary>
-        /// <value>The years.</value>
-        /// <inheritdoc cref="ICron" />
-        public ISection Years { get; private set; } = new DateSection<int>(CronTimeSections.Years);
+        private void BuildExpression(string expression)
+        {
+            var cronArray = expression.Split(' ');
+
+            if (cronArray.Length < 5 ||
+                cronArray.Length > 6)
+            {
+                throw new InvalidDataException(
+                    $"This expression only has {cronArray.Length} parts. An expression must have 5, or 6 parts.");
+            }
+
+            var startingIndex = 0;
+            var mi = typeof(CronBuilder)
+                     .GetRuntimeMethods()
+                     .First(x => x.Name.Equals("CreateSection"));
+
+            SectionList
+                .ToList()
+                .ForEach(section =>
+                         {
+                             var (prop, sectionData) = section;
+                             var fooRef = mi.MakeGenericMethod(sectionData.GetType().GetGenericArguments().First());
+                             var incrementVar =
+                                 (cronArray.Length == 6 && AllowSeconds ||
+                                  sectionData.Time != CronTimeSections.Seconds) &&
+                                 startingIndex < cronArray.Length;
+
+                             var result = (ISection)fooRef.Invoke(null,
+                                                                  new object[]
+                                                                  {
+                                                                      sectionData, cronArray, startingIndex,
+                                                                  });
+
+                             if (incrementVar)
+                             {
+                                 startingIndex++;
+                             }
+
+                             prop.SetValue(this, result);
+                         });
+        }
 
         #endregion Properties
 
@@ -365,12 +391,12 @@ namespace Cron.Core
             Add(CronTimeSections.Months, (int)minValue, (int)maxValue);
 
         /// <inheritdoc />
-        public IEnumerator<CronTimeSections> GetEnumerator() => new SortedList<int, CronTimeSections>(
-                Enum.GetValues(typeof(CronTimeSections))
-                    .Cast<CronTimeSections>()
-                    .ToList()
-                    .ToDictionary(s => (int)s)).Values.ToList()
-                                               .GetEnumerator();
+        public IEnumerator<CronTimeSections> GetEnumerator() =>
+            new SortedList<int, CronTimeSections>(Enum.GetValues(typeof(CronTimeSections))
+                                                      .Cast<CronTimeSections>()
+                                                      .ToList()
+                                                      .ToDictionary(s => (int)s)).Values.ToList()
+                .GetEnumerator();
 
         /// <inheritdoc />
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -472,7 +498,8 @@ namespace Cron.Core
 
         private static bool AddDescription(ISection section, ICollection<string> desc)
         {
-            if (string.IsNullOrEmpty(section.Description))
+            if (!section.Enabled ||
+                string.IsNullOrEmpty(section.Description))
             {
                 return false;
             }
@@ -543,8 +570,6 @@ namespace Cron.Core
             return string.Join(", ", desc);
         }
 
-        //    return this;
-        //}
         private static bool IsTimeSpecific(ISection section) =>
             !(section.Enabled && (section.Every || section.ContainsRange));
 
@@ -568,7 +593,9 @@ namespace Cron.Core
 
         private string GetTime()
         {
-            var seconds = GetProperty(CronTimeSections.Seconds);
+            var seconds = AllowSeconds
+                ? GetProperty(CronTimeSections.Seconds)
+                : CreateDisabledSection<ISection>(Seconds);
             var minutes = GetProperty(CronTimeSections.Minutes);
             var hours = GetProperty(CronTimeSections.Hours);
 
@@ -588,6 +615,80 @@ namespace Cron.Core
             return $"Every {text}";
         }
 
+        ///// <inheritdoc cref="ISerializable"/>
+        //[SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
+        //protected virtual void GetObjectData(SerializationInfo info, StreamingContext context)
+        //{
+        //    info.AddValue("Value", Value);
+        //    info.AddValue("AllowSeconds", AllowSeconds);
+        //}
+
+        //[SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
+        //void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
+        //{
+        //    if (info == null)
+        //    {
+        //        throw new ArgumentNullException(nameof(info));
+        //    }
+
+        //    GetObjectData(info, context);
+        //}
+
         #endregion Methods
+    }
+
+    /// <inheritdoc />
+    public class CronConverter : JsonConverter<CronBuilder>
+    {
+        /// <inheritdoc />
+        public override CronBuilder
+            Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            if (reader.TokenType != JsonTokenType.StartObject)
+            {
+                throw new JsonException("Expected StartObject token");
+            }
+
+            var message = new CronBuilder(true);
+
+            while (reader.Read())
+            {
+                if (reader.TokenType == JsonTokenType.EndObject)
+                {
+                    return message;
+                }
+
+                if (reader.TokenType != JsonTokenType.PropertyName)
+                {
+                    throw new JsonException("Expected PropertyName token");
+                }
+
+                var propName = reader.GetString();
+                reader.Read();
+
+                switch (propName)
+                {
+                    case nameof(CronBuilder.AllowSeconds):
+                        message.AllowSeconds = reader.GetBoolean();
+
+                        break;
+                    case nameof(CronBuilder.Value):
+                        message.Value = reader.GetString();
+
+                        break;
+                }
+            }
+
+            throw new JsonException("Expected EndObject token");
+        }
+
+        /// <inheritdoc />
+        public override void Write(Utf8JsonWriter writer, CronBuilder value, JsonSerializerOptions options)
+        {
+            writer.WriteStartObject();
+            writer.WriteString(nameof(CronBuilder.Value), value.Value);
+            writer.WriteBoolean(nameof(CronBuilder.AllowSeconds), value.AllowSeconds);
+            writer.WriteEndObject();
+        }
     }
 }

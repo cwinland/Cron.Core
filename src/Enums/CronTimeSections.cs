@@ -47,12 +47,5 @@ namespace Cron.Core.Enums
         /// Day of the Week.
         /// </summary>
         DayWeek = 6,
-
-        /// <summary>
-        /// Year or interval of years.
-        /// </summary>
-        /// <example>2020,2021.</example>
-        /// <example>2020-2022.</example>
-        Years = 7,
     }
 }
