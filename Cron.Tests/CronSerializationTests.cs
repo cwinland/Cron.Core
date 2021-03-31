@@ -22,10 +22,9 @@ namespace Cron.Tests
         }
 
         [TestMethod]
-
-        //[DataRow("* * * * *", false, "{\"Value\":\"* * * * *\",\"AllowSeconds\":false}")]
-        //[DataRow("1 2 3 4 5", false, "{\"Value\":\"1 2 3 4 5\",\"AllowSeconds\":false}")]
-        //[DataRow("* * * * * *", true, "{\"Value\":\"* * * * *\",\"AllowSeconds\":true}")]
+        [DataRow("* * * * *", false, "{\"Value\":\"* * * * *\",\"AllowSeconds\":false}")]
+        [DataRow("1 2 3 4 5", false, "{\"Value\":\"1 2 3 4 5\",\"AllowSeconds\":false}")]
+        [DataRow("* * * * * *", true, "{\"Value\":\"* * * * *\",\"AllowSeconds\":true}")]
         [DataRow("1 1 2 3 4 5", true, "{\"Value\":\"1 1 2 3 4 5\",\"AllowSeconds\":true}")]
         public void Deserialize(string expectedExpression, bool allowSeconds, string serializedSchedule)
         {
