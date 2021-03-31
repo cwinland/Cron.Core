@@ -615,25 +615,6 @@ namespace Cron.Core
             return $"Every {text}";
         }
 
-        ///// <inheritdoc cref="ISerializable"/>
-        //[SecurityPermission(SecurityAction.Demand, SerializationFormatter = true)]
-        //protected virtual void GetObjectData(SerializationInfo info, StreamingContext context)
-        //{
-        //    info.AddValue("Value", Value);
-        //    info.AddValue("AllowSeconds", AllowSeconds);
-        //}
-
-        //[SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
-        //void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
-        //{
-        //    if (info == null)
-        //    {
-        //        throw new ArgumentNullException(nameof(info));
-        //    }
-
-        //    GetObjectData(info, context);
-        //}
-
         #endregion Methods
     }
 
