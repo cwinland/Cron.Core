@@ -120,6 +120,9 @@ Cron Builder object that can be used to build Cron expressions, describe them, a
 
 ## Updates
 
+### Current
+Add support to serialize ICron or CronBuilder.
+
 ### Version 1.21.03.3110
 
 Assume standard Cron, Remove Years

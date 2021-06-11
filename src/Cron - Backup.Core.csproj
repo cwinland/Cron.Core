@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<SignAssembly>false</SignAssembly>
@@ -69,11 +70,6 @@ Remove Signed Assembly.</PackageReleaseNotes>
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Include="Converters\CronConverter.cs" />
-		<Compile Include="Converters\ICronInterfaceConverterFactory.cs" />
-		<Compile Include="Converters\InterfaceConverter.cs" />
-		<Compile Include="Converters\InterfaceConverterFactory.cs" />
-		<Compile Include="Converters\JsonInterfaceConverter.cs" />
 		<Compile Include="CronBuilder.cs" />
 		<Compile Include="Enums\CronDays.cs" />
 		<Compile Include="Enums\CronMonths.cs" />
@@ -100,5 +96,9 @@ Remove Signed Assembly.</PackageReleaseNotes>
 			<PackagePath></PackagePath>
 		</None>
 		<None Include="cron.snk" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="NewFolder\" />
 	</ItemGroup>
 </Project>
