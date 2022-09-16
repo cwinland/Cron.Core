@@ -11,30 +11,30 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-using System;
-using System.IO;
-using System.Linq;
+
 using Cron.Core;
 using Cron.Core.Enums;
 using Cron.Core.Interfaces;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.IO;
+using System.Linq;
+using Xunit;
 
 namespace Cron.Tests
 {
     /// <summary>
     /// Defines test class CronTests.
     /// </summary>
-    [TestClass]
+    
     public class CronTests
     {
         private ICron schedule;
 
-        /// <summary>
-        /// Initializes this instance.
-        /// </summary>
-        [TestInitialize]
-        public void Init() => schedule = new CronBuilder();
+        public CronTests()
+        {
+            schedule = new CronBuilder();
+        }
 
         /// <summary>
         /// Defines the test method Cron_CanVerifyComplex.
@@ -43,24 +43,24 @@ namespace Cron.Tests
         /// <param name="dayMonth">The day month.</param>
         /// <param name="expectedValue">The expected value.</param>
         /// <param name="expectedDescription">The expected description.</param>
-        [TestMethod]
-        [DataRow(3,
+        [Theory]
+        [InlineData(3,
                  1,
                  "*/3 */3,4 3-5,7-11 1 3 3,5",
                  "Every 3 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 1 of the month, only in March, only on Wednesday,Friday")]
-        [DataRow(4,
+        [InlineData(4,
                  4,
                  "*/4 */3,4 3-5,7-11 4 3 3,5",
                  "Every 4 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 4 of the month, only in March, only on Wednesday,Friday")]
-        [DataRow(30,
+        [InlineData(30,
                  7,
                  "*/30 */3,4 3-5,7-11 7 3 3,5",
                  "Every 30 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 7 of the month, only in March, only on Wednesday,Friday")]
-        [DataRow(20,
+        [InlineData(20,
                  9,
                  "*/20 */3,4 3-5,7-11 9 3 3,5",
                  "Every 20 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 9 of the month, only in March, only on Wednesday,Friday")]
-        [DataRow(20,
+        [InlineData(20,
                  12,
                  "*/20 */3,4 3-5,7-11 12 3 3,5",
                  "Every 20 seconds, every 3,4 minutes, 03:00 AM-05:59 AM,07:00 AM-11:59 AM, only on day 12 of the month, only in March, only on Wednesday,Friday")]
@@ -145,7 +145,7 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_CanVerifyDefault.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_CanVerifyDefault()
         {
             schedule.ToString()
@@ -160,7 +160,7 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_CanThrowSecondsOutOfRange.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_CanThrowSecondsOutOfRange()
         {
             Action act = () => schedule.Add(CronTimeSections.Seconds, 60);
@@ -172,7 +172,7 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_CanThrowMonthsOutOfRange.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_CanThrowMonthsOutOfRange()
         {
             Action act = () => schedule.Months.Add(13);
@@ -187,30 +187,30 @@ namespace Cron.Tests
         /// <param name="expression">The expression.</param>
         /// <param name="matchExpression">The match expression.</param>
         /// <param name="description">The description.</param>
-        [TestMethod]
-        [DataRow("2 3 4 5 6",
+        [Theory]
+        [InlineData("2 3 4 5 6",
                  "* 2 3 4 5 6",
                  "At 03:02 AM, only on day 4 of the month, only in May, only on Saturday")]
-        [DataRow("0 0 0 0", null, null)]
-        [DataRow("0", null, null)]
-        [DataRow("1 2", null, null)]
-        [DataRow("* * 5-5 * *", "* * * 5 * *", "Every minute, only on day 5 of the month")]
-        [DataRow("* * 3-5 5-7 * 2",
+        [InlineData("0 0 0 0", null, null)]
+        [InlineData("0", null, null)]
+        [InlineData("1 2", null, null)]
+        [InlineData("* * 5-5 * *", "* * * 5 * *", "Every minute, only on day 5 of the month")]
+        [InlineData("* * 3-5 5-7 * 2",
                  "* * 3-5 5-7 * 2",
                  "Every minute, 03:00 AM-05:59 AM, only on day 5-7 of the month, only on Tuesday")]
-        [DataRow("* * 5 * * 2", "* * 5 * * 2", "Every minute, 05:00 AM-05:59 AM, only on Tuesday")]
-        [DataRow("* * * 5 * *", "* * * 5 * *", "Every minute, only on day 5 of the month")]
-        [DataRow("1-2 * * 5 * *",
+        [InlineData("* * 5 * * 2", "* * 5 * * 2", "Every minute, 05:00 AM-05:59 AM, only on Tuesday")]
+        [InlineData("* * * 5 * *", "* * * 5 * *", "Every minute, only on day 5 of the month")]
+        [InlineData("1-2 * * 5 * *",
                  "1-2 * * 5 * *",
                  "Only at 1-2 seconds past the minute, only on day 5 of the month")]
-        [DataRow("1-2 * * 5-7 * *",
+        [InlineData("1-2 * * 5-7 * *",
                  "1-2 * * 5-7 * *",
                  "Only at 1-2 seconds past the minute, only on day 5-7 of the month")]
-        [DataRow("* * 5 * *", "* * * 5 * *", "Every minute, only on day 5 of the month")]
+        [InlineData("* * 5 * *", "* * * 5 * *", "Every minute, only on day 5 of the month")]
         public void Cron_CreateByExpressionDescriptionMatches(string expression, string matchExpression,
                                                               string description)
         {
-            CronBuilder Act1() => new CronBuilder(expression, true);
+            CronBuilder Act1() => new(expression, true);
 
             if (matchExpression != null)
             {
@@ -243,12 +243,12 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_CanRemoveSeconds.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_CanRemoveSecondsMinutes()
         {
             var cron = new CronBuilder(true)
             {
-                { CronTimeSections.Seconds, 5 }, { CronTimeSections.Seconds, 9 }, { CronTimeSections.Seconds, 7 },
+                { CronTimeSections.Seconds, 5 }, { CronTimeSections.Seconds, 9 }, { CronTimeSections.Seconds, 7 }
             };
 
             cron.Value.Should()
@@ -272,14 +272,14 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_CanRemoveByRange.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_CanRemoveByRange()
         {
             var cron = new CronBuilder(true)
             {
                 { CronTimeSections.Seconds, 5, 6 },
                 { CronTimeSections.Seconds, 9 },
-                { CronTimeSections.Seconds, 7 },
+                { CronTimeSections.Seconds, 7 }
             };
 
             cron.Value.Should()
@@ -310,7 +310,7 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_CanAddByDayWeekRange.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_CanAddByDayWeekRangeNoSeconds()
         {
             var cron = new CronBuilder();
@@ -327,7 +327,7 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_CanAddByDayWeekRange.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_CanAddByDayWeekRangeWithSeconds()
         {
             var cron = new CronBuilder(true);
@@ -344,7 +344,7 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_CanAddByCronMonthRange.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_CanAddByCronMonthRangeNoSeconds()
         {
             var cron = new CronBuilder();
@@ -357,7 +357,7 @@ namespace Cron.Tests
                 .BeTrue();
         }
 
-        [TestMethod]
+        [Fact]
         public void Cron_CanAddByCronMonthRangeWithSeconds()
         {
             var cron = new CronBuilder(true);
@@ -373,7 +373,7 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_EveryTimeTestsWithResets.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_EveryTimeTestsWithResets()
         {
             var cron = new CronBuilder();
@@ -389,7 +389,7 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_EveryTimeTestsNoResets.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_EveryTimeTestsNoResets()
         {
             var cron = new CronBuilder();
@@ -414,7 +414,7 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_EveryDateTests.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_EveryDateTests()
         {
             var cron = new CronBuilder();
@@ -439,7 +439,7 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_CanResetDayWeek.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_CanResetDayWeek()
         {
             var cron = new CronBuilder();
@@ -457,7 +457,7 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_CanResetDayWeek.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_CanResetMinutes()
         {
             var cron = new CronBuilder();
@@ -473,7 +473,7 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_CanClearMinutes.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_CanClearMinutes()
         {
             var cron = new CronBuilder();
@@ -494,7 +494,7 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_CanResetAll.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_CanResetAll()
         {
             var cron = new CronBuilder();
@@ -516,10 +516,10 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_DateAtDescriptionMatches.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_DateAtDescriptionMatches()
         {
-            var cron = new CronBuilder { CronMonths.January, CronDays.Friday, };
+            var cron = new CronBuilder { CronMonths.January, CronDays.Friday };
             cron.Minutes.Add(20);
 
             cron.Minutes.Description.Should()
@@ -544,7 +544,7 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_DateEveryDescriptionMatches.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_DateEveryDescriptionMatches()
         {
             var cron = new CronBuilder();
@@ -559,7 +559,7 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_TimeEveryDescriptionMatches.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_TimeEveryDescriptionMatches()
         {
             var cron = new CronBuilder(true);
@@ -580,7 +580,7 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_TimeAtDescriptionMatches.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_TimeAtDescriptionMatches()
         {
             var cron = new CronBuilder(true);
@@ -600,7 +600,7 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Cron_DescriptionTimeMatches.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Cron_DescriptionTimeMatches()
         {
             var cron = new CronBuilder(true);
@@ -639,10 +639,10 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Ranges_Valid.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Ranges_Valid()
         {
-            var cron = new CronBuilder { Minutes = { Every = false, }, };
+            var cron = new CronBuilder { Minutes = { Every = false } };
             cron.Minutes.IsValidRange(44)
                 .Should()
                 .BeTrue();
@@ -667,7 +667,7 @@ namespace Cron.Tests
         /// <summary>
         /// Defines the test method Int_IsInt.
         /// </summary>
-        [TestMethod]
+        [Fact]
         public void Int_IsInt()
         {
             var minutes = new CronBuilder()

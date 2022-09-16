@@ -1,11 +1,9 @@
-﻿using Cron.Core.Attributes;
-using Cron.Core.Enums;
+﻿using Cron.Core.Enums;
 using Cron.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Text;
 
 // ReSharper disable UnusedMethodReturnValue.Local
 
@@ -16,114 +14,97 @@ namespace Cron.Core
     ///     Implements the <see cref="Cron.Core.ICronBuilder" />
     /// </summary>
     /// <seealso cref="Cron.Core.ICronBuilder" />
+    /// <inheritdoc />
     public class NewCronBuilder : ICronBuilder
     {
         #region Fields
 
-        private Dictionary<CronType, NumberParts> numbers = new();
+        private readonly Dictionary<CronType, NumberParts> numbers = new();
 
         #endregion
 
         #region Properties
 
+        /// <summary>
+        ///     Gets a value indicating whether the builder has changed.
+        /// </summary>
+        /// <value><c>true</c> if the builder has changed; otherwise, <c>false</c>.</value>
         public bool IsDirty => numbers.Any(x => x.Value.IsDirty);
 
+        /// <summary>
+        ///     Gets or sets the last type of the cron.
+        /// </summary>
+        /// <value>The last type of the cron.</value>
         internal CronType? LastCronType { get; set; }
 
         #endregion
 
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="NewCronBuilder" /> class.
+        /// </summary>
         public NewCronBuilder() => Clear();
-
-        public ICronBuilder Daily(IReadOnlyList<int> hours, int minute) => Every(CronType.Day, CronType.Hour, hours);
-        public ICronBuilder Daily(IReadOnlyList<int> hours, int minMinute, int maxMinute) => Every(CronType.Day, CronType.Hour, hours);
-
-        public ICronBuilder Every<T>(CronType cronType, CronType subCronType, T minSubCronTypeValue, T maxSubCronTypeValue) where T : struct
+        internal NewCronBuilder(Dictionary<CronType, NumberParts> numbers, CronType? lastCronType)
         {
-            CheckRange(CronType.Day, minSubCronTypeValue);
-            CheckRange(CronType.Day, maxSubCronTypeValue);
-            Every(cronType);
-            return Every(cronType, subCronType, GetRange(minSubCronTypeValue, maxSubCronTypeValue));
+            this.numbers = numbers;
+            LastCronType = lastCronType;
         }
 
-        /// <inheritdoc />
-        public override string ToString() => Build().ToString();
 
         /// <summary>
-        ///     Checks the range.
+        ///     Single point to add value to the number list.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="cronType">Type of the cron.</param>
-        /// <param name="values">The values.</param>
-        /// <returns>ICronBuilder.</returns>
-        /// <exception cref="System.InvalidOperationException"></exception>
-        internal static bool CheckRange<T>(CronType cronType, IReadOnlyList<T> values)
-        {
-            foreach (var value in values?.Where(value => !CheckRange(cronType, value)) ?? new List<T>())
-            {
-                throw new InvalidOperationException($"{value} is out of range.");
-            }
-
-            return true;
-        }
-
-        internal static bool CheckRange<T>(CronType cronType, T value)
-        {
-            var t = typeof(T).IsEnum ? (int) (object) value : (IComparable) value;
-            var memberData = typeof(CronType).GetMember(cronType.ToString()).FirstOrDefault();
-            if (memberData == null)
-            {
-                return false;
-            }
-
-            var attrs = memberData.GetCustomAttributes(true).Cast<Attribute>().Where(attr => attr is RangeAttribute).ToArray();
-            foreach (var attr in attrs)
-            {
-                if (attr is RangeAttribute rAttr && rAttr.IsValidRange(t))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        internal string GetRange<T>(T val1, T val2) where T : struct
-            => (int)(object)val1 <= (int)(object)val2 ? $"{val1}-{val2}" : $"{val2}-{val1}";
-
-        internal NumberParts GetValues(CronType type)
-        {
-            if (!(numbers?.ContainsKey(type) ?? false))
-            {
-                numbers?.Add(type, new NumberParts());
-            }
-
-            return numbers?[type] ?? new NumberParts();
-        }
-
-        internal NewCronBuilder Set(CronType cronType, string value)
-        {
-            ClearValues(cronType);
-            AddValue(cronType, value);
-            return this;
-        }
-
-        private ICronBuilder AddValue(CronType cronType, object value)
+        /// <param name="value">Single value or list of values.</param>
+        /// <param name="maxValue">Optional maximum value. This value indicates a range.</param>
+        /// <returns><see cref="ICronBuilder" />.</returns>
+        internal ICronBuilder AddValue(CronType cronType, object value, object maxValue = null)
         {
             LastCronType = cronType;
             var list = GetValues(cronType);
             if (list.IsDirty)
             {
-                list.Add(value?.ToString());
+                if (maxValue == null)
+                {
+                    list.Add(value);
+                }
+                else
+                {
+                    list.Add(value, maxValue);
+                }
             }
             else
             {
-                list.Replace(value?.ToString());
+                if (maxValue == null)
+                {
+                    list.Replace(value);
+                }
+                else
+                {
+                    list.Replace(value, maxValue);
+                }
             }
-            //if (!IsDirty && cronType != CronType.Minute)
-            //{
-            //    Set(CronType.Minute, "0");
-            //}
 
+            SetUnset(cronType);
+            return this;
+        }
+
+        /// <summary>
+        ///     Gets the values.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>NumberParts.</returns>
+        internal NumberParts GetValues(CronType type) => numbers?[type] ?? throw new ArgumentNullException(nameof(type));
+
+        /// <summary>
+        ///     Sets the specified cron type.
+        /// </summary>
+        /// <param name="cronType">Type of the cron.</param>
+        /// <param name="value">The value.</param>
+        /// <returns>NewCronBuilder.</returns>
+        internal NewCronBuilder Set(CronType cronType, string value)
+        {
+            ClearValues(cronType);
+            AddValue(cronType, value);
             return this;
         }
 
@@ -135,14 +116,11 @@ namespace Cron.Core
 
         private string GetValue(CronType type)
         {
-            var values = GetValues(type) ?? new NumberParts();
+            var values = GetValues(type) ?? throw new KeyNotFoundException(nameof(type));
             return values.Count switch
             {
                 0 => type == CronType.Minute ? "*" : "0",
-                //1 => values[0] == null ? type == CronType.Minute ? "*" : "0" : values[0].ToString(),
-                //2 => ParseValues(type, values[0], values[1]),
-                //_ => ParseValues(type, values)
-                _ => string.Join(",", values.Select(x => x.Number).ToList())
+                _ => string.Join(",", values.GetNumbers())
             };
         }
 
@@ -161,13 +139,40 @@ namespace Cron.Core
             }
         }
 
+        private ICronBuilder SetUnset(CronType cronType)
+        {
+            for (var i = CronType.Minute; i < cronType; i++)
+            {
+                var values = GetValues(i);
+                if (!values.IsDirty)
+                {
+                    values.Replace("0");
+                    values.Numbers.First().IsDirty = false;
+                }
+            }
+
+            for (var i = cronType + 1; i <= CronType.Weekday; i++)
+            {
+                var values = GetValues(i);
+                if (!values.IsDirty)
+                {
+                    values.Replace("?");
+                }
+            }
+
+            return this;
+        }
+
+        /// <inheritdoc />
+        public override string ToString() => Build()?.ToString();
+
         #region ICronBuilder
 
         /// <inheritdoc />
         /// <exception cref="T:System.ArgumentOutOfRangeException">value</exception>
         public ICronBuilder Add<T>(CronType cronType, T value)
         {
-            if (!CheckRange(cronType, value))
+            if (!cronType.CheckRange(value))
             {
                 throw new ArgumentOutOfRangeException(nameof(value));
             }
@@ -186,21 +191,24 @@ namespace Cron.Core
             GetValue(CronType.Hour),
             GetValue(CronType.Day),
             GetValue(CronType.Month),
-            GetValue(CronType.Weekday));
+            GetValue(CronType.Weekday)) { Builder = this };
 
         /// <inheritdoc />
         public ICronBuilder Clear()
         {
-            numbers ??= new Dictionary<CronType, NumberParts>();
             numbers.Clear();
-            CronType.Day.ToNameList()?.ForEach(x => numbers.Add(x, new NumberParts("0")));
+            if (numbers.Count == 0)
+            {
+                CronType.Day.ToNameList()?.ForEach(x => numbers.Add(x, new NumberParts("0", x)));
+            }
+
             Set(CronType.Minute, "*");
             SetClean();
             return this;
         }
 
         /// <inheritdoc />
-        public ICronBuilder Clone() => new NewCronBuilder { numbers = numbers?.ToImmutableDictionary().ToDictionary(x => x.Key, y => y.Value) };
+        public ICronBuilder Clone() => new NewCronBuilder(numbers?.ToImmutableDictionary().ToDictionary(x => x.Key, y => y.Value), LastCronType);
 
         /// <inheritdoc />
         public ICronBuilder Daily() => Every(CronType.Day);
@@ -208,15 +216,28 @@ namespace Cron.Core
         /// <inheritdoc />
         public ICronBuilder Daily(int hour) => Every(CronType.Day, CronType.Hour, hour);
 
+        /// <inheritdoc />
         public ICronBuilder Daily(int hour, int minute) => Every(CronType.Day, CronType.Hour, hour)?.Every(CronType.Day, CronType.Minute, minute);
 
         /// <inheritdoc />
         public ICronBuilder Daily(params int[] hours) => Every(CronType.Day, CronType.Hour, hours);
 
+        /// <inheritdoc />
         public ICronBuilder Daily(int minHour, int maxHour, int minute) => this;
 
+        /// <inheritdoc />
         public ICronBuilder Daily(int minHour, int maxHour, int minMinute, int maxMinute) => this;
 
+        /// <inheritdoc />
+        public ICronBuilder Every<T>(CronType cronType, CronType subCronType, T minSubCronTypeValue, T maxSubCronTypeValue) where T : struct
+        {
+            CronType.Day.CheckRange(minSubCronTypeValue);
+            CronType.Day.CheckRange(maxSubCronTypeValue);
+            Every(cronType);
+            return Every(cronType, subCronType, minSubCronTypeValue.GetRange(maxSubCronTypeValue));
+        }
+
+        /// <inheritdoc />
         public ICronBuilder Every()
         {
             CronType.Day.ToNameList()?.ForEach(x => Every(x));
@@ -229,6 +250,7 @@ namespace Cron.Core
         /// <inheritdoc />
         public ICronBuilder Every<T>(CronType cronType, CronType subCronType, T subCronTypeValue)
         {
+            subCronType.CheckRange(subCronTypeValue);
             Every(cronType);
             return Set(subCronType, subCronTypeValue);
         }
@@ -236,7 +258,7 @@ namespace Cron.Core
         /// <inheritdoc />
         public ICronBuilder Every<T>(CronType cronType, CronType subCronType, params T[] subCronTypeValues)
         {
-            CheckRange(subCronType, subCronTypeValues);
+            subCronType.CheckRange(subCronTypeValues);
             Every(cronType);
             ClearValues(subCronType);
             List(cronType, subCronTypeValues);
@@ -255,8 +277,8 @@ namespace Cron.Core
         /// <inheritdoc />
         public ICronBuilder Increment<T>(CronType cronType, T start, T every)
         {
-            CheckRange(cronType, start);
-            CheckRange(cronType, every);
+            cronType.CheckRange(start);
+            cronType.CheckRange(every);
             return Set(cronType, $"{start}/{every}");
         }
 
@@ -279,7 +301,7 @@ namespace Cron.Core
                 throw new ArgumentException($"{nameof(cronType)} must be '{CronType.Day}' or '{CronType.Weekday}'.");
             }
 
-            CheckRange(cronType, offset);
+            cronType.CheckRange(offset);
             return Set(cronType, $"L-{offset}");
         }
 
@@ -291,7 +313,7 @@ namespace Cron.Core
                 ClearValues(cronType);
             }
 
-            return AddValue(cronType, string.Join(",", values));
+            return AddValue(cronType, values);
         }
 
         /// <inheritdoc />
@@ -309,8 +331,10 @@ namespace Cron.Core
         /// <inheritdoc />
         public ICronBuilder Monthly(int nthValue, DayOfWeek dayOfWeek) => Every(CronType.Month, CronType.Weekday, $"{dayOfWeek}#{nthValue}");
 
+        /// <inheritdoc />
         public ICronBuilder Overwrite(bool overwrite = true) => CronBuilderExtensions.Overwrite(this, overwrite);
 
+        /// <inheritdoc />
         public ICronBuilder Overwrite(CronType cronType, bool overwrite = true)
         {
             LastCronType = cronType;
@@ -323,24 +347,24 @@ namespace Cron.Core
         /// <inheritdoc />
         public ICronBuilder Range<T>(CronType cronType, T minValue, T maxValue) where T : struct
         {
-            if (!CheckRange(cronType, minValue))
+            if (!cronType.CheckRange(minValue))
             {
                 throw new ArgumentOutOfRangeException(nameof(minValue));
             }
 
-            if (!CheckRange(cronType, maxValue))
+            if (!cronType.CheckRange(maxValue))
             {
                 throw new ArgumentOutOfRangeException(nameof(maxValue));
             }
 
-            AddValue(cronType, GetRange(minValue, maxValue));
+            AddValue(cronType, minValue, maxValue);
             return this;
         }
 
         /// <inheritdoc />
         public ICronBuilder Weekday(int dayOfMonth)
         {
-            CheckRange(CronType.Day, dayOfMonth);
+            CronType.Day.CheckRange(dayOfMonth);
             return Set(CronType.Day, $"{dayOfMonth}W");
         }
 
@@ -350,9 +374,9 @@ namespace Cron.Core
         /// <inheritdoc />
         public ICronBuilder Weekly(CronDays minValue, CronDays maxValue)
         {
-            CheckRange(CronType.Day, minValue);
-            CheckRange(CronType.Day, maxValue);
-            return Every(CronType.Month, CronType.Day, GetRange(minValue, maxValue));
+            CronType.Day.CheckRange(minValue);
+            CronType.Day.CheckRange(maxValue);
+            return Every(CronType.Month, CronType.Day, minValue.GetRange(maxValue));
         }
 
         /// <inheritdoc />
@@ -360,7 +384,7 @@ namespace Cron.Core
         {
             foreach (var cronDays in days)
             {
-                CheckRange(CronType.Day, cronDays);
+                CronType.Day.CheckRange(cronDays);
             }
 
             return Every(CronType.Month, CronType.Day, days);
@@ -369,7 +393,7 @@ namespace Cron.Core
         /// <inheritdoc />
         public ICronBuilder Yearly(int month)
         {
-            CheckRange(CronType.Month, month);
+            CronType.Month.CheckRange(month);
             return Set(CronType.Month, month);
         }
 

@@ -14,38 +14,38 @@
 namespace Cron.Core.Enums
 {
     /// <summary>
-    /// Sections of the Cron indicating the type of time.
+    ///     Sections of the Cron indicating the type of time.
     /// </summary>
     public enum CronTimeSections
     {
         /// <summary>
-        /// Seconds.
+        ///     Seconds.
         /// </summary>
         Seconds = 1,
 
         /// <summary>
-        /// Minutes.
+        ///     Minutes.
         /// </summary>
         Minutes = 2,
 
         /// <summary>
-        /// Hours.
+        ///     Hours.
         /// </summary>
         Hours = 3,
 
         /// <summary>
-        /// Day of the Month.
+        ///     Day of the Month.
         /// </summary>
         DayMonth = 4,
 
         /// <summary>
-        /// Month.
+        ///     Month.
         /// </summary>
         Months = 5,
 
         /// <summary>
-        /// Day of the Week.
+        ///     Day of the Week.
         /// </summary>
-        DayWeek = 6,
+        DayWeek = 6
     }
 }

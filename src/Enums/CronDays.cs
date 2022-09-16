@@ -15,41 +15,44 @@
 
 namespace Cron.Core.Enums
 {
+    /// <summary>
+    ///     Enum CronDays
+    /// </summary>
     public enum CronDays
     {
         /// <summary>
-        /// The sunday
+        ///     The sunday
         /// </summary>
         Sunday = 0,
 
         /// <summary>
-        /// The monday
+        ///     The monday
         /// </summary>
         Monday = 1,
 
         /// <summary>
-        /// The tuesday
+        ///     The tuesday
         /// </summary>
         Tuesday = 2,
 
         /// <summary>
-        /// The wednesday
+        ///     The wednesday
         /// </summary>
         Wednesday = 3,
 
         /// <summary>
-        /// The thursday
+        ///     The thursday
         /// </summary>
         Thursday = 4,
 
         /// <summary>
-        /// The friday
+        ///     The friday
         /// </summary>
         Friday = 5,
 
         /// <summary>
-        /// The saturday
+        ///     The saturday
         /// </summary>
-        Saturday = 6,
+        Saturday = 6
     }
 }

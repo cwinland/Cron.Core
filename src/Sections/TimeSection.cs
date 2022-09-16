@@ -11,18 +11,20 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-using System.Collections.Generic;
+
 using Cron.Core.Enums;
 using Cron.Core.Interfaces;
+using System.Collections.Generic;
 
 namespace Cron.Core.Sections
 {
     /// <summary>
-    /// Class TimeSection.
-    /// Implements the <see cref="Section" />
+    ///     Class TimeSection.
+    /// Implements the <see cref="Section{T}" />
     /// Implements the <see cref="ITimeSection" />
     /// </summary>
-    /// <seealso cref="Section" />
+    /// <typeparam name="T"></typeparam>
+    /// <seealso cref="Section{T}" />
     /// <seealso cref="ITimeSection" />
     /// <inheritdoc cref="ITimeSection" />
     public class TimeSection<T> : Section<T>, ITimeSection
@@ -34,7 +36,7 @@ namespace Cron.Core.Sections
         protected internal TimeSection(CronTimeSections time) : base(time) { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TimeSection" /> class.
+        ///     Initializes a new instance of the <see cref="TimeSection{T}" /> class.
         /// </summary>
         /// <param name="time">The time.</param>
         /// <param name="enabled">if set to <c>true</c> [enabled].</param>
@@ -49,10 +51,10 @@ namespace Cron.Core.Sections
 
         /// <inheritdoc />
         public List<int> AllowedIncrements => Time == CronTimeSections.Hours
-            ? new List<int> { 2, 3, 4, 6, 8, 12, }
+            ? new List<int> { 2, 3, 4, 6, 8, 12 }
             : new List<int>
             {
-                2, 3, 4, 5, 6, 10, 12, 15, 20, 30,
+                2, 3, 4, 5, 6, 10, 12, 15, 20, 30
             };
     }
 }

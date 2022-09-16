@@ -1,64 +1,66 @@
 ﻿using Cron.Core;
 using Cron.Core.Enums;
+using FastMoq;
 using FluentAssertions;
 using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 using Xunit;
-using Cron.Core.Extensions;
+
 namespace Cron.Tests
 {
-    public class NewCronTests
+    public class NewCronTests : MockerTestBase<NewCronBuilder>
     {
-        private NewCronBuilder cronBuilder;
-
-        public NewCronTests()
-        {
-            cronBuilder = new();
-        }
-
         [Fact]
-        public void Test()
+        public void CompoundTest()
         {
-            var cronBuilder = new NewCronBuilder();
-            cronBuilder.Add(CronType.Day, 5);
-            cronBuilder.Add(CronType.Hour, 5);
-            cronBuilder.Add(CronType.Month, CronMonths.April);
-            cronBuilder.Range(CronType.Month, CronMonths.January, CronMonths.April);
-            cronBuilder.Range(CronType.Month, 1, 2);
-            cronBuilder.List(CronType.Month,  new List<CronMonths> {CronMonths.January, CronMonths.April, CronMonths.December, CronMonths.July});
-            var cronExpression = cronBuilder.Build();
+            Component.Add(CronType.Day, 5).ToString().Should().Be("0 0 5 ? ?");
+            Component.Add(CronType.Hour, 5).Build().ToString().Should().Be("0 5 5 ? ?");
+            Component.Add(CronType.Month, CronMonths.April).Build().ToString().Should().Be("0 5 5 4 ?");
+            Component.Range(CronType.Month, CronMonths.January, CronMonths.April).Build().ToString().Should().Be("0 5 5 1-3,4 ?");
+            Component.Range(CronType.Month, 1, 2).Build().ToString().Should().Be("0 5 5 1-3,4 ?");
+            Component.List(CronType.Month,  CronMonths.January, CronMonths.April, CronMonths.December, CronMonths.July).Build().ToString().Should().Be("0 5 5 1-3,4,7,12 ?");
+            Component.List(CronType.Month,  CronMonths.December, CronMonths.July).Build().ToString().Should().Be("0 5 5 1-3,4,7,12 ?");
         }
 
         private ICronExpression Create(Func<ICronBuilder, ICronBuilder> operation)
         {
-            cronBuilder.Clear();
-            return operation(cronBuilder).Build();
+            Component.Clear();
+            return operation(Component).Build();
         }
 
         [Fact]
-        public void Test2()
+        public void ChainTests()
         {
-            var x = Create(x => x
-                .Increment(CronType.Minute, 0, 5)
-                .List(CronType.Hour, 13, 18)
-                .List(CronType.Hour, 4));
-            var y = Create(x => x
-                .Increment(CronType.Minute, 0, 5)
-                .List(CronType.Hour, 13, 18)
-                .List(CronType.Hour, 4)
-                .Overwrite()
-                .List(CronType.Hour, 4,3,2,1));
-            var z = Create(x => x
-                .Overwrite()
-                .Increment(CronType.Minute, 0, 5)
-                .List(CronType.Hour, 13, 18)
-                .List(CronType.Hour, 4));
-            var a = Create(x => x.Daily());
-            var h = Create(x => x.Daily(5));
+            Create(x => x
+                    .Increment(CronType.Minute, 0, 5)
+                    .List(CronType.Hour, 13, 18)
+                    .List(CronType.Hour, 4))
+                .ToString()
+                .Should().Be("0/5 4,13,18 ? ? ?");
+            Create(x => x
+                    .Increment(CronType.Minute, 0, 5)
+                    .List(CronType.Hour, 13, 18)
+                    .List(CronType.Hour, 4)
+                    .Overwrite()
+                    .List(CronType.Hour, 4, 3, 2, 1))
+                .ToString()
+                .Should().Be("0/5 1,2,3,4 ? ? ?");
+            Create(x => x
+                    .Overwrite()
+                    .Increment(CronType.Minute, 0, 5)
+                    .List(CronType.Hour, 13, 18)
+                    .List(CronType.Hour, 4))
+                .ToString()
+                .Should().Be("0/5 4 ? ? ?");
+            Create(x => x.Daily())
+                .ToString()
+                .Should().Be("0 0 * ? ?");
+            Create(x => x.Daily(5))
+                .ToString()
+                .Should().Be("0 5 * ? ?");
             var i = Create(x => x.Daily(4,39));
-            var ii = i.ToBuilder().Daily(19).Yearly(12).Build();
-            var iii = ii.ToBuilder().Build();
+            i.ToString().Should().Be("39 4 * ? ?");
+            var ii = i.Builder.Daily(19).Yearly(12).Build();
+            var iii = ii.Builder.Build();
             var j = Create(x => x
                 .Daily(5)
                 .Range(CronType.Minute, 1, 20));

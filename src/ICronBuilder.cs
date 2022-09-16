@@ -107,6 +107,17 @@ namespace Cron.Core
         /// <summary>
         ///     Everies the specified cron type.
         /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="cronType">Type of the cron.</param>
+        /// <param name="subCronType">Type of the sub cron.</param>
+        /// <param name="minSubCronTypeValue">The minimum sub cron type value.</param>
+        /// <param name="maxSubCronTypeValue">The maximum sub cron type value.</param>
+        /// <returns>ICronBuilder.</returns>
+        ICronBuilder Every<T>(CronType cronType, CronType subCronType, T minSubCronTypeValue, T maxSubCronTypeValue) where T : struct;
+
+        /// <summary>
+        ///     Everies the specified cron type.
+        /// </summary>
         /// <param name="cronType">Type of the cron.</param>
         /// <returns><see cref="T:Cron.Core.ICronBuilder" /></returns>
         ICronBuilder Every(CronType cronType);

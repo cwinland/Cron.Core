@@ -11,17 +11,19 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-using System;
-using System.ComponentModel;
+
 using Cron.Core.Enums;
 using Cron.Core.Interfaces;
+using System;
+using System.ComponentModel;
 
 namespace Cron.Core.Sections
 {
     /// <summary>
-    /// Class SectionValues.
+    ///     Class SectionValues.
     /// Implements the <see cref="ISectionValues" />
     /// </summary>
+    /// <typeparam name="T"></typeparam>
     /// <seealso cref="ISectionValues" />
     /// <inheritdoc cref="ISectionValues" />
     public class SectionValues<T> : ISectionValues
@@ -31,7 +33,7 @@ namespace Cron.Core.Sections
         private readonly CronTimeSections time;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SectionValues{T}" /> class.
+        ///     Initializes a new instance of the <see cref="SectionValues{T}" /> class.
         /// </summary>
         /// <param name="time">The time.</param>
         /// <param name="val">The value.</param>
@@ -42,7 +44,7 @@ namespace Cron.Core.Sections
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SectionValues{T}" /> class.
+        ///     Initializes a new instance of the <see cref="SectionValues{T}" /> class.
         /// </summary>
         /// <param name="time">The time.</param>
         /// <param name="minVal">The minimum value.</param>
@@ -53,21 +55,21 @@ namespace Cron.Core.Sections
         }
 
         /// <summary>
-        /// Maximum value in a value range.
+        ///     Maximum value in a value range.
         /// </summary>
         /// <value>The maximum value.</value>
         /// <inheritdoc cref="ISectionValues" />
         public int MaxValue => maxValue ?? MinValue;
 
         /// <summary>
-        /// Minimum value in a value range. Also represents the only value, if the section is not a range.
+        ///     Minimum value in a value range. Also represents the only value, if the section is not a range.
         /// </summary>
         /// <value>The minimum value.</value>
         /// <inheritdoc cref="ISectionValues" />
         public int MinValue { get; }
 
         /// <summary>
-        /// Returns a <see cref="System.String" /> that represents this instance.
+        ///     Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
         /// <param name="translate">Translate values.</param>
         /// <param name="enumType">Associated Enum Type.</param>

@@ -11,17 +11,19 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+
 using Cron.Core.Enums;
 using Cron.Core.Interfaces;
 
 namespace Cron.Core.Sections
 {
     /// <summary>
-    /// Class DateSection.
-    /// Implements the <see cref="Section" />
+    ///     Class DateSection.
+    /// Implements the <see cref="Section{T}" />
     /// Implements the <see cref="IDateSection" />
     /// </summary>
-    /// <seealso cref="Section" />
+    /// <typeparam name="T"></typeparam>
+    /// <seealso cref="Section{T}" />
     /// <seealso cref="IDateSection" />
     /// <inheritdoc cref="IDateSection" />
     public class DateSection<T> : Section<T>, IDateSection
@@ -39,7 +41,7 @@ namespace Cron.Core.Sections
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TimeSection" /> class.
+        ///     Initializes a new instance of the <see cref="TimeSection{T}" /> class.
         /// </summary>
         /// <param name="time">The time.</param>
         /// <param name="enabled">if set to <c>true</c> [enabled].</param>

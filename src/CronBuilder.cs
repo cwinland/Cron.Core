@@ -11,6 +11,10 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+
+using Cron.Core.Enums;
+using Cron.Core.Interfaces;
+using Cron.Core.Sections;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,14 +23,11 @@ using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Cron.Core.Enums;
-using Cron.Core.Interfaces;
-using Cron.Core.Sections;
 
 namespace Cron.Core
 {
     /// <summary>
-    /// Represents a Cron expression, Description, and object that can be used to create and modify cron expressions.
+    ///     Represents a Cron expression, Description, and object that can be used to create and modify cron expressions.
     /// Implements the <see cref="Core.Interfaces.ICron" />
     /// </summary>
     /// <example>
@@ -101,12 +102,16 @@ namespace Cron.Core
 
         #region Constructors
 
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="CronBuilder"/> class.
+        /// </summary>
         [JsonConstructor]
         public CronBuilder() : this(false) { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CronBuilder" /> class.
+        ///     Initializes a new instance of the <see cref="CronBuilder" /> class.
         /// </summary>
+        /// <param name="allowSeconds">if set to <c>true</c> [allow seconds].</param>
         /// <example>
         /// Create a Cron object.
         /// <code>
@@ -116,7 +121,7 @@ namespace Cron.Core
         public CronBuilder(bool allowSeconds = false) => AllowSeconds = allowSeconds;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CronBuilder" /> class.
+        ///     Initializes a new instance of the <see cref="CronBuilder" /> class.
         /// </summary>
         /// <param name="expression">The expression.</param>
         /// <param name="allowSeconds">Use seconds in the calculations.</param>
@@ -139,7 +144,7 @@ namespace Cron.Core
         public bool AllowSeconds { get; set; }
 
         /// <summary>
-        /// Day of the Month Information
+        ///     Day of the Month Information
         /// </summary>
         /// <value>The day month.</value>
         /// <inheritdoc cref="ICron" />
@@ -147,7 +152,7 @@ namespace Cron.Core
         public ISection DayMonth { get; private set; } = new DateSection<CronDays>(CronTimeSections.DayMonth);
 
         /// <summary>
-        /// Day of the Week Information
+        ///     Day of the Week Information
         /// </summary>
         /// <value>The day week.</value>
         /// <inheritdoc cref="ICron" />
@@ -155,7 +160,7 @@ namespace Cron.Core
         public ISection DayWeek { get; private set; } = new DateSection<DayOfWeek>(CronTimeSections.DayWeek);
 
         /// <summary>
-        /// Human readable description.
+        ///     Human readable description.
         /// </summary>
         /// <value>The description.</value>
         /// <inheritdoc cref="ICron" />
@@ -172,7 +177,7 @@ namespace Cron.Core
         }
 
         /// <summary>
-        /// Hours Information
+        ///     Hours Information
         /// </summary>
         /// <value>The hours.</value>
         /// <inheritdoc cref="ICron" />
@@ -180,7 +185,7 @@ namespace Cron.Core
         public ISection Hours { get; private set; } = new TimeSection<int>(CronTimeSections.Hours);
 
         /// <summary>
-        /// Minutes Information
+        ///     Minutes Information
         /// </summary>
         /// <value>The minutes.</value>
         /// <inheritdoc cref="ICron" />
@@ -188,7 +193,7 @@ namespace Cron.Core
         public ISection Minutes { get; private set; } = new TimeSection<int>(CronTimeSections.Minutes);
 
         /// <summary>
-        /// Months Information
+        ///     Months Information
         /// </summary>
         /// <value>The months.</value>
         /// <inheritdoc cref="ICron" />
@@ -196,7 +201,7 @@ namespace Cron.Core
         public ISection Months { get; private set; } = new DateSection<CronMonths>(CronTimeSections.Months);
 
         /// <summary>
-        /// Seconds Information
+        ///     Seconds Information
         /// </summary>
         /// <value>The seconds.</value>
         /// <inheritdoc cref="ICron" />
@@ -204,7 +209,7 @@ namespace Cron.Core
         public ISection Seconds { get; private set; } = new TimeSection<int>(CronTimeSections.Seconds);
 
         /// <summary>
-        /// Get a list of sections, originally sorted.
+        ///     Get a list of sections, originally sorted.
         /// </summary>
         /// <value>The section list.</value>
         [JsonIgnore]
@@ -219,7 +224,7 @@ namespace Cron.Core
                                                           .ToList();
 
         /// <summary>
-        /// Cron Expression.
+        ///     Cron Expression.
         /// </summary>
         /// <value>The value.</value>
         /// <inheritdoc cref="ICron" />
@@ -238,8 +243,7 @@ namespace Cron.Core
         {
             var cronArray = expression.Split(' ');
 
-            if (cronArray.Length < 5 ||
-                cronArray.Length > 6)
+            if (cronArray.Length is < 5 or > 6)
             {
                 throw new InvalidDataException(
                     $"This expression only has {cronArray.Length} parts. An expression must have 5, or 6 parts.");
@@ -257,14 +261,14 @@ namespace Cron.Core
                              var (prop, sectionData) = section;
                              var fooRef = mi.MakeGenericMethod(sectionData.GetType().GetGenericArguments().First());
                              var incrementVar =
-                                 (cronArray.Length == 6 && AllowSeconds ||
+                                 ((cronArray.Length == 6 && AllowSeconds) ||
                                   sectionData.Time != CronTimeSections.Seconds) &&
                                  startingIndex < cronArray.Length;
 
                              var result = (ISection)fooRef.Invoke(null,
                                                                   new object[]
                                                                   {
-                                                                      sectionData, cronArray, startingIndex,
+                                                                      sectionData, cronArray, startingIndex
                                                                   });
 
                              if (incrementVar)
@@ -281,14 +285,13 @@ namespace Cron.Core
         #region Methods
 
         /// <summary>
-        /// Add time value for the specified time section.
+        ///     Add time value for the specified time section.
         /// </summary>
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         /// <param name="value">Value for the specified time section.</param>
         /// <param name="repeatEvery">Indicates if the value is a repeating time or specific time.</param>
         /// <returns><see cref="ICron" /></returns>
         /// <exception cref="System.ArgumentOutOfRangeException">repeatEvery</exception>
-        /// <exception cref="ArgumentOutOfRangeException">repeatEvery</exception>
         /// <example>
         /// Add Cron sections by section.
         /// <code>
@@ -312,7 +315,7 @@ namespace Cron.Core
         }
 
         /// <summary>
-        /// Add time value for the specified time section.
+        ///     Add time value for the specified time section.
         /// </summary>
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         /// <param name="minValue">Starting value for the specified time section.</param>
@@ -335,7 +338,7 @@ namespace Cron.Core
         }
 
         /// <summary>
-        /// Add day of the week.
+        ///     Add day of the week.
         /// </summary>
         /// <param name="value"><see cref="CronDays" /> representing the day of the week.</param>
         /// <returns><see cref="ICron" /></returns>
@@ -348,7 +351,7 @@ namespace Cron.Core
         public ICron Add(CronDays value) => Add(CronTimeSections.DayWeek, (int)value);
 
         /// <summary>
-        /// Add month.
+        ///     Add month.
         /// </summary>
         /// <param name="value"><see cref="CronMonths" /> representing the month.</param>
         /// <returns><see cref="ICron" /></returns>
@@ -361,7 +364,7 @@ namespace Cron.Core
         public ICron Add(CronMonths value) => Add(CronTimeSections.Months, (int)value);
 
         /// <summary>
-        /// Add range of days in the week.
+        ///     Add range of days in the week.
         /// </summary>
         /// <param name="minValue">Starting <see cref="CronDays" /> representing the day of the week.</param>
         /// <param name="maxValue">Ending <see cref="CronDays" /> representing the day of the week.</param>
@@ -376,7 +379,7 @@ namespace Cron.Core
             Add(CronTimeSections.DayWeek, (int)minValue, (int)maxValue);
 
         /// <summary>
-        /// Add range of months.
+        ///     Add range of months.
         /// </summary>
         /// <param name="minValue">Starting <see cref="CronMonths" /> representing the day of the month.</param>
         /// <param name="maxValue">Ending <see cref="CronMonths" /> representing the day of the month.</param>
@@ -402,7 +405,7 @@ namespace Cron.Core
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         /// <summary>
-        /// Remove <see cref="CronTimeSections" /> with a specified value.
+        ///     Remove <see cref="CronTimeSections" /> with a specified value.
         /// </summary>
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         /// <param name="value">Value for the specified time section.</param>
@@ -420,7 +423,7 @@ namespace Cron.Core
         }
 
         /// <summary>
-        /// Remove <see cref="CronTimeSections" /> with a specified value.
+        ///     Remove <see cref="CronTimeSections" /> with a specified value.
         /// </summary>
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         /// <param name="minValue">Starting value for the specified time section.</param>
@@ -439,7 +442,7 @@ namespace Cron.Core
         }
 
         /// <summary>
-        /// Clear the specific time element of the Cron object to defaults without any numerical cron representations.
+        ///     Clear the specific time element of the Cron object to defaults without any numerical cron representations.
         /// </summary>
         /// <param name="time">The type of time section such as seconds, minutes, etc. See <see cref="CronTimeSections" />.</param>
         /// <returns><see cref="ICron" /></returns>
@@ -452,7 +455,7 @@ namespace Cron.Core
         }
 
         /// <summary>
-        /// Resets the specified section.
+        ///     Resets the specified section.
         /// </summary>
         /// <param name="section"><see cref="ISection" /></param>
         /// <returns><see cref="ICron" /></returns>
@@ -464,7 +467,7 @@ namespace Cron.Core
         }
 
         /// <summary>
-        /// Clear the entire Cron object to defaults without any numerical cron representations.
+        ///     Clear the entire Cron object to defaults without any numerical cron representations.
         /// </summary>
         /// <returns><see cref="ICron" /></returns>
         /// <inheritdoc cref="ICron" />
@@ -476,7 +479,7 @@ namespace Cron.Core
         }
 
         /// <summary>
-        /// Set time with <see cref="ISection" /> value.
+        ///     Set time with <see cref="ISection" /> value.
         /// </summary>
         /// <param name="value">Value for the specified time section.</param>
         /// <returns><see cref="ICron" /></returns>
@@ -490,7 +493,7 @@ namespace Cron.Core
         }
 
         /// <summary>
-        /// Returns a <see cref="System.String" /> that represents this instance.
+        ///     Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         /// <inheritdoc cref="ICron" />
@@ -511,14 +514,13 @@ namespace Cron.Core
 
         private static ISection CreateDisabledSection<T>(ISection section) =>
             section.SectionType == CronSectionType.Time
-                ? (ISection)new TimeSection<T>(section.Time, false)
+                ? new TimeSection<T>(section.Time, false)
                 : new DateSection<T>(section.Time, false);
 
         private static ISection CreateExpressionSection<T>(ISection section, string value) =>
             section.SectionType == CronSectionType.Time
-                ? (ISection)
-                new TimeSection<T>(section.Time,
-                                   value)
+                ? new TimeSection<T>(section.Time,
+                    value)
                 : new DateSection<T>(section.Time,
                                      value);
 

@@ -37,13 +37,11 @@
         /// </summary>
         /// <value>The description.</value>
         string Description { get; }
-
-        #endregion
-
         /// <summary>
-        ///     Converts to builder.
+        ///     Gets the builder.
         /// </summary>
-        /// <returns>ICronBuilder.</returns>
-        ICronBuilder ToBuilder();
+        /// <value>The builder.</value>
+        ICronBuilder Builder { get; }
+        #endregion
     }
 }

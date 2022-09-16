@@ -42,10 +42,16 @@ namespace Cron.Core
         /// <value>The description.</value>
         public string Description => ToString();
 
+        /// <summary>
+        ///     Gets the builder.
+        /// </summary>
+        /// <value>The builder.</value>
+        public ICronBuilder Builder { get; internal set; }
+
         #endregion
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="CronExpression"/> class.
+        ///     Initializes a new instance of the <see cref="CronExpression" /> class.
         /// </summary>
         /// <param name="minute">The minute.</param>
         /// <param name="hour">The hour.</param>
@@ -62,7 +68,7 @@ namespace Cron.Core
         }
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="CronExpression"/> class.
+        ///     Initializes a new instance of the <see cref="CronExpression" /> class.
         /// </summary>
         /// <param name="minute">The minute.</param>
         /// <param name="hour">The hour.</param>
@@ -74,10 +80,5 @@ namespace Cron.Core
 
         /// <inheritdoc />
         public override string ToString() => $"{Minute} {Hour} {DayOfMonth} {Month} {Weekday}";
-
-        public ICronBuilder ToBuilder()
-        {
-            return new NewCronBuilder().Set(CronType.Minute, Minute).Set(CronType.Hour, Hour).Set(CronType.Day, DayOfMonth).Set(CronType.Month, Month).Set(CronType.Weekday, Weekday);
-        }
     }
 }

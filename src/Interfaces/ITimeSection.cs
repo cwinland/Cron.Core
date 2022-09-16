@@ -19,12 +19,12 @@ using System.Collections.Generic;
 namespace Cron.Core.Interfaces
 {
     /// <summary>
-    /// Section specifically for Time (seconds, minutes, hours).
+    ///     Section specifically for Time (seconds, minutes, hours).
     /// </summary>
     public interface ITimeSection : ISection
     {
         /// <summary>
-        /// The allowed increments
+        ///     The allowed increments
         /// </summary>
         /// <value>The allowed increments.</value>
         List<int> AllowedIncrements { get; }

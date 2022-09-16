@@ -14,19 +14,19 @@
 namespace Cron.Core.Enums
 {
     /// <summary>
-    /// Enum CronSectionType
+    ///     Enum CronSectionType
     /// </summary>
     /// <seealso cref="CronTimeSections" />
     public enum CronSectionType
     {
         /// <summary>
-        /// The time Section Type.
+        ///     The time Section Type.
         /// </summary>
         Time,
 
         /// <summary>
-        /// The date section Type.
+        ///     The date section Type.
         /// </summary>
-        Date,
+        Date
     }
 }
