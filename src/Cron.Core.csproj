@@ -29,6 +29,12 @@
 		<PackageReleaseNotes>Assume standard Cron, Remove Years, Allow Seconds as an option.
 Remove Signed Assembly.</PackageReleaseNotes>
 	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <LangVersion>preview</LangVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <LangVersion>preview</LangVersion>
+	</PropertyGroup>
 
 	<Target Name="SetPackageVersion">
 		<PropertyGroup>
@@ -69,21 +75,32 @@ Remove Signed Assembly.</PackageReleaseNotes>
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Include="Attributes\ComparableExtensions.cs" />
+		<Compile Include="Attributes\RangeAttribute.cs" />
 		<Compile Include="Converters\CronConverter.cs" />
 		<Compile Include="Converters\ICronInterfaceConverterFactory.cs" />
 		<Compile Include="Converters\InterfaceConverter.cs" />
 		<Compile Include="Converters\InterfaceConverterFactory.cs" />
 		<Compile Include="Converters\JsonInterfaceConverter.cs" />
 		<Compile Include="CronBuilder.cs" />
+		<Compile Include="CronExpression.cs" />
 		<Compile Include="Enums\CronDays.cs" />
 		<Compile Include="Enums\CronMonths.cs" />
 		<Compile Include="Enums\CronSectionType.cs" />
 		<Compile Include="Enums\CronTimeSections.cs" />
+		<Compile Include="Enums\CronType.cs" />
+		<Compile Include="Extensions\CronBuilderExtensions.cs" />
+		<Compile Include="Extensions\EnumExtensions.cs" />
+		<Compile Include="ICronBuilder.cs" />
+		<Compile Include="ICronExpression.cs" />
 		<Compile Include="Interfaces\ICron.cs" />
 		<Compile Include="Interfaces\IDateSection.cs" />
 		<Compile Include="Interfaces\ISection.cs" />
 		<Compile Include="Interfaces\ISectionValues.cs" />
 		<Compile Include="Interfaces\ITimeSection.cs" />
+		<Compile Include="NewCronBuilder.cs" />
+		<Compile Include="NumberPart.cs" />
+		<Compile Include="NumberParts.cs" />
 		<Compile Include="Sections\DateSection.cs" />
 		<Compile Include="Sections\Section.cs" />
 		<Compile Include="Sections\SectionValues.cs" />
@@ -91,6 +108,7 @@ Remove Signed Assembly.</PackageReleaseNotes>
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="System.Collections.Immutable" Version="6.0.0" />
 		<PackageReference Include="System.Text.Json" Version="5.0.1" />
 	</ItemGroup>
 
